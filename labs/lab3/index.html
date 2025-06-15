@@ -1,0 +1,2428 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="XJTU-ICS Webpage">
+      
+      
+        <meta name="author" content="XJTU-ICS TEAM">
+      
+      
+        <link rel="canonical" href="https://xjtu-ics.github.io/labs/lab3/">
+      
+      
+        <link rel="prev" href="../lab2/">
+      
+      
+        <link rel="next" href="../lab4/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Lab 3: Attack Lab - Introduction to Computer Systems Spring 2025</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xjtu-ics-lab-3-attack-lab" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-header__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to Computer Systems Spring 2025
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 3: Attack Lab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../calendar/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Calendar
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../staff/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Staff
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../policies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Policies
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/quickreference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Textbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Piazza
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FAQ/lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FAQ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-nav__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Introduction to Computer Systems Spring 2025
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 0: Tutorial and Environmental Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1: Data Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2: Bomb Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Lab 3: Attack Lab
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3: Attack Lab
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      开发环境准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验前置知识
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Target程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      target程序简介
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么攻击target？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-injection-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分：代码注入攻击（Code Injection Attacks）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：代码注入攻击（Code Injection Attacks）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-level-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 1 (LEVEL 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 2 (LEVEL 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 3 (LEVEL 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-oriented-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分：返回导向编程（Return-oriented Programming）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：返回导向编程（Return-oriented Programming）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 4 (LEVEL 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 5 (LEVEL 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      评分方法与代码提交
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="评分方法与代码提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      评分方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码提交
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      迟交
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-hex2raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录A: 使用 hex2raw
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录A: 使用 hex2raw">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB调试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录B: 生成汇编指令的机器码
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4: Cache Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 5: Optimization Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 6: Linker Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 7: Malloc Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../staff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Staff
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/quickreference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/ICS-Server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ICS-Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/VScodeRemote-SSH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VSCode Remote-SSH Setting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/LinuxInstallation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/Introduction_to_GDB_and_Debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to GDB & Debugging
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Textbook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Piazza
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            FAQ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 0: Tutorial and Environmental Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验简介
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      注意事项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      开发环境准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验前置知识
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验准备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#target" class="md-nav__link">
+    <span class="md-ellipsis">
+      Target程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Target程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      target程序简介
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么攻击target？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#code-injection-attacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分：代码注入攻击（Code Injection Attacks）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分：代码注入攻击（Code Injection Attacks）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-level-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 1 (LEVEL 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 2 (LEVEL 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 3 (LEVEL 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#return-oriented-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分：返回导向编程（Return-oriented Programming）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分：返回导向编程（Return-oriented Programming）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4-level-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 4 (LEVEL 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-level-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 5 (LEVEL 3)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      评分方法与代码提交
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="评分方法与代码提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      评分方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码提交
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      迟交
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-hex2raw" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录A: 使用 hex2raw
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="附录A: 使用 hex2raw">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB调试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b" class="md-nav__link">
+    <span class="md-ellipsis">
+      附录B: 生成汇编指令的机器码
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+<h1 id="xjtu-ics-lab-3-attack-lab">XJTU-ICS LAB 3: Attack Lab<a class="headerlink" href="#xjtu-ics-lab-3-attack-lab" title="Permanent link">&para;</a></h1>
+<h2 id="_1">实验简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>嘿嘿，一转眼就到了第三个实验了呢。不知道大家在经历了第二个实验——bomblab之后有没有加深对gdb和x86汇编的理解呢，是被"炸弹"炸的神志不清，还是已经成为拆弹高手了呢？不管大家与炸弹周旋的怎么样，本次实验将提供另一个崭新的舞台——利用<strong>缓冲区溢出</strong>来进行模拟攻击目标程序，满足同学们从小的当黑客的愿望～。</p>
+<p>本实验将通过分析和攻击两个包含不同安全漏洞的程序（<code>ctarget</code>和<code>rtarget</code>）来增进你对程序安全性的理解。通过本实验，你将可以：</p>
+<ul>
+<li>理解缓冲区溢出漏洞及其对程序安全性的影响，以及黑客如何利用这类漏洞执行恶意操作。</li>
+<li>学习如何通过合理的编程和利用编译器以及操作系统提供的安全机制，增强自己编写的程序的安全性。</li>
+<li>深入了解函数调用过程中的栈管理机制以及参数在函数之间传递的方式。</li>
+<li>学会使用<code>gcc</code>工具生成用于漏洞攻击的字节序列，了解<code>x86-64</code>架构下的指令编码方法。</li>
+<li>提升对<code>objdump</code>、<code>gdb</code>等工具的熟练度，这些工具对于程序分析和调试至关重要。</li>
+</ul>
+<p>实验可能<strong>颇具难度</strong>，但是相信同学们在完成实验之后一定可以对x86汇编，尤其是函数调用和缓冲区溢出导致的安全问题</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol>
+<li>通过本实验，你将学习到利用安全性漏洞攻击操作系统和网络服务器的方法。本实验的目的是通过模拟攻击来增进对安全漏洞的理解和防范意识，了解安全漏洞的本质。本实验内容应仅用于学习目的，严禁用于任何非法或不道德的活动。</li>
+<li>本实验开始前，需要学习CS:APP3e第3.10.3节和第3.10.4节的知识。</li>
+</ol>
+</div>
+<p>Good luck and have fun! 😍</p>
+<h2 id="_2">注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>这是一个 <strong>个人</strong> 作业，不要尝试组队完成。</p>
+</li>
+<li>
+<p>每个学生的题目都是<strong>独立且随机</strong>的，请遵循学术诚信原则，不要抄袭或参与任何不诚实的行为。</p>
+</li>
+<li>
+<p>你需要将解题的答案写在<code>phase1~5.txt</code>5个文件中，文件命名请一定保证规范。并且可以通过<code>autograder.py</code>计算自己的得分。</p>
+</li>
+<li>
+<p>你在进行<code>attack</code>实验时不可以使用攻击跳过程序中的一些有效代码。具体来说，你在攻击时使用的字符串中嵌入的<strong>用于<code>ret</code>指令跳转的地址</strong>都应指向以下三个地址之一：</p>
+<ul>
+<li>函数<code>touch1</code>、 <code>touch2</code> 或<code>touch3</code> 的地址。</li>
+<li>你自己注入的代码的地址。</li>
+<li><code>gadget farm</code>中某个<code>gadget</code>的地址。</li>
+</ul>
+</li>
+<li>
+<p>你只能从文件<code>rtarget</code>中的函数<code>start_farm</code>和<code>end_farm</code>之间的地址去构造你的<code>gadget</code>。</p>
+</li>
+<li>
+<p>实验难度不小，<strong>Please start early</strong> and <strong>ask more</strong></p>
+</li>
+</ul>
+<p>第一次阅读本文档时，可能觉着这些注意事项有些摸不着头脑，后续还会有对这些规则的详细说明。</p>
+<h2 id="_3">开发环境准备<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>前置要求：学习完<a href="../lab0/">lab0</a>，<strong>不要尝试在windows环境下完成实验</strong></p>
+<p>Linux is all you need.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>本次实验对编译器和标准库版本有强烈依赖，因此<strong>强烈建议</strong>所有同学在ics服务器上完成实验，本地开发可能会遇到各种各样的环境问题。</p>
+</div>
+<h2 id="_4">实验前置知识<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>这个小节仅对CS:APP3e第3.10.3节简单介绍一下，并不全面，如果对缓冲区溢出的知识比较熟悉可以略过此节。如果想了解更多请自学课本3.10.3节中的内容。</p>
+<p>C语言对于数组引用并不进行任何边界检查，而且局部变量和状态信息都存放在栈中。这两种情况结合到一起就会导致严重的程序错误，对越界的数组元素的写操作会破坏存储在栈中的状态信息。当程序使用这个被破坏的状态，试图重新加载寄存器或执行<code>ret</code>指令时，就会出现很严重的错误。</p>
+<p>例如<strong>缓冲区溢出（buffer overflow）</strong>，如果程序在栈中分配某个字符数组来保存一个字符串，但是字符串的长度超出了为数组分配的空间。</p>
+<p>例如有一个<code>echo</code>函数的代码如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cm">/* Read input line and write it back */</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">echo</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">puts</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>在调用<code>echo</code>函数时，我们可以通过程序的汇编语言得知栈的组织基本如下图所示：</p>
+<p><img alt="stack_org" src="../../assets/images/attacklab_stack_organization.svg" /></p>
+<p>图中<code>echo</code>程序在栈中为自己分配了24字节的地址空间（<code>echo</code>的栈帧），字符数组<code>buf</code>位于栈顶，可以看到，<code>buf</code>之外<code>echo</code>还分配了<code>16</code>字节是未被使用的。此时只要用户输入不超过<code>7</code>个字符，<code>gets</code>返回的字符串就可以放进<code>buf</code>的空间中，不过，长一些的字符串就会导致<code>gets</code>覆盖栈上存储的某些信息，随着字符串变长，下面的信息就会被破坏。</p>
+<table>
+<thead>
+<tr>
+<th>输入的字符数量</th>
+<th>附加的被破坏的状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0~7</code></td>
+<td>无</td>
+</tr>
+<tr>
+<td><code>9~23</code></td>
+<td>未被使用的栈空间</td>
+</tr>
+<tr>
+<td><code>24~31</code></td>
+<td>返回地址</td>
+</tr>
+<tr>
+<td><code>32+</code></td>
+<td><code>caller</code>中保存的状态</td>
+</tr>
+</tbody>
+</table>
+<p>字符串在<code>23</code>个字符以前都没有特别严重的后果，但是超过<code>23</code>个字符会导致返回指针的值，以及更多的保存状态被破坏。</p>
+<p>如果存储的返回地址的值被破坏了，那么<code>ret</code>指令会导致程序跳转到一个完全意想不到的位置。因此，黑客们可以精心设计输入字符串，使得目标程序执行自己设计的代码，从而产生十分恶劣的后果。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>大名鼎鼎的蠕虫病毒，出自Robert Morris之手（如果你尝试自学计算机，那么我相信你也会对这个人名耳熟能详（笑））。其中一种攻击方法就是通过对finger进程进行缓冲区溢出攻击，让蠕虫程序访问远程系统然后进行自我复制，从而消耗大部分计算资源，并通过互联网进行大规模传播，导致机器大面积瘫痪。有兴趣的同学可以自己Google了解更多。</p>
+</div>
+<h2 id="_5">实验准备<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>首先登陆ICSserver，你可以选择任意一台服务器完成实验。</p>
+<p>不出意外的话，在自己的家目录下面会存在一个名为<code>attacklab-&lt;number&gt;-&lt;target&gt;</code>的目录：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>linux$<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>linux$<span class="w"> </span>ls
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>...<span class="w"> </span>attacklab-&lt;number&gt;-&lt;target&gt;<span class="w"> </span>...
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>如果你在任意一台服务器上缺少这个目录，请立刻联系助教寻求帮助</p>
+</div>
+<p>其中：</p>
+<ul>
+<li>
+<p>number字段是你的学号，请<strong>仔细检查学号是否和自己的真实学号匹配</strong></p>
+</li>
+<li>
+<p>target字段是你的学号生成的种子，用于确保每位同学学号的唯一性，这个字段与本次实验无关，<strong>可以忽略</strong>。为了满足同学的好奇心，种子的生成规则如下：</p>
+<ul>
+<li>最高位是一个1-4以内的随机数，代表用的是哪一套题目（是的，助教们为每位学生准备了四套不同的题目（笑））</li>
+<li>第2-3位是你自己的入学年份</li>
+<li>最后四位和学号的末四位相同</li>
+</ul>
+</li>
+</ul>
+<p>通过target字段，我们实现了每位同学的题目唯一性，从而杜绝抄袭 😊</p>
+<p>题目可能拥有多种攻击方法，不过可以保证的是，发给每位同学的题<strong>一定有一种可以达到满分的确定的攻击方法</strong></p>
+<p>让我们进入正题，首先检查实验的完整性</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>linux$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>attacklab-&lt;number&gt;-&lt;target&gt;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>linux$<span class="w"> </span>ls
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>README.txt<span class="w">  </span>autograder.py<span class="w">  </span>cookie.txt<span class="w">  </span>ctarget<span class="w">  </span>farm.c<span class="w">  </span>hex2raw<span class="w">  </span>lib<span class="w">  </span>Makefile<span class="w"> </span>rtarget
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>如果出现实验完整性的问题，请联系助教进行处理</p>
+</div>
+<p>目录下有这些文件，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th><strong>文件名</strong></th>
+<th><strong>简介</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.txt</code></td>
+<td>描述目录下各个文件的内容</td>
+</tr>
+<tr>
+<td><code>ctarget</code></td>
+<td>易受到<strong>代码注入攻击</strong>（Code Injection Attacks）的可执行程序</td>
+</tr>
+<tr>
+<td><code>rtarget</code></td>
+<td>易受到<strong>返回导向编程攻击</strong>（Return-oriented Programming Attacks）的可执行程序</td>
+</tr>
+<tr>
+<td><code>cookie.txt</code></td>
+<td>8位十六进制代码，每位同学的不同，在有些攻击中会用到。</td>
+</tr>
+<tr>
+<td><code>farm.c</code></td>
+<td><code>gadget farm</code>的源代码，你将使用这些<code>gadget farm</code>来完成<strong>返回导向编程攻击</strong>。(后续会介绍<code>gadget farm</code>)</td>
+</tr>
+<tr>
+<td><code>hex2raw</code></td>
+<td>生成攻击字符串的文件（使用方法见附录A）</td>
+</tr>
+<tr>
+<td><code>autograder.py</code></td>
+<td>计算分数的<code>python</code>脚本</td>
+</tr>
+<tr>
+<td><code>lib/</code></td>
+<td><code>lib/</code>目录是<code>ctarget</code>和<code>rtarget</code>需要的依赖，你不需要修改其中的内容</td>
+</tr>
+<tr>
+<td><code>Makefile</code></td>
+<td>可以帮助你生成最终提交的文件<code>xxx-ics-handin.zip</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>尝试运行一下./ctarget和./rtarget两个程序，正常情况会在终端显示一段提示语，然后等待你的输入。如果你出现任何权限问题，或者出现segmentation fault等，请联系助教进行处理。</p>
+</div>
+<h2 id="target">Target程序<a class="headerlink" href="#target" title="Permanent link">&para;</a></h2>
+<h3 id="target_1">target程序简介<a class="headerlink" href="#target_1" title="Permanent link">&para;</a></h3>
+<p>总的来说，你的任务是攻击两个程序，<code>ctarget</code>和<code>rtarget</code>， 这两个程序都从<strong>标准输入（stdin）</strong>读取字符串，所使用的函数<code>getbuf</code>定义如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">unsigned</span><span class="w"> </span><span class="nf">getbuf</span><span class="p">()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">     </span><span class="kt">char</span><span class="w"> </span><span class="n">buf</span><span class="p">[</span><span class="n">BUFFER_SIZE</span><span class="p">];</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">     </span><span class="n">Gets</span><span class="p">(</span><span class="n">buf</span><span class="p">);</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">     </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>函数<code>Gets</code>类似于标准库函数中的<code>gets</code>函数，它从标准输入读取一个字符串(以"<code>\n</code>"或文件结束符结束)，并将其存储（连同一个空终止符）在指定的目的地。在此示例中，目的地是名为<code>buf</code>的数组，其大小由编译时常量<code>BUFFER_SIZE</code>定义。</p>
+<p>函数<code>Gets()</code>和<code>gets()</code>没有约束输入字符串的长度，它们只是简单地复制字节序列，因此如果输入的字符串太长可能会超出原本分配的存储空间。例如，在这个程序中就可能会超出<code>buf</code>数组的长度，造成缓冲区溢出（<code>buffer overflow</code>）。</p>
+<p>正常情况下，如果用户输入(即由<code>getbuf</code>读取)的字符串长度适中，<code>getbuf</code>将返回<code>1</code>，如下面的执行示例所示：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>linux$<span class="w">  </span>./ctarget<span class="w">                                                                                                             </span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Cookie:<span class="w"> </span>0x6f9798cf
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Type<span class="w"> </span>string:123123
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>No<span class="w"> </span>exploit.<span class="w">  </span>Getbuf<span class="w"> </span>returned<span class="w"> </span>0x1
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>Normal<span class="w"> </span><span class="k">return</span>
+</span></code></pre></div>
+<p>如上，输入了字符串<code>123123</code>，运行结果是<code>Normal return</code>，可以正常执行。</p>
+<p>如果用户输入的字符串过长，通常会出现段错误(<code>segmentation fault</code>)，这是因为你输入的字符串覆盖了栈中的有效信息。如下：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>linux$<span class="w"> </span>./ctarget<span class="w">                                                                                                              </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Cookie:<span class="w"> </span>0x59b997fa
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Type<span class="w"> </span>string:This<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>a<span class="w"> </span>very<span class="w"> </span>interesting<span class="w"> </span>string,<span class="w"> </span>but<span class="w"> </span>it<span class="w"> </span>has<span class="w"> </span>the<span class="w"> </span>property<span class="w"> </span>...
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Ouch!:<span class="w"> </span>You<span class="w"> </span>caused<span class="w"> </span>a<span class="w"> </span>segmentation<span class="w"> </span>fault!
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Better<span class="w"> </span>luck<span class="w"> </span>next<span class="w"> </span><span class="nb">time</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>FAIL
+</span></code></pre></div>
+<p>程序<code>rtarget</code>与<code>ctarget</code>的运行过程基本相同。</p>
+<h3 id="target_2">怎么攻击target？<a class="headerlink" href="#target_2" title="Permanent link">&para;</a></h3>
+<p>正如错误信息所示，缓冲区溢出通常会导致程序状态被破坏或内存访问错误。你的任务是构造一个特殊的"字符串"，使得<code>ctarget</code>和<code>rtarget</code>不是简单的发生一个<code>segmentation fault</code>，而是按照我们提供一种"特殊字符串"的指引让<code>ctarget</code>和<code>rtarget</code>执行一些特定的操作。这些用于攻击的"特殊字符串"被称为<strong>exploit字符串</strong>。</p>
+<p><code>ctarget</code>和<code>rtarget</code>都提供了几个不同的命令行参数：</p>
+<ul>
+<li><code>-h</code>: 打印帮助信息</li>
+<li><code>-i FILE</code>: 从文件中输入，而不是从标准输入中输入</li>
+</ul>
+<p>由于<code>ctarget</code>和<code>rtarget</code>这两个程序接收的是字符串输入，但是你在攻击中需要使用的“exploit字符串”的<strong>有些字符可能不是ASCII字符集中对应的可打印的字符</strong>。例如，一个字节的值是<code>0x31</code>，在ASCII中对应字符'<code>1</code>'，这是可以直接从键盘输入的；但是如果一个字节的值是<code>0x00</code>，我们通常没有直接对应的字符可以输入。</p>
+<p>为了解决这个问题，我们提供了<code>hex2raw</code>工具。即使你需要一些无法输入的字符，<code>hex2raw</code>也可以生成对应字节的字符串，我们称为<strong>原始字符串</strong>（<code>raw string</code>），有关使用<code>hex2raw</code>的详细信息，以及如何利用原始字符串进行<code>gdb</code>调试，请阅读<strong>附录A</strong>（本文末尾）。</p>
+<p>虽然说原始字符串可以作为<code>ctarget</code>和<code>rtarget</code>的直接输入，但是原始字符串的文件打开时通常是一堆乱码，不适合阅读和分析，所以<code>hex2raw</code>工具可以让你直接得到其每个字节的十六进制表示，因此你可以专注于构造一个字符串的十六进制表示，需要原始字符串时只需要使用<code>hex2raw</code>转换一下即可。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>你在进行攻击时利用的exploit字符串在任何中间位置都不能包含字节值<code>0x0a</code>，因为这是换行（'<code>\n</code>'）的 <code>ASCII</code>码。当<code>Gets</code>遇到这个字节时，它会将其作为字符串的终止符。</li>
+<li>你可以使用一个或多个<strong>用空格分隔的两位十六进制值</strong>作为<code>hex2raw</code>的输入。因此，如果要创建一个十六进制值为<code>0</code>的字节，则需要将其写成<code>00</code>。例如要构造<code>0xdeadbeef</code>这个值，你应该向<code>hex2raw</code>输入"<code>ef be ad de</code>"（注意小端模式下的字节顺序需要反过来）。</li>
+</ul>
+</div>
+<p>如果你完成了一个十六进制表示的字符串的文件，例如文件<code>phase1.txt</code>，应该如下所示：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/* phase1.txt */
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>00 00 00 00 00 00 00 00 
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>00 00 00 00 00 00 00 00 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>/* some comments */
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>11 22 33 11 22 33 00 00
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>...
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>...
+</span></code></pre></div>
+<p>那么如何测试你的攻击是否成功呢？假设你在进行第一阶段实验的攻击时，你可以使用linux的管道命令，利用<code>hex2raw</code>生成<code>phase1.txt</code>的原始字节流，并将其作为<code>ctarget</code>的输入。</p>
+<p>具体的<code>linux</code>命令如下，下面给出了一个典型的运行结果（如果你的<code>phase1.txt</code>是正确的）：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>linux$<span class="w"> </span>cat<span class="w"> </span>phase1.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./hex2raw<span class="w"> </span><span class="p">|</span><span class="w"> </span>./ctarget<span class="w">        </span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Cookie:<span class="w"> </span>0x59b997fa
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Type<span class="w"> </span>string:Touch1!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch1<span class="o">()</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">1</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>ctarget
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>PASS
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>上述命令的作用是，使用cat命令将phase1.txt输出，随后通过管道（|）将其传递给./hex2raw，这个程序将输出原始字节流，然后再次利用管道，将原始字节流倒入到程序./ctarget中。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Program</th>
+<th>Level</th>
+<th>Method</th>
+<th>Function</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>CTARGET</td>
+<td>1</td>
+<td>CI</td>
+<td>touch1</td>
+<td>10</td>
+</tr>
+<tr>
+<td>2</td>
+<td>CTARGET</td>
+<td>2</td>
+<td>CI</td>
+<td>touch2</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>CTARGET</td>
+<td>3</td>
+<td>CI</td>
+<td>touch3</td>
+<td>30</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RTARGET</td>
+<td>2</td>
+<td>ROP</td>
+<td>touch2</td>
+<td>30</td>
+</tr>
+<tr>
+<td>5</td>
+<td>RTARGET</td>
+<td>3</td>
+<td>ROP</td>
+<td>touch3</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>上表总结了实验的五个阶段（<code>phase</code>）。可以看出，前三个阶段涉及对<code>ctarget</code>的代码注入（Code Injection, CI）攻击，后两个阶段涉及对<code>rtarget</code>的返回导向编程（Return-oriented Programming, ROP）攻击。</p>
+<p>顺利完成前三个phase，也就是代码注入攻击之后，你将得到基本的60分。而最后两个phase较难，如果完成phase4，你将可以得到90分。最后的10分，供学有余力的同学登顶巅峰。</p>
+<h2 id="_6">实验流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>本实验设计了5个阶段（phase 1 - phase 5)，前三个阶段你需要攻击<code>ctarget</code>，后两个阶段你需要攻击<code>rtarget</code>，<code>ctarget</code>和<code>rtarget</code>都以<strong>原始字符串</strong>作为输入，但是根据上文我们得知有些原始字符串是不容易直接输入的，为此我们需要先写出原始字符串对应的十六进制表示，例如上文中的<code>phase1.txt</code>，然后通过<code>hex2raw</code>程序来生成<code>phase1.txt</code>对应的原始字符串文件<code>raw1.txt</code>。</p>
+<p>一个比较推荐的实验流程如下（以阶段1为例）：</p>
+<ul>
+<li>首先，你需要在目录下新建一个文件<code>phase1.txt</code>（利用<code>vscode</code>左侧目录新建文件或者在终端使用<code>touch phase1.txt</code>都可以）。这个文件用来作为我们输入字符串的十六进制表示</li>
+<li>然后，你可以尝试在<code>phase1.txt</code>中输入你的字符串的十六进制表示</li>
+<li>接下来，你可以使用<code>hex2raw</code>生成原始字符串文件，例如下面的命令生成了一个原始字符串文件<code>raw1.txt</code>：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>linux$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>phase1.txt<span class="w"> </span>&gt;<span class="w"> </span>raw1.txt
+</span></code></pre></div>
+<ul>
+<li>然后你可以使用<code>gdb</code>来调试</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>linux$<span class="w"> </span>gdb<span class="w"> </span>ctarget
+</span></code></pre></div>
+<ul>
+<li>在gdb调试时可以通过<code>run &lt; raw1.txt</code>运行，进行调试：</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>(gdb) run &lt; raw1.txt
+</span></code></pre></div>
+<ul>
+<li>如何判断是否攻击成功呢？你可以将你生成的原始字符串文件作为<code>./ctarget</code>的输入，命令如下：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>linux$<span class="w"> </span>./ctarget<span class="w"> </span>&lt;<span class="w"> </span>raw1.txt<span class="w">         </span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Cookie:<span class="w"> </span>0x59b997fa
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Type<span class="w"> </span>string:Touch1!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch1<span class="o">()</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">1</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>ctarget
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>PASS
+</span></code></pre></div>
+<p>如果得到类似的输出，那恭喜你，攻击成功！</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>你修改<code>phase1.txt</code>后需要要及时通过第2步的命令更新<code>raw1.txt</code>，否则运行<code>./ctarget &lt; raw1.txt</code>得到的可能是旧的结果。</p>
+</div>
+<ul>
+<li>最后可以使用<code>autograder.py</code>测试你的得分。</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>linux$<span class="w"> </span>python3<span class="w"> </span>autograder.py
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>phase1<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>phase2<span class="w"> </span>Score:<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">20</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>phase3<span class="w"> </span>Score:<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>phase4<span class="w"> </span>Score:<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>phase5<span class="w"> </span>Score:<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">100</span><span class="w"> </span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>autograder.py</code>的工作流程是读取<code>phase1~5.txt</code>文件，并自动转化为原始字符串输入到对应的<code>ctarget</code> <code>rtarget</code>中，所以<strong>注意如果你的文件名并不是<code>phase1~5.txt</code>，那运行<code>autograder.py</code>是没有分数的</strong>。</p>
+</div>
+<h2 id="code-injection-attacks">第一部分：代码注入攻击（Code Injection Attacks）<a class="headerlink" href="#code-injection-attacks" title="Permanent link">&para;</a></h2>
+<p>在前三个阶段（<code>phase</code>），你将利用字符串攻击<code>ctarget</code>。该程序的堆栈位置在<strong>每次运行时都是不变</strong>的，因此堆栈上的数据可被视为可执行代码。这些特性使程序很容易受到攻击，因为你可以在你的攻击字符串中加入汇编指令的机器码。</p>
+<h3 id="1-level-1">阶段 1 (LEVEL 1)<a class="headerlink" href="#1-level-1" title="Permanent link">&para;</a></h3>
+<p>在第1阶段，你不需要注入可执行代码。你需要构造<strong>exploit字符串</strong>，使得程序在getbuf之后不是返回到原有的流程，而是执行程序<code>touch1</code>。</p>
+<p>函数<code>getbuf</code> 在 <code>ctarget</code> 中被函数<code>test</code>调用，其C语言代码如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">     </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="err">；</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">     </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getbuf</span><span class="p">()</span><span class="err">；</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;No exploit. Getbuf returned 0x%x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="err">；</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>当 <code>getbuf</code> 执行其返回语句（<code>getbuf</code> 的第 5 行）时，程序通常会在函数<code>test</code>中（该函数的第5行）继续执行。我们希望改变这种执行顺序。在文件<code>ctarget</code>中，有一个函数<code>touch1</code>的代码，其C语言表示如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">touch1</span><span class="p">()</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">     </span><span class="n">vlevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="cm">/* Part of validation protocol */</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">     </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Touch1!You called touch1()</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span><span class="err">；</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">     </span><span class="n">validate</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">     </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>在这个任务中，你需要构造一个特殊的输入字符串---<strong>“exploit字符串”</strong>，使得<code>ctarget</code>程序中的<code>getbuf</code>函数在执行其返回语句的时候不按照常规流程返回到test函数，而是跳转到<code>touch1</code>函数并执行其代码。请注意，你所构造的<strong>exploit字符串</strong>可能会对调用栈上<code>getbuf</code>函数之外的部分造成影响。但是，由于<code>touch1</code>函数的执行将导致程序立即退出，因此你不需要担心对栈的其他部分造成破坏。你的主要目标是确保能够成功调用<code>touch1</code>函数。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>使用<code>objdump -d ctarget</code>命令获取<code>ctarget</code>程序的反汇编代码。</li>
+<li>在反汇编代码中可以确定<code>touch1</code>函数的起始地址，并尝试使用这个地址覆盖<code>getbuf</code>的返回地址。注意在构造<code>exploit</code>字符串时，地址应该以字节形式表示，并且要注意字节的顺序（即小端顺序，使得低地址的字节在前）。</li>
+<li>利用<code>gdb</code>调试工具来检查<code>getbuf</code>函数执行的最后几条指令是否按照你的预期工作。</li>
+<li><code>buf</code>数组在<code>getbuf</code>函数的堆栈帧中的具体位置取决于<code>BUFFER_SIZE</code>的大小以及<code>gcc</code>的堆栈分配策略。你需要查看<code>ctarget</code>的反汇编代码来确定<code>buf</code>数组的准确位置，以便决定在<strong>exploit字符串</strong>的什么位置插入<code>touch1</code>的地址。</li>
+</ul>
+</div>
+<h3 id="2-level-2">阶段 2 (LEVEL 2)<a class="headerlink" href="#2-level-2" title="Permanent link">&para;</a></h3>
+<p>在第2阶段中，你的任务是将一小段可执行代码注入到<strong>exploit字符串</strong>中。这段代码将作为exploit字符串的一部分，并在攻击时执行<code>touch2</code>，<code>touch2</code>的参数是你的<code>cookie.txt</code>文件中的值。</p>
+<p>在<code>ctarget</code> 文件中，有一个函数 <code>touch2</code>，其 C语言源代码如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">touch2</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">     </span><span class="n">vlevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Part of validation protocol */</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cookie</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">         </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Touch2!: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">         </span><span class="n">validate</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">     </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">         </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Misfire: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">         </span><span class="n">fail</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">     </span><span class="p">}</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">     </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>你的任务是让在<code>ctarget</code>程序中的<code>getbuf</code>函数在返回时不按照常规流程返回到<code>test</code>函数，而是跳转到<code>touch2</code>函数并执行其代码。关键在于，在运行<code>touch2</code>的时候，你需要将“<code>cookie</code>”值作为参数传递给它。这个“<code>cookie</code>”值对于每位同学都是唯一的，<code>touch2</code>函数需要接收到正确的“<code>cookie</code>”值才能攻击成功。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>你将要注入一段可执行代码到内存中，因此你需要思考如何放置这段可执行代码，并获得这段可执行代码的地址，从而使得<code>getbuf</code>代码末尾的<code>ret</code>指令可以跳转到你注入的可执行代码的地址。</li>
+<li>根据<code>x86-64</code>的调用约定，函数的第一个参数是通过<code>%rdi</code>寄存器传递的。因此，你注入的可执行代码应该包括<strong>设置<code>%rdi</code>寄存器为你的“cookie”值的指令</strong>。</li>
+<li>你的注入代码应该以一个<code>ret</code>指令结束，这将使得程序可以跳转到<code>touch2</code>函数的开始。</li>
+<li>不要尝试在你的<strong>exploit代码</strong>中使用<code>jmp</code>或<code>call</code>指令（理由是构建这些指令的目的地址的编码可能会比较复杂），所有跳转都要使用<code>ret</code>指令实现。</li>
+<li>如何知道汇编代码对应的字节序列？你可以参考<strong>附录B</strong>，了解如何使用<code>gcc</code>工具来将汇编代码转换成字节表示形式。</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li>你在<code>gdb</code>调试时，当运行到你自己注入的代码时，可能会出现<code>gdb</code>找不到调用栈的情况，在<code>gdb</code>中表现为<code>??</code>，这属于正常现象，你可以根据指令的地址以及寄存器的值来判断你注入的代码是否正常运行。</li>
+</ul>
+</div>
+<h3 id="3-level-3">阶段 3 (LEVEL 3)<a class="headerlink" href="#3-level-3" title="Permanent link">&para;</a></h3>
+<p>第3个阶段也是代码注入攻击，与阶段2类似，攻击时需要使程序执行<code>touch3</code>，但是<code>touch3</code>需要一个<strong>字符串</strong>作为其参数。</p>
+<p>在<code>ctarget</code>文件中，有函数<code>hexmatch</code>和<code>touch3</code>的代码，其<code>C</code>语言源代码如下：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="cm">/* Compare string to hex represention of unsigned value */</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="kt">int</span><span class="w"> </span><span class="nf">hexmatch</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">sval</span><span class="p">)</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="p">{</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">cbuf</span><span class="p">[</span><span class="mi">110</span><span class="p">];</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">        </span><span class="cm">/* Make position of check string unpredictable */</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cbuf</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">random</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">        </span><span class="n">sprintf</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%.8x&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">strncmp</span><span class="p">(</span><span class="n">sval</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="p">}</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">touch3</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">sval</span><span class="p">)</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="p">{</span>
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="n">vlevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="cm">/* Part of validation protocol */</span>
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hexmatch</span><span class="p">(</span><span class="n">cookie</span><span class="p">,</span><span class="w"> </span><span class="n">sval</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Touch3!: You called touch3(</span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sval</span><span class="p">);</span>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">        </span><span class="n">validate</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">        </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Misfire: You called touch3(</span><span class="se">\&quot;</span><span class="s">%s</span><span class="se">\&quot;</span><span class="s">)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sval</span><span class="p">);</span>
+</span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">        </span><span class="n">fail</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span><span id="__span-16-20"><a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-16-21"><a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-16-22"><a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>你的任务是让<code>ctarget</code>程序中的<code>getbuf</code>函数在返回时不按照常规流程返回到<code>test</code>函数，而是跳转到<code>touch3</code>函数并执行其代码。关键在于，在运行<code>touch3</code>的时候，你需要将<strong>以字符串形式表示的“<code>cookie</code>”值</strong>作为参数传递给它。<code>touch3</code>函数需要接收到正确的“<code>cookie</code>”值的字符串才能攻击成功。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>你在攻击时利用的exploit字符串中需要包含<code>cookie</code>的字符串表示形式。该字符串应包含8个十六进制数字字符（从最高有效位到最低有效位），不含前导 "<code>0x</code>"。</li>
+<li>在<code>C</code>语言中，字符串被表示为字符的序列，以<code>NULL</code>字节（即字节值为<code>0</code>）结尾。因此，在你的<code>exploit</code>字符串中，<code>cookie</code>的字符串表示形式后面应该跟着一个<code>NULL</code>字节。可以通过在<code>Linux</code>终端中运行<code>man ascii</code>命令来查看字符对应的<code>ASCII</code>字节值。这将帮助你确保你的<code>cookie</code>字符串中的每个字符都被正确地转换成相应的字节值。</li>
+<li>你注入的代码需要将<code>%rdi</code>寄存器<strong>设置为<code>cookie</code>字符串的地址</strong>。</li>
+<li>当调用<code>hexmatch</code>或<code>strncmp</code>两个函数时，这些函数会将一些数据压入栈，这可能会覆盖<code>getbuf</code>使用的缓冲区。因此，如果你要将<code>cookie</code>字符串存放在栈上，你需要谨慎一些，以避免它被意外覆盖。</li>
+</ul>
+</div>
+<h2 id="return-oriented-programming">第二部分：返回导向编程（Return-oriented Programming）<a class="headerlink" href="#return-oriented-programming" title="Permanent link">&para;</a></h2>
+<p>对<code>rtarget</code>程序进行攻击比<code>ctarget</code>更加复杂，因为<code>rtarget</code>采用了两种技术来增加安全性，这些技术使得传统的代码注入攻击更难实施：</p>
+<ul>
+<li><strong>栈随机化：</strong><code>rtarget</code>使用栈随机化技术，这意味着每次程序运行时，栈的位置都会有所不同。由于栈的位置不固定，我们无法预先知道注入代码的确切地址，这大大增加了直接在栈上注入并执行代码的难度。</li>
+<li><strong>栈执行保护：</strong> 程序还将栈区域标记为不可执行，即使攻击者成功地将代码注入到栈上，也无法将程序计数器（PC）指向栈上的代码并执行，因为操作系统会阻止从不可执行区域执行代码。</li>
+</ul>
+<p>幸运的是，聪明的黑客们已经设计出了一些策略，通过<strong>执行现有代码</strong>而不是注入新代码实现攻击。其中最普遍的形式被称为<strong>返回导向编程（ROP）</strong>。ROP的策略是在现有程序中找出由一条或多条指令组成的字节序列，这些指令后跟指令<code>ret</code>。这样的<strong>程序段</strong>被称为<code>gadget</code>。</p>
+<p>下图说明了如何设置堆栈来执行<code>n</code>个<code>gadget</code>的序列。在该图中，栈上有一些<code>gadget</code>地址，这些地址指向各个<code>Gadget</code>。每个<code>Gadget</code>由一系列指令的字节组成，最后一个字节为<code>0xc3</code>，是<code>ret</code>指令的字节编码。当栈是这样的时候，如果程序此时执行了一个<code>ret</code>指令，那程序会立即执行栈顶也就是<code>Gadget1</code>的代码，<code>Gadget1</code>末尾的<code>ret</code>指令又会使程序执行<code>Gadget2</code>的代码，依次类推，程序会执行一连串的<code>Gadget</code>，每个<code>Gadget</code>末尾的<code>ret</code>指令都会使程序跳转到下一个<code>Gadget</code>的起点。</p>
+<p><img alt="gadget" src="../../assets/images/attacklab_stack_gadget.png" /></p>
+<p>在返回导向编程（ROP）中，我们的<code>gadget</code>会经过编译器编译生成汇编代码，我们可以利用这些汇编指令进行攻击，特别是函数末尾部分的一些汇编指令（因为函数最后一般会有<code>ret</code>）。实际上，可能会有一些很好用的<code>gadget</code>，但它们数量有限，不足以实现许多重要的操作。例如，编译后的函数中很少会以<code>popq %rdi</code>作为<code>ret</code>之前的最后一条指令。幸运的是，对于像<code>x86-64</code>这样的面向字节的指令集，我们常常可以通过提取指令的字节序列中的某些部分来构造所需的<code>gadget</code>。这意味着，即使没有直接可用的<code>gadget</code>，我们也可以通过拆分现有的指令片段来创造出新的<code>gadget</code>。</p>
+<p>例如， <code>rtarget</code>的<code>C</code>语言源码中有一个函数是这样定义的：</p>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setval_210</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">     </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3347663060U</span><span class="p">;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<p>乍一看，这个函数似乎没有办法用于我们的攻击。但是我们将这个函数进行反汇编之后，就得到了一个有趣的字节序列：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>0000000000400f15 &lt;setval_210&gt;:
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a> 400f15:         c7 07 d4 48 89 c7   movl $0xc78948d4,(%rdi)
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a> 400f1b:         c3                  retq
+</span></code></pre></div>
+<p>注意<code>movl $0xc78948d4,(%rdi)</code>的字节序列的后半段<code>48 89 c7</code>，对应指令<code>movq %rax, %rdi</code>的字节序列（一些常用的<code>movq</code>指令编码见下图A）。该序列之后是编码<code>ret</code>指令的字节值<code>c3</code>。函数<code>setval_210</code>从地址<code>0x400f15</code>开始，指令 <code>movq %rax, %rdi</code>的序列从函数的第<code>4</code>个字节开始。因此，这段代码包含一个<strong>起始地址为<code>0x400f18</code>的<code>gadget</code></strong>，它可以实现<strong>把寄存器<code>%rax</code>中的64位值传递给寄存器<code>%rdi</code></strong>。</p>
+<p><img alt="code" src="../../assets/images/attacklab_bytecoding_instructions.png" /></p>
+<p><code>rtarget</code>代码中包含许多类似于上图中<code>setval_210</code>的函数，这些函数位于名为<code>gadget farm</code>的区域中。你的任务是在<code>gadget farm</code>中找到对你有用的<code>gadget</code>，并利用这些<code>gadget</code>进行两次攻击，这两次攻击与第2和第3个<code>phase</code>基本相同。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>注意：<code>gadget farm</code>是函数<code>start_farm</code>和<code>end_farm</code>之间的部分，不要试图从<code>rtarget</code>程序代码的其他部分构建<code>gadget</code>。**</p>
+</div>
+<h3 id="4-level-2">阶段 4 (LEVEL 2)<a class="headerlink" href="#4-level-2" title="Permanent link">&para;</a></h3>
+<p>在第4阶段，你将重复第2阶段的攻击，但需要在<code>rtarget</code>程序中利用到<code>gadget farm</code>中的<code>gadget</code>。你可以使用由以下指令类型组成的<code>gadget</code>进行攻击，并且只允许使用 <code>x86-64</code>的前8个寄存器（<code>%rax-%rdi</code>）。</p>
+<ul>
+<li><code>movq</code> ：其代码如上图A所示。</li>
+<li><code>popq</code> ：其代码如上图B所示。</li>
+<li><code>ret</code>：该指令由单字节<code>0xc3</code>编码。</li>
+<li><code>nop</code>：该指令（是 "无操作"的简称）由<code>0x90</code>单字节编码。它的唯一作用是使程序计数器加1。</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>你可以在<code>rtarget</code>反汇编代码中的函数<code>start_farm</code> 和 <strong><code>mid_farm</code></strong> 之间找到所有所需的所有<code>gadget</code>。</li>
+<li>只需两个<code>gadget</code>就能完成这次攻击。</li>
+<li><code>gadget</code>使用<code>popq</code>指令时，会从堆栈中弹出数据。因此，你的<strong>exploit字符串</strong>通常是gadget地址和数据的组合</li>
+</ul>
+</div>
+<h3 id="5-level-3">阶段 5 (LEVEL 3)<a class="headerlink" href="#5-level-3" title="Permanent link">&para;</a></h3>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>终于，你来到了最后一个阶段，在进行第 5 阶段之前，先静下心来想一想你迄今为止已经完成了哪些工作。在第 2 和第 3 阶段，你让一个程序执行了你自己设计的机器代码。假如<code>ctarget</code> 是一台网络服务器，你或许已经能够将自己的代码注入到一台远程机器中了。在第4阶段，你绕过了现代操作系统用来阻止缓冲区溢出攻击的两个主要机制。虽然你没有注入自己的代码，但你能够注入一种通过拼接现有代码序列来运行的程序。你已经在本次实验中获得了90/100分，这已经是一个不错的分数了，如果你感受到了相当的压力，可以立即停止。当然，如果你活力满满，那我们一鼓作气，问鼎巅峰。</p>
+</div>
+<p>第5阶段，你将重复对第三阶段的攻击，不过这一次是对<code>rtarget</code>进行ROP攻击，用指向用字符串表示的<code>cookie</code>的指针调用函数<code>touch3</code>。此外，第5阶段只占10分，但是并不代表这次攻击是最容易完成的。</p>
+<p>要解决第5阶段的问题，可以在<code>rtarget</code> 中由函数<code>start_farm</code> 和<code>end_farm</code> 划分的代码区域中使用<code>gadget</code>。除了第4阶段使用的<code>gadget</code>外，这个扩展的<code>farm</code>还包括不同<code>movl</code>指令的编码，如上面的指令对应字节序列的图C所示。这一部分的字节序列还包含 2 字节指令，这些指令的功能是<code>nops</code>， 即不改变任何寄存器或内存值。在上面指令对应字节序列的图D中，图D中包括<code>andb %al,%al</code>等指令，它们对某些寄存器的低阶字节进行操作，但不改变寄存器的值。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>提示：除了图A-D的指令外，你还可以使用<code>gadget farm</code>中存在的其他指令。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<ul>
+<li>你可能需要复习一下<code>movl</code>指令对寄存器高位 <code>4</code> 个字节的影响，详见课本的3.4.2。</li>
+<li>官方题解需要8个<code>gadget</code>（当然不唯一）。</li>
+</ul>
+</div>
+<h2 id="_7">评分方法与代码提交<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<h3 id="_8">评分方法<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>各个<code>phase</code>占比如下：</p>
+<p><code>phase1</code>：<code>10</code>分
+<code>phase2</code>：<code>20</code>分
+<code>phase3</code>：<code>30</code>分
+<code>phase4</code>：<code>30</code>分
+<code>phase5</code>：<code>10</code>分</p>
+<p>为了方便评分，这里要求大家将解题过程所使用的十六进制数字形式的文件分别命名为<code>phase1~5.txt</code>，例如<code>phase3</code>的十六进制数字形式的答案你需要放在<code>phase3.txt</code>文件中，正确命名后，大家可以使用实验目录下的<code>autograder.py</code>文件计算自己的得分，一个典型的运行结果如下：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>linux$<span class="w"> </span>python3<span class="w"> </span>autograder.py
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>phase1<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>phase2<span class="w"> </span>Score:<span class="w"> </span><span class="m">20</span><span class="w"> </span>/<span class="w"> </span><span class="m">20</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>phase3<span class="w"> </span>Score:<span class="w"> </span><span class="m">30</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>phase4<span class="w"> </span>Score:<span class="w"> </span><span class="m">30</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>phase5<span class="w"> </span>Score:<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">90</span><span class="w"> </span>/<span class="w"> </span><span class="m">100</span>
+</span></code></pre></div>
+<h3 id="_9">代码提交<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>大家在自己目录下运行<code>make submit</code>命令，会生成一个<code>username-handin.zip</code>文件，并且还会检测当前目录下是否存在<code>phasex.txt</code>。</p>
+<p>例如一位同学小L完成了<code>phase1~phase4</code>的攻击，同时小L没有写<code>phase5.txt</code>，一个典型的运行结果如下：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>linux$<span class="w">  </span>make<span class="w"> </span>handin
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>Warning:<span class="w"> </span>phase5.txt<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist<span class="w"> </span>and<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>skipped
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>packed<span class="w"> </span>to<span class="w"> </span>xxxxx-ics-handin.zip
+</span></code></pre></div>
+<p><code>Warning: phase5.txt does not exist and will be skipped</code>提示小L目录中没有<code>phase5.txt</code>，于是跳过了<code>phase5.txt</code>，完成打包。</p>
+<p>大家将这个<code>username-handin.zip</code>文件下载下来，在<a href="http://class.xjtu.edu.cn/">在线学习平台</a>上的作业模块中，将该文件作为附件提交即可。</p>
+<h3 id="_10">迟交<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>在超过原定的截止时间后，我们仍然接受同学的提交。此时，在lab中能获得的最高分数将随着迟交天数的增加而减少，具体服从以下给分策略：</p>
+<p>超时7天（含7天）以内时，每天扣除3%的分数
+超时7~14天（含14天）时，每天扣除4%的分数
+超时14天以上时，每天扣除7%的分数，直至扣完
+以上策略中超时不足一天的，均按一天计，自ddl时间开始计算。届时在线学习平台将开放迟交通道。</p>
+<p>评分样例：如某同学小H在lab中取得95分，但晚交3天，那么他的最终分数就为<code>95*(1-3*3%)=86.45</code>分。同样的分数在晚交8天时，最终分数则为<code>95*(1-7*3%-1*4%)=71.25</code>分。</p>
+<h2 id="a-hex2raw">附录A: 使用 hex2raw<a class="headerlink" href="#a-hex2raw" title="Permanent link">&para;</a></h2>
+<p><code>hex2raw</code>输入十六进制格式的字节序列。在这种格式中，每个字节值由两个十六进制数字表示。例如，字符串 "<code>012345</code>"可以十六进制格式输入为 "<code>30 31 32 33 34 35 00</code>"。</p>
+<p><img alt="hex2raw" src="../../assets/images/attacklab_hex2raw.png" /></p>
+<p>传递给<code>hex2raw</code>的十六进制字节应该用空格（空白或换行）分隔。建议你在编写时用换行分隔<strong>exploit字符串</strong>的不同部分。 <code>hex2raw</code>支持与<code>C</code>语言类似的多行注释，因此你可以标记<strong>exploit字符串</strong>的各个部分。例如</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>48 C7 C1 F0 11 40 00 /* MOV$0X40011F0 ,%RCX */
+</span></code></pre></div>
+<p>确保在注释字符串（"/<em>"、 "</em>/"）<strong>的起始和结束位置都留有空格</strong>，以便注释被正确地忽略。</p>
+<p>如果你在文件<code>phase1.txt</code>中写了十六进制形式的字节序列，有几种不同的方法可以将这些字节序列对应的原始字符串输入到<code>ctarget</code>或 <code>rtarget</code> ：</p>
+<ul>
+<li>你可以通过管道，让十六进制字节序列输入到 <code>hex2raw</code>，再通过管道将<code>hex2raw</code>的输出原始字符串输入到<code>ctarget</code>。</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>linux$ cat phase1.txt | ./hex2raw | ./ctarget
+</span></code></pre></div>
+<ul>
+<li>你可以通过使用<code>I/O</code>重定向，将<code>phase1.txt</code>输入<code>hex2raw</code>，再将原始字符串(raw string)存储在文件<code>raw1.txt</code>中：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>linux$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>phase1.txt<span class="w"> </span>&gt;<span class="w"> </span>raw1.txt
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>linux$<span class="w"> </span>./ctarget<span class="w"> </span>&lt;<span class="w"> </span>raw1.txt
+</span></code></pre></div>
+<ul>
+<li>你同样可以先将原始字符串（raw string）存入文件<code>raw1.txt</code>中，并使用<code>ctarget</code>或<code>rtarget</code>的<code>-i</code>参数读取文件内容作为输入：</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>linux$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>phase1.txt<span class="w"> </span>&gt;<span class="w"> </span>raw1.txt
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>linux$<span class="w"> </span>./ctarget<span class="w"> </span>-i<span class="w"> </span>raw1.txt
+</span></code></pre></div>
+<h3 id="gdb">GDB调试<a class="headerlink" href="#gdb" title="Permanent link">&para;</a></h3>
+<p>在<code>gdb</code>中调试时可以使用这种方法。</p>
+<p>例如我想调试<code>ctarget</code>程序，在命令行输入<code>gdb ctarget</code>进入<code>gdb</code>调试。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>linux$<span class="w"> </span>gdb<span class="w"> </span>ctarget<span class="w">                                            </span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w"> </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a>Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a>Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>ctarget...
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></div>
+<p>例如可以先在<code>getbuf</code>打入断点：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>b<span class="w"> </span>getbuf
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w"> </span>Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x4017a8:<span class="w"> </span>file<span class="w"> </span>buf.c,<span class="w"> </span>line<span class="w"> </span><span class="m">12</span>.
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></div>
+<p>运行时，第一种方法是可以使用<code>run -i raw1.txt</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run<span class="w"> </span>-i<span class="w"> </span>raw1.txt
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>Starting<span class="w"> </span>program:<span class="w"> </span>/home/ygli/target1/ctarget<span class="w"> </span>-i<span class="w"> </span>raw1.txt
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>Cookie:<span class="w"> </span>0x59b997fa
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>getbuf<span class="w"> </span><span class="o">()</span><span class="w"> </span>at<span class="w"> </span>buf.c:12
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="m">12</span><span class="w">      </span>buf.c:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory.
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>gdb</code>中的<code>12 buf.c: No such file or directory.</code>提示我们目录下并没有源文件的源码，这里并没有给出<code>buf.c</code>的源文件，但是并不影响我们的实验。</p>
+</div>
+<p>第二种方法是可以使用<code>run &lt; raw1.txt</code>，将原始字符串作为输入。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run<span class="w"> </span>&lt;<span class="w"> </span>raw1.txt
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>Starting<span class="w"> </span>program:<span class="w"> </span>/home/ygli/target1/ctarget<span class="w"> </span>&lt;<span class="w"> </span>raw1.txt
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>Cookie:<span class="w"> </span>0x59b997fa
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>getbuf<span class="w"> </span><span class="o">()</span><span class="w"> </span>at<span class="w"> </span>buf.c:12
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="m">12</span><span class="w">      </span>buf.c:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory.
+</span></code></pre></div>
+<h2 id="b">附录B: 生成汇编指令的机器码<a class="headerlink" href="#b" title="Permanent link">&para;</a></h2>
+<p>使用<code>gcc</code>作为汇编程序，<code>objdump</code>作为反汇编程序，可以方便地得到汇编指令的机器码（使用<code>16</code>进制表示）。例如，假设你编写的文件example.s包含以下汇编代码：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a># Example of hand-generated assembly code
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>pushq $0xabcdef     # Push value onto stack
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>addq $17, %rax      # Add 17 to %rax
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>movl %eax, %edx     # Copy lower 32 bits to %edx
+</span></code></pre></div>
+<p>汇编代码可以包含指令和数据。 <code>#</code>字符右边的内容都是注释。</p>
+<p>现在你可以汇编和反汇编该文件：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>linux$<span class="w"> </span>gcc<span class="w"> </span>-c<span class="w"> </span>example.s
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>linux$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>example.o<span class="w"> </span>&gt;<span class="w"> </span>example.d
+</span></code></pre></div>
+<p>生成的文件 <code>example.d</code>包含以下内容：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>example.o: file format elf64-x86-64
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>Disassembly of section .text:
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>0000000000000000 &lt;.text&gt;:
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>    0:  68 ef cd ab 00  pushq   $0xabcdef
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>    5:  48 83 c0 11     add     $0x11,%rax
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>    9:  89 c2           mov     %eax,%edx
+</span></code></pre></div>
+<p>底部各行显示的是由汇编语言指令生成的机器码。每行左侧的十六进制数字表示指令的起始地址（从<code>0</code> 开始）。: 字符后的十六进制数字表示汇编指令的机器码。因此，我们可以看到<code>pushq $0xabcdef</code>指令的十六进制机器码为<code>68 ef cd ab 00</code>。</p>
+<p>从该文件中，你可以获得代码的十六进制格式的序列：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>68 EF CD AB 00 48 83 C0 11 89 C2
+</span></code></pre></div>
+<p>然后，这个字符串可以通过<code>hex2raw</code>生成目标程序的输入字符串。通过修改 <code>example.d</code>，可以省略无关值，同时可以添加注释以提高可读性，如下，这是加上注释的版本，这也是一种有效的输入，可以在发送给目标程序之前通过 <code>hex2raw</code>生成原始字符串作为输入。</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>68 EF CD AB 00  /* PUSQ $0XABCEF */
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>48 83 C0 11     /* Add  $0X11 ,%RAX */
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>89 C2           /* MOV  %EAX ,%EDX */
+</span></code></pre></div>
+<hr />
+<p>Copyright © 2025 XJTU ICS-TEAM</p>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab2/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 2: Bomb Lab">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 2: Bomb Lab
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../lab4/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 4: Cache Lab">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 4: Cache Lab
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 XJTU ICS-TEAM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "navigation.indexes", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

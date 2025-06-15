@@ -1,0 +1,1970 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="XJTU-ICS Webpage">
+      
+      
+        <meta name="author" content="XJTU-ICS TEAM">
+      
+      
+        <link rel="canonical" href="https://xjtu-ics.github.io/resources/Introduction_to_GDB_and_Debugging/">
+      
+      
+        <link rel="prev" href="../LinuxInstallation/">
+      
+      
+        <link rel="next" href="../../FAQ/lab0/">
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Introduction to GDB & Debugging - Introduction to Computer Systems Spring 2025</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction-to-gdb-debugging" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-header__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to Computer Systems Spring 2025
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction to GDB & Debugging
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../calendar/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Calendar
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../staff/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Staff
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../policies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Policies
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../quickreference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Textbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Piazza
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FAQ/lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FAQ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-nav__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Introduction to Computer Systems Spring 2025
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Calendar
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 0: Tutorial and Environmental Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 1: Data Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 2: Bomb Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 3: Attack Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 4: Cache Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 5: Optimization Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 6: Linker Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 7: Malloc Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../staff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Staff
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Policies
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Resources
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Resources
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickreference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ICS-Server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ICS-Server
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VScodeRemote-SSH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VSCode Remote-SSH Setting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LinuxInstallation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Introduction to GDB & Debugging
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction to GDB & Debugging
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objdump" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objdump
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objdump">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成反汇编
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      汇编介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="汇编介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11b4" class="md-nav__link">
+    <span class="md-ellipsis">
+      地址：11b4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-8d-05-49-0e-00-00" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节码：48 8d 05 49 0e 00 00
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lea-0xe49riprax" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令：lea 0xe49(%rip),%rax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2004-_io_stdin_used0x4" class="md-nav__link">
+    <span class="md-ellipsis">
+      注释： # 2004 &lt;_IO_stdin_used+0x4&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="运行程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      程序执行
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置断点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      相对地址：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      观察寄存器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      观察内存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      单步调试
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="单步调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nexti" class="md-nav__link">
+    <span class="md-ellipsis">
+      nexti
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepi" class="md-nav__link">
+    <span class="md-ellipsis">
+      stepi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Textbook
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Piazza
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            FAQ
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab 0: Tutorial and Environmental Preparation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objdump" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objdump
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Objdump">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成反汇编
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      汇编介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="汇编介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11b4" class="md-nav__link">
+    <span class="md-ellipsis">
+      地址：11b4
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#48-8d-05-49-0e-00-00" class="md-nav__link">
+    <span class="md-ellipsis">
+      字节码：48 8d 05 49 0e 00 00
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lea-0xe49riprax" class="md-nav__link">
+    <span class="md-ellipsis">
+      指令：lea 0xe49(%rip),%rax
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2004-_io_stdin_used0x4" class="md-nav__link">
+    <span class="md-ellipsis">
+      注释： # 2004 &lt;_IO_stdin_used+0x4&gt;
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      GDB
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GDB">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      运行程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="运行程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      程序执行
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置断点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      相对地址：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      观察寄存器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      观察内存
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      单步调试
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="单步调试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nexti" class="md-nav__link">
+    <span class="md-ellipsis">
+      nexti
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stepi" class="md-nav__link">
+    <span class="md-ellipsis">
+      stepi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+<h1 id="introduction-to-gdb-debugging">Introduction to GDB &amp; Debugging<a class="headerlink" href="#introduction-to-gdb-debugging" title="Permanent link">&para;</a></h1>
+<p>没有人可以保证所有他写的代码都是bugfree的，但是发现自己逻辑中的谬误（代码中的Bug）总是非常困难，如何高效快速的消除bug就显得非常重要。借由<a href="../../labs/lab2/">拆弹实验</a>之际，为大家简单介绍一些有用高效的debugging工具。</p>
+<p>TA的水平有限，相关工具更加完整的使用方法请自行查询官方文档，这里只是介绍在本次<a href="../../labs/lab2/">拆弹实验</a>中可能使用到的一些基本方法。</p>
+<h2 id="objdump">Objdump<a class="headerlink" href="#objdump" title="Permanent link">&para;</a></h2>
+<p>objdump 是一个命令行程序（区别于GUI程序），用于在类 Unix 操作系统上显示有关<strong>目标文件</strong>的各种信息。例如，它可以用作<strong>反汇编程序以查看汇编形式的可执行文件</strong>。我们可以通过Objdump获得，可执行目标文件（二进制文件）的汇编代码文件。</p>
+<p>Objdump的典型使用方法：</p>
+<div class="language-Bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>linux&gt;<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>executable_file<span class="w"> </span>&gt;<span class="w"> </span>filename
+</span></code></pre></div>
+<p>可以得到可执行文件的汇编文件。</p>
+<h3 id="_1">生成反汇编<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p>所以在拆弹实验中我们可以使用工具：Objdump来生成bomb（可执行目标文件）的汇编代码。</p>
+<div class="language-Bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>linux&gt;<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>bomb<span class="w"> </span>&gt;<span class="w"> </span>bomb.s
+</span></code></pre></div>
+<p>此时将会在对应目录下生成一个test.s文件</p>
+<div class="language-Bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>linux&gt;<span class="w"> </span>ls
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>...<span class="w"> </span>bomb.s<span class="w"> </span>....
+</span></code></pre></div>
+<p>这个文件内容包含了完整的所有汇编代码。同理我们也可以使用objdump去生成其他的可执行文件。</p>
+<h3 id="_2">汇编介绍<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>典型由objdump生成的汇编代码如下所示：</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="err">0000000000001187</span><span class="w"> </span><span class="err">&lt;</span><span class="nf">main</span><span class="err">&gt;</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="err">1187:</span><span class="w"> </span><span class="nf">f3</span><span class="w"> </span><span class="mi">0</span><span class="no">f</span><span class="w"> </span><span class="mi">1</span><span class="no">e</span><span class="w"> </span><span class="no">fa</span><span class="w">           </span><span class="no">endbr64</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="err">118</span><span class="nl">b:</span><span class="w"> </span><span class="err">55</span><span class="w">                    </span><span class="nf">push</span><span class="w">   </span><span class="nv">%rbp</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="err">118</span><span class="nl">c:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">e5</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rsp</span><span class="p">,</span><span class="nv">%rbp</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="err">118</span><span class="nl">f:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">83</span><span class="w"> </span><span class="nf">ec</span><span class="w"> </span><span class="mi">10</span><span class="w">           </span><span class="no">sub</span><span class="w">    </span><span class="no">$0x10</span><span class="p">,</span><span class="nv">%rsp</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="err">1193:</span><span class="w"> </span><span class="nf">c7</span><span class="w"> </span><span class="mi">45</span><span class="w"> </span><span class="no">fc</span><span class="w"> </span><span class="mi">02</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">movl</span><span class="w">   </span><span class="no">$0x2</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="err">119</span><span class="nl">a:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">6</span><span class="no">f</span><span class="w"> </span><span class="mi">2</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0x2e6f</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 4010 &lt;x&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="err">11</span><span class="nl">a1:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">    </span><span class="err">11</span><span class="nl">a4:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="no">c0</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1169</span> <span class="p">&lt;</span><span class="no">add</span><span class="p">&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="err">11</span><span class="nl">a9:</span><span class="w"> </span><span class="err">8</span><span class="nf">b</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">61</span><span class="w"> </span><span class="mi">2</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">     </span><span class="no">mov</span><span class="w">    </span><span class="mi">0x2e61</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%eax</span><span class="w">        </span><span class="c1"># 4010 &lt;x&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="err">11</span><span class="nl">af:</span><span class="w"> </span><span class="err">39</span><span class="w"> </span><span class="err">45</span><span class="w"> </span><span class="nf">fc</span><span class="w">              </span><span class="no">cmp</span><span class="w">    </span><span class="nv">%eax</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="err">11</span><span class="nl">b2:</span><span class="w"> </span><span class="err">74</span><span class="w"> </span><span class="err">1</span><span class="nf">b</span><span class="w">                 </span><span class="no">je</span><span class="w">     </span><span class="mh">11cf</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">0x48</span><span class="p">&gt;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="err">11</span><span class="nl">b4:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2004 &lt;_IO_stdin_used+0x4&gt;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="err">11</span><span class="nl">bb:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="err">11</span><span class="nl">be:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="err">11</span><span class="nl">c3:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="no">a8</span><span class="w"> </span><span class="no">fe</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1070</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">    </span><span class="err">11</span><span class="nl">c8:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="err">11</span><span class="nl">cd:</span><span class="w"> </span><span class="nf">eb</span><span class="w"> </span><span class="mi">14</span><span class="w">                 </span><span class="no">jmp</span><span class="w">    </span><span class="mh">11e3</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">0x5c</span><span class="p">&gt;</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="err">11</span><span class="nl">cf:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">3</span><span class="no">e</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe3e</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2014 &lt;_IO_stdin_used+0x14&gt;</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="err">11</span><span class="nl">d6:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="err">11</span><span class="nl">d9:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="mi">82</span><span class="w"> </span><span class="no">fe</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1060</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="err">11</span><span class="nl">de:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="err">11</span><span class="nl">e3:</span><span class="w"> </span><span class="nf">c9</span><span class="w">                    </span><span class="no">leave</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="err">11</span><span class="nl">e4:</span><span class="w"> </span><span class="nf">c3</span><span class="w">                    </span><span class="no">ret</span>
+</span></code></pre></div>
+<p>一个典型的汇编代码行如下：</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w">    </span><span class="err">11</span><span class="nl">b4:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2004 &lt;_IO_stdin_used+0x4&gt;</span>
+</span></code></pre></div>
+<p>从左到右分别是：</p>
+<h4 id="11b4">地址：11b4<a class="headerlink" href="#11b4" title="Permanent link">&para;</a></h4>
+<p>最左边的标号为objdump反汇编出来的地址，<strong>注意，在拆弹实验中，objdump生成的地址并非最后的内存虚拟地址，而是一个相对地址。</strong></p>
+<p>objdump生成的地址在有些类型的可执行文件反汇编结果中，就是最后用于CPU寻址的虚拟地址；但是在拆弹实验中，我们的bomb得到的汇编文件的地址标号并不是最后运行的虚拟地址，这是由我们的可执行文件类型决定的。具体相关知识将会在第七章做主要解释。</p>
+<h4 id="48-8d-05-49-0e-00-00">字节码：48 8d 05 49 0e 00 00<a class="headerlink" href="#48-8d-05-49-0e-00-00" title="Permanent link">&para;</a></h4>
+<p>对应内存中的指令内容，即最后被CPU读取执行的指令字节内容。</p>
+<h4 id="lea-0xe49riprax">指令：lea    0xe49(%rip),%rax<a class="headerlink" href="#lea-0xe49riprax" title="Permanent link">&para;</a></h4>
+<p>字节码代表的指令内容，包含指令类型、操作数...</p>
+<h4 id="2004-_io_stdin_used0x4">注释： # 2004 &lt;_IO_stdin_used+0x4&gt;<a class="headerlink" href="#2004-_io_stdin_used0x4" title="Permanent link">&para;</a></h4>
+<p>注释通常会解释一些地址的含义，比如：</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nf">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span>
+</span></code></pre></div>
+<p>这里将一个地址保存到了rax寄存器中，注释说明这个地址</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># 2004 &lt;_IO_stdin_used+0x4&gt;</span>
+</span></code></pre></div>
+<p>表明这个地址在_IO_stdin_used标号所处地址 + 0x4的位置上。</p>
+<p>类似的还有注释还有：</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="err">0000000000001187</span><span class="w"> </span><span class="err">&lt;</span><span class="nf">main</span><span class="err">&gt;</span><span class="p">:</span>
+</span></code></pre></div>
+<p>这个注释表示这个地址标号<code>0000000000001187</code>小节主要是函数main的小节。</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="w">    </span><span class="err">11</span><span class="nl">a9:</span><span class="w"> </span><span class="err">8</span><span class="nf">b</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">61</span><span class="w"> </span><span class="mi">2</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">     </span><span class="no">mov</span><span class="w">    </span><span class="mi">0x2e61</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%eax</span><span class="w">  </span><span class="c1"># 4010 &lt;x&gt;</span>
+</span></code></pre></div>
+<p>这里的注释表明，<code>0x2e61(%rip)</code>地址代表的是 全局变量x。</p>
+<h2 id="gdb">GDB<a class="headerlink" href="#gdb" title="Permanent link">&para;</a></h2>
+<p>GNU Debugger。</p>
+<p>GDB，GNU 项目调试器，允许您查看另一个程序在执行时“内部”发生了什么——或者另一个程序在崩溃时正在做什么。</p>
+<p>GDB 可以帮助你在运行中捕捉错误：</p>
+<ul>
+<li>启动程序</li>
+<li>让程序在特定条件下停止</li>
+<li>可以在程序停下时，检查程序到底发生了什么。</li>
+</ul>
+<h3 id="_3">运行程序<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>我们使用gdb装载可执行文件：（这里不方便以bomb直接显示，采用与<a href="../../labs/lab2/">拆弹实验</a>中的例子<code>test</code>）</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>linux&gt;<span class="w"> </span>gdb<span class="w"> </span><span class="nb">test</span>
+</span></code></pre></div>
+<p>之后会进入gdb的运行空间</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>linux&gt;<span class="w"> </span>gdb<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>test...
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="o">(</span>No<span class="w"> </span>debugging<span class="w"> </span>symbols<span class="w"> </span>found<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">test</span><span class="o">)</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></div>
+<p>之后我们就可以在gdb的CLI中输入参数进行debug。</p>
+<h4 id="_4">程序执行<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>在gdb中键入<code>run</code>即可运行程序：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>Starting<span class="w"> </span>program:<span class="w"> </span>/home/slyang/xjtu-ics/lab2/test
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555193<span class="w"> </span><span class="k">in</span><span class="w"> </span>main<span class="w"> </span><span class="o">()</span>
+</span></code></pre></div>
+<p>若存在输入参数或者输入文件，则在run后添加即可。比如实验二拆弹实验中，需要传入输入文件：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run<span class="w"> </span>&lt;<span class="w"> </span>solution.txt
+</span></code></pre></div>
+<h3 id="_5">设置断点<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>断点，就是在程序执行时，你所希望暂停的点，你可以通过断点的方式，让整个程序在执行的到这个部分的时候暂停。</p>
+<p>在执行用户程序的入口<code>main</code>函数之前，程序会执行一些libc的初始化函数（包含<code>init</code>与<code>_start</code>）但是我们不用做过多的了解，为了可以快速的从入口开始观察程序的执行，我们通常会在main函数入口打下断点。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>b<span class="w"> </span>main
+</span></code></pre></div>
+<p>除了使用b + 函数标号之外，我们还可以使用</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="k">break</span><span class="w"> </span>main
+</span></code></pre></div>
+<p>含义都是类似的，都是在main函数地址处添加断点（breakpoint）。</p>
+<p>或如果想在其他的函数入口上（比如add函数）添加断点，则：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>(gdb)b add
+</span></code></pre></div>
+<p>设下端点后，执行run之后会停在对应的第一个断点：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>Starting<span class="w"> </span>program:<span class="w"> </span>/home/slyang/xjtu-ics/lab2/test
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x000055555555518f<span class="w"> </span><span class="k">in</span><span class="w"> </span>main<span class="w"> </span><span class="o">()</span>
+</span></code></pre></div>
+<p>之后希望程序继续运行，则键入continue：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">continue</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>Continuing.
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Breakpoint<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>0x000055555555519a<span class="w"> </span><span class="k">in</span><span class="w"> </span>main<span class="w"> </span><span class="o">()</span>
+</span></code></pre></div>
+<h3 id="_6">相对地址：<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>如上都是我们将断点设置在函数入口位置时候的方法，但是如果我想在一些普通指令的位置添加断点呢？</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>(gdb)b *(指令地址)
+</span></code></pre></div>
+<p>之前我们提到了，objdump生成的汇编代码的指令地址并不准确，但是指令之间的相对位置确实固定的不变的，所以objdump中的指令他可以作为一个相对地址来做使用。所以这里简单介绍一下如何得到绝对指令虚拟地址：</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="err">0000000000001187</span><span class="w"> </span><span class="err">&lt;</span><span class="nf">main</span><span class="err">&gt;</span><span class="p">:</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="err">1187:</span><span class="w"> </span><span class="nf">f3</span><span class="w"> </span><span class="mi">0</span><span class="no">f</span><span class="w"> </span><span class="mi">1</span><span class="no">e</span><span class="w"> </span><span class="no">fa</span><span class="w">           </span><span class="no">endbr64</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="err">118</span><span class="nl">b:</span><span class="w"> </span><span class="err">55</span><span class="w">                    </span><span class="nf">push</span><span class="w">   </span><span class="nv">%rbp</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="err">118</span><span class="nl">c:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">e5</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rsp</span><span class="p">,</span><span class="nv">%rbp</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="err">118</span><span class="nl">f:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">83</span><span class="w"> </span><span class="nf">ec</span><span class="w"> </span><span class="mi">10</span><span class="w">           </span><span class="no">sub</span><span class="w">    </span><span class="no">$0x10</span><span class="p">,</span><span class="nv">%rsp</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="err">1193:</span><span class="w"> </span><span class="nf">c7</span><span class="w"> </span><span class="mi">45</span><span class="w"> </span><span class="no">fc</span><span class="w"> </span><span class="mi">02</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">movl</span><span class="w">   </span><span class="no">$0x2</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="err">119</span><span class="nl">a:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">6</span><span class="no">f</span><span class="w"> </span><span class="mi">2</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0x2e6f</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 4010 &lt;x&gt;</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="err">11</span><span class="nl">a1:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="err">11</span><span class="nl">a4:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="no">c0</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1169</span> <span class="p">&lt;</span><span class="no">add</span><span class="p">&gt;</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="err">11</span><span class="nl">a9:</span><span class="w"> </span><span class="err">8</span><span class="nf">b</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">61</span><span class="w"> </span><span class="mi">2</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">     </span><span class="no">mov</span><span class="w">    </span><span class="mi">0x2e61</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%eax</span><span class="w">        </span><span class="c1"># 4010 &lt;x&gt;</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">    </span><span class="err">11</span><span class="nl">af:</span><span class="w"> </span><span class="err">39</span><span class="w"> </span><span class="err">45</span><span class="w"> </span><span class="nf">fc</span><span class="w">              </span><span class="no">cmp</span><span class="w">    </span><span class="nv">%eax</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">    </span><span class="err">11</span><span class="nl">b2:</span><span class="w"> </span><span class="err">74</span><span class="w"> </span><span class="err">1</span><span class="nf">b</span><span class="w">                 </span><span class="no">je</span><span class="w">     </span><span class="mh">11cf</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">0x48</span><span class="p">&gt;</span>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="err">11</span><span class="nl">b4:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2004 &lt;_IO_stdin_used+0x4&gt;</span>
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">    </span><span class="err">11</span><span class="nl">bb:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span><span class="err">11</span><span class="nl">be:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">    </span><span class="err">11</span><span class="nl">c3:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="no">a8</span><span class="w"> </span><span class="no">fe</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1070</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span><span class="err">11</span><span class="nl">c8:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span><span class="err">11</span><span class="nl">cd:</span><span class="w"> </span><span class="nf">eb</span><span class="w"> </span><span class="mi">14</span><span class="w">                 </span><span class="no">jmp</span><span class="w">    </span><span class="mh">11e3</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">0x5c</span><span class="p">&gt;</span>
+</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">    </span><span class="err">11</span><span class="nl">cf:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">3</span><span class="no">e</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe3e</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2014 &lt;_IO_stdin_used+0x14&gt;</span>
+</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span><span class="err">11</span><span class="nl">d6:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">89</span><span class="w"> </span><span class="nf">c7</span><span class="w">              </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">    </span><span class="err">11</span><span class="nl">d9:</span><span class="w"> </span><span class="nf">e8</span><span class="w"> </span><span class="mi">82</span><span class="w"> </span><span class="no">fe</span><span class="w"> </span><span class="no">ff</span><span class="w"> </span><span class="no">ff</span><span class="w">        </span><span class="no">call</span><span class="w">   </span><span class="mh">1060</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">    </span><span class="err">11</span><span class="nl">de:</span><span class="w"> </span><span class="nf">b8</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">        </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="w">    </span><span class="err">11</span><span class="nl">e3:</span><span class="w"> </span><span class="nf">c9</span><span class="w">                    </span><span class="no">leave</span>
+</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">    </span><span class="err">11</span><span class="nl">e4:</span><span class="w"> </span><span class="nf">c3</span><span class="w">                    </span><span class="no">ret</span>
+</span></code></pre></div>
+<p>获取得到反汇编后，我们假设需要在这一条指令处获得断点。</p>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="err">11</span><span class="nl">b4:</span><span class="w"> </span><span class="err">48</span><span class="w"> </span><span class="err">8</span><span class="nf">d</span><span class="w"> </span><span class="mi">05</span><span class="w"> </span><span class="mi">49</span><span class="w"> </span><span class="mi">0</span><span class="no">e</span><span class="w"> </span><span class="mi">00</span><span class="w"> </span><span class="mi">00</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 2004 &lt;_IO_stdin_used+0x4&gt;</span>
+</span></code></pre></div>
+<p>为了获取这条指令的位置，首先在main函数处添加断点：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>b<span class="w"> </span>main
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x1185
+</span></code></pre></div>
+<p>然后运行程序：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Starting<span class="w"> </span>program:<span class="w"> </span>/home/slyang/xjtu-ics/lab2/a.out
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555185<span class="w"> </span><span class="k">in</span><span class="w"> </span>main<span class="w"> </span><span class="o">()</span>
+</span></code></pre></div>
+<p>这是你的程序暂停在main的入口处，所以，此时我们尝试读取rip（程序计数器）的值，并阅读得对应这个位置的指令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>/x<span class="w"> </span><span class="nv">$rip</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nv">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x55555555518f
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>display<span class="w"> </span>/i<span class="w"> </span><span class="nv">$rip</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="m">2</span>:<span class="w"> </span>x/i<span class="w"> </span><span class="nv">$rip</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="o">=</span>&gt;<span class="w"> </span>0x55555555518f<span class="w"> </span>&lt;main+8&gt;:<span class="w"> </span>sub<span class="w">    </span><span class="nv">$0</span>x10,%rsp
+</span></code></pre></div>
+<p>得到结果，此时rip的指针处于<code>0x55555555518f</code>中。对应指令。</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>0x55555555518f<span class="w"> </span>&lt;main+8&gt;:<span class="w">    </span>sub<span class="w">    </span><span class="nv">$0</span>x10,%rsp
+</span></code></pre></div>
+（这里的两条指令的含义分别是显示寄存器rip的值（<code>p /x $rip</code>），以及显示内存中的地址（<code>x/i $rip</code>），这里并不用深究用法，只要知道大致意思即可，后续分别针对两类指令做简要的解释）</p>
+<p>此时我们有两种方法可以获得你所需要指令对应的地址：</p>
+<ul>
+<li>
+<p>回去看objdump生成的汇编指令文件中的两条指令的相对位置，然后加减得到指令地址</p>
+</li>
+<li>
+<p>直接在gdb中键入disas</p>
+</li>
+</ul>
+<div class="language-asm highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="err">(</span><span class="nf">gdb</span><span class="p">)</span><span class="w"> </span><span class="no">disas</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="nf">Dump</span><span class="w"> </span><span class="no">of</span><span class="w"> </span><span class="no">assembler</span><span class="w"> </span><span class="no">code</span><span class="w"> </span><span class="no">for</span><span class="w"> </span><span class="no">function</span><span class="w"> </span><span class="no">main</span><span class="p">:</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">   </span><span class="err">0</span><span class="nf">x0000555555555187</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">0</span><span class="err">&gt;</span><span class="p">:</span><span class="w">   </span><span class="no">endbr64</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">   </span><span class="err">0</span><span class="nf">x000055555555518b</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">4</span><span class="err">&gt;</span><span class="p">:</span><span class="w">   </span><span class="no">push</span><span class="w">   </span><span class="nv">%rbp</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">   </span><span class="err">0</span><span class="nf">x000055555555518c</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">5</span><span class="err">&gt;</span><span class="p">:</span><span class="w">   </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rsp</span><span class="p">,</span><span class="nv">%rbp</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="err">=&gt;</span><span class="w"> </span><span class="err">0</span><span class="nf">x000055555555518f</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">8</span><span class="err">&gt;</span><span class="p">:</span><span class="w">   </span><span class="no">sub</span><span class="w">    </span><span class="no">$0x10</span><span class="p">,</span><span class="nv">%rsp</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">   </span><span class="err">0</span><span class="nf">x0000555555555193</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">12</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">movl</span><span class="w">   </span><span class="no">$0x2</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">   </span><span class="err">0</span><span class="nf">x000055555555519a</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">19</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0x2e6f</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 0x555555558010 &lt;x&gt;</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551a1</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">26</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551a4</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">29</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">call</span><span class="w">   </span><span class="mh">0x555555555169</span> <span class="p">&lt;</span><span class="no">add</span><span class="p">&gt;</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551a9</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">34</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="mi">0x2e61</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%eax</span><span class="w">        </span><span class="c1"># 0x555555558010 &lt;x&gt;</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551af</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">40</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">cmp</span><span class="w">    </span><span class="nv">%eax</span><span class="p">,-</span><span class="mi">0x4</span><span class="p">(</span><span class="nv">%rbp</span><span class="p">)</span>
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551b2</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">43</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">je</span><span class="w">     </span><span class="mh">0x5555555551cf</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">72</span><span class="p">&gt;</span>
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551b4</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">45</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe49</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 0x555555556004</span>
+</span><span id="__span-25-15"><a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551bb</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">52</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-25-16"><a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551be</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">55</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-25-17"><a id="__codelineno-25-17" name="__codelineno-25-17" href="#__codelineno-25-17"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551c3</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">60</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">call</span><span class="w">   </span><span class="mh">0x555555555070</span> <span class="p">&lt;</span><span class="no">printf@plt</span><span class="p">&gt;</span>
+</span><span id="__span-25-18"><a id="__codelineno-25-18" name="__codelineno-25-18" href="#__codelineno-25-18"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551c8</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">65</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span><span id="__span-25-19"><a id="__codelineno-25-19" name="__codelineno-25-19" href="#__codelineno-25-19"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551cd</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">70</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">jmp</span><span class="w">    </span><span class="mh">0x5555555551e3</span> <span class="p">&lt;</span><span class="no">main</span><span class="p">+</span><span class="mi">92</span><span class="p">&gt;</span>
+</span><span id="__span-25-20"><a id="__codelineno-25-20" name="__codelineno-25-20" href="#__codelineno-25-20"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551cf</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">72</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0xe3e</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 0x555555556014</span>
+</span><span id="__span-25-21"><a id="__codelineno-25-21" name="__codelineno-25-21" href="#__codelineno-25-21"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551d6</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">79</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="nv">%rax</span><span class="p">,</span><span class="nv">%rdi</span>
+</span><span id="__span-25-22"><a id="__codelineno-25-22" name="__codelineno-25-22" href="#__codelineno-25-22"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551d9</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">82</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">call</span><span class="w">   </span><span class="mh">0x555555555060</span> <span class="p">&lt;</span><span class="no">puts@plt</span><span class="p">&gt;</span>
+</span><span id="__span-25-23"><a id="__codelineno-25-23" name="__codelineno-25-23" href="#__codelineno-25-23"></a><span class="w">   </span><span class="err">0</span><span class="nf">x00005555555551de</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">87</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">mov</span><span class="w">    </span><span class="no">$0x0</span><span class="p">,</span><span class="nv">%eax</span>
+</span></code></pre></div>
+<p>GDB也会输出当前的汇编指令，通过<strong>Enter</strong>键翻页，这里的汇编地址就是最后的运行地址，但是查询比较麻烦。</p>
+<p>获取得到一个指令的相对地址后，我们可以通过之前提过的方法去在任意指令位置设置断点：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># 将会在0x00005555555551cf &lt;+72&gt;:  lea    0xe3e(%rip),%rax        # 0x555555556014设下端点</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">(</span>gdb<span class="o">)</span>b<span class="w"> </span>*0x00005555555551cf
+</span></code></pre></div>
+<p>注意地址前的这个 * 。</p>
+<h3 id="_7">观察寄存器<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>观察寄存器的方式主要通过：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>/x<span class="w"> </span><span class="nv">$rax</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nv">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x555555555187
+</span></code></pre></div>
+<p>等类似的方式进行。</p>
+<p>其中这里的gdb指令主要分成三部分：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">#  (print)(输出方式 x 16进制 d 10进制...)           (寄存器号)</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w">     </span>/x<span class="w">                                                          </span><span class="nv">$rax</span>
+</span></code></pre></div>
+<p>我们也可以通过eax/ax之类查看低32位/16位的结果。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>/x<span class="w"> </span><span class="nv">$eax</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nv">$2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x55555187
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>/x<span class="w"> </span><span class="nv">$ax</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="nv">$3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x5187
+</span></code></pre></div>
+<p>或通过<code>/d</code>的方式来进行10进制的输出</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>p<span class="w"> </span>/d<span class="w"> </span><span class="nv">$ax</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nv">$4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20871</span>
+</span></code></pre></div>
+<h3 id="_8">观察内存<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>除了可以观察寄存器，内存在程序运行中也是很重要的一员。gdb可以通过以下方式访问所有可以被进程访问虚拟地址：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x<span class="w"> </span>/1x<span class="w"> </span>0x555555558010
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>0x555555558010<span class="w"> </span>&lt;x&gt;:<span class="w"> </span>0x00000001
+</span></code></pre></div>
+<p>这里的gdb指令也可以被分成三部分：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1">#   (examine)  (输出长度：1一个字（64位是8字节） 格式：x十六进制输出)          （内存虚拟地址）</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x<span class="w">             </span>/1x<span class="w">                                                                                                 </span>0x555555558010
+</span></code></pre></div>
+<p>也可以通过寄存器来进行寻址：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x<span class="w"> </span>/x<span class="w"> </span><span class="nv">$rax</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>0x555555558010<span class="w"> </span>&lt;x&gt;:<span class="w"> </span>0x00000001
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="c1"># 0x555555558010地址上保存着 &lt;x&gt;: x的值0x00000001</span>
+</span></code></pre></div>
+<p>也可以在地址位置输入表达式，gdb会帮助你完成运算。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x<span class="w"> </span>/x<span class="w"> </span><span class="nv">$rip</span><span class="w"> </span>+<span class="w"> </span>0x2e61
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>0x555555557ff0:<span class="w"> </span>0x00000000
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="c1"># 0x555555557ff0 = $rip + 0x2e61 </span>
+</span></code></pre></div>
+<p>并查找到对应的内存做输出。</p>
+<h3 id="_9">单步调试<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>很多时候，为了详细观察程序行为，可能你需要观察每一步的汇编指令，这时候在每一步打一个断点就太过于麻烦了。gdb为我们提供了单步调试的方法，具体分为以下几种：</p>
+<h4 id="nexti">nexti<a class="headerlink" href="#nexti" title="Permanent link">&para;</a></h4>
+<ul>
+<li>run next line of program and does NOT step into functions</li>
+</ul>
+<p>nexti：next命令（可简写为n）用于在程序断住后，继续执行下一条语句，假设已经启动调试，并在第12行停住，如果要继续执行，则使用n执行下一条语句，如果后面跟上数字num，则表示执行该命令num次，就达到继续执行n行的效果了.</p>
+<p>nexti</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="c1"># 执行到下一条</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">(</span>gdb<span class="o">)</span>nexti
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="c1"># 执行到下面5条指令</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="o">(</span>gdb<span class="o">)</span>nexti<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="c1"># ni 是nexti的缩写，作用相同，执行下一条指令</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="o">(</span>gdb<span class="o">)</span>ni
+</span></code></pre></div>
+<p>注意nexti会跳过函数调用，他的含义其实是运行到当前函数的下移指令，所以比如你的函数在某一步执行了：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>0x00005555555551a4<span class="w"> </span>&lt;+29&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555169<span class="w"> </span>&lt;add&gt;
+</span></code></pre></div>
+<p>nexti不会进入add执行，而是直接跳过函数具体内容。nexti只关心我们的当前过程内的指令内容，并不关心其他过程。</p>
+<p>那如果我们想进入其他（过程）内部去观察运行呢？</p>
+<h4 id="stepi">stepi<a class="headerlink" href="#stepi" title="Permanent link">&para;</a></h4>
+<ul>
+<li>run next line of program AND step into functions</li>
+</ul>
+<p>对于上面的情况，如果我们想跟踪add函数内部的情况，可以使用step命令（可简写为s），它可以单步跟踪到函数内部，但前提是该函数有调试信息并且有源码信息。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1"># 运行停止在main调用add函数的地址</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># 0x00005555555551a4 &lt;+29&gt;: call   0x555555555169 &lt;add&gt;</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a>Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555551a4<span class="w"> </span><span class="k">in</span><span class="w"> </span>main<span class="w"> </span><span class="o">()</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="c1"># si之后进入add过程内部执行</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>si
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>0x0000555555555169<span class="w"> </span><span class="k">in</span><span class="w"> </span>add<span class="w"> </span><span class="o">()</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="c1"># 继续si都处在add过程内部</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>si
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a>0x000055555555516d<span class="w"> </span><span class="k">in</span><span class="w"> </span>add<span class="w"> </span><span class="o">()</span>
+</span></code></pre></div>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../LinuxInstallation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linux Installation">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Linux Installation
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../FAQ/lab0/" class="md-footer__link md-footer__link--next" aria-label="Next: Lab 0: Tutorial and Environmental Preparation">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Lab 0: Tutorial and Environmental Preparation
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 XJTU ICS-TEAM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "navigation.indexes", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>
