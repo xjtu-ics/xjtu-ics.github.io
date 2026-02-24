@@ -3,12 +3,5 @@
     "version": "sp-2025",
     "title": "sp-2025",
     "aliases": []
-  },
-  {
-    "version": "26-sp",
-    "title": "26-sp",
-    "aliases": [
-      "latest"
-    ]
   }
 ]
