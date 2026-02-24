@@ -1,0 +1,2400 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="XJTU-ICS Webpage">
+      
+      
+        <meta name="author" content="XJTU-ICS TEAM">
+      
+      
+        <link rel="canonical" href="https://xjtu-ics.github.io/sp-2025/labs/lab7/">
+      
+      
+        <link rel="prev" href="../lab6/">
+      
+      
+        <link rel="next" href="../../staff/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.2">
+    
+    
+      
+        <title>Lab 7: Malloc Lab - Introduction to Computer Systems Spring 2025</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+  
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+    
+      
+      
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xjtu-ics-lab-7-malloc-lab" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-header__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Introduction to Computer Systems Spring 2025
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab 7: Malloc Lab
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Overview
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../calendar/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Calendar
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../staff/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Staff
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../policies/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Policies
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../resources/quickreference/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Resources
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Textbook
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Piazza
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../FAQ/lab0/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  FAQ
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Introduction to Computer Systems Spring 2025" class="md-nav__button md-logo" aria-label="Introduction to Computer Systems Spring 2025" data-md-component="logo">
+      
+  <img src="../../assets/logo.png" alt="logo">
+
+    </a>
+    Introduction to Computer Systems Spring 2025
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/xjtu-ics/xjtu-ics.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    xjtu-ics/xjtu-ics.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../calendar/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calendar
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Labs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Labs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 0: Tutorial and Environmental Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 1: Data Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: Bomb Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3: Attack Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 4: Cache Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: Optimization Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6: Linker Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 7: Malloc Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 7: Malloc Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存分配器的具体实现要求
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景知识1：堆
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景知识2：内存碎片
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你可以&amp;不可以使用的工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="你可以&amp;不可以使用的工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你可以使用的一些工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你不能使用的工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何测试？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从链表开始
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寻找空闲块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        空闲块的分割
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        合并空闲块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        申请新的空间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        隐式空闲链表的实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="隐式空闲链表的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便于你写代码的宏定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助函数的定义与功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mallocfree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        malloc与free的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化为显式空闲链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化为分离式显式空闲链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向数据点的编程1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何提交？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （选做）优化realloc的实现
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （选做）面向数据点的编程2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../staff/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Staff
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Resources
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/quickreference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/ICS-Server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ICS-Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/VScodeRemote-SSH/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VSCode Remote-SSH Setting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/LinuxInstallation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linux Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/Introduction_to_GDB_and_Debugging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction to GDB & Debugging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://xjtu-ics.github.io/textbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Textbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://piazza.com/stu.xjtu.edu.cn/spring2025/xjtuics" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Piazza
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FAQ
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    FAQ
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../FAQ/lab0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 0: Tutorial and Environmental Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        内存分配器的具体实现要求
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景知识1：堆
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        背景知识2：内存碎片
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你可以&amp;不可以使用的工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="你可以&amp;不可以使用的工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你可以使用的一些工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        你不能使用的工具
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何测试？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从链表开始
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        寻找空闲块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        空闲块的分割
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        合并空闲块
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        申请新的空间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        隐式空闲链表的实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="隐式空闲链表的实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        便于你写代码的宏定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        初始化的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        辅助函数的定义与功能
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mallocfree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        malloc与free的实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化为显式空闲链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        优化为分离式显式空闲链表
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        面向数据点的编程1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何提交？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#realloc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （选做）优化realloc的实现
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （选做）面向数据点的编程2
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flowers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flowers
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../lab0/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Labs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+<h1 id="xjtu-ics-lab-7-malloc-lab">XJTU-ICS Lab 7: Malloc Lab<a class="headerlink" href="#xjtu-ics-lab-7-malloc-lab" title="Permanent link">&para;</a></h1>
+<h2 id="_1">实验简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>本次Lab你需要实现一个C语言内存管理工具，即手动实现<code>malloc</code>、<code>free</code>、<code>realloc</code>三种函数。为了简化你的实现，我们仅要求前两项，对<code>realloc</code>不作要求。但我们仍然提供了测试点来让你测试<code>realloc</code>的实现，你可以在下方找到测试它的方法并本地测试。</p>
+<p>这个实验对于代码能力要求较高，你需要有强大的耐心，清醒的头脑，并且擅长使用调试有关工具。为此，你需要抓紧时间。</p>
+<h2 id="_2">内存分配器的具体实现要求<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>首先来讲，对于一个内存分配器，它必须实现：</p>
+<ol>
+<li>能够处理任意的请求，无论应用程序需要释放还是申请，都必须能够响应不得阻塞。</li>
+<li>必须调用完就可以返回结果，不得缓冲、异步或者乱序返回结果。</li>
+<li>由于它不是静态空间，所以必须只能放置在堆空间内。</li>
+<li>内存对齐。在C语言中，任何一种类型都需要对齐访问，例如指向<code>int</code>类型的指针第一个字节指向的位置是<span class="arithmatex">\(4\)</span>的倍数（因为<code>sizeof(int)=4</code>），同理指向<code>long long</code>类型指针地址是<span class="arithmatex">\(8\)</span>的倍数。我们这里要求你<code>malloc</code>返回的指针<span class="arithmatex">\(8\)</span>字节对齐。</li>
+<li><code>malloc</code>与<code>free</code>不得移动、修改已经分配的块，若实现<code>realloc</code>数据点，则不得修改原有数据，任何空间分配不能与已经分配的块重叠。</li>
+</ol>
+<p>你的实现需要有：</p>
+<ol>
+<li>尽可能高的响应速度（吞吐量），即应用发出申请内存的请求到获得内存块首地址的速度尽可能快</li>
+<li>尽可能高的空间利用率，因为内存分配器还需要回收内存，所以你需要想办法重复利用不再使用的内存空间，而不是一味地使用全新的空间。</li>
+</ol>
+<h2 id="1">背景知识1：堆<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>这里的堆和数据结构课上学到的堆不是一个东西，这里的堆指的是应用程序在内存中的一段空间，与栈类似，用于动态分配空间。这里直接贴一个传送门：<a href="https://www.cnblogs.com/zhouhongyuan/p/17627549.html">计算机程序内存分布（内存分布情况、五大分区） - 邹木木 - 博客园</a>。</p>
+<h2 id="2">背景知识2：内存碎片<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p>容易发现，随着应用不断申请与释放内存，内存中会出现很多较小的未被使用的连续空间，这些空间分布不连续，可能不能被应用于分配较大的空间。这种空间有两类：</p>
+<ol>
+<li>外部碎片，这指的是在内存分配时，产生在已被分配的空间之间的未被使用空间，它们的大小不足以支持在里面分配较大的空间。</li>
+<li>内部碎片，这指的是分配内存的大小经常会上取整到某一个值，又或者说系统会强制要求最小分配的空间大小，当你要申请的空间小于这个值的时候，会把分配给你的空间强制增加至最小限制，这些由于向上补齐而增加的空间无法再被分配器利用。</li>
+</ol>
+<h2 id="_3">你可以&amp;不可以使用的工具<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">你可以使用的一些工具<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ol>
+<li>一些有关内存拷贝的函数，你可能会在<code>realloc</code>的实现中使用到，如标准库的<code>memcpy</code>和<code>memmove</code>等</li>
+<li>一些数学有关的函数，如<span class="arithmatex">\(\log\)</span>（需要<code>math.h</code>头文件）</li>
+<li>driver中给出的一些允许用来控制堆空间的函数，以下这些你大概率会使用到：</li>
+<li><code>void *mem_sbrk(int incr)</code>：把堆的堆顶指针扩展<code>incr</code>个字节</li>
+<li><code>void *mem_heap_lo(void)</code>：返回当前堆内最低可以访问的字节的地址</li>
+<li><code>void *mem_heap_hi(void)</code>：返回当前堆内最高可以访问的字节的地址</li>
+<li><code>size_t mem_heapsize(void)</code>：返回当前堆的大小</li>
+<li><code>size_t mem_pagesize(void)</code>：返回页的大小（一般来讲是<code>4KB</code>，即<span class="arithmatex">\(2^{12}\)</span>字节）</li>
+</ol>
+<h3 id="_5">你不能使用的工具<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ol>
+<li>系统库自带的<code>malloc</code>，这里系统的<code>malloc</code>会被评测程序调用，作为你吞吐量的评价标准</li>
+<li>任何<strong>数组</strong>类型。显然你可以申请足够大的静态内存做分配，但这显然不是考察的目的。</li>
+<li>我们允许但<strong>强烈不建议使用结构体类型</strong>，因为结构体类型隐含有空间对齐问题，除非你能保证它的通用性（我知道可能有人会打<code>__attribute__((packed))</code>的主意，但需要知道部分CPU在访问非对齐数据时会发生硬件错误中断，如Cortex-M0处理器的Thumb指令）。我们希望你能够直接使用裸指针读写内存以保障通用性和对空间的极致压缩。在一些更加严格的malloc lab内，结构体被严格禁止。</li>
+</ol>
+<h2 id="_6">如何测试？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>由于每个人拿到的数据点一致，且<strong>测试数据完全公开</strong>，所以我们直接提供完整数据与评测代码的Github链接：<a href="https://github.com/xjtu-ics/malloclab">xjtu-ics/malloclab</a>，若连接不上我们还提供了Gitee链接：<a href="https://gitee.com/Luan-233/malloclab">malloclab</a>，两者内容完全一致。</p>
+<p>你拿到的Handout应该包含以下文件：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>├── clock.c
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── clock.h
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── config.h
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── fcyc.c
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── fcyc.h
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>├── fsecs.c
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── fsecs.h
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>├── ftimer.c
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>├── ftimer.h
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── Makefile
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── mdriver.c
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>├── memlib.c
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── memlib.h
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── mm.c
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── mm.h
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── mm_implicit_free_list.c
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── README
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── short1-bal.rep
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>├── short2-bal.rep
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>└── traces
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    ├── amptjp-bal.rep
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    ├── binary2-bal.rep
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    ├── binary-bal.rep
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    ├── cccp-bal.rep
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    ├── coalescing-bal.rep
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    ├── cp-decl-bal.rep
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    ├── expr-bal.rep
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    ├── random2-bal.rep
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>    ├── random-bal.rep
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>    ├── realloc2-bal.rep
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    └── realloc-bal.rep
+</span></code></pre></div>
+<p>你需要实现的函数在<code>mm.c</code>内，需要实现四个函数：</p>
+<ol>
+<li><code>mm_init()</code>：初始化堆，你可以在这里面申请必要的数据，以及初始化一些静态数据。</li>
+<li><code>mm_malloc(size)</code>：申请至少<code>size</code>字节的空间，并返回首个字节的指针，和<code>malloc</code>功能一致</li>
+<li><code>mm_free(*ptr)</code>：和<code>free</code>功能一致</li>
+<li><code>mm_realloc(*ptr, size)</code>：和<code>realloc</code>功能一致</li>
+</ol>
+<p>我们提供了若干测试文件（在<code>./trace</code>目录下方），<strong>这些测试文件就是你最终评测使用的测试文件</strong>（我们允许且鼓励你面向数据编程，但任何时候都需要保证它是一个能被通用的内存管理工具），每个文件会提供一个包含有<code>malloc</code>，<code>free</code>和<code>realloc</code>的操作序列，驱动器会按照顺序模拟这个申请与释放的请求，最后会把你的吞吐量和C库的<code>malloc</code>做对比。</p>
+<p>在整个测试系统中，<strong>我们保证任何时候单次申请的数据小于<span class="arithmatex">\(2^{32}\)</span>字节</strong>。</p>
+<p>我们使用此公式给你打分：<span class="arithmatex">\(Score = 60\%(Util)+40\%\min\{1,\frac{T}{T_{libc}}\}\)</span></p>
+<p>其中<span class="arithmatex">\(Util\)</span>是你的空间利用率（计算方式为<span class="arithmatex">\(\frac{有效载荷大小}{总堆大小}\)</span>），<span class="arithmatex">\(T\)</span>是吞吐量（单位时间内完成操作的平均数量）。</p>
+<p>首先你需要编译这个程序，在文件目录下执行：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>make
+</span></code></pre></div>
+<p>即可构建评测程序。这个可执行应用程序是<code>mdriver</code>。我们修改了<code>Makefile</code>的内容，使得你能够使用GDB进行调试。你可以执行<code>./mdriver -h</code>来查看如何使用。你可以执行以下代码来测试你的程序：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./mdriver -V -t ./traces/
+</span></code></pre></div>
+<p>对于<code>mm.c</code>中给出的一版最初的实现，对它评测得到的结果如下：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Team Name:ateam
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Member 1 :Harry Bovik:bovik@cs.cmu.edu
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Using default tracefiles in ./traces/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Measuring performance with gettimeofday().
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Testing mm malloc
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>Reading tracefile: amptjp-bal.rep
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Reading tracefile: cccp-bal.rep
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Reading tracefile: cp-decl-bal.rep
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>Reading tracefile: expr-bal.rep
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>Reading tracefile: coalescing-bal.rep
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>ERROR: mem_sbrk failed. Ran out of memory...
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>Checking mm_malloc for correctness, ERROR [trace 4, line 7673]: mm_malloc failed.
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>Reading tracefile: random-bal.rep
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>ERROR: mem_sbrk failed. Ran out of memory...
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>Checking mm_malloc for correctness, ERROR [trace 5, line 1662]: mm_malloc failed.
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Reading tracefile: random2-bal.rep
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>ERROR: mem_sbrk failed. Ran out of memory...
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>Checking mm_malloc for correctness, ERROR [trace 6, line 1780]: mm_malloc failed.
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>Reading tracefile: binary-bal.rep
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>Reading tracefile: binary2-bal.rep
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>Results for mm malloc:
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>trace  valid  util     ops      secs  Kops
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a> 0       yes   23%    5694  0.000024237250
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a> 1       yes   19%    5848  0.000024245714
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a> 2       yes   30%    6648  0.000027249925
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a> 3       yes   40%    5380  0.000022240179
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a> 4        no     -       -         -     -
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a> 5        no     -       -         -     -
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a> 6        no     -       -         -     -
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a> 7       yes   55%   12000  0.000039306122
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a> 8       yes   51%   24000  0.000070340426
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>Total            -       -         -     -
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>Terminated with 3 errors
+</span></code></pre></div>
+<p>由于它只申请内存不释放，故导致内存申请过多无法通过所有的评测。</p>
+<p>若想测试一个单独的文件（例如，这里测试第一个测试点<code>amptjp-bal.rep</code>），你可以执行：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./mdriver -V -f ./traces/amptjp-bal.rep
+</span></code></pre></div>
+<p>它会输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Team Name:ateam
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Member 1 :Harry Bovik:bovik@cs.cmu.edu
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Measuring performance with gettimeofday().
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Testing mm malloc
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>Reading tracefile: ./traces/amptjp-bal.rep
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Checking mm_malloc for correctness, efficiency, and performance.
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Results for mm malloc:
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>trace  valid  util     ops      secs  Kops
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a> 0       yes   23%    5694  0.000023247565
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>Total          23%    5694  0.000023247565
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Perf index = 14 (util) + 40 (thru) = 54/100
+</span></code></pre></div>
+<p>就可以看到单个测试点的性能评分。</p>
+<h2 id="_7">从链表开始<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>我们希望使用一种数据结构，把所有的已经分配的块和未分配的块通过某种形式串起来，使得我们能够通过这个数据结构获知所有块的信息。</p>
+<p>一个很直观简洁的数据结构就是链表，当然了这里的链表和数据结构课上学的差别比较大，传统意义上的链表结点大小固定，记录有一个指向下一个链表结点的指针，并且可能带有一定的负载数据。但这里我们并不记录指针，且负载长度（分配出去的空间大小）是不固定的，用图来表示内存结构就是这样的：</p>
+<p><img alt="" src="../../assets/images/malloclab/implicit-list.png" /></p>
+<p>这里的<code>Header</code>是一个固定长度的字段，它记录了整个块的长度<code>Length</code>（负载+头部大小），且记录了这个块是否被使用。这样的话，可以通过指针的形式来遍历每个段，以此来寻找一个合适大小的空块。</p>
+<p>这样做的优点是，假如说当前指向负载第一个字节的指针为<code>p</code>，那么通过把<code>p</code>向前移动固定长度（<code>sizeof(Length)</code>）并读取，就可以获得负载长度<code>Length</code>，再把<code>p</code>增加<code>Length</code>就可以获得下一个块的负载首字节地址，这是不是有一些链表的感觉了？</p>
+<p>上文说了，每一段的负载长度都不会超过<span class="arithmatex">\(2^{32}\)</span>，所以可以用一个长度为<span class="arithmatex">\(4\)</span>字节的头存储。同时，为了便于组织数据（这个原因详见合并空闲块）和保证字节对齐，我们强制让负载长度变为<span class="arithmatex">\(8\)</span>字节的倍数，这也就意味着<code>size</code>的末<span class="arithmatex">\(3\)</span>位为<span class="arithmatex">\(0\)</span>，借助这三位可以存储当前块是否被占用，我们这里选用最低位的二进制位（即位权为<span class="arithmatex">\(2^0\)</span>的二进制位），若为<span class="arithmatex">\(1\)</span>则代表这个块被占用，<span class="arithmatex">\(0\)</span>代表空闲。</p>
+<h2 id="_8">寻找空闲块<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>在<code>malloc</code>中，当我们找到一些块大小大于等于负载长度的时候（以下简称为OK的块），就可以选择把其中一个块的前半部分占用。我们选择块的策略有这些：</p>
+<ol>
+<li>首次适配：找到的第一个OK的块分配</li>
+<li>最佳适配：找到在所有OK的块当中，将大小最小的那个分配</li>
+<li>下一次适配：记录上一次分配的块地址，从上一次分配的块开始向后，寻找第一个OK的块分配。若最后一个块不OK，那么再从头开始寻找。</li>
+</ol>
+<p>我们选择的策略是首次适配。首次适配具有较好的搜索速度，易于实现，但是可能产生较多碎片。</p>
+<h2 id="_9">空闲块的分割<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p>当寻找到一个合适的块的时候，你需要把其中的一部分分割出来提供给应用程序使用。但如果这个空闲块很大，并不会把整个块全部占用，所以你需要把没用上的部分分割出来，填写上必要的数据（包括但不限于<code>Header</code>）供后面申请使用。</p>
+<h2 id="_10">合并空闲块<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>由于反复的释放会导致大量的空闲块，而若两个空闲块在内存上连续排布，那么很显然可以把这两个块合并到一起，便于后面分配给更大的负载。</p>
+<p>当释放一个块的时候，获知下一个块的信息很方便，但是获取上一个块需要从头开始遍历，这是极其影响吞吐量的操作。我们想在常数时间内获得上一个块的数据，那么一个很智慧的想法是这样的：在块的末尾补上一个和<code>Header</code>一样的数据，供下一个块访问。这个概念是由Knuth老爷子提出的。我们称这个数据为尾部<code>Tail</code>（CSAPP上也称这个数据为<code>Foot</code>脚部，两者含义一致）。</p>
+<p>那么我们就可以这样分配实际的内存：</p>
+<p><img alt="" src="../../assets/images/malloclab/implicit-list-tail.png" /></p>
+<p>这样做的好处就是：能够快速获取上一个块的信息，并且能够与<span class="arithmatex">\(8\)</span>字节对齐，具体而言，由于头部占<span class="arithmatex">\(4\)</span>字节，这也就意味着对于一个后分配的块，头部前的<span class="arithmatex">\(4\)</span>字节一定会空出来，那么现在可以把前一个块的尾部和当前块的头部组织到一个<span class="arithmatex">\(8\)</span>字节对齐的，大小为<span class="arithmatex">\(8\)</span>字节的块，这样的话我们直接按照<span class="arithmatex">\(8\)</span>字节为单位去分配内存（把需要申请的空间大小向上取到<span class="arithmatex">\(8\)</span>的倍数），就能减少很多特殊判断。</p>
+<p>我们需要考虑四种情况：</p>
+<ol>
+<li>前后都是空闲块</li>
+<li>前面的块被使用，后面的块是空闲块</li>
+<li>前面的块是空闲块，后面的块被使用</li>
+<li>前面的块被使用，后面的块被使用</li>
+</ol>
+<p>分别对应以下四种情况：</p>
+<p><img alt="" src="../../assets/images/malloclab/merge-free.png" /></p>
+<p>其具体的解决方案会在隐式空闲链表章节内提到。</p>
+<h2 id="_11">申请新的空间<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>当堆已经不够用的时候，就需要扩展堆的大小以容纳更多的数据。 这里你需要调用<code>mem_sbrk</code>函数申请。这个<code>mem_sbrk</code>的本质就是把堆顶向上扩展了<code>size</code>个字节，也就是说新申请到的空间与原有空间是内存上连续的。</p>
+<p>在CSAPP上，每次申请新的空间大小至少为<code>4K</code>，这是常规状态下页表的大小，我们一次不会申请太多空间，否则空间利用率会很低。当然也不能少，空间一次性申请足够后可以保证短时间内不会用完，因为实际上从操作系统中索要空间这件事是很耗时的。</p>
+<p>补充知识（和解决本lab没有联系）：Linux下<code>malloc</code>存在两种不同方式申请内存，一种通过调用<code>brk</code>实现，另一种通过调用<code>mmap</code>实现，后者需要经历从用户态切换至内核态再切换回来的过程，时间开销较大。</p>
+<p>由于空间连续，且新申请到的内存是空闲块，所以需要检查一下新申请的块前面是否是空闲块，如果是的话，你需要把它们合并成一个大块。</p>
+<h2 id="_12">隐式空闲链表的实现<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="_13">便于你写代码的宏定义<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>为了便于你写代码，我们可以定义这样的宏（参照了CSAPP中的定义方式）：</p>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">//Header的大小</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="cp">#define WORD_SIZE (sizeof(unsigned int))</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1">//用来在Header上写数据或者读取值</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="cp">#define READ(PTR) (*(unsigned int *)(PTR))</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="cp">#define WRITE(PTR, VALUE) ((*(unsigned int *)(PTR)) = (VALUE))</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="c1">//将块大小和是否被占用的信息合并，便于写入Header</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="cp">#define PACK(SIZE, IS_ALLOC) ((SIZE) | (IS_ALLOC))</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="c1">//传入指向Header的指针p，返回其后的负载块的长度</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="cp">#define GET_SIZE(PTR) (unsigned int)((READ(PTR) &gt;&gt; 3) &lt;&lt; 3)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="c1">//传入指向Header的指针p，返回其后的负载块是否被占用</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="cp">#define IS_ALLOC(PTR) (READ(PTR) &amp; (unsigned int)1)</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="c1">//传入指向负载首个字节的指针，返回指向这个块的头/尾的指针</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="cp">#define HEAD_PTR(PTR) ((void *)(PTR) - WORD_SIZE)</span>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="cp">#define TAIL_PTR(PTR) ((void *)(PTR) + GET_SIZE(HEAD_PTR(PTR)) - WORD_SIZE * 2)</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="c1">//传入指向负载首个字节的指针，返回指相邻的下一个块/上一个块的指针</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="cp">#define NEXT_BLOCK(PTR) ((void *)(PTR) + GET_SIZE(HEAD_PTR(PTR)))</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="cp">#define PREV_BLOCK(PTR) ((void *)(PTR) - GET_SIZE((void *)(PTR) - WORD_SIZE * 2))</span>
+</span></code></pre></div>
+<p>其实把它们组织称函数的原理也是一样的。但使用宏减少了函数调用开销，（可能）可以提高吞吐量（部分编译器可能会执行小函数自动内联）。</p>
+<p>由于直接在内存空间上操作极其容易出错，且由于没有任何结构体等供你使用，所以调试较为困难，你可以参照书上的代码来实现你的程序。你当然也可以按照自己的理解实现。</p>
+<h3 id="_14">初始化的实现<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>我们首先实现<code>mm_init()</code>，在程序内我们可以提前定义好两个块放在最开始和最后，令它们的状态为已经分配，这样若发生空闲块合并，就不需要考虑边界情况（即某个块是第一个块或最后一个块）。在此前提下，称提前定义好的第一个块为序言块（与书上的名字一样），它同时具有块的头部与尾部且负载长度为<span class="arithmatex">\(0\)</span>，所以总的大小为<span class="arithmatex">\(8\)</span>字节。结尾块则不需要考虑这些，我们直接令它的大小为<span class="arithmatex">\(0\)</span>。这样做的好处是：我们从序言块开始顺次遍历所有的块，通过把当前块的指针增加块的大小来跳转到下一个块。当我们检测到一个块的长度为<span class="arithmatex">\(0\)</span>的时候（也就是遇到了结尾块）就可以认为遍历结束了。因此序言块的总大小需要大于<span class="arithmatex">\(0\)</span>，因为若序言块大小为<span class="arithmatex">\(0\)</span>则会变成死循环（或者说直接被判定为结尾块退出）。</p>
+<p>按照这样的实现，申请的基础数据应当长这个样子：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>| 一个4字节的空数据 | 4字节的序言块头（写入的值为 8 bitor 1 = 9） | 4字节的序言块尾 | 4字节的空结尾块（边界，写入的值为 0 bitor 1 = 1） |
+</span></code></pre></div>
+<p>然后你的指向第一个块的指针就指向上面那个<span class="arithmatex">\(4\)</span>字节的序言块尾。容易发现它指向的是一个已经被分配的块，并且它始终不会被释放，且能够通过跳转跳转到下一个块。这就是一个减少边界处理的巧妙思路。</p>
+<p>另外，<code>mem_sbrk</code>第一次申请所得的内存一定是<span class="arithmatex">\(8\)</span>字节对齐的，所以你可以放心大胆地去申请。</p>
+<h3 id="_15">辅助函数的定义与功能<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>为了易于实现你的<code>malloc</code>，我们提前定义一些辅助函数，这些辅助函数的功能有：合并空闲块（下文称<code>merge</code>，在CSAPP教材内称这个函数为<code>coalesce</code>），在空闲块内分配内存并将剩余部分维护为小空闲块（<code>place</code>）。</p>
+<p><code>merge</code>函数传入一个指向空闲块负载部分的指针，并将前后的空闲块（若存在）与之合并。考虑<code>merge</code>需要实现什么，合并空块需要获取前后块的状态和大小，计算出最终的空块大小，并写把元数据写回。一个较为方便的方法（便于后续实现其他的功能）是，我们令<code>merge</code>函数的返回值为<strong>指向最终合并得到的空闲块的负载的指针</strong>。</p>
+<p>考虑<code>place</code>函数需要实现什么，因为前面提到了若空闲块较大而分配出去的空间较少，那么剩余的部分就应当被分割出来供后续分配使用。但若剩余部分过小而不能再继续分配空间，那就把整个块都分配出去。这里这个阈值是<span class="arithmatex">\(8\)</span>字节，因为<span class="arithmatex">\(8\)</span>字节只够分配一个头部与一个尾部，无法分配内容。</p>
+<h3 id="mallocfree">malloc与free的实现<a class="headerlink" href="#mallocfree" title="Permanent link">&para;</a></h3>
+<p>在此就可以开始实现你的<code>malloc</code>函数了。<code>malloc</code>需要你执行对齐判断，寻找适配的块，随后将空闲块切分，分配给应用程序。当不存在一个块的大小大于等于申请的空间，你就需要调用<code>mem_sbrk</code>申请扩充堆空间大小。</p>
+<p><code>free</code>也就很好实现了。容易发现你只需要设置好标志位然后检测一下前后的块是否可以合并即可。你若想实现一个基础的<code>realloc</code>，你只需要执行一遍<code>malloc</code>然后把数据拷过去就行了。它的优化实现会放到后面聊。</p>
+<p><strong>特殊的，为了降低你的代码难度，助教为你写好了隐式空闲链表的多数代码与逻辑说明（注释），详见文件<code>mm_implicit_free_list.c</code></strong>，基于这些你只需要实现三个部分：</p>
+<ol>
+<li><code>merge</code>函数的全部，它传入指向一个空闲块的负载部分第一个字节的指针，你需要将这个空闲块与前后的空闲块合并，并返回指向合并后的空闲块的负载部分第一个字节的指针。</li>
+<li><code>place</code>函数的全部，它传入指向一个空闲块的负载部分第一个字节的指针，以及需要从中分割出多少空间，你需要把分割出的一段或两段空间填写好相应的头部与尾部。</li>
+<li><code>malloc</code>函数的首次适配，它传入需要的空间大小，你需要从头开始逐块遍历，寻找到第一个块使得它的空间大于等于需求空间。若寻找到则返回指向这个空闲块的负载部分第一个字节的指针，否则返回空指针。</li>
+</ol>
+<p>实现了这些功能后，助教本人的实现实测可以拿到<span class="arithmatex">\(75 \pm 1\)</span>分。性能评分可能会有波动，但对最终分数影响不大。</p>
+<h2 id="_16">优化为显式空闲链表<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>容易发现，上面的实现遇到的问题就是，每当遍历一个块的时候，首先就需要看这个块是否被使用，如果这个块已经被使用，那么这次检查就被白白浪费了。特别是与首次适配相结合的时候，堆空间前方会有大量的碎片与被使用的块，极大地降低了检索的效率。</p>
+<p>一个考量是：我们不需要记录所有的已经被使用的块，只需要<strong>记录所有未被使用的块</strong>。但这些未被使用的块在空间上分布并不连续，所以可以进一步借用链表的思想，在每个空块内显式记录两个指针，分别指向链表内下一个空块与前一个空块。</p>
+<p><img alt="" src="../../assets/images/malloclab/explicit-list.png" /></p>
+<p>这也就意味着一个空闲块至少有<span class="arithmatex">\(2\times(4+\text{sizeof}(\text{void*}))=24\)</span>字节大小（若为<span class="arithmatex">\(32\)</span>位操作系统则为<span class="arithmatex">\(16\)</span>字节大小，但现在应该都是<span class="arithmatex">\(64\)</span>位操作系统了），你需要把小于<span class="arithmatex">\(16\)</span>字节的负载扩展至<span class="arithmatex">\(16\)</span>字节。</p>
+<p>在这里你需要额外实现一些函数，比如<code>remove(ptr)</code>函数，表示从空闲链表中把当前空闲块删除；<code>insert(ptr)</code>表示把一个空闲块插入空闲链表等。</p>
+<p>你需要注意的细节有：执行<code>merge</code>的时候需要执行<code>remove</code>删除前后的空闲块；若<code>place</code>传入的参数是一个空闲块指针，则执行<code>place</code>的时候需要先删除当前空闲块，随后把剩余的部分再<code>insert</code>回来；<code>malloc</code>从堆内新申请的空间在合并完后需执行<code>insert</code>，等等。这些都为了保证链表的逻辑正确。（你也可以自行实现，但需要保证逻辑与结果正确）</p>
+<p>助教本人的实现实测可以拿到<span class="arithmatex">\(90\)</span>分。</p>
+<h2 id="_17">优化为分离式显式空闲链表<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>容易发现显式空闲链表的问题在于，它依然使用首次分配，但众所周知最佳分配能够取得比首次分配更好的空间利用效率。如果能够实现一个链表，把同样大小的空闲块分门别类串起来，那么这会很方便做最优适配，但这个空间开销是显然不能接受的。</p>
+<p>我们希望通过一些略微粗糙的方法来近似实现最优适配。那么我们可以给每个链表大小按照一定的大小来分类，也就是说大小在某个区间内的空闲块组织到一个链表内，这里选择<span class="arithmatex">\([16,32)\)</span>，<span class="arithmatex">\([32,64)\dots\)</span>这样分类。在这个基础上从小到大遍历链表做首次适配即可。</p>
+<p>你可以通过<span class="arithmatex">\(\lfloor \log_2(size) \rfloor\)</span>获取其所属的分类编号。这也就意味着你需要额外的空间（<span class="arithmatex">\(32\times \text{sizeof}(\text{void*})\)</span>字节）来存储每类链表的头指针，这部分静态空间的申请放到<code>mm_init</code>内实现。</p>
+<p>助教本人的实现实测可以拿到<span class="arithmatex">\(92\)</span>分。</p>
+<h2 id="1_1">面向数据点的编程1<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h2>
+<p>对每个数据点单独测试发现，使用了分离式显式空闲链表，无法拿到更高分数的瓶颈在于<code>binary</code>测试点、在这里我们着重优化<code>binary</code>测试点，那么我们观察<code>binary1</code>测试点的含义，会发现在前半部分，它申请/释放的过程是这样的：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>申请一个64字节大小的空间
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>申请一个448字节大小的空间
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>申请一个64字节大小的空间
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>申请一个448字节大小的空间
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>...
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>释放第一个64字节大小的空间
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>释放第二个64字节大小的空间
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>...
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>申请一个512字节大小的空间
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>申请一个512字节大小的空间
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>...
+</span></code></pre></div>
+<p>最开始每两次操作都会申请<span class="arithmatex">\(512\)</span>字节大小的负载，但若顺序分配，清空<span class="arithmatex">\(64\)</span>字节大小的被使用块会产生大量的碎片，这些碎片两两不相邻，且无法被更大的空间所占用。这也就是为什么采取了分离式链表也无法达到更高分数的原因。很明显这个测试点专门攻击的就是你的<code>place</code>函数。那么一个思路就是把所有的<span class="arithmatex">\(64\)</span>字节空间尽可能分配到一起，<span class="arithmatex">\(448\)</span>字节的空间放在一起。那么怎么才能做到这样？</p>
+<p>我们可以把每次从堆中申请的空间放大一些，这样的话分配剩下的空闲块就会集中在堆内部。我们令<span class="arithmatex">\(64\)</span>字节大小的块置于前侧，<span class="arithmatex">\(448\)</span>字节大小的块置于后侧。也就是说，我们希望堆空间的占用是这样的：</p>
+<p><img alt="" src="../../assets/images/malloclab/data-oriented.png" /></p>
+<p>你可以根据数据特性选择一个合适的阈值来决定多大的块置于哪一侧。</p>
+<p>由于这些<span class="arithmatex">\(64\)</span>字节的块需要凑出至少一个大小为<span class="arithmatex">\(512\)</span>字节的连续快，那么<span class="arithmatex">\(64\)</span>字节的块就需要<span class="arithmatex">\(\frac{512}{64}=8\)</span>个，这样的话每次申请的块的总空间占用就达到了<span class="arithmatex">\((64+448)\times 8 = 4096\)</span>也即<span class="arithmatex">\(4K\)</span>（每个<span class="arithmatex">\(64\)</span>字节的<code>malloc</code>后面都会跟随一个<span class="arithmatex">\(448\)</span>字节请求），这样的话就相当于求出来一个<code>mem_sbrk</code>传参的下界。两个<code>binary</code>测试数据的分析方法一样。</p>
+<p>虽然这个是面向数据编程，但由于<strong>测试数据完全公开</strong>，所以我们鼓励这种行为。因为实际工程中，提取出数据的相应特性并针对特性优化也是很常见的行为。</p>
+<p>实现了上面这一切后，助教本人的实现可以拿到<span class="arithmatex">\(98\)</span>分。</p>
+<h2 id="_18">如何提交？<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>在目录下方执行<code>make submit</code>即可得到一个你需要提交的文件。</p>
+<p>这个文件的命名是：<code>你的用户名-handin.zip</code>，里面仅包含你实现的<code>mm.c</code>文件。你也可以手动打包它（按照要求的格式命名），提交这个压缩包至在线学习平台即可。</p>
+<p><strong>注意，你需要保证每个测试点都能够正常通过，否则会被直接判定为零分！</strong></p>
+<p>你可以通过问答平台提问，或者以邮箱的方式联系助教（负责此实验的助教的邮箱luan_233@stu.xjtu.edu.cn）。你可以针对逻辑询问任何问题，以及上报任何评测漏洞，但请不要问代码问题，即不要让助教帮助你逐行调试代码。</p>
+<p>由于实现难度较高，这个Lab我们给出三周的时间。迟交策略保持不变。</p>
+<h2 id="realloc">（选做）优化realloc的实现<a class="headerlink" href="#realloc" title="Permanent link">&para;</a></h2>
+<p>我们的最终评测不包含<code>realloc</code>测试点，你若想自行测试，则需要在<code>config.h</code>文件内添加宏<code>#define REALLOC_TEST_ON</code>。</p>
+<p>最开始的<code>realloc</code>实现过于朴素，无法利用当前块的前后空闲块，来减少扩堆次数。堆空间越大，你的空间利用率也就越低。我们希望<code>realloc</code>借助前后的空块来扩展。当然，你只实现这个部分并不能提高你很多分数。</p>
+<p>在空间上，若前后相邻的块是空块，那么显然可以把前后的空闲块加以利用。我们对这个块执行<code>merge</code>，然后把原有负载移动到新负载上（两者<strong>可能有空间重合</strong>，所以你需要使用<code>memmove</code>函数），以及执行<code>place</code>维护数据。（这里仅仅是助教本人的写法，我们鼓励按照自己的理解实现）</p>
+<p>特别的，你需要时刻注意空闲块最开始的<span class="arithmatex">\(16\)</span>字节的信息（即空闲链表指针）可能会在一些情况下被抹除，又或者原先的数据会被链表指针覆盖（助教的实现是：将空闲块与前后合并后，会在<code>merge</code>函数内将新块作为空闲块插入空闲块链表，那么若前一个块不是空闲块，则最开始的<span class="arithmatex">\(16\)</span>字节空间会写入空闲块指针，污染原数据）。所以你需要把这些数据事先存下来，最后再写入。</p>
+<p>另一个可能的坑是，移动负载数据前不要使用<code>place</code>函数分割空间，这可能会导致新产生的块的尾部或者头部位于原负载范围内，进而污染原数据。driver在执行<code>realloc</code>后会判断数据移动后是否保持不变，若数据发生了变化则此测试点不得分。</p>
+<p>基于分离式显式空闲链表，助教本人的实现实测可以拿到<span class="arithmatex">\(88\)</span>分。若基于面向数据点编程1，则可以拿到<span class="arithmatex">\(95\)</span>分。</p>
+<h2 id="2_1">（选做）面向数据点的编程2<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h2>
+<p>在面向数据点编程1中，我们优化了<code>binary</code>测试点，现在你会发现瓶颈在于<code>realloc</code>测试点，现在的<code>realloc</code>仍然是一个很朴素的实现，你可以参照面向数据点的编程思路来分析它的数据特性，然后优化你的实现拿到更高的分数。</p>
+<p>我们以<code>realloc1</code>测试点为例，观察它的数据：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>alloc id=0 size=512
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>alloc id=1 size=128
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>realloc id=0 size=640
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>alloc id=2 size=128
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>free id=1
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>realloc id=0 size=768
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>alloc id=3 size=128
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>free id=2
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>realloc id=0 size=896
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>alloc id=4 size=128
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>free id=3
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>realloc id=0 size=1024
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>alloc id=5 size=128
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>free id=4
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a>realloc id=0 size=1152
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>alloc id=6 size=128
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a>free id=5
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a>realloc id=0 size=1280
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a>alloc id=7 size=128
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a>free id=6
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a>...
+</span></code></pre></div>
+<p>容易发现它就是在不断重复以下过程：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>把第一次申请的空间扩容128字节
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>申请一个大小为128字节的空间
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>把上上次申请的128字节空间释放
+</span></code></pre></div>
+<p>容易发现如果你只是紧凑地分配空间，每次扩容都有可能会被新分配的空间卡住（<code>realloc</code>后紧跟一个<code>alloc</code>），但每次都会把上上次分配的空间释放，我们需要设计一个新的空间分配算法来利用这段空间。</p>
+<p>一个可能可以的思路是：我们把第一个段分配的空间额外增加<span class="arithmatex">\(128\)</span>字节，这段空间作为预留空间仅仅供<code>realloc</code>扩容使用。那么每次执行扩容都会利用上这<span class="arithmatex">\(128\)</span>字节，随即紧跟其后的<span class="arithmatex">\(128\)</span>字节被释放，形成新的预留空间，如此循环，就能够保证<code>realloc</code>完美利用这段空间。唯二可能的碎片就是这<span class="arithmatex">\(128\)</span>字节和最后由于<code>mem_sbrk</code>产生的空闲块。</p>
+<p>助教本人并没有实现这个数据点，仅提供一个可能的思路。你可以从面向数据编程的思路出发，提升你的函数在这个测试点的性能，取得比助教更高的分数。</p>
+<p>Good luck and have fun。 -- Luan_233</p>
+<h2 id="flowers">Flowers<a class="headerlink" href="#flowers" title="Permanent link">&para;</a></h2>
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab6/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 6: Linker Lab">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 6: Linker Lab
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../staff/" class="md-footer__link md-footer__link--next" aria-label="Next: Staff">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Staff
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 XJTU ICS-TEAM
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.tabs", "navigation.path", "navigation.top", "navigation.footer", "navigation.indexes", "content.code.copy", "content.code.select", "content.code.annotate", "content.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../js/open_in_new_tab.js"></script>
+      
+    
+  </body>
+</html>

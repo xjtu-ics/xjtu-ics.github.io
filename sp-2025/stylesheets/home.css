@@ -1,0 +1,112 @@
+/* styles.css */
+body {
+    background-repeat: no-repeat;
+    background-position: 50% 30%;
+    background-size: cover;
+    display: flex;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 针对特定主题的颜色方案 */
+[data-md-color-scheme="slate"] .md-main {
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.88),
+        rgba(0, 0, 0, 0.88)
+    ), url('./assets/background.png') center/cover fixed !important;
+}
+
+.md-tabs {
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+.md-header {
+    background-color: rgba(255, 255, 255, 0) !important;
+    backdrop-filter: blur(4px);
+}
+
+[data-md-color-scheme="slate"] .md-nav {
+    background-color: rgba(0, 0, 0, 0.86) !important;
+}
+
+/* 毛玻璃效果的容器 */
+.frosted-glass {
+    width: 900px; /* 使用百分比宽度，适应不同屏幕 */
+    max-width: 900px; /* 设置最大宽度，避免在大屏幕上过于宽大 */
+    height: 40%; /* 高度自适应内容 */
+
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.frosted-glass div {
+    margin: 1px 0;
+    text-align: center;
+}
+
+/* 默认字体大小 */
+.frosted-glass div:first-child,
+.frosted-glass div:nth-child(2) {
+    font-size: 6vw;
+    font-weight: bold;
+}
+
+.frosted-glass div:nth-child(3) {
+    font-size: 5vw;
+    margin-top: 15px;
+}
+
+/* 在大屏幕上限制字体大小 */
+@media (min-width: 950px) {
+    .frosted-glass {
+        width: 900px; /* 在大屏幕上使用更窄的宽度 */
+        height: 400px; /* 高度自适应内容 */
+        max-width: 1200px; /* 调整最大宽度 */
+        padding: 30px; /* 增大内边距 */
+    }
+
+    .frosted-glass div:first-child {
+        font-size: 60px; /* 增大字体大小 */
+        font-weight: bold;
+    }
+    .frosted-glass div:nth-child(2) {
+        font-size: 60px; /* 增大字体大小 */
+        font-weight: bold;
+    }
+
+    .frosted-glass div:nth-child(3) {
+        font-size: 40px; /* 增大字体大小 */
+    }
+}
+/* 媒体查询：针对小屏幕设备 */
+@media (max-width: 950px) {
+    .frosted-glass {
+        width: 90%; /* 在小屏幕上使用更宽的宽度 */
+        height: auto; /* 高度自适应内容 */
+        padding: 15px; /* 减小内边距 */
+    }
+
+    .frosted-glass div:first-child,
+    .frosted-glass div:nth-child(2) {
+        font-size: 7vw; /* 减小字体大小 */
+        font-weight: bold;
+    }
+
+    .frosted-glass div:nth-child(3) {
+        font-size: 5vw; /* 减小字体大小 */
+    }
+}
