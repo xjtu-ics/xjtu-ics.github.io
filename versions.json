@@ -1,5 +1,12 @@
 [
   {
+    "version": "sp-2026",
+    "title": "sp-2026",
+    "aliases": [
+      "latest"
+    ]
+  },
+  {
     "version": "sp-2025",
     "title": "sp-2025",
     "aliases": []

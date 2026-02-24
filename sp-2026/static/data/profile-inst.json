@@ -1,0 +1,19 @@
+[
+    {
+        "homepage_url": "https://dfshan.github.io",
+        "name": "单丹枫",
+        "email": "dfshan@xjtu.edu.cn",
+        "office": "西安交通大学兴庆校区西一楼431房间",
+        "office_hour": "每周二、四课后 (21:30-22:30)",
+        "intro": "",
+        "pic_url": "../assets/profile-inst/dfshan.jpg"
+    },
+    {
+        "homepage_url": "https://aquatoney.github.io/",
+        "name": "李昊",
+        "email": "hao.li@xjtu.edu.cn",
+        "office": "西安交通大学兴庆校区彭康楼234房间",
+        "intro": "",
+        "pic_url": "../assets/profile-inst/haoli.jpg"
+    }
+]

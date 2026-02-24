@@ -1,0 +1,67 @@
+/* styles.css */
+
+#profile-inst {
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#profile-ta {
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--md-default-fg-color--lightest, #e0e0e0);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    background-color: var(--md-default-bg-color, #fff);
+    width: 45%; /* 设置宽度为原来的一半 */
+    height: 130px;
+    box-sizing: border-box; /* 确保 padding 和 border 不影响宽度 */
+}
+
+@media (max-width: 950px) {
+    .profile-card {
+        width: 100%; /* 设置宽度为原来的一半 */
+        height: auto;
+    }
+}
+.profile-image {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%; /* 保持圆形 */
+    object-fit: cover; /* 确保图片填充整个区域 */
+    margin-right: 20px;
+    border: 2px solid var(--md-default-fg-color--lightest, #f0f0f0); /* 使用主题边框颜色 */
+    display: block; /* 避免行内元素的默认行为 */
+    vertical-align: middle; /* 避免行内元素的默认对齐问题 */
+    box-sizing: border-box; /* 确保边框不会影响布局 */
+    will-change: transform; /* 提示浏览器优化性能 */
+}
+
+.profile-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--md-primary-fg-color, #333); /* 使用主题主颜色 */
+    margin: 0 0 1px;
+}
+
+.profile-email, .profile-office, .profile-intro {
+    font-size: 16px;
+    color: var(--md-default-fg-color--light, #666); /* 使用主题浅色文字颜色 */
+    margin: 0 0 1px;
+}
