@@ -1,37 +1,12 @@
 [
     {
         "homepage_url": "",
-        "name": "党一涵",
-        "email": "yhdang@stu.xjtu.edu.cn",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/default.png"
-    },
-    {
-        "homepage_url": "",
         "name": "杜金诺",
         "email": "djn18866691791@stu.xjtu.edu.cn",
         "office": "",
         "office_hour": "每周日下午 (14:30-18:30)",
         "intro": "",
         "pic_url": "../assets/profile-ta/jndu.jpg"
-    },
-    {
-        "homepage_url": "",
-        "name": "付晋宇",
-        "email": "2201412072@stu.xjtu.edu.cn",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/default.png"
-    },
-    {
-        "homepage_url": "https://geek.bxhu2004.com",
-        "name": "胡博瑄",
-        "email": "3157726199@stu.xjtu.edu.cn",
-        "office": "",
-        "office_hour": "每周四晚上 (21:30-23:30)",
-        "intro": "",
-        "pic_url": "../assets/profile-ta/bxhu.jpg"
     },
     {
         "homepage_url": "https://github.com/rouge3877",
@@ -53,43 +28,11 @@
     },
     {
         "homepage_url": "",
-        "name": "刘承臻",
-        "email": "liuchengzhen@stu.xjtu.edu.cn",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/profile-ta/czliu.jpg"
-    },
-    {
-        "homepage_url": "https://cnblogs.com/int-2147483648",
-        "name": "刘一可",
-        "email": "ykliu05@outlook.com",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/profile-ta/ykliu.jpg"
-    },
-    {
-        "homepage_url": "",
-        "name": "栾家骏",
-        "email": "Luan_233@stu.xjtu.edu.cn",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/default.png"
-    },
-    {
-        "homepage_url": "",
         "name": "唐堂",
         "email": "tangtang021031@gmail.com",
         "office": "",
         "office_hour": "每周三下午（14:00-18:00）",
         "intro": "",
         "pic_url": "../assets/profile-ta/ttang.jpg"
-    },
-    {
-        "homepage_url": "https://wilsonxia.cn/",
-        "name": "夏泽",
-        "email": "xiaze2017@stu.xjtu.edu.cn",
-        "office": "",
-        "intro": "",
-        "pic_url": "../assets/profile-ta/zxia.jpg"
     }
 ]
