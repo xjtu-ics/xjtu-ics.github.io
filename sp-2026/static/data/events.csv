@@ -1,2 +1,21 @@
 title,Week,start,end,theme,Instructors,pptLink,location,Reading,extra
 Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Shan,,主D-204,1,
+Lecture,1,2026-03-05T14:00:00,2026-03-03T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,,主D-204,2.1-2.3,datalab out
+Lecture,2,2025-03-10T10:10:00,2025-02-25T21:00:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.1-3.3,
+Lecture,2,2025-03-12T14:00:00,2025-02-27T20:00:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.4-3.5,bomblab out
+Lab,2,2025-03-15T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,datalab due
+Lecture,3,2025-03-17T10:10:00,2025-03-04T21:00:00,Machine Prog: Control,Danfeng Shan,,主D-204,3.7,
+Lecture,3,2025-03-19T14:00:00,2025-03-06T21:00:00,Machine Prog: Procedures,Danfeng Shan,,主D-204,3.7,
+Lecture,4,2025-03-24T10:10:00,2025-03-11T21:00:00,Machine Prog: Data,Danfeng Shan,,主D-204,3.8-3.9,
+Lecture,4,2025-03-26T14:00:00,2025-03-13T21:00:00,Machine Prog: Advanced,Danfeng Shan,,主D-204,3.1,attacklab out
+Lab,4,2025-03-29T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,bomblab due
+Lecture,5,2025-03-31T10:10:00,2025-03-18T21:00:00,Machine Prog: Advanced,Danfeng Shan,,主D-204,3.1,
+Lecture,5,2025-04-02T14:00:00,2025-03-20T21:00:00,The Memory Hierarchy,Danfeng Shan,,主D-204,6.1-6.3,
+Lecture,6,2025-04-07T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,6,2025-04-09T14:00:00,2025-03-27T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,cachelab out
+Lab,6,2025-04-12T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,attacklab due
+Lecture,7,2025-04-14T10:10:00,2025-03-25T21:00:00,Processor Architecture: Basics,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,7,2025-04-16T14:00:00,2025-03-27T21:00:00,Processor Architecture: Sequential,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,8,2025-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Pipeline,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,8,2025-04-23T14:00:00,2025-03-27T21:00:00,Review,Danfeng Shan,,主D-204,6.4-6.7,
+Lab,8,2025-04-26T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,cachelab due
