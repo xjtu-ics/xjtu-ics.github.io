@@ -810,15 +810,14 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        账号获取
+        服务器配置
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="账号获取">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -828,17 +827,12 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        登录方式
+        首次登录
       
     </span>
   </a>
@@ -868,10 +862,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#warning-remote-host-identification-has-changed" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+        后续操作
       
     </span>
   </a>
@@ -1151,15 +1145,14 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        账号获取
+        服务器配置
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="账号获取">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1169,17 +1162,12 @@
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        登录方式
+        首次登录
       
     </span>
   </a>
@@ -1209,10 +1197,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#warning-remote-host-identification-has-changed" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!
+        后续操作
       
     </span>
   </a>
@@ -1282,103 +1270,125 @@
                 
                   
 <h1 id="ics-server">ICS-Server<a class="headerlink" href="#ics-server" title="Permanent link">&para;</a></h1>
-<h2 id="_1">账号获取<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>我们为每位课程内同学建立了账号，这些账号密码以如下的形式分发：</p>
-<h3 id="_2">用户名和初始密码<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p>用户名：你的学号加<code>-ics</code></p>
-<p>密码：你的学号</p>
-<p>例如：你的学号是2183311128，那么你的服务器用户名就是：<code>2183311128-ics</code>，密码为：<code>2183311128</code>。</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>为了防止信息泄露，首次登录输入初始密码后，服务器会强制登录用户修改密码。请同学们保管好自己修改后的密码，或者可自行尝试ssh密钥登录。如果你因为任何原因（新选课或者密码被同学恶意篡改）无法登陆ics服务器，请立刻联系助教进行处理。</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>第一次登陆请大家<strong>一定使用系统终端</strong>进行登陆，windows系统使用powershell，linux和macos系统使用自带的终端。在输入初始密码之后，系统终端会提示<strong>WARNING: Your password has expired</strong>和<strong>Changing password for xxx</strong>，然后会弹出一行<strong>Current password: </strong>并且等待你的输入。这里的current password指的是你的<strong>现在的密码</strong>，这时候还没有修改密码，因此需要先输入一遍原来的密码，也就是你的初始密码（你的学号）。正确输入初始密码之后，终端会提示<strong>new password</strong>，这时候再输入你想要设置的密码即可，服务器并没有对设置密码的规则做出要求，但是建议同学们设置比较复杂的密码，防止被别人破解。在每次输入密码的时候，<strong>终端什么都不会显示</strong>，这是正常的，不是因为你键盘怀了或者卡了无法输入，这主要是防止别人偷看到密码或者得知密码的长度。</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>正确输入密码之后，终端会提示<strong>password updated successfully</strong>，这就说明已经成功修改密码了。后续再次尝试登陆的时候，输入你<strong>修改后的密码</strong>就可以正常登陆了。</p>
-</div>
-<h2 id="_3">登录方式<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>使用 ssh 登录，登录所需信息如下：</p>
+<h2 id="_1">服务器配置<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>ICS课程团队准备了两台服务器，配置如下：</p>
 <ul>
-<li>地址：x86.ics.xjtu-ants.net</li>
-<li>端口号：2291</li>
+<li>
+<p><code>icsserver</code>（main）：位于兴庆，域名<code>icsserver.netperf.cc</code>，端口<code>2220</code></p>
+</li>
+<li>
+<p><code>vm-ics</code>（backup）：位于创新港，域名<code>igw.netperf.cc</code>，端口<code>2292</code></p>
+</li>
 </ul>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="windows" name="__tabbed_1" type="radio" /><input id="macos" name="__tabbed_1" type="radio" /><input id="linux" name="__tabbed_1" type="radio" /><input id="vscode--remote-ssh插件" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="windows">Windows</label><label for="macos">MacOS</label><label for="linux">Linux</label><label for="vscode--remote-ssh插件">VSCode + remote ssh插件</label></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>由于某些原因，位于创新港的服务器无法访问外网（比如github等），只能访问交大内网，如需访问外网需要自行配置代理。同时，助教团队分发实验时也不会往第二台服务器分发。因此，建议大家<strong>非必要不要选择第二台服务器</strong>作为主力开发环境，仅用于备份或者紧急情况。</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>严禁使用服务器进行挖矿或其他恶意占用服务器资源的行为，一经发现将进行<strong>封号并严厉处罚</strong>。</p>
+</div>
+<h2 id="_2">用户名和初始密码<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>用户名：你的学号加<code>-ics</code></p>
+<p>初始密码：你的学号</p>
+<p>例如：你的学号是2213112457，那么你的服务器用户名就是：<code>2213112457-ics</code>，初始密码为：<code>2213112457</code>。</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>为了防止信息泄露，首次登录输入初始密码后，服务器会<strong>强制登录用户修改密码</strong>。请同学们保管好自己修改后的密码，或者可自行尝试ssh密钥登录。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你发现你的账号不存在，忘记密码，或者无法正常登录等情况（比如密码被同学篡改或者在第一周开课之后才选上课），请立刻联系助教进行处理</p>
+</div>
+<h2 id="_3">首次登录<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>首次登录时，系统会强制要求改密码，必须使用<strong>系统终端</strong>进行第一次登录，直接使用VSCode等会报错<strong>找不到tty</strong></p>
+<p>常见系统的登录命令如下（注意将<code>username，</code>host<code>，</code>port`改成自己的用户名和目标服务器的真实域名和端口）：</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="windows" name="__tabbed_1" type="radio" /><input id="macos" name="__tabbed_1" type="radio" /><input id="linux" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="windows">Windows</label><label for="macos">MacOS</label><label for="linux">Linux</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>可以使用Windows自带的Powershell，使用如下命令登录：
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh username@x86.ics.xjtu-ants.net -p2291
+<p>建议使用Windows自带的Powershell，使用如下命令登录：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ssh username@host -p port
 </span></code></pre></div>
-参考连接： Powershell连接ssh</p>
-<p>也可使用其他 ssh 客户端，如putty, xshell, tabby, windows terminal等。</p>
-<p>下载客户端后，配置好用户名、服务器地址、端口号，即可登录。</p>
-<p>参考链接：</p>
-<ul>
-<li>putty: <a href="https://www.putty.wang/putty-jc/">PuTTY 新手使用教程（详细图文）</a></li>
-<li>xshell: <a href="https://cloud.tencent.com/developer/article/1822579">Xshell怎么用？详细的Xshell使用教程</a></li>
-<li>tabby: <a href="https://zhuanlan.zhihu.com/p/443550221">Tabby 使用指南：一个高度可配置的现代化终端模拟器</a></li>
-<li>windows terminal: <a href="https://www.jianshu.com/p/b7a105a67253">windows terminal 连接远程 ssh</a></li>
-</ul>
+<p>例如用户名是<code>2213112457-ics</code>，选择第一台服务器，则实际命令为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh 2213112457-ics@icsserver.netperf.cc -p 2220
+</span></code></pre></div>
 </div>
 <div class="tabbed-block">
-<p>打开系统自带的 Terminal 或者下载 iTerm 软件，使用如下命令登录</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ssh username@x86.ics.xjtu-ants.net -p2291
+<p>打开系统自带的 Terminal ，使用如下命令登录</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh username@host -p port
 </span></code></pre></div>
-其中，username 为各自的账户名。</p>
+<p>例如用户名是<code>2213112457-ics</code>，选择第一台服务器，则实际命令为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>ssh 2213112457-ics@icsserver.netperf.cc -p 2220
+</span></code></pre></div>
 </div>
 <div class="tabbed-block">
 <p>打开终端软件，使用如下命令登录</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>ssh username@x86.ics.xjtu-ants.net -p2291
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ssh username@host -p port
 </span></code></pre></div>
-其中，username 为各自的账户名。</p>
-</div>
-<div class="tabbed-block">
-<p>详见 <a href="../VScodeRemote-SSH/">vscode-setting</a></p>
-</div>
+<p>例如用户名是<code>2213112457-ics</code>，选择第一台服务器，则实际命令为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>ssh 2213112457-ics@icsserver.netperf.cc -p 2220
+</span></code></pre></div>
 </div>
 </div>
+</div>
+<p>命令执行之后，系统会提示输入密码，此时输入<strong>你的初始密码</strong>即可。</p>
+<p><img alt="" src="../../assets/images/ics-server/login-1.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>输入密码的时候不会有回显，这是正常情况</p>
+</div>
+<p>成功登陆以后，系统会提示你需要<strong>立刻修改密码</strong>，否则登录是失败的：</p>
+<p><img alt="" src="../../assets/images/ics-server/login-2.png" /></p>
+<p>这个时候需要首先输入当前的密码，也就是你自己的<strong>初始密码</strong>，输入成功之后，系统会提示修改密码：</p>
+<p><img alt="" src="../../assets/images/ics-server/login-3.png" /></p>
+<p>此时才需要输入<strong>自己想设置的新密码</strong>，注意密码需要满足系统的要求（比如不能太短等）。</p>
+<p>输入新密码之后，根据系统提示再重新输入一遍<strong>自己设置的新密码</strong>，匹配成功之后，会出现如下界面，说明登录成功。</p>
+<p><img alt="" src="../../assets/images/ics-server/login-4.png" /></p>
+<p>后续再次登录时，输入<strong>自己设置的新密码</strong>即可登录成功。</p>
 <h2 id="_4">登录成功检查<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>无论大家使用上述的什么方式尝试登录ICSServer，在ICSServer的终端中键入如下命令：
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>whoami
-</span></code></pre></div></p>
-<p>若显示你对应的用户名（即学号+‘ics’），则表明你登录ICSServer成功且账号无误。</p>
-<h2 id="_5">免密登录<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>暂不做要求。</p>
-<p>具体可查阅如下资料尝试：
-<a href="https://wangdoc.com/ssh/key">详见 SSH 密钥登录</a>/<a href="https://blog.csdn.net/qq_40156289/article/details/120342781">在win10和Linux上配置SSH免密登录</a></p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>严禁使用服务器挖矿。</p>
-</div>
-<h2 id="warning-remote-host-identification-has-changed">WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!<a class="headerlink" href="#warning-remote-host-identification-has-changed" title="Permanent link">&para;</a></h2>
-<p>known_hosts文件是SSH客户端中的一个配置文件。当首次与一个SSH服务器建立连接时，客户端会记录下该服务器返回的的公钥，并保存在known_hosts文件中，以后每次连接该服务器时，客户端都会验证该服务器返回的公钥是否与known_hosts文件中保存的一致。如果不一致，则会发出警告，提示可能存在DNS劫持、中间人攻击等安全问题。</p>
-<p>使用SSH连接远程服务器或者使用Git拉取代码时，偶尔会出现“WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!”警告，一般是以下几种情况导致的：</p>
-<ul>
-<li>远程服务器重装或更换了系统，导致系统生成的密钥发生了变化。</li>
-<li>本地计算机重装了系统或者更改了SSH客户端软件。</li>
-<li>发生了中间人攻击，远程服务器可能是伪造的。</li>
-</ul>
-<p>比较简单的解决方法：删除known_hosts文件中的对应行。</p>
-<p>一般这个问题的报错如下：</p>
-<figure>
-  <img alt="Image title" src="../../assets/images/know_hosts.png" width="auto" />
-</figure>
-<p>只需要根据这个红框提示的目录，找到对应的known_hosts文件，将这个文件中的有2291的行全部删去即可。（更绝的可以直接删除这个known_hosts文件）</p>
-<p>下面给出ICS-Server的服务器公钥指纹（public key fingerprints），供大家参考：</p>
-<ul>
-<li><code>SHA256:4ON3oPpCRU0uZdIc6SWPDBCKCYOrpKgXqvE5aiyCCzE</code>(RSA)</li>
-<li><code>SHA256:/RIkpkRMvv3QGQPuVLwdBtQb39a+7WTxm6ffQxYGlNk</code>(DSA)</li>
-<li><code>SHA256:H/DX2QMavSC6rbwxAvtLOy5vZYOECbpPxfxDIOAhj14</code>(ECDSA)</li>
-<li><code>SHA256:TdWfFxmK+7Fc1Gwpkj1ZYhey676aTTwAstrX7QFDHsI</code>(ED25519)</li>
-</ul>
-<p>你也可以将下列服务器公钥直接添加到你的<code>~/.ssh/known_hosts</code>文档里：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>[x86.ics.xjtu-ants.net]:2291 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJILyuHQY2bJ+WivExEjByZ2aG5tLayZkw9AqwGH4w4r
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>[x86.ics.xjtu-ants.net]:2291 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEBzKfIjDxQp0bKgBczbKq6Bk96CiCdGTAqbDnt/muT6GdLCy7Wh4k0JKwuRq8n65G/bhBSTOg+egZDwHTFG6q4=
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>[x86.ics.xjtu-ants.net]:2291 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrNsqug9P4eeW9ewfSylBG/FsYvtjaK6Q+sUjfhBv8MN7OJoMm9MY/kCIi8C8CF3qOtzOq3aJMrRwvPbpt79zq1NetQNp6sw0LhEYWAUPUvFb9fS0gZAicETUFHVQm2uipYTIyXwKhm/kLRb1MWL638cWpVKCpPvTvt0FiOiOu6XTa4HADFNblTW48Tn93XH1Z12BDJTUbseicp1oeIbi9zDMENLihZCmsGTwM05d2omSQ2henYndD1he1fXwKAebhrFdqkrMdd0iet6GQESOGb5PBxwxhYphIa7Ue9tWuDfIRH1PK25uSYn4a4E9x1l1khvXc/ag7nGcEGqtoWOHK5pLjtUVp0VVYVFCy+wcHWkdiHL9zcxXIljV7VuNWCX49DzosVLacs4xFTes1F47UqOZocqK+q2kNXE6PeKt/PuDHNPPB7RfA9WgE5u3+jYS5S6KUhy9TimpGjV3UEAQyZbGPWbepzvxLkzBcpuDFBsWbPtErV/kYMZQYUC5hgzk=
+<p>无论大家使用上述的什么方式尝试登录ICS-Server，在ICS-Server的终端中键入如下命令：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>whoami
 </span></code></pre></div>
+<p>若显示你对应的用户名（比如<code>2213112457-ics</code>），则表明你登录ICS-Server成功且账号无误。</p>
+<h2 id="_5">免密登录<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>SSH免密登录即<strong>使用密钥</strong>进行登录，可以免去输入密码的过程，大幅提升速度。</p>
+<p>免密登录的过程包括<strong>生成密钥</strong>和<strong>上传公钥到服务器</strong>两个步骤。</p>
+<p>首先打开系统终端，输入以下命令生成<strong>一对公钥和私钥</strong>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>ssh-keygen
+</span></code></pre></div>
+<p>之后一直按回车就行。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ssh-keygen可以设置很多命令行参数，感兴趣的同学可以自行探索</p>
+</div>
+<p>成功生成密钥之后，你会得到两个文件，其中带有<code>.pub</code>后缀的是公钥（比如<code>id_ed25519</code>和<code>id_ed25519.pub</code>）</p>
+<p>接下来，将公钥上传至服务器。</p>
+<p>如果是 MaxOS/Linux 系统，直接使用以下命令即可：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ssh-copy-id username@host -p port
+</span></code></pre></div>
+<p>如果是Windows系统，则需要手动将公钥内容复制到服务器的<code>~/.ssh/authorized_keys</code>文件中。</p>
+<p>公钥上传成功之后，再次运行之前的登录命令，无需输入密码即可登录。</p>
+<p>如果连登录命令都不想输入，可以将服务器的配置写入<code>~/.ssh/config</code>文件，以下内容作为参考：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Host ics
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    HostName host
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    User username
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>    IdentityFile ~/.ssh/id_ed25519
+</span></code></pre></div>
+<p>其中，Host字段可以随意设置，比如设为<code>ics</code>，HostName设置成服务器的<strong>域名</strong>，User设置成自己的<strong>用户名</strong>，IdentityFile设置成你自己的<strong>私钥地址</strong>。</p>
+<p>后续直接输入<code>ssh ics</code>即可成功连接。</p>
+<h2 id="_6">后续操作<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>成功使用系统终端登录之后，后续就可以在服务器上开发和探索了，可以参考如下文档：</p>
+<ul>
+<li>
+<p>使用vscode进行远程开发，参考<a href="../VScodeRemote-SSH/">VSCode远程开发</a></p>
+</li>
+<li>
+<p>Linux命令行学习与探索，参考<a href="../../labs/lab0/#实用工具学习">实用工具学习</a></p>
+</li>
+<li>
+<p>常用命令大全，参考<a href="../../assets/files/linux-command-reference.pdf">Unix/Linux Command Reference <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M96 0C60.7 0 32 28.7 32 64v384c0 35.3 28.7 64 64 64h80V400c0-35.3 28.7-64 64-64h176V170.5c0-17-6.7-33.3-18.7-45.3L290.7 18.7C278.7 6.7 262.5 0 245.5 0zm261.5 176H264c-13.3 0-24-10.7-24-24V58.5zM240 380c-11 0-20 9-20 20v128c0 11 9 20 20 20s20-9 20-20v-28h12c33.1 0 60-26.9 60-60s-26.9-60-60-60zm32 80h-12v-40h12c11 0 20 9 20 20s-9 20-20 20m96-80c-11 0-20 9-20 20v128c0 11 9 20 20 20h32c28.7 0 52-23.3 52-52v-64c0-28.7-23.3-52-52-52zm20 128v-88h12c6.6 0 12 5.4 12 12v64c0 6.6-5.4 12-12 12zm88-108v128c0 11 9 20 20 20s20-9 20-20v-44h28c11 0 20-9 20-20s-9-20-20-20h-28v-24h28c11 0 20-9 20-20s-9-20-20-20h-48c-11 0-20 9-20 20"/></svg></span></a></p>
+</li>
+</ul>
                 
               </article>
             </div>
