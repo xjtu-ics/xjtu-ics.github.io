@@ -27,12 +27,21 @@
         "pic_url": "../assets/profile-ta/ygli.jpg"
     },
     {
+        "homepage_url": "",
+        "name": "李芝塬",
+        "email": "lizhiyuan030122@163.com",
+        "office": "",
+        "office_hour": "周六、周日14:00-16:00",
+        "intro": "",
+        "pic_url": "../assets/profile-ta/zyli.jpg"
+    },
+    {
         "homepage_url": "https://ziyuliu258.cn",
         "name": "刘子语",
         "email": "1209830516abc@gmail.com",
         "office": "",
         "office_hour": "Not fixed",
-        "intro": "",
+        "intro": "欢迎与我交流ICS课内或课外的各种技术问题，祝大家学得开心！",
         "pic_url": "../assets/profile-ta/zyliu.jpg"
     },
     {
@@ -43,5 +52,32 @@
         "office_hour": "周四、周五20:00-22:00",
         "intro": "",
         "pic_url": "../assets/profile-ta/ttang.jpg"
+    },
+    {
+        "homepage_url": "",
+        "name": "王小雨",
+        "email": "nana0625@stu.xjtu.edu.cn",
+        "office": "",
+        "office_hour": "周日14:00-18:00",
+        "intro": "",
+        "pic_url": "../assets/profile-ta/xywang.jpg"
+    },
+    {
+        "homepage_url": "",
+        "name": "王亚男",
+        "email": "ynwang323@gmail.com",
+        "office": "",
+        "office_hour": "",
+        "intro": "",
+        "pic_url": "../assets/profile-ta/ynwang.jpg"
+    },
+    {
+        "homepage_url": "https://zrt.ink",
+        "name": "钟锐添",
+        "email": "zhongruitian2003@qq.com",
+        "office": "",
+        "office_hour": "周日16:00-18:00, 20:00-22:00",
+        "intro": "",
+        "pic_url": "../assets/profile-ta/rtzhong.png"
     }
 ]
