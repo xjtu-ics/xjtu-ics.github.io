@@ -25,7 +25,7 @@
     transition: box-shadow 0.3s ease;
     background-color: var(--md-default-bg-color, #fff);
     width: 45%; /* 设置宽度为原来的一半 */
-    height: 130px;
+    min-height: 130px;
     box-sizing: border-box; /* 确保 padding 和 border 不影响宽度 */
 }
 
