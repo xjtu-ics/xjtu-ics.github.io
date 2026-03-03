@@ -6,7 +6,7 @@
         "office": "",
         "office_hour": "周二、周三20:00-22:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\jndu.jpg"
+        "pic_url": "../assets/profile-ta/jndu.jpg"
     },
     {
         "homepage_url": "https://github.com/rouge3877",
@@ -15,7 +15,7 @@
         "office": "",
         "office_hour": "TBD",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\yxli.jpg"
+        "pic_url": "../assets/profile-ta/yxli.jpg"
     },
     {
         "homepage_url": "",
@@ -24,7 +24,7 @@
         "office": "",
         "office_hour": "周六14:00-18:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\ygli.jpg"
+        "pic_url": "../assets/profile-ta/ygli.jpg"
     },
     {
         "homepage_url": "",
@@ -33,7 +33,7 @@
         "office": "",
         "office_hour": "周六、周日14:00-16:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\zyli.jpg"
+        "pic_url": "../assets/profile-ta/zyli.jpg"
     },
     {
         "homepage_url": "",
@@ -42,7 +42,7 @@
         "office": "",
         "office_hour": "周四20:00-22:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\cliu.jpg"
+        "pic_url": "../assets/profile-ta/cliu.jpg"
     },
     {
         "homepage_url": "https://ziyuliu258.cn",
@@ -51,16 +51,7 @@
         "office": "",
         "office_hour": "Not fixed",
         "intro": "欢迎与我交流ICS课内或课外的各种技术问题，祝大家学得开心！",
-        "pic_url": "../assets/profile-ta\\zyliu.jpg"
-    },
-    {
-        "homepage_url": "https://github.com/Miafetta",
-        "name": "沈可瑞",
-        "email": "2943812220@qq.com",
-        "office": "",
-        "office_hour": "19:00-21:00, Workday",
-        "intro": "希望大家在ICS课程中能够学到有用的知识，提升自己的编程能力！",
-        "pic_url": "../assets/profile-ta\\krshen.jpg"
+        "pic_url": "../assets/profile-ta/zyliu.jpg"
     },
     {
         "homepage_url": "",
@@ -72,13 +63,22 @@
         "pic_url": "../assets/profile-ta/jcma.png"
     },
     {
+        "homepage_url": "https://github.com/Miafetta",
+        "name": "沈可瑞",
+        "email": "2943812220@qq.com",
+        "office": "",
+        "office_hour": "19:00-21:00, Workday",
+        "intro": "希望大家在ICS课程中能够学到有用的知识，提升自己的编程能力！",
+        "pic_url": "../assets/profile-ta/krshen.jpg"
+    },
+    {
         "homepage_url": "",
         "name": "唐堂",
         "email": "tangtang021031@gmail.com",
         "office": "",
         "office_hour": "周四、周五20:00-22:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\ttang.jpg"
+        "pic_url": "../assets/profile-ta/ttang.jpg"
     },
     {
         "homepage_url": "",
@@ -87,7 +87,7 @@
         "office": "",
         "office_hour": "周日14:00-18:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\xywang.jpg"
+        "pic_url": "../assets/profile-ta/xywang.jpg"
     },
     {
         "homepage_url": "",
@@ -96,7 +96,16 @@
         "office": "",
         "office_hour": "",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\ynwang.jpg"
+        "pic_url": "../assets/profile-ta/ynwang.jpg"
+    },
+    {
+        "homepage_url": "",
+        "name": "吴文正",
+        "email": "foreversignskin@outlook.com",
+        "office": "",
+        "office_hour": "周五、周六20:00-22:00",
+        "intro": "",
+        "pic_url": "../assets/profile-ta/wzwu.jpg"
     },
     {
         "homepage_url": "https://zrt.ink",
@@ -105,6 +114,6 @@
         "office": "",
         "office_hour": "周日16:00-18:00, 20:00-22:00",
         "intro": "",
-        "pic_url": "../assets/profile-ta\\rtzhong.png"
+        "pic_url": "../assets/profile-ta/rtzhong.png"
     }
 ]
