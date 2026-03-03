@@ -1,5 +1,5 @@
 title,Week,start,end,theme,Instructors,pptLink,location,Reading,extra
-Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Shan,,主D-204,1,
+Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Shan,assets/slides/01-overview-class-rules.pdf,主D-204,1,
 Lecture,1,2026-03-05T14:00:00,2026-03-03T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,,主D-204,2.1-2.3,datalab out
 Lecture,2,2025-03-10T10:10:00,2025-02-25T21:00:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.1-3.3,
 Lecture,2,2025-03-12T14:00:00,2025-02-27T20:00:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.4-3.5,bomblab out
