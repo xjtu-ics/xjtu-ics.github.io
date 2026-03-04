@@ -1018,7 +1018,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#实验简介" class="md-nav__link">
     <span class="md-ellipsis">
       
         实验简介
@@ -1029,7 +1029,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#注意事项" class="md-nav__link">
     <span class="md-ellipsis">
       
         注意事项
@@ -1040,7 +1040,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#知识回顾" class="md-nav__link">
     <span class="md-ellipsis">
       
         知识回顾
@@ -1052,7 +1052,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#链接的位置" class="md-nav__link">
     <span class="md-ellipsis">
       
         链接的位置
@@ -1063,7 +1063,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#链接的目的" class="md-nav__link">
     <span class="md-ellipsis">
       
         链接的目的
@@ -1074,7 +1074,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#静态链接的主要流程" class="md-nav__link">
     <span class="md-ellipsis">
       
         静态链接的主要流程
@@ -1085,7 +1085,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#符号解析的流程" class="md-nav__link">
     <span class="md-ellipsis">
       
         符号解析的流程
@@ -1096,7 +1096,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#重定位的流程" class="md-nav__link">
     <span class="md-ellipsis">
       
         重定位的流程
@@ -1107,7 +1107,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#elfsection" class="md-nav__link">
+  <a href="#elf文件与节section" class="md-nav__link">
     <span class="md-ellipsis">
       
         ELF文件与节（Section）
@@ -1123,7 +1123,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#开始实验" class="md-nav__link">
     <span class="md-ellipsis">
       
         开始实验
@@ -1135,7 +1135,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#实验框架" class="md-nav__link">
     <span class="md-ellipsis">
       
         实验框架
@@ -1146,7 +1146,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#关键数据结构" class="md-nav__link">
     <span class="md-ellipsis">
       
         关键数据结构
@@ -1229,7 +1229,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#任务" class="md-nav__link">
     <span class="md-ellipsis">
       
         任务
@@ -1240,7 +1240,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#运行" class="md-nav__link">
     <span class="md-ellipsis">
       
         运行
@@ -1256,7 +1256,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#测试点介绍" class="md-nav__link">
     <span class="md-ellipsis">
       
         测试点介绍
@@ -1339,7 +1339,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#评分方法与代码提交" class="md-nav__link">
     <span class="md-ellipsis">
       
         评分方法与代码提交
@@ -1350,7 +1350,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#写在最后" class="md-nav__link">
     <span class="md-ellipsis">
       
         写在最后
@@ -1383,10 +1383,10 @@
                 
                   
 <h1 id="xjtu-ics-lab-6-linker-lab">XJTU-ICS Lab 6: Linker Lab<a class="headerlink" href="#xjtu-ics-lab-6-linker-lab" title="Permanent link">&para;</a></h1>
-<h2 id="_1">实验简介<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="实验简介">实验简介<a class="headerlink" href="#实验简介" title="Permanent link">&para;</a></h2>
 <p>在这个实验里，我们要求大家编写一个静态链接器（static linker），将汇编器（assembler）输出的每一个目标文件（object file）合成为一个可执行文件（executable，有时也称binary）。</p>
 <p>本实验要求大家使用C++语言，使用实验框架提供的接口，在简单的测试用例上，完成静态链接中最关键的符号解析与重定位两部分，从而深入理解静态链接的具体流程。</p>
-<h2 id="_2">注意事项<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="注意事项">注意事项<a class="headerlink" href="#注意事项" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>本实验只经过了小范围测试，在代码/文档里出现问题或难以理解十分正常。当你认为某些部分不对劲时，请及时通过Piazza反馈。</p>
@@ -1401,13 +1401,13 @@
 <p>实验的测试点最后两个测试点有已知的feature。通过先前的测试点后，你可能会发现最后两个测试点什么都不做就通过了。这是正常现象，我们鼓励大家积极思考测试点反映的真实代码情况，也欢迎（但不要求）大家思考为什么框架会有这样的feature，并在有兴趣的基础上提PR帮我们解决。</p>
 </li>
 </ol>
-<h2 id="_3">知识回顾<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<h3 id="_4">链接的位置<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h2 id="知识回顾">知识回顾<a class="headerlink" href="#知识回顾" title="Permanent link">&para;</a></h2>
+<h3 id="链接的位置">链接的位置<a class="headerlink" href="#链接的位置" title="Permanent link">&para;</a></h3>
 <p>从源代码到计算机上运行的程序总共要经过如图示的以下过程：
 <img alt="linkerlab_compiler.png" src="../../assets/images/linklab/compiler_driver.png" />
 在源代码被转化为目标文件（即<code>prog.o</code>）之前，要经过预处理器，编译器，汇编器的处理。</p>
 <p>在本实验中，我们关心的则是从<code>prog.o</code>转化为<code>prog</code>的过程。在Linux系统上，这一过程通过调用系统提供的静态链接器<code>ld</code>实现。而我们需要做的事情就是对<code>ld</code>核心功能的模仿。</p>
-<h3 id="_5">链接的目的<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h3 id="链接的目的">链接的目的<a class="headerlink" href="#链接的目的" title="Permanent link">&para;</a></h3>
 <p>链接最本质的出发点是为源代码的<strong>模块化</strong>提供可以<strong>相互引用的接口</strong>。首先，让我们看看源代码为什么需要模块化。</p>
 <p>模块化设计允许用户使用多个源文件形成可执行程序，例如下述的两个源文件：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// a.c</span>
@@ -1458,7 +1458,7 @@
 </span></code></pre></div>
 <p>则<code>func_a</code>与<code>func_b</code>完成的任务完全一致。这是因为在最开始的版本中，我们使用<code>static</code>显式声明了对函数与变量的定义应当与其它源文件隔离；而在第二个版本中，我们使用<code>extern</code>显式声明了对函数与变量的定义应当绑定到其它源文件上。</p>
 <p>此时回看我们在一开始的定义：为源代码的模块化提供可以相互引用的接口。是不是变得比较清晰了？链接的目的就在于解析每一个模块对外部函数与变量（二者一般合称为<strong>符号</strong>）的引用。</p>
-<h3 id="_6">静态链接的主要流程<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="静态链接的主要流程">静态链接的主要流程<a class="headerlink" href="#静态链接的主要流程" title="Permanent link">&para;</a></h3>
 <p>静态链接的主要流程如下图所示：
 <img alt="linkerlab_linker_workflow.png" src="../../assets/images/linklab/linker-workflow.png" /></p>
 <ol>
@@ -1473,7 +1473,7 @@
 </li>
 </ol>
 <p>其中，在这个实验中，我们关注过程1与过程3，下文具体解释如何完成这两个过程。</p>
-<h3 id="_7">符号解析的流程<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<h3 id="符号解析的流程">符号解析的流程<a class="headerlink" href="#符号解析的流程" title="Permanent link">&para;</a></h3>
 <!--
 上文说到，某个目标文件可能引用一个来自外部文件的符号。而在二进制文件中，每个符号的具体信息被存储在符号表中，而符号表中的每个符号服从下述定义：
 
@@ -1548,7 +1548,7 @@
 </ol>
 <p>强符号包括：函数定义，全局变量定义。</p>
 <p>弱符号包括：函数声明，全局变量声明。</p>
-<h3 id="_8">重定位的流程<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h3 id="重定位的流程">重定位的流程<a class="headerlink" href="#重定位的流程" title="Permanent link">&para;</a></h3>
 <p>在目标文件编译完成时，如果存在对符号的引用，其代码中会存在空地址，等待被填上，例如：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
@@ -1575,16 +1575,16 @@
 <img alt="linkerlab_relocation_workflow.png" src="../../assets/images/linklab/relocation-workflow.png" /></p>
 <p>如图所示，在链接前，汇编器并不知道链接器最终形成的可执行文件有多大，自然无法知道某条指令和其访问的数据的具体偏移量，因此只能留空。而这个偏移量只有在完成上文所述的链接过程的第二步，即目标文件合并之后才能完成。</p>
 <p>因此，重定位的过程，其实就是在代码中的这些空缺填入正确地址，使其能正确地访问对应变量的过程。因为其修改代码的过程，静态链接器又被称为链接-编辑器（link-editor）。</p>
-<h3 id="elfsection">ELF文件与节（Section）<a class="headerlink" href="#elfsection" title="Permanent link">&para;</a></h3>
+<h3 id="elf文件与节section">ELF文件与节（Section）<a class="headerlink" href="#elf文件与节section" title="Permanent link">&para;</a></h3>
 <p>目标文件采用ELF格式组织，因其充满了实现细节与历史包袱，实验框架已全力为大家隐藏，因此大家无需了解其实现细节。然而仍有一点概念需要注意，即ELF文件按功能分为不同的节（section），常用的节有存放代码的节（.text），存放有初值全局变量的节（.data），存放无初值全局变量的节（.bss）等等。下文<code>关键数据结构</code>中将会详细介绍在我们的代码框架中如何体现一个节。</p>
 <p>可以使用<code>readelf -S</code>来显示目标文件的所有节，此处略。</p>
-<h2 id="_9">开始实验<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<h3 id="_10">实验框架<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h2 id="开始实验">开始实验<a class="headerlink" href="#开始实验" title="Permanent link">&para;</a></h2>
+<h3 id="实验框架">实验框架<a class="headerlink" href="#实验框架" title="Permanent link">&para;</a></h3>
 <p>实验框架的工作流程如图所示：
 <img alt="linkerlab_framework_workflow.png" src="../../assets/images/linklab/framework-workflow.png" />
 其中，大家需要完成的部分需要实现在<code>resolve.cc</code>以及<code>relocation.cc</code>中。<code>util.cc</code>完成了链接过程中的其它任务，用灰色框标出，大家无需关注。</p>
 <p><code>main.cc</code>负责调用这三个文件中提供的函数，完成整体流程。</p>
-<h3 id="_11">关键数据结构<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<h3 id="关键数据结构">关键数据结构<a class="headerlink" href="#关键数据结构" title="Permanent link">&para;</a></h3>
 <p>为了简化大家的工作量，实验框架完成了从二进制目标文件中读取符号表等一系列结构的过程，并将其存入C++数据结构中，方便大家使用，即上图中“目标文件解析”。下文将逐个介绍这些数据结构，及其在链接过程中对应的组成部分。</p>
 <h4 id="objectfile">ObjectFile<a class="headerlink" href="#objectfile" title="Permanent link">&para;</a></h4>
 <p>用来存储目标文件中所需的信息，其包含的成员变量及其含义如下：</p>
@@ -1635,7 +1635,7 @@
 <p>用来存储所有目标文件对应的<code>ObjectFile</code>数据结构。</p>
 <h4 id="mergedobject">mergedObject<a class="headerlink" href="#mergedobject" title="Permanent link">&para;</a></h4>
 <p>所有目标文件合并为一个后对应的<code>ObjectFile</code>。</p>
-<h3 id="_12">任务<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h3 id="任务">任务<a class="headerlink" href="#任务" title="Permanent link">&para;</a></h3>
 <p>完成<code>resolve.cc</code>与<code>relocation.cc</code>中的空函数，完成符号解析与重定位。</p>
 <p>对于前者，需要检查每个<code>ObjectFile</code>的每个<code>RelocEntry</code>，检查所有<code>RelocEntry</code>是否都已经找到定义，或在多个目标文件中被定义。在发生错误时，返回相应的返回值，并结束程序。在确保符号解析正确后，将<code>RelocEntry</code>的<code>sym</code>指向提供定义的<code>Symbol</code>，表示完成了“绑定”。</p>
 <blockquote>
@@ -1648,7 +1648,7 @@
 <blockquote>
 <p class="is-info">这一步的本质是向文件的特定位置写入，即将修改合并后的目标文件中代码中留空的部分指向正确的地址。</p>
 </blockquote>
-<h3 id="_13">运行<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h3 id="运行">运行<a class="headerlink" href="#运行" title="Permanent link">&para;</a></h3>
 <p>本实验回到<code>x86.ics.xjtu-ants.net</code>上运行。</p>
 <p>首先，将仓库从GitHub clone下来：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Qcloud1223/ics-ld-public
@@ -1664,7 +1664,7 @@
 <p>如果需要debug，可以在autograder输出的命令之前加上<code>gdb --args</code>，如：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>gdb<span class="w"> </span>--args<span class="w"> </span>./build/ics-linker<span class="w"> </span>testcases/test0/glbvar.o<span class="w"> </span>-o<span class="w"> </span>testcases/test0/test0.o
 </span></code></pre></div>
-<h2 id="_14">测试点介绍<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<h2 id="测试点介绍">测试点介绍<a class="headerlink" href="#测试点介绍" title="Permanent link">&para;</a></h2>
 <h3 id="test-0">test 0<a class="headerlink" href="#test-0" title="Permanent link">&para;</a></h3>
 <p>在此测试点中只需完成重定位。且因为只有一个源文件（即<code>allObject</code>的长度为1），因此无需在其它文件的符号表中查询。</p>
 <p>完成重定位需要对<code>relocTable</code>进行遍历，对每个<code>RelocEntry</code>，首先需要找到其对应的<code>symbol</code>的地址，这个值存放在<code>re.sym-&gt;value</code>里。</p>
@@ -1839,7 +1839,7 @@
 </span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="m">3</span>
 </span></code></pre></div>
 <p>注意三处注释中a符号的地址相同。</p>
-<h2 id="_15">评分方法与代码提交<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<h2 id="评分方法与代码提交">评分方法与代码提交<a class="headerlink" href="#评分方法与代码提交" title="Permanent link">&para;</a></h2>
 <p>使用autograder评估你的代码得分。为防止大家针对测试点做hard code，后续计分会使用类似如下的策略实现：</p>
 <p>以test 0为例：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
@@ -1870,7 +1870,7 @@
 <hr />
 <p>迟交策略与提交平台同之前的lab。</p>
 <p>提交<code>make submit</code>输出的zip文件。</p>
-<h2 id="_16">写在最后<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h2 id="写在最后">写在最后<a class="headerlink" href="#写在最后" title="Permanent link">&para;</a></h2>
 <p>链接是一个相当高深且复杂的过程。下文只列举几个话题，供有兴趣的同学探索：</p>
 <ol>
 <li>
