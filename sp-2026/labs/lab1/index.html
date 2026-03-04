@@ -25,7 +25,7 @@
     
     
       
-        <title>XJTU-ICS lab 1: Data Lab 数据实验 - Introduction to Computer Systems Spring 2026</title>
+        <title>XJTU-ICS lab 1: Data Lab - Introduction to Computer Systems Spring 2026</title>
       
     
     
@@ -141,7 +141,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#xjtu-ics-lab-1-data-lab-数据实验" class="md-skip">
+        <a href="#xjtu-ics-lab-1-data-lab" class="md-skip">
           Skip to content
         </a>
       
@@ -178,7 +178,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              XJTU-ICS lab 1: Data Lab 数据实验
+              XJTU-ICS lab 1: Data Lab
             
           </span>
         </div>
@@ -1394,52 +1394,34 @@
               <article class="md-content__inner md-typeset">
                 
                   
-<h1 id="xjtu-ics-lab-1-data-lab-数据实验">XJTU-ICS lab 1: Data Lab 数据实验<a class="headerlink" href="#xjtu-ics-lab-1-data-lab-数据实验" title="Permanent link">&para;</a></h1>
+<h1 id="xjtu-ics-lab-1-data-lab">XJTU-ICS lab 1: Data Lab<a class="headerlink" href="#xjtu-ics-lab-1-data-lab" title="Permanent link">&para;</a></h1>
 <h2 id="实验简介">实验简介<a class="headerlink" href="#实验简介" title="Permanent link">&para;</a></h2>
 <p>相信大家在前几节课中学习中已经学到了不少东西，这个小实验的目的是让大家更加熟悉计算机中信息表示的常见模式和整数的位级表示。你将通过解决一系列编程“谜题”来做到这一点。其中许多谜题可能看起来构造的非常刻意（human-made），但你会发现自己在处理它们的过程中更多地考虑了计算机中比特的表示法。</p>
 <p>这些题目并不简单，但是相信在尝试求解它们的过程中你能感受到一些乐趣，并提升一些动手与编程能力。</p>
 <p>Enjoy and Have fun! 😉</p>
 <h2 id="注意事项">注意事项<a class="headerlink" href="#注意事项" title="Permanent link">&para;</a></h2>
 <ul>
-<li>这是一个“个人”作业，请不要抄袭或者尝试几个人一起完成.</li>
+<li>这是一个<strong>个人</strong>作业，请不要抄袭或者尝试几个人一起完成.</li>
 <li>这些问题并不是一些完全全新的问题，我们鼓励“Google”学习解决一些代码之外的问题（环境问题/工具使用问题），但是频繁的查询代码谜题相关的解将使得这个实验与课程失去意义.</li>
-<li>不要使用诸如deepseek，chatgpt等大模型的帮助，当然你用了我们可能查不出来，但是建议自己动脑子完成这些题目，现在花时间了期末考试复习就简单了 😍</li>
+<li><strong>不要使用AI Agent工具协助开发</strong></li>
 </ul>
 <h2 id="开发环境和实验前准备">开发环境和实验前准备<a class="headerlink" href="#开发环境和实验前准备" title="Permanent link">&para;</a></h2>
-<p>前置要求： 学习完<a href="../lab0/">lab0: 环境搭建</a>，确保自己手边有可用的linux环境和完整的开发工具链(gcc, make等)，<strong>不要试图在windows环境下完成实验</strong>。</p>
+<p>仔细阅读[Lab0指导书]，根据自己的需求准备好linux开发环境和必备工具链（gcc，make，git等）。</p>
 <h3 id="远程开发">远程开发<a class="headerlink" href="#远程开发" title="Permanent link">&para;</a></h3>
-<p>如果你手边没有Linux环境，不用担心，我们为每一个同学准备了服务器账号。</p>
-<p>不知道怎么使用服务器的同学，请移步<a href="../../resources/ICS-Server/">ICS Server</a>学习完整流程，并且<strong>确保你可以登陆上ICS服务器</strong></p>
-<p>在服务器上开发方式选择：</p>
-<ul>
-<li>（推荐）使用vscode进行远程连接，具体可以查看教程<a href="../../resources/VScodeRemote-SSH/">Vscode ssh配置</a></li>
-<li>（能力强的同学可以尝试，同时可以向助教分享你的配置 🥳）使用tmux + ssh + vim/nvim/emacs等工具进行开发。</li>
-</ul>
-<p>登陆成功之后，在自己的家目录下（<code>/home/username</code>），应该可以看到一个名为<code>datalab-sp25</code>的目录：</p>
+<p>已经拥有ICS-Server账号的同学，在自己的家目录下（<code>/home/username</code>），应该可以看到一个名为<code>datalab-sp26</code>的目录：</p>
 <p>如果你缺少这个目录，有三种解决方式：</p>
 <ul>
-<li>在课程网站上下载<a href="../../assets/files/datalab-sp25.tar">datalab-sp25.tar</a>，然后通过命令<code>tar xvf datalab-sp25</code>解压</li>
-<li>进入本次实验的<a href="https://github.com/xjtu-ics/datalab-sp25">公有仓库</a>，使用<code>git clone</code>克隆仓库到本地（推荐）</li>
-<li>寻找助教进行解决</li>
+<li>在课程网站上下载<a href="../assets/files/datalab-sp26.tar">datalab-sp26.tar</a>，然后通过命令<code>tar xvf datalab-sp26</code>解压</li>
+<li>进入本次实验的<a href="https://github.com/xjtu-ics/datalab-sp26">公有仓库</a>，使用<code>git clone</code>克隆仓库到本地（推荐）</li>
+<li>寻找助教进行解决（不推荐）</li>
 </ul>
-<p>当然，助教们希望同学们还是尽量可以自己解决，毕竟一方面助教们平时都很忙，另一方面自己动手查阅资料，解决问题也可以培养自己这方面的能力，这也是这门课开设的初衷。 💪</p>
+<p>当然，助教们希望同学们还是尽量可以自己解决，毕竟一方面助教们平时都很忙，另一方面自己动手查阅资料，解决问题也可以培养自己这方面的能力，这也是这门课开设的初衷。</p>
 <h3 id="本地开发">本地开发<a class="headerlink" href="#本地开发" title="Permanent link">&para;</a></h3>
-<p>也可以自己搭建开发环境，环境要求为：</p>
-<ul>
-<li>Linux 或 WSL (推荐 Ubuntu 22.04 / Arch Linux)</li>
-<li>gcc-11</li>
-<li>GNU Make</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>上述工具版本仅供参考，使用更高版本的工具链只要不报错就可以。</p>
-</div>
-<p>有关本地环境的搭建指导，请移步<a href="../../resources/LinuxInstallation/">Linux Installation</a></p>
 <p>自己本地开发的实验资源获取方式：</p>
 <ul>
-<li>下载文件<a href="../../assets/files/datalab-sp25.tar">datalab-sp25.tar</a>，然后通过命令<code>tar xvf datalab-sp25.tar</code>进行解压</li>
-<li>进入本次实验的<a href="https://github.com/xjtu-ics/datalab-sp25">公有仓库</a>，使用<code>git clone</code>克隆仓库到本地（推荐）</li>
-<li>找同学/助教发给你</li>
+<li>在课程网站上下载<a href="../assets/files/datalab-sp26.tar">datalab-sp26.tar</a>，然后通过命令<code>tar xvf datalab-sp26</code>解压</li>
+<li>进入本次实验的<a href="https://github.com/xjtu-ics/datalab-sp26">公有仓库</a>，使用<code>git clone</code>克隆仓库到本地（推荐）</li>
+<li>寻找助教进行解决（不推荐）</li>
 </ul>
 <p>如果你已经顺利的在本地安装或者申请到了一个稳定的Linux环境，并且准备好了实验相关目录，那么就可以顺利的开始你的实验~</p>
 <h3 id="使用自己的远程仓库进行备份选做">使用自己的远程仓库进行备份（选做）<a class="headerlink" href="#使用自己的远程仓库进行备份选做" title="Permanent link">&para;</a></h3>
@@ -1451,12 +1433,12 @@
 <p class="admonition-title">Note</p>
 <p>如果需要通过ssh使用github, 首先在本地生成ssh密钥对，然后将公钥添加到自己的github账户中。</p>
 </div>
-<p>如果你使用服务器或者通过下载压缩包的方式，那么你需要首先建立一个本地仓库，切换到<code>datalab-sp25</code>目录，然后输入以下命令：</p>
+<p>如果你使用服务器或者通过下载压缩包的方式，那么你需要首先建立一个本地仓库，切换到<code>datalab-sp26</code>目录，然后输入以下命令：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>git<span class="w"> </span>init
 </span></code></pre></div>
 <p>这会在你的项目根目录下面建立一个<code>.git</code>目录，存放你的本地仓库的一些信息。</p>
 <p>之后你可以将我们的公开仓库和自己的本地仓库关联：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github.com:xjtu-ics/datalab-sp25.git
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github.com:xjtu-ics/datalab-sp26.git
 </span></code></pre></div>
 <p>这里我们建议你将公有仓库的名字命名为<code>upstream</code>，因为通常代表了<strong>上游仓库</strong>，在多人协同开发中，这种仓库通常用于同步本地信息，<strong>即可以pull，但是没有push权限</strong>的仓库。</p>
 <p>对于自己建立的仓库，一般需要自己写一个<code>.gitignore</code>文件，以屏蔽项目使用的一些临时文件，对于这个实验，一个参考的<code>.gitignore</code>文件如下：</p>
@@ -1514,13 +1496,12 @@
 <p><a href="https://opensource.com/article/18/8/what-how-makefile">What is a Makefile and how does it work?</a></p>
 <p><a href="https://www.math.colostate.edu/~yzhou/computer/writemakefile.html">Tutorial on writing makefiles</a>)</p>
 <p><code>make</code>方法：在对应路径下在命令行输入<code>make</code>，回车.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>linux$<span class="w"> </span>make
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>make
 </span></code></pre></div>
 <p>如果<code>make</code>成功，一个典型的输出结果如下所示：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>linux$<span class="w"> </span>make<span class="w">                                                                                   </span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-o<span class="w"> </span>fshow<span class="w"> </span>fshow.c
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-o<span class="w"> </span>ishow<span class="w"> </span>ishow.c
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-o<span class="w"> </span>fshow<span class="w"> </span>fshow.c
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>gcc<span class="w"> </span>-O<span class="w"> </span>-Wall<span class="w"> </span>-m32<span class="w"> </span>-o<span class="w"> </span>ishow<span class="w"> </span>ishow.c
 </span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1706,20 +1687,20 @@
 尽管结果正确（使用<code>btest</code>测试没问题），这个谜题仍是不得分的。同样，如果在函数中使用了<code>if for</code>或<code>0xffffffff</code>，以及有任何规则禁止的操作，都是不得分的。</p>
 <h2 id="谜题">谜题<a class="headerlink" href="#谜题" title="Permanent link">&para;</a></h2>
 <p>这个小节简要地介绍了你将要面临的小谜题，同时你可以参考解决一个谜题用到的操作符数量~</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Correctness Results Perf Results
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Points  Rating  Errors  Points  Ops Puzzle
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>8   8   0   2   1   isZero
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>8   8   0   2   7   bitXor
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>8   8   0   2   2   copyLSB
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>8   8   0   2   2   isNegative
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>8   8   0   2   7   allEvenBits
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>8   8   0   2   17  byteSwap
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>8   8   0   2   3   removeRightmostOne
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>10  10  0   2   10  maskBelowHighest
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>10  10  0   2   18  largerAbsVal
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>4   4   0   2   40  bitReverse
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>Correctness Results     Perf Results
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>Points  Rating  Errors  Points  Ops     Puzzle
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>8       8       0       2       1       tmin
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>8       8       0       2       9       upperBits
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>8       8       0       2       4       sign
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>8       8       0       2       3       copyBit
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>8       8       0       2       7       fitsBits
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>8       8       0       2       7       anyOddBit
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>8       8       0       2       3       distinctNegation
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>10      10      0       2       12      isGreater
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>10      10      0       2       7       isAbsEqual
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>4       4       0       2       37      howManyBits
 </span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>
-</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>Score = 100/100 [80/80 Corr + 20/20 Perf] (107 total operators)
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a>Score = 100/100 [80/80 Corr + 20/20 Perf] (90 total operators)
 </span></code></pre></div>
 <p>一共有10道题等待你去解决，请<strong>详细核对自己的题目和上述题目是否有出入，如有出入，请联系助教处理</strong>。</p>
 <h2 id="评分">评分<a class="headerlink" href="#评分" title="Permanent link">&para;</a></h2>
@@ -1765,22 +1746,21 @@
 </ul>
 <h3 id="代码功能正确性---btest">代码功能正确性 -&gt; <code>btest</code><a class="headerlink" href="#代码功能正确性---btest" title="Permanent link">&para;</a></h3>
 <p>如果你的<code>bits.c</code>的程序编写满足C语言要求并可以通过编译，在本地根目录下<code>make</code>之后你将会获得：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>linux$<span class="w"> </span>make
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>make
 </span></code></pre></div>
 <p>如下的目录：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>linux$<span class="w"> </span>ls
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>bits.c<span class="w">  </span>bits.h<span class="w">  </span>btest<span class="w">  </span>btest.c<span class="w">  </span>btest.h<span class="w">  </span>decl.c<span class="w">  </span>dlc<span class="w">  </span>Driverlib.pm<span class="w">  </span>driver.pl<span class="w">  </span>fshow<span class="w">  </span>fshow.c<span class="w">  </span>ishow<span class="w">  </span>ishow.c<span class="w">  </span>Makefile<span class="w">  </span>README.md<span class="w">  </span>tests.c
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>bits.c<span class="w">  </span>bits.h<span class="w">  </span>btest<span class="w">  </span>btest.c<span class="w">  </span>btest.h<span class="w">  </span>decl.c<span class="w">  </span>dlc<span class="w">  </span>Driverlib.pm<span class="w">  </span>driver.pl<span class="w">  </span>fshow<span class="w">  </span>fshow.c<span class="w">  </span>ishow<span class="w">  </span>ishow.c<span class="w">  </span>Makefile<span class="w">  </span>README.md<span class="w">  </span>tests.c
 </span></code></pre></div>
 <p>其中<code>btest</code>程序通过多次调用它们来检查<code>bits.c</code>中函数的正确性不同的参数值。要构建和使用它，请键入以下两个命令：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>linux$<span class="w"> </span>make
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>linux$<span class="w"> </span>./btest
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>make
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>./btest
 </span></code></pre></div>
 <p>需要注意的第一点是，你<strong>每次修改你的<code>bits.c</code>文件之后，你需要通过<code>make</code>重新<code>build</code>之后再进行测试</strong>：</p>
 <p>即如果你新完成了一个谜题，你想要重新测试，则需要完成如下的流程：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>linux$<span class="w"> </span>make
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>linux$<span class="w"> </span>./btest
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>make
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>./btest
 </span></code></pre></div>
-<p>通常来说你会获得如下类型的运行结果：</p>
+<p>通常来说你会获得类似如下结果：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>linux$<span class="w"> </span>./btest
 </span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>Score<span class="w">   </span>Rating<span class="w">  </span>Errors<span class="w">  </span>Function
 </span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w"> </span><span class="m">8</span><span class="w">  </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span>isZero
@@ -1805,14 +1785,13 @@
 根据输出的结果我们返回去继续修改我们的代码。</p>
 <h3 id="代码规则检测工具---dlc">代码规则检测工具 -&gt; <code>dlc</code><a class="headerlink" href="#代码规则检测工具---dlc" title="Permanent link">&para;</a></h3>
 <p>btest并不会告诉我们写的代码是不是符合代码规则，这时候就需要使用<code>dlc</code>了。<code>dlc</code>的使用方法非常简单，如下：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>linux$<span class="w"> </span>./dlc<span class="w"> </span>bits.c
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>./dlc<span class="w"> </span>bits.c
 </span></code></pre></div>
 <p>如果你的代码都符合代码规则，那不会输出任何结果。</p>
 <p>如果你的代码中有不符合代码规则的地方，一个典型的输出结果如下所示：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>linux$<span class="w"> </span>./dlc<span class="w"> </span>bits.c
-</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>dlc:bits.c:202:copyLSB:<span class="w"> </span>Illegal<span class="w"> </span><span class="k">if</span>
-</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>dlc:bits.c:230:conditional:<span class="w"> </span>Illegal<span class="w"> </span>constant<span class="w"> </span><span class="o">(</span>0xffffffff<span class="o">)</span><span class="w"> </span><span class="o">(</span>only<span class="w"> </span>0x0<span class="w"> </span>-<span class="w"> </span>0xff<span class="w"> </span>allowed<span class="o">)</span>
-</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>dlc:bits.c:245:isPositive:<span class="w"> </span>Warning:<span class="w"> </span><span class="m">10</span><span class="w"> </span>operators<span class="w"> </span>exceeds<span class="w"> </span>max<span class="w"> </span>of<span class="w"> </span><span class="m">8</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>dlc:bits.c:202:copyLSB:<span class="w"> </span>Illegal<span class="w"> </span><span class="k">if</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>dlc:bits.c:230:conditional:<span class="w"> </span>Illegal<span class="w"> </span>constant<span class="w"> </span><span class="o">(</span>0xffffffff<span class="o">)</span><span class="w"> </span><span class="o">(</span>only<span class="w"> </span>0x0<span class="w"> </span>-<span class="w"> </span>0xff<span class="w"> </span>allowed<span class="o">)</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>dlc:bits.c:245:isPositive:<span class="w"> </span>Warning:<span class="w"> </span><span class="m">10</span><span class="w"> </span>operators<span class="w"> </span>exceeds<span class="w"> </span>max<span class="w"> </span>of<span class="w"> </span><span class="m">8</span>
 </span></code></pre></div>
 <p>如上，<code>dlc</code>告诉我们:
 在202行，<code>copyLSB</code>函数中，使用了非法的<code>if</code>。
@@ -1823,57 +1802,58 @@
 <h3 id="实验最终得分工具---driverpl">实验最终得分工具 -&gt; <code>driver.pl</code><a class="headerlink" href="#实验最终得分工具---driverpl" title="Permanent link">&para;</a></h3>
 <p>为了计算出自己的最终分数，我们提供了<code>driver.pl</code>来计算。</p>
 <p><code>driver.pl</code>的使用方法如下：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>linux$<span class="w"> </span>./driver.pl
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>./driver.pl
 </span></code></pre></div>
 <p>一个典型的结果如下：
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>linux$<span class="w"> </span>./driver.pl
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="m">1</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -z&#39;</span><span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>coding<span class="w"> </span>rules<span class="w"> </span>violations.
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
-</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="m">2</span>.<span class="w"> </span>Compiling<span class="w"> </span>and<span class="w"> </span>running<span class="w"> </span><span class="s1">&#39;./btest -g&#39;</span><span class="w"> </span>to<span class="w"> </span>determine<span class="w"> </span>correctness<span class="w"> </span>score.
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>gcc<span class="w"> </span>-O1<span class="w"> </span>-g<span class="w"> </span>-Wall<span class="w">   </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c<span class="w"> </span>
-</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
-</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="m">3</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -Z&#39;</span><span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>operator<span class="w"> </span>count<span class="w"> </span>violations.
-</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>
-</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="m">4</span>.<span class="w"> </span>Compiling<span class="w"> </span>and<span class="w"> </span>running<span class="w"> </span><span class="s1">&#39;./btest -g -r 2&#39;</span><span class="w"> </span>to<span class="w"> </span>determine<span class="w"> </span>performance<span class="w"> </span>score.
-</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>gcc<span class="w"> </span>-O1<span class="w"> </span>-g<span class="w"> </span>-Wall<span class="w">   </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c<span class="w"> </span>
-</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a>
-</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="m">5</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -e&#39;</span><span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>operator<span class="w"> </span>count<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span><span class="k">function</span>.
-</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>
-</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>Correctness<span class="w"> </span>Results<span class="w"> </span>Perf<span class="w"> </span>Results
-</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a>Points<span class="w">  </span>Rating<span class="w">  </span>Errors<span class="w">  </span>Points<span class="w">  </span>Ops<span class="w"> </span>Puzzle
-</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">1</span><span class="w">   </span>isZero
-</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">7</span><span class="w">   </span>bitXor
-</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a><span class="m">0</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span>copyLSB
-</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">2</span><span class="w">   </span>isNegative
-</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">7</span><span class="w">   </span>allEvenBits
-</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">17</span><span class="w">  </span>byteSwap
-</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">3</span><span class="w">   </span>removeRightmostOne
-</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a><span class="m">10</span><span class="w">  </span><span class="m">10</span><span class="w">  </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">10</span><span class="w">  </span>maskBelowHighest
-</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a><span class="m">10</span><span class="w">  </span><span class="m">10</span><span class="w">  </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">18</span><span class="w">  </span>largerAbsVal
-</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a><span class="m">4</span><span class="w">   </span><span class="m">4</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">40</span><span class="w">  </span>bitReverse
-</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a>
-</span><span id="__span-31-27"><a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a><span class="nv">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span>/100<span class="w"> </span><span class="o">[</span><span class="m">72</span>/80<span class="w"> </span>Corr<span class="w"> </span>+<span class="w"> </span><span class="m">18</span>/20<span class="w"> </span>Perf<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">105</span><span class="w"> </span>total<span class="w"> </span>operators<span class="o">)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="m">1</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -z&#39;</span><span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>coding<span class="w"> </span>rules<span class="w"> </span>violations.
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="m">2</span>.<span class="w"> </span>Compiling<span class="w"> </span>and<span class="w"> </span>running<span class="w"> </span><span class="s1">&#39;./btest -g&#39;</span><span class="w"> </span>to<span class="w"> </span>determine<span class="w"> </span>correctness<span class="w"> </span>score.
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>gcc<span class="w"> </span>-O1<span class="w"> </span>-g<span class="w"> </span>-Wall<span class="w">   </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c<span class="w"> </span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="m">3</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -Z&#39;</span><span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>operator<span class="w"> </span>count<span class="w"> </span>violations.
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="m">4</span>.<span class="w"> </span>Compiling<span class="w"> </span>and<span class="w"> </span>running<span class="w"> </span><span class="s1">&#39;./btest -g -r 2&#39;</span><span class="w"> </span>to<span class="w"> </span>determine<span class="w"> </span>performance<span class="w"> </span>score.
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>gcc<span class="w"> </span>-O1<span class="w"> </span>-g<span class="w"> </span>-Wall<span class="w">   </span>-lm<span class="w"> </span>-o<span class="w"> </span>btest<span class="w"> </span>bits.c<span class="w"> </span>btest.c<span class="w"> </span>decl.c<span class="w"> </span>tests.c<span class="w"> </span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="m">5</span>.<span class="w"> </span>Running<span class="w"> </span><span class="s1">&#39;./dlc -e&#39;</span><span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>operator<span class="w"> </span>count<span class="w"> </span>of<span class="w"> </span>each<span class="w"> </span><span class="k">function</span>.
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a>Correctness<span class="w"> </span>Results<span class="w"> </span>Perf<span class="w"> </span>Results
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a>Points<span class="w">  </span>Rating<span class="w">  </span>Errors<span class="w">  </span>Points<span class="w">  </span>Ops<span class="w"> </span>Puzzle
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">1</span><span class="w">   </span>isZero
+</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">7</span><span class="w">   </span>bitXor
+</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a><span class="m">0</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">1</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">0</span><span class="w">   </span>copyLSB
+</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">2</span><span class="w">   </span>isNegative
+</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">7</span><span class="w">   </span>allEvenBits
+</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">17</span><span class="w">  </span>byteSwap
+</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a><span class="m">8</span><span class="w">   </span><span class="m">8</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">3</span><span class="w">   </span>removeRightmostOne
+</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a><span class="m">10</span><span class="w">  </span><span class="m">10</span><span class="w">  </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">10</span><span class="w">  </span>maskBelowHighest
+</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a><span class="m">10</span><span class="w">  </span><span class="m">10</span><span class="w">  </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">18</span><span class="w">  </span>largerAbsVal
+</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a><span class="m">4</span><span class="w">   </span><span class="m">4</span><span class="w">   </span><span class="m">0</span><span class="w">   </span><span class="m">2</span><span class="w">   </span><span class="m">40</span><span class="w">  </span>bitReverse
+</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a>
+</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a><span class="nv">Score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">90</span>/100<span class="w"> </span><span class="o">[</span><span class="m">72</span>/80<span class="w"> </span>Corr<span class="w"> </span>+<span class="w"> </span><span class="m">18</span>/20<span class="w"> </span>Perf<span class="o">]</span><span class="w"> </span><span class="o">(</span><span class="m">105</span><span class="w"> </span>total<span class="w"> </span>operators<span class="o">)</span>
 </span></code></pre></div>
 可以看到，最终得了90分，其中<code>copyLSB</code>函数由于不符合代码规则，不得分。</p>
 <h3 id="进制转换工具">进制转换工具<a class="headerlink" href="#进制转换工具" title="Permanent link">&para;</a></h3>
 <p>在题目编写过程中，您可能需要一些工具的帮助来确定一些10进制数的16进制格式。</p>
 <p>我们为您提供了相应的便捷工具<code>ishow</code>、<code>fshow</code>，您可以使用提供的程序 <code>ishow</code>查看整数的十进制和十六进制表示形式。首先编译代码如下：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>linux$<span class="w"> </span>make
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>make
 </span></code></pre></div>
 <p>然后使用它来检查在命令行中键入的十六进制和十进制值：</p>
-<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>linux$<span class="w">  </span>./ishow<span class="w"> </span>0x80000000
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nv">Hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x80000000,<span class="w">       </span><span class="nv">Signed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-2147483648,<span class="w">   </span><span class="nv">Unsigned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2147483648</span>
-</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>linux$<span class="w">  </span>./ishow<span class="w"> </span>-1
-</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nv">Hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0xffffffff,<span class="w">       </span><span class="nv">Signed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1,<span class="w">    </span><span class="nv">Unsigned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4294967295</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>./ishow<span class="w"> </span>0x80000000
+</span></code></pre></div>
+<p>一般输出为：</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nv">Hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x80000000,<span class="w">       </span><span class="nv">Signed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-2147483648,<span class="w">   </span><span class="nv">Unsigned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2147483648</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>linux$<span class="w">  </span>./ishow<span class="w"> </span>-1
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="nv">Hex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0xffffffff,<span class="w">       </span><span class="nv">Signed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-1,<span class="w">    </span><span class="nv">Unsigned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4294967295</span>
 </span></code></pre></div>
 它会帮助你完成进制的转换。</p>
 <p>同理我们还提供了<code>fshow</code>工具，这是一个浮点数的转换器，但是这次的实验没有涉及，所以不做要求，大家有兴趣可以自行尝试，使用方法与<code>ishow</code>类似。</p>
 <h2 id="代码提交">代码提交<a class="headerlink" href="#代码提交" title="Permanent link">&para;</a></h2>
-<p>在<code>datalab-sp25</code> 目录下执行<code>make submit</code></p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>linux$<span class="w"> </span>make<span class="w"> </span>submit
+<p>在<code>datalab-sp26</code> 目录下执行<code>make submit</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>make<span class="w"> </span>submit
 </span></code></pre></div>
 <p>目录下都会生成一个名为 <code>&lt;userid&gt;-handin.zip</code>的文件（其中 <code>&lt;userid&gt;</code>为<code>Linux</code>系统中你的用户名）。（每次修改代码后，记着要重新运行<code>make submit</code>）</p>
-<p>在<a href="http://class.xjtu.edu.cn/">在线学习平台</a>上的作业模块中，将该文件作为附件提交即可。</p>
+<p>在<a href="">在线学习平台</a>上的作业模块中，将该文件作为附件提交即可。</p>
 <h2 id="一些小的建议">一些小的建议<a class="headerlink" href="#一些小的建议" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Start Early</li>
@@ -1885,7 +1865,7 @@
 </ul>
 <p>最后祝大家玩的愉快。</p>
 <hr />
-<p>Copyright © 2025 XJTU ICS-TEAM</p>
+<p>Copyright © 2026 XJTU ICS-TEAM</p>
                 
               </article>
             </div>
