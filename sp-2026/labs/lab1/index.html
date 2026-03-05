@@ -1918,7 +1918,7 @@
 </ul>
 <h3 id="尝试运行">尝试运行<a class="headerlink" href="#尝试运行" title="Permanent link">&para;</a></h3>
 <p>如果成功<code>make</code>此时你的实验目录将会变成如下：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bits.c<span class="w">  </span>bits.h<span class="w">  </span>btest<span class="w">  </span>btest.c<span class="w">  </span>btest.h<span class="w">  </span>decl.c<span class="w">  </span>dlc<span class="w">  </span>Driverhdrs.pm<span class="w">  </span>Driverlib.pm<span class="w">  </span>driver.pl<span class="w">  </span>fshow<span class="w">  </span>fshow.c<span class="w">  </span>ishow<span class="w">  </span>ishow.c<span class="w">  </span>Makefile<span class="w">  </span>tests.c<span class="w">  </span>xxx-datalab-handin.zip
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>bits.c<span class="w">  </span>bits.h<span class="w">  </span>btest<span class="w">  </span>btest.c<span class="w">  </span>btest.h<span class="w">  </span>decl.c<span class="w">  </span>dlc<span class="w">  </span>Driverhdrs.pm<span class="w">  </span>Driverlib.pm<span class="w">  </span>driver.pl<span class="w">  </span>fshow<span class="w">  </span>fshow.c<span class="w">  </span>ishow<span class="w">  </span>ishow.c<span class="w">  </span>Makefile<span class="w">  </span>tests.c
 </span></code></pre></div>
 <p>简单验证可用性，我们简单运行一下<code>make</code>之后获得可执行文件<code>btest</code>，输入以下命令：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./btest
@@ -2139,13 +2139,13 @@
 <p>如果你的代码中有不符合代码规则的地方，一个典型的输出结果如下所示：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>dlc:bits.c:204:copyBit:<span class="w"> </span>Illegal<span class="w"> </span>operator<span class="w"> </span><span class="o">(==)</span>
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>dlc:bits.c:205:copyBit:<span class="w"> </span>Illegal<span class="w"> </span><span class="k">if</span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>dlc:bits.c:206:copyBit:<span class="w"> </span>Warning:<span class="w"> </span><span class="m">4</span><span class="w"> </span>operators<span class="w"> </span>exceeds<span class="w"> </span>max<span class="w"> </span>of<span class="w"> </span><span class="m">3</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>dlc:bits.c:206:copyBit:<span class="w"> </span>Warning:<span class="w"> </span><span class="m">10</span><span class="w"> </span>operators<span class="w"> </span>exceeds<span class="w"> </span>max<span class="w"> </span>of<span class="w"> </span><span class="m">8</span>
 </span></code></pre></div>
 <p>如上，<code>dlc</code>告诉我们:</p>
 <ul>
 <li>在204行，<code>copyBit</code>函数中，使用了非法的操作符<code>==</code>。</li>
 <li>在205行，<code>copyBit</code>函数中，使用了非法的操作符<code>if</code>。</li>
-<li>在206行，<code>copyBit</code>函数中，使用了<code>4</code>个操作符，超过了<code>Maxops=3</code>个。</li>
+<li>在206行，<code>copyBit</code>函数中，使用了<code>10</code>个操作符，超过了<code>Maxops=8</code>个。</li>
 </ul>
 <p>根据输出的结果我们返回去继续修改我们的代码。</p>
 <div class="admonition note">
