@@ -1,7 +1,7 @@
 title,Week,start,end,theme,Instructors,pptLink,location,Reading,extra
 Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Shan,assets/slides/01-overview-class-rules.pdf,主D-204,1,
-Lecture,1,2026-03-05T14:00:00,2026-03-05T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,,主D-204,2.1-2.3,[datalab](labs/lab1.md) out
-Lecture,2,2026-03-10T10:10:00,2026-03-10T12:00:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.1-3.3,
+Lecture,1,2026-03-05T14:00:00,2026-03-05T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.1,[datalab](labs/lab1.md) out
+Lecture,2,2026-03-10T10:10:00,2026-03-10T12:00:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.2-2.3,
 Lecture,2,2026-03-12T14:00:00,2026-03-12T15:50:00,Machine Prog: Basics,Danfeng Shan,,主D-204,3.4-3.5,bomblab out
 Lab,2,2026-03-15T23:59:59,2026-03-15T23:59:59,No Lecture,,,,,[datalab](labs/lab1.md) due
 Lecture,3,2026-03-17T10:10:00,2025-03-04T21:00:00,Machine Prog: Control,Danfeng Shan,,主D-204,3.7,
