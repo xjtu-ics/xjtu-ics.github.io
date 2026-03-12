@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://xjtu-ics.github.io/sp-2026/labs/lab2/">
       
       
+        <link rel="prev" href="../lab1/">
+      
+      
+        <link rel="next" href="../../staff/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>XJTU-ICS Lab 2: Bomb Lab - Introduction to Computer Systems Spring 2026</title>
+        <title>Lab 2: Bomb Lab - Introduction to Computer Systems Spring 2026</title>
       
     
     
@@ -178,7 +182,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              XJTU-ICS Lab 2: Bomb Lab
+              Lab 2: Bomb Lab
             
           </span>
         </div>
@@ -287,10 +291,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../lab0/" class="md-tabs__link">
           
   
@@ -500,8 +506,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -509,21 +517,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -541,7 +554,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -603,6 +616,765 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: Bomb Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 2: Bomb Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开发环境准备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开发环境准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开发环境准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#远程开发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        远程开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#本地开发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#拆弹预备知识" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "拆弹"预备知识
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#了解拆弹工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        了解"拆弹"工具
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#拆弹准备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "拆弹"准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;拆弹&#34;准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#检查炸弹的完整性" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        检查炸弹的完整性
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#尝试拆弹" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尝试"拆弹"
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="尝试&#34;拆弹&#34;">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#炸弹结构简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        炸弹结构简介
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#尝试拆弹_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尝试拆弹
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="尝试拆弹">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#创建求解密码文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        创建求解密码文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#尝试引爆炸弹" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尝试"引爆炸弹"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#尝试拆除炸弹" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        尝试拆除炸弹
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#拆弹经验分享" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        "拆弹"经验分享
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="&#34;拆弹&#34;经验分享">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#一个简单的例子" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一个简单的例子
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一个简单的例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#生成可执行文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        生成可执行文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#反汇编工具" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        反汇编工具
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="反汇编工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#从可执行程序生成汇编代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        从可执行程序生成汇编代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gdbdebugger" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDB(Debugger)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GDB(Debugger)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gdb装载可执行文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GDB装载可执行文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#入口函数断点并开始运行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入口函数断点并开始运行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分析main函数行为" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析main函数行为
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分析main函数行为">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#移动栈顶指针" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        移动栈顶指针
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#压入临时变量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        压入临时变量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#传递参数调用过程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        传递参数调用过程
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分析add函数执行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析add函数执行
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分析add函数执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#保存程序现场并移动栈顶" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保存程序现场并移动栈顶
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#保存参数值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        保存参数值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#完成操作并赋值" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完成++操作并赋值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#恢复现场" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        恢复现场
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分析main函数剩余操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        分析main函数剩余操作
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分析main函数剩余操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#比较参数" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        比较参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#相等则跳转" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        相等则跳转
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-hint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Some Hint
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Some Hint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#解题方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        解题方法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="解题方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#按照phase进行拆弹" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        按照phase进行拆弹
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关注explode_bomb标号" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关注explode_bomb标号
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关注栈指针操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关注栈指针操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关注abi与函数api的对应关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关注ABI与函数API的对应关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#各个phase的构造结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        各个phase的构造结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各个phase的构造结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_1：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_2：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_3：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_4：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_5：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        phase_6：
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secret_phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        secret_phase
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评分方法与代码提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评分方法与代码提交
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="评分方法与代码提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#评分方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评分方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#迟交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迟交
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提交
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#写在最后" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        写在最后
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1749,6 +2521,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../lab0/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Labs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1814,13 +2626,13 @@
 <p>你可以看到一个<code>bomblab-&lt;number&gt;</code>目录，这就是你的炸弹目录，其中<code>&lt;number&gt;</code>是<strong>你个人的学号</strong>。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>请仔细检查炸弹学号和自己的学号是否匹配，以防误拿别的同学的炸弹～</p>
+<p>请仔细检查炸弹学号和自己的学号是否匹配，以防误拿别的同学的炸弹</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>本次实验<strong>每个同学的炸弹均不相同</strong>，使用本地开发, 炸弹遗失或者炸弹出现错误的同学<strong>请联系助教</strong>处理</p>
 </div>
-<p>进入炸弹目录</p>
+<p>进入实验目录</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>bomblab-&lt;number&gt;
 </span></code></pre></div>
 <p>注意将<code>&lt;number&gt;</code>换成你自己的学号</p>
@@ -1835,7 +2647,7 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>如果本地目录下没有炸弹，或者炸弹不完整请及时联系助教解决。</p>
+<p>如果你缺少或者误删<code>bomb</code>可执行文件，请及时联系助教解决。</p>
 </div>
 <p>检查完毕，可以开始尝试<strong>拆弹</strong>。</p>
 <h2 id="尝试拆弹">尝试"拆弹"<a class="headerlink" href="#尝试拆弹" title="Permanent link">&para;</a></h2>
@@ -1872,10 +2684,6 @@
 </span></code></pre></div>
 <p>本质上我们的拆弹分成6个阶段，这六个阶段<strong>每个阶段都需要我们键入特定的密码内容来拆弹</strong>，而这个密码推荐以一个<strong>输入文件</strong>的方式来传递。并且处理每一个炸弹都通过<strong>阅读输入文件的完整一行</strong>（<code>read_line()</code>）的方式来传递。</p>
 <p>我们将<code>bomb.c</code>分发给了大家，大家可以通过阅读了解炸弹大致结构。</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>注意<code>bomb.c</code>不可编译，仅仅起到描述炸弹结构的作用</p>
-</div>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
 <p>炸弹的拆除是<strong>按阶段进行</strong>的，也就是说你<strong>必须在通过phase_1之后才能继续phase_2</strong>，否则即使后面的炸弹全部正确拆除，最终得分仍然是0分。</p>
@@ -2091,9 +2899,9 @@
 <p><img alt="stack_top_pointer2.png" src="../../assets/images/stack_top_pointer2.png" /></p>
 <h5 id="传递参数调用过程">传递参数调用过程<a class="headerlink" href="#传递参数调用过程" title="Permanent link">&para;</a></h5>
 <p><img alt="caller_saved_register.png" src="../../assets/images/caller_saved_register.png" /></p>
-<p>调用者保佑寄存器图</p>
+<p>调用者保存寄存器图</p>
 <p><img alt="callee_saved_register.png" src="../../assets/images/callee_saved_register.png" /></p>
-<p>被调用者保佑寄存器图</p>
+<p>被调用者保存寄存器图</p>
 <p>在x86-64 Linux ABI（Apllication Binary Interface）中的Function Calling Sequence（函数调用约定）规定了函数调用和参数传递的相关规则（即在rdi寄存器保存第一个参数、rsi寄存器保存第二个参数，哪些寄存器属于被调用者使用等等），大家可以在书本对应位置查找到使用方法，这里不再做赘述。</p>
 <p>根据函数调用约定，我们知道rdi寄存器内保存着函数调用的第一个参数。</p>
 <div class="language-asm highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="err">0</span><span class="nf">x000055555555519a</span><span class="w"> </span><span class="err">&lt;+</span><span class="mi">19</span><span class="err">&gt;</span><span class="p">:</span><span class="w">  </span><span class="no">lea</span><span class="w">    </span><span class="mi">0x2e6f</span><span class="p">(</span><span class="nv">%rip</span><span class="p">),</span><span class="nv">%rax</span><span class="w">        </span><span class="c1"># 0x555555558010 &lt;pass&gt;</span>
@@ -2288,6 +3096,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab1/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 1: Data Lab">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 1: Data Lab
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../staff/" class="md-footer__link md-footer__link--next" aria-label="Next: Staff">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Staff
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
