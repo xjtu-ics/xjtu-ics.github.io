@@ -1,21 +1,27 @@
 title,Week,start,end,theme,Instructors,pptLink,location,Reading,extra
 Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Shan,assets/slides/01-overview-class-rules.pdf,主D-204,1,
-Lecture,1,2026-03-05T14:00:00,2026-03-05T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.1,[datalab](labs/lab1.md) out
+Lecture,1,2026-03-05T14:00:00,2026-03-05T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.1,[DataLab](labs/lab1.md) out
 Lecture,2,2026-03-10T10:10:00,2026-03-10T12:00:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.2-2.3,
-Lecture,2,2026-03-12T14:00:00,2026-03-12T15:50:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主D-204,3.1,[bomblab](labs/lab2.md) out
-Lab,2,2026-03-15T23:59:59,2026-03-15T23:59:59,No Lecture,,,,,[datalab](labs/lab1.md) due
+Lecture,2,2026-03-12T14:00:00,2026-03-12T15:50:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主D-204,3.1,[BombLab](labs/lab2.md) out
+Lab,2,2026-03-15T23:59:59,2026-03-15T23:59:59,No Lecture,,,,,[DataLab](labs/lab1.md) due
 Lecture,3,2026-03-17T10:10:00,2025-03-04T21:00:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主D-204,3.2-3.5,
 Lecture,3,2026-03-19T14:00:00,2025-03-06T21:00:00,Machine Prog: Control,Danfeng Shan,assets/slides/04-machine-control.pdf,主D-204,3.6,
 Lecture,4,2026-03-24T10:10:00,2025-03-11T21:00:00,Machine Prog: Procedures,Danfeng Shan,assets/slides/05-machine-procedures.pdf,主D-204,3.7,
-Lecture,4,2026-03-26T14:00:00,2025-03-13T21:00:00,Machine Prog: Data,Danfeng Shan,,主D-204,3.8-3.9,attacklab out
-Lab,4,2026-03-29T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[bomblab](labs/lab2.md) due
+Lecture,4,2026-03-26T14:00:00,2025-03-13T21:00:00,Machine Prog: Data,Danfeng Shan,assets/slides/06-machine-data.pdf,主D-204,3.8-3.9,
 Lecture,5,2026-03-31T10:10:00,2025-03-18T21:00:00,Machine Prog: Advanced,Danfeng Shan,,主D-204,3.10,
-Lecture,5,2026-04-02T14:00:00,2025-03-20T21:00:00,The Memory Hierarchy,Danfeng Shan,,主D-204,6.1-6.3,
-Lecture,6,2026-04-07T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,
-Lecture,6,2026-04-09T14:00:00,2025-03-27T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,cachelab out
-Lab,6,2026-04-12T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,attacklab due
+Lecture,5,2026-04-02T14:00:00,2025-03-20T21:00:00,The Memory Hierarchy,Danfeng Shan,,主D-204,6.1-6.3,AttackLab out
+Lab,5,2026-04-05T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[BombLab](labs/lab2.md) due
+Lecture,6,2026-04-07T14:00:00,2025-03-27T21:00:00,No Lecture (XJTU 130th Anniversary),,,主D-204,,
+Lecture,6,2026-04-09T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,6,2026-04-11T14:00:00,2025-03-27T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,
 Lecture,7,2026-04-14T10:10:00,2025-03-25T21:00:00,Processor Architecture: Basics,Danfeng Shan,,主D-204,6.4-6.7,
-Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Processor Architecture: Sequential,Danfeng Shan,,主D-204,6.4-6.7,
+Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Processor Architecture: Sequential,Danfeng Shan,,主D-204,6.4-6.7,CacheSimLab out
+Lab,7,2026-04-19T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,AttackLab due
 Lecture,8,2026-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Pipeline,Danfeng Shan,,主D-204,6.4-6.7,
 Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Review,Danfeng Shan,,主D-204,6.4-6.7,
-Lab,8,2026-04-26T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,cachelab due
+Lecture,9,2026-04-28T10:10:00,2025-03-25T21:00:00,TBD,Hao Li,,主D-204,,
+Lecture,9,2026-04-30T14:30:00,2025-03-27T21:00:00,TBD,Hao Li,,主D-204,,CacheOptLab out
+Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,CacheSimLab due
+Lecture,10,2026-05-05T10:10:00,2025-03-25T21:00:00,No Lecture (Labour Day),,,,,
+Lecture,10,2026-05-07T14:30:00,2025-03-25T21:00:00,TBD,Hao Li,,主D-204,,
+Lab,10,2026-05-10T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,CacheOptLab due
