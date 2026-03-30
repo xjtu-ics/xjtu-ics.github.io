@@ -1170,24 +1170,14 @@
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cache-基本结构" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cache 基本结构
-      
-    </span>
-  </a>
-  
-</li>
+    <nav class="md-nav" aria-label="Cache基础知识">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#cache-line" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cache Line
+        cache line
       
     </span>
   </a>
@@ -1195,21 +1185,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-line组织方式" class="md-nav__link">
+  <a href="#cache-基础结构" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cache Line组织方式
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#如何处理写操作" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        如何处理写操作
+        Cache 基础结构
       
     </span>
   </a>
@@ -1225,36 +1204,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Cache 相关统计量">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#cache-hit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cache Hit
-      
-    </span>
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#cache-miss" class="md-nav__link">
+  <a href="#如何处理写操作" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cache Miss
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#cache-eviction" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cache Eviction
+        如何处理写操作
       
     </span>
   </a>
@@ -1402,18 +1358,16 @@
 <p>本次实验由两部分构成：</p>
 <ul>
 <li>
-<p>Lab4A，总共500分。Part A要求大家使用C语言实现一个<strong>三级Cache模拟器</strong>。实现模拟器并逐渐做到Bugfree的过程会让你加深对Cache基本结构，多级cache的设计和访问方式以及系统设计中的trade-off的理解。</p>
+<p><strong>Lab4A</strong>，总共500分。Part A要求大家使用C语言实现一个<strong>三级Cache模拟器</strong>。实现模拟器并逐渐做到Bugfree的过程会让你加深对Cache基本结构，多级cache的设计和访问方式以及系统设计中的trade-off的理解。</p>
 </li>
 <li>
-<p>Lab4B，总共100分。Part B要求大家<strong>优化矩阵转置的函数</strong>，这个部分的目标是使我们的代码跑的尽可能的快。不断减少Cache Miss次数的过程会帮助你理解Cache对程序运行性能的重要作用。</p>
+<p><strong>Lab4B</strong>，总共100分。Part B要求大家<strong>优化矩阵转置的函数</strong>，这个部分的目标是使我们的代码跑的尽可能的快。不断减少Cache Miss次数的过程会帮助你理解Cache对程序运行性能的重要作用。</p>
 </li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Lab4A和Lab4B都是必做实验</p>
 </div>
-<p>最终得分的计算公式为：
-<span class="arithmatex">\(score_{total} = score_{Lab4A} \div 5 \times {0.8} + {score_{Lab4B}} \times {0.2}\)</span></p>
 <h2 id="注意事项">注意事项<a class="headerlink" href="#注意事项" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -1447,11 +1401,11 @@
 <p>更新获取文件方式@blowinding</p>
 </details>
 <p>使用远程开发的同学，可以登陆任意一台ics服务器完成实验，成功登陆之后在自己的<strong>家目录</strong>
-底下可以看到名为<strong>cachelab-sp25</strong>的目录。进入目录，就可以开始实验啦~</p>
+底下可以看到名为<strong>cachelab-sp26</strong>的目录。进入目录，就可以开始实验啦~</p>
 <p>如果你缺少这个目录，有下面几种解决方式</p>
 <ul>
-<li>下载实验压缩包<a href="../../assets/files/cachelab-sp25.tar">cachelab-sp25.tar</a></li>
-<li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp25">公有仓库</a>并clone到本地（推荐）</li>
+<li>下载实验压缩包<a href="../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
+<li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
 <h3 id="本地开发">本地开发<a class="headerlink" href="#本地开发" title="Permanent link">&para;</a></h3>
@@ -1463,73 +1417,154 @@
 </ul>
 <p>实验材料的获取方式：</p>
 <ul>
-<li>下载实验压缩包<a href="../../assets/files/cachelab-sp25.tar">cachelab-sp25.tar</a></li>
-<li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp25">公有仓库</a>并clone到本地（推荐）</li>
+<li>下载实验压缩包<a href="../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
+<li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
 <h2 id="实验前置知识">实验前置知识<a class="headerlink" href="#实验前置知识" title="Permanent link">&para;</a></h2>
 <p>本实验与Cache强相关，所以我们首先从总体上带大家来梳理一下Cache相关的知识。</p>
-<p>这部分包含两个模块，第一个模块带大家复习cache基本结构和一些基本统计量，包括cacline line的结构，set的组织方式，cache hit/miss的定义等等。</p>
+<p>这部分包含两个模块，第一个模块带大家复习cache基本结构和一些基本统计量，包括cache line的结构，set的组织方式，cache hit/miss的定义等等。</p>
 <p>第二部分简要讲解有关多级cache的组织方式，以及访问流程等等。</p>
 <p>如果你认为自己对于这部分的内容已经完全掌握了，可以跳过这一节，直接开始实验~ 💪</p>
 <h3 id="cache基础知识">Cache基础知识<a class="headerlink" href="#cache基础知识" title="Permanent link">&para;</a></h3>
-<p>一般而言，Cache是一个<strong>小而快速</strong>的存储设备，它负责存放下一级<strong>更大、更慢</strong>的存储设备的数据的子集（关于子集的要求其实也不严格，具体见后文<strong>多级cache的包含准则</strong>）。使用cache的过程称为Caching。Cache的原理图如下：</p>
-<p><img alt="cache Hierarchy" src="../../assets/images/cachelab_cache_memory.png" /></p>
+<p>一般而言，Cache是一个<strong>小而快速</strong>的存储设备，它负责存放下一级<strong>更大、更慢</strong>的存储设备的数据的子集（关于子集的要求其实也不严格，具体见后文<strong>多级cache的包含准则</strong>）。使用cache的过程称为Caching。</p>
+<p>Cache的原理图如下：</p>
+<p><img alt="cache Hierarchy" src="../../assets/images/cachelab/cachelab_cache_memory.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>虽然课程中主要讲述的是<strong>CPU中的cache（高速缓存）</strong>，其作为<strong>内存的cache</strong>，但cache实际上是一个十分宽泛的概念，任何小而快的存储设备都可以看作是更大且更慢的设备的cache，其核心是利用<strong>空间局部性</strong>和<strong>时间局部性</strong>。比如内存实际上可以作为磁盘的cache，这在后续的虚拟内存章节也会更加细致的讲述，亦或是使用Redis作为数据库的cache。总而言之，cache的概念在系统设计中非常重要，需要同学们深入理解和掌握。</p>
 </div>
-<h3 id="cache-基本结构">Cache 基本结构<a class="headerlink" href="#cache-基本结构" title="Permanent link">&para;</a></h3>
-<p>在cache中，最基本的单位是cache line。任何不同的cache结构，都是将cache line以不同的方式组织起来，其中主要包括<strong>组相联（set associative）</strong>，<strong>直接映射（direct mapped）</strong>和<strong>全相联（fully associative）</strong>。其中后两种组织方式都可以看作第一种组织方式的特殊形式。下面，我们将围绕这些部分重点进行讲解。</p>
-<h3 id="cache-line">Cache Line<a class="headerlink" href="#cache-line" title="Permanent link">&para;</a></h3>
-<p>每个Cache Line由三部分构成：</p>
+<p>在cache中，最基本的单位是cache line。任何不同的cache结构，都是将cache line以不同的方式组织起来，其中主要包括<strong>组相联（set associative）</strong>，<strong>直接映射（direct mapped）</strong>和<strong>全相联（fully associative）</strong>三种组织方式。其中后两种组织方式都可以看作第一种组织方式的特殊形式。下面，我们将围绕这些部分重点进行讲解。</p>
+<h4 id="cache-line">cache line<a class="headerlink" href="#cache-line" title="Permanent link">&para;</a></h4>
+<p>每个 cache line 由三部分构成：</p>
 <ul>
-<li>有效位(valid bit)：指示Cache Line是否有效。Cache Line有效意味着它存储着来自主存的数据块；否则Cache Line的其他信息都是无效的，应该被忽略。</li>
-<li>标记位(tag bit)：帮助确定Cache Line中存储的数据地址。</li>
-<li>数据块(block)：主存中某个数据块的副本。</li>
+<li>
+<p><strong>有效位（Valid Bit）</strong>：标识当前 cache line 是否存有来自主存的有效数据。
+  当有效位为 <code>0</code> 时，无论该 cache line 中存储了什么内容，都应当被忽略——
+  这通常发生在 Cache 刚上电初始化、还没有从主存加载任何数据的时候。</p>
+</li>
+<li>
+<p><strong>标记（Tag）</strong>：记录当前 cache line 所缓存的数据来自主存的哪个地址（的高位部分）。
+  CPU 访问 Cache 时，会将请求地址中的 Tag 字段与 cache line 中存储的标记进行比对，
+  以此判断目标数据是否恰好缓存在这一行中。</p>
+</li>
+<li>
+<p><strong>数据块（Block）</strong>：主存中某段连续内存的完整副本，是 cache line 真正存储数据的部分，
+  大小固定为 <span class="arithmatex">\(B = 2^b\)</span> 字节。</p>
+</li>
 </ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>我们常说的cache hit，从cache line的角度来看实际上就是满足两点：</p>
+<p>那么，CPU 在访问 Cache 时，是如何利用这三个字段完成查找的呢？</p>
+<p>为了支持这一查找过程，Cache 将 CPU 发出的每一个内存地址拆分成<strong>三个字段</strong>，
+分别对应 cache line 中的三个组成部分：</p>
+<figure>
+<p><img alt="cache memory addr" src="../../assets/images/cachelab/cachelab_cache_mem_addr.png" /></p>
+</figure>
 <ul>
-<li>valid字段有效</li>
-<li>tag字段匹配</li>
+<li>
+<p><strong>组索引（Set Index）</strong>，共 <span class="arithmatex">\(s\)</span> 位：用地址的这一段直接定位到 Cache 中的某一个组，
+  Cache 共有 <span class="arithmatex">\(S = 2^s\)</span> 个组，编号从 <span class="arithmatex">\(0\)</span> 到 <span class="arithmatex">\(S-1\)</span>。
+  这一步缩小了搜索范围——我们只需要在这一个组内继续查找。</p>
+</li>
+<li>
+<p><strong>标记（Tag）</strong>，共 <span class="arithmatex">\(t\)</span> 位：进入目标组之后，将地址中的 Tag 字段与组内每个
+  cache line 存储的标记逐一比对。由于同一个组可能先后缓存过来自不同地址的数据，
+  Tag 就是区分"当前 cache line 存的到底是哪块内存"的唯一依据。</p>
+</li>
+<li>
+<p><strong>块偏移（Block Offset）</strong>，共 <span class="arithmatex">\(b\)</span> 位：确认命中之后，用这一段精确定位目标数据
+  在 cache line 数据块内部的起始字节位置。</p>
+</li>
 </ul>
-</div>
-<p>Cache工作时，在Cache看来，主存的地址被分成三部分，如下图所示：</p>
-<p><img alt="cache memory addr" src="../../assets/images/cachelab_cache_mem_addr.png" /></p>
-<p>其中，<span class="arithmatex">\(s\)</span>位的Set Index字段（组索引）是<span class="arithmatex">\(S\)</span>个Cache Set的索引。例如，第一个组的索引是<span class="arithmatex">\(0\)</span>，第二个组的索引是<span class="arithmatex">\(1\)</span>, 以此类推。Set Index字段告诉我们这个数据必须存在哪个Cache Set中。</p>
-<p><span class="arithmatex">\(t\)</span>位的Tag字段是用来确定该Cache Line是否存储着目标地址的数据。</p>
-<p><span class="arithmatex">\(b\)</span>位Block Offset是可以在确定目标数据在块中偏移量。</p>
+<p>三个字段加起来恰好覆盖完整的地址位宽：<span class="arithmatex">\(t + s + b = 地址总位数\)</span>。</p>
+<h4 id="cache-基础结构">Cache 基础结构<a class="headerlink" href="#cache-基础结构" title="Permanent link">&para;</a></h4>
+<p>在逻辑上，Cache 可以看作由 cache line 组成的一个<strong>二维数组</strong>，这也是最通用的
+<strong>组相联（Set Associative）</strong> 结构，如下图所示：</p>
+<p><img alt="cache org" src="../../assets/images/cachelab/cachelab_memory_orgnization.png" /></p>
+<p>这个二维数组的<strong>行数</strong>决定了 Cache 被分成多少个<strong>组（Set）</strong>，用 <span class="arithmatex">\(S\)</span> 表示；
+<strong>列数</strong>决定了每个组内能容纳多少个 cache line，称为<strong>相联度（Associativity）</strong>，用 <span class="arithmatex">\(E\)</span> 表示。
+例如，若每个组内包含 8 个 cache line，则称该 Cache 为 <strong>8 路组相联（8-way Set Associative）</strong>。</p>
+<p>组相联结构可以向两个极端方向演化：</p>
+<ul>
+<li>
+<p><strong>增加列数（提高相联度）→ 全相联（Fully Associative）</strong>:当整个 Cache 只有一个组（<span class="arithmatex">\(S=1\)</span>）时，所有 cache line 都属于同一组，任何内存数据块都可以被放入 Cache 中的任意位置。这种结构灵活性最高，冲突缺失最少，但查找时需要与所有 cache line 逐一比对 Tag，硬件开销随容量增大而急剧上升，因此仅适用于容量较小的场景。</p>
+</li>
+<li>
+<p><strong>减少列数（降低相联度）→ 直接映射（Direct Mapped）</strong>:当每个组内只有一个 cache line（<span class="arithmatex">\(E=1\)</span>）时，每个内存数据块都被唯一地映射到某一个固定的组，没有任何选择的余地。这种结构硬件实现最简单，查找速度最快，但容易因多个地址争抢同一位置而产生冲突缺失（Conflict Miss），在某些访问模式下性能会显著下降。</p>
+</li>
+</ul>
+<p>组相联正是二者的折中：组间采用直接映射（地址决定进哪个组），组内采用全相联（该组中任意 cache line 均可存放数据），在灵活性与硬件复杂度之间取得平衡，因此被现代处理器广泛采用。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Cache Line是cache和cache以及cache和内存之间的<strong>最小传输单位</strong>，其大小一般指<strong>block</strong>，也就是数据块的大小，常见为64字节，当然也存在32字节或者128字节等，在实际的实现中，cache line内部的block和tag字段也通常是<strong>两个独立的内存区域</strong>。 </p>
-<p>正如课本在前面几章提到的，CPU内部的数据处理通常以<strong>字</strong>为单位，比如常见的64位CPU，其一次处理的数据大小就是64位，或者说字长为64位，也就是8字节。这也决定了CPU内部的寄存器宽度是64位（当然有些SIMD指令可能用到128或者256位寄存器）。 </p>
-<p>那为什么cache line的大小通常会大于CPU字长呢，一个原因是<strong>空间局部性</strong>，因为访问某个内存地址后，有很大概率会访问其附近的地址，因此将附近这一片连续的内存数据全部加载到cache中，对于良好的空间局部性的程序来说性能就可以得到很大的优化。另一个原因则是一次操作一块数据可以<strong>均摊</strong>诸如总线传输等带来的开销。对于CPU来说，如果要从cacheline中访问，通常是将需要的数据（通常8字节）从数据块中加载到寄存器中，再进行访问。对于cache和内存之间的交互，一般设计上会将cacheline和内存的<strong>突发传输大小（burst length）</strong>进行对齐，而这个大小一般是64字节。内存使用<strong>突发传输数据方式</strong>也是为了优化内存总线的带宽使用，这里不展开讲，感兴趣的同学可以自行google有关dram内存结构和时序的内容。</p>
+<p>Cache line 是 Cache 内部，以及 Cache 与内存之间进行数据交换的<strong>最小传输单位</strong>。每个 cache line 存储一个<strong>数据块（Block）</strong>，大小通常为 64 字节，也有 32 字节或 128 字节等变体，具体取决于处理器的设计。值得注意的是，在实际的硬件实现中，cache line 中的<strong>数据块（Data Block）</strong>和<strong>标记字段（Tag）</strong>通常存放在两块相互独立的 SRAM 存储阵列中，分别称为 <strong>Data SRAM</strong> 和 <strong>Tag SRAM</strong>。
+<figure markdown>
+    <img alt="cache read path" src="../../assets/images/cachelab/cache_read_path.png" />
+</figure></p>
+<p>这样设计的原因在于两者的访问方式截然不同：Tag 字段体积小、需要快速比对，而 Data Block 体积大、只有在 Tag 命中后才需要读取。以常见的 N 路组相联 Cache 为例，CPU 访问时会<strong>并行</strong>读取所有路的 Tag 进行比较，确认命中后再从对应的 Data SRAM 中取出数据；而 L2 Cache 有时会选择<strong>先读 Tag、再读 Data</strong> 的串行方式，以节省功耗。</p>
+<p>将 Tag 与 Data 分开存储，正是为了让这两种不同的访问模式都能得到最优的硬件支持。</p>
+<p>你可能会问：<strong>cache line 为什么不直接以 CPU 的字长（8 字节）作为传输单位呢？</strong></p>
+<p>这要从 CPU 的工作方式说起。正如课本前几章所介绍的，CPU 内部的数据处理以<strong>字</strong>为单位——对于常见的 64 位 CPU，一次处理的数据大小为 64 位，即 8 字节，寄存器宽度也是如此（部分 SIMD 指令会用到 128 位或 256 位的宽寄存器，属于特殊情况）。</p>
+<p>然而，cache line 的大小往往远大于 CPU 字长，这背后有两个主要原因：</p>
+<ol>
+<li>
+<p><strong>利用空间局部性：</strong> 程序访问某个内存地址后，很大概率会紧接着访问其附近的地址。因此，每次将一片连续的内存数据整块加载到 Cache 中，对于具有良好空间局部性的程序来说，能够显著减少后续的 cache miss，从而提升性能。</p>
+</li>
+<li>
+<p><strong>均摊传输开销：</strong> 内存总线的每次传输都存在固定的启动开销（如寻址、延迟等）。一次性传输一整块数据，可以把这些开销分摊到更多字节上，比每次只取 8 字节要高效得多。这也是为什么 cache line 的大小通常与内存的<strong>突发传输长度（Burst Length）</strong>对齐，而现代 DRAM 的突发传输大小恰好也是 64 字节。对 DRAM 内存结构和时序感兴趣的同学，可以自行搜索进一步了解，这里不再展开。</p>
+</li>
+</ol>
+<p>在 CPU 实际访问数据时，通常是将 cache line 中对应的 8 字节数据加载到寄存器，再进行运算；而当 Cache 与内存之间需要交换数据时，则以整个 cache line（64 字节）为单位进行传输。</p>
 </div>
-<h3 id="cache-line组织方式">Cache Line组织方式<a class="headerlink" href="#cache-line组织方式" title="Permanent link">&para;</a></h3>
-<p>一般而言，cache在逻辑上可以看作关于cache line组织而成的<strong>二维数组</strong>，这通常形成了最通用的<strong>组相联（set associative）</strong>结构，如下图所示：</p>
-<p><img alt="cache org" src="../../assets/images/cachelab_memory_orgnization.png" /></p>
-<p>其中，这个二维数组的<strong>行数</strong>，决定了组相连的Set数量，课本中使用<span class="arithmatex">\(S\)</span>表示。而每个组内部的cache line的个数，也就是二维数组的<strong>列数</strong>，决定了<strong>相联度（associativity）</strong>，课本上使用<span class="arithmatex">\(E\)</span>表示。比如，一个组内包含了8个cache line, 那么通常叫做<strong>8路组相联（8-way）</strong></p>
-<p>上述的结构有两个发展的方向，因此也有两个极端，一个方向是增加行数，也就是Set的数量，另一个方向就是增加列数，也就是associativity。</p>
-<p>假设Set数量只有一个，那实际上就形成了<strong>全相联（fully associative）</strong>结构，数据块可以放入cache中的任何位置，只要有空闲空间。</p>
-<p>假设associativity的数量只有一个，即每个组内只有一个cacheline，这实际上就形成了<strong>直接映射（direct mapped）</strong>结构，即数据块被<strong>唯一分配</strong>到一个组内。</p>
+<h4 id="cache-相关统计量">Cache 相关统计量<a class="headerlink" href="#cache-相关统计量" title="Permanent link">&para;</a></h4>
+<p>下面结合图示，介绍 Cache 的三个核心统计量——<strong>Cache Hit</strong>、<strong>Cache Miss</strong> 和
+<strong>Cache Eviction</strong>——的含义，以及每种情况下 Cache 实际执行的操作。</p>
+<p><img alt="cache access" src="../../assets/images/cachelab/cachelab_cache_memory2.png" /></p>
+<p>当 CPU 需要访问某个数据对象 <span class="arithmatex">\(d\)</span> 时，会首先在 Cache 中查找。
+根据查找结果的不同，会出现以下三种情况：</p>
+<ol>
+<li>
+<p><strong>Cache Hit（命中）</strong></p>
+<p>如果 Cache 中恰好缓存了数据对象 <span class="arithmatex">\(d\)</span>（如图中访问数据 8 的情况），则称为 <strong>Cache Hit</strong>。
+此时 CPU 可以直接从 Cache 中读取数据，<strong>无需访问主存</strong>，从而节省了大量的访问时间。</p>
+</li>
+<li>
+<p><strong>Cache Miss（缺失）</strong></p>
+<p>如果 Cache 中没有缓存数据对象 <span class="arithmatex">\(d\)</span> 所在的数据块（如图中访问数据 12 的情况），
+则称为 <strong>Cache Miss</strong>。此时 Cache 控制器会执行以下操作：</p>
+<ol>
+<li>向主存发起请求，取回包含 <span class="arithmatex">\(d\)</span> 的完整数据块；</li>
+<li>根据地址中的 Set Index 定位到对应的 Cache Set；</li>
+<li>若该 Cache Set 中存在空闲的 cache line（即 Valid Bit 为 <code>0</code>），
+   则将数据块写入该行，并更新 Tag 字段和 Valid Bit。</li>
+</ol>
+</li>
+<li>
+<p><strong>Cache Eviction（替换）</strong></p>
+<p>如果在处理 Cache Miss 的过程中，目标 Cache Set 内<strong>所有</strong> cache line 均已被占用
+（没有 Valid Bit 为 <code>0</code> 的空闲行），则必须先驱逐其中一行，腾出空间后再写入新数据块，
+这一过程称为 <strong>Cache Eviction</strong>。</p>
+<p>至于驱逐哪一行，由 Cache 的<strong>替换策略</strong>决定。最常见的是
+<strong>LRU（Least Recently Used，最近最少使用）策略</strong>：
+优先淘汰组内<strong>距上次访问时间最长</strong>的那一行——
+其背后的直觉是"越久没被用到的数据，将来被再次用到的可能性也越低"。</p>
+</li>
+</ol>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>在计算机系统中，很多时候很难评价一种系统的好坏，因为某个系统在某个场景下可能性能很差，但是在另一个场景下可能非常适用，很多时候系统设计需要考虑的就是<strong>trade-off</strong>，即以牺牲一些其他方面的性能为代价，换取在某个方面极致的优化，从而<strong>针对某个场景带来巨大的收益</strong>。</p>
-<p>上述三种cache结构亦是如此，对于直接映射的方式，由于每个组内只有一个cache line，大大简化了cache查找和evict的逻辑，因此cache hit的时延可以很低，但同时由于只有一个cache line，cache miss率将大大提高。对于全相联结构，只要cache有空闲块，就可以存储数据，因此可以大大降低cache miss率，但同时也大大增加了查找和evict的复杂度，因此增加了访问时延。对于组相联结构，目标就是在二者之间寻找一个平衡。</p>
+<p class="admonition-title">三种情况的关系</p>
+<p>Cache Miss 和 Cache Eviction 并不是并列的两种独立情况——
+<strong>Eviction 是 Miss 的一个特殊子情况</strong>：只有在发生 Miss、
+且目标 Cache Set 已满时，才会触发 Eviction。</p>
 </div>
-<h3 id="如何处理写操作">如何处理写操作<a class="headerlink" href="#如何处理写操作" title="Permanent link">&para;</a></h3>
+<h4 id="如何处理写操作">如何处理写操作<a class="headerlink" href="#如何处理写操作" title="Permanent link">&para;</a></h4>
 <p>cache处理写操作的流程比读取要复杂，因为写入操作涉及<strong>数据的更改</strong>，一旦涉及修改操作，就会带来各种一致性问题，因此cache需要合理的处理数据更改的时机和范围。同时还需要处理写miss的情况。我们在这里简要介绍一下有关写cache的一些问题和处理机制。</p>
 <p>一般而言，对于写入操作，cache一般有两种处理机制，分别是：</p>
 <ul>
-<li><strong>write back（写回）</strong>：即数据的修改只发生在当前这一级cache中，通常会引入一个<strong>dirty</strong>标记位，表示cache中的数据和下一级cache（或内存）中的数据<strong>不一致</strong>，只有在当前的cacheline被evict的时候才会将数据写回到下一级cache（或内存）。</li>
-<li><strong>write through（写直达）</strong>：顾名思义，写入操作会同时将数据写入到当前cache和下一级cache（或内存中），因此二者的数据是同步的。</li>
+<li><strong>write back（写回）</strong>：即数据的修改只发生在当前这一级cache中，通常会引入一个<strong>dirty</strong>标记位，表示cache中的数据和下一级存储（L2 Cache 或主存）中的数据<strong>不一致</strong>，只有在当前的cache line被evict的时候才会将数据写回到下一级存储（L2 Cache 或主存）。</li>
+<li><strong>write through（写直达）</strong>：顾名思义，写入操作会同时将数据写入到当前cache和下一级存储（L2 Cache 或主存），因此二者的数据是同步的。</li>
 </ul>
 <p>除了上述的两种策略，cache还需要确定如何处理write miss的情况，一般而言，也有两种方法：</p>
 <ul>
-<li><strong>write allocate（写分配）</strong>：当发生cache miss时，需要访问下一级cache（或内存）将需要的cache line加载到当前cache中，然后再修改这个cache line中的内容</li>
-<li><strong>no write allocate（写不分配）</strong>：当发生cache miss时，无需修改当前cache中的内容，直接写入下一级cache（或内存）</li>
+<li><strong>write allocate（写分配）</strong>：当发生 cache miss 时，Cache 控制器会向下一级存储（L2 Cache 或主存）发起请求，将包含目标数据的完整数据块加载到当前 cache line 中，随后 CPU 再从中读取所需的数据。</li>
+<li><strong>no write allocate（写不分配）</strong>：当发生 cache miss 时，CPU 的写入数据会被直接提交到下一级存储（L2 Cache 或主存），当前 Cache 中的内容无需做任何改动。</li>
 </ul>
 <p>上述策略两两组合可以产生4种不同的写策略，但是一般常见的只有以下两种：</p>
 <ul>
@@ -1538,25 +1573,16 @@
 </ul>
 <p>大家可以自己思考一下为什么另外两种搭配方式不常见。🤔</p>
 <p>有关write back/write allocate的写入流程如下（图源自<a href="https://en.wikipedia.org/wiki/Cache_(computing)">wiki: cache write policy</a>）：</p>
-<p><img alt="wbwa" src="../../assets/images/Write-back_with_write-allocation.png" /></p>
+<p><img alt="wbwa" src="../../assets/images/cachelab/Write-back_with_write-allocation.png" /></p>
 <p>有关write through/no write allocate的写入流程如下（图源自<a href="https://en.wikipedia.org/wiki/Cache_(computing)">wiki: cache write policy</a>）：</p>
-<p><img alt="wt" src="../../assets/images/Write-through_with_no-write-allocation.png" /></p>
+<p><img alt="wt" src="../../assets/images/cachelab/Write-through_with_no-write-allocation.png" /></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>实际上，在现代的CPU中，几乎每一级cache都使用的是write back/write allocate策略，而write through策略只在早期AMD的CPU上的L1D cache使用过。</p>
-<p>write through的好处是简化了数据一致性的处理，但是会引发大量的总线流量，而访问内存又是一个比较慢的操作（相对于CPU来说），因此对于write through cache通常会额外引入一块write buffer，用来缓冲大量的写入流量。</p>
-<p>write back不会产生大量的总线流量，因此性能较好，但是会产生数据一致性问题，因此需要更复杂的机制来保证数据一致性。不过随着技术的发展，write back带来的收益已经超过write through带来的收益，因此write through已经逐渐淘汰了。</p>
+<p>write through策略的优点是数据一致性的维护较为简单，但每次写操作都需要同步更新下一级存储，这会带来大量的总线流量。而访问下一级存储（尤其是主存）相对 CPU 而言是一个较慢的操作，频繁的写请求很容易成为性能瓶颈。</p>
+<p>为了缓解这一问题，采用写直达策略的 Cache 通常会额外引入一块<strong>写缓冲区（Write Buffer）</strong>：CPU 的写请求先快速写入写缓冲区即可返回，由写缓冲区在后台异步地将数据刷新到下一级存储，从而将 CPU 与缓慢的内存写操作解耦。</p>
+<p>write back策略不会带来大量的总线流量，因此性能较好，但是会产生数据一致性问题，因此需要更复杂的机制来保证数据一致性。不过随着技术的发展，write back策略带来的收益已经超过write through策略带来的收益，因此write through已经逐渐被淘汰了。</p>
 </div>
-<h3 id="cache-相关统计量">Cache 相关统计量<a class="headerlink" href="#cache-相关统计量" title="Permanent link">&para;</a></h3>
-<p><img alt="cache access" src="../../assets/images/cachelab_cache_memory2.png" /></p>
-<h4 id="cache-hit">Cache Hit<a class="headerlink" href="#cache-hit" title="Permanent link">&para;</a></h4>
-<p>对于上面的图，如果程序需要Memory层的数据对象d，它会首先访问Cache，如发现Cache中恰好存在数据对象d（例如访问8），此时就叫Cache Hit（命中）。</p>
-<p>当发生Cache Hit时，程序就不用访问主存了，直接从Cache读取目标数据即可。</p>
-<h4 id="cache-miss">Cache Miss<a class="headerlink" href="#cache-miss" title="Permanent link">&para;</a></h4>
-<p>如果程序需要主存的数据对象d，它首先访问Cache，发现Cache中并没有存储数据对象d对应的数据块(block)，此时就叫Cache Miss (不命中)。</p>
-<p>当发生Cache Miss时，Cache层会从主存中取出包含d的数据块，然后根据地址中的Set Index找到Cache中的对应Cache Set。如果这个Cache Set中还有空的Cache Line（即Valid Bit = 0），直接存入，并更新Tag字段和Valid位；否则，需要进行Cache Line替换，Cache Line替换需要覆盖一个块，所以也可以称为Cache Eviction。</p>
-<h4 id="cache-eviction">Cache Eviction<a class="headerlink" href="#cache-eviction" title="Permanent link">&para;</a></h4>
-<p>上述Cache Line替换的过程是需要覆盖原有的一个块的，所以可以称为Cache Eviction。一个Cache Set中有多个Cache Line，替换时需要决定替换哪个Cache Line，这是由Cache替换策略决定的，例如常见的最近最少被使用策略(LRU策略)会替换掉一个访问时间距离现在最长的块。</p>
 <h3 id="多级cache组织方式">多级cache组织方式<a class="headerlink" href="#多级cache组织方式" title="Permanent link">&para;</a></h3>
 <details class="todo">
 <summary>Todo</summary>
@@ -1565,7 +1591,7 @@
 <p>现代CPU中，CPU和内存的速度差距越来越大。因此CPU内部往往不会仅采用一级cache，而是使用多级cache结构，以<strong>优化最坏情况（从内存访问）下的性能</strong>。多级cache结构的组织又会引入很多的问题，我们在这里简单讲述一些重要的问题，其他的一些细节问题感兴趣的同学可以自行google。</p>
 <h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
 <p>根据我们课程中的学习，不同存储技术的访问时间差别很大，但速度较快的技术每字节的成本要比速度慢的技术高，而且容量小。现代计算机系统往往采用存储器层次结构的方法，下图展示了一个典型的存储器层次结构。</p>
-<p><img alt="Memory Hierarchy" src="../../assets/images/cachelab_memory_hierarchy.png" /></p>
+<p><img alt="Memory Hierarchy" src="../../assets/images/cachelab/cachelab_memory_hierarchy.png" /></p>
 <p>存储器层次结构的中心思想是：对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的cache。即每一层的cache的内容均来自于较低一层的数据对象。例如图中，L2 cache(SRAM)作为L3 主存的cache。</p>
 <p>这样的体系结构，使得整体计算机的整体存储系统呈现出高速且大容量的整体特性。</p>
 <h3 id="多级cache的包含准则inclusion-policy">多级cache的包含准则（inclusion policy）<a class="headerlink" href="#多级cache的包含准则inclusion-policy" title="Permanent link">&para;</a></h3>
@@ -1577,7 +1603,7 @@
 <p>上述这种组织方式叫做<strong>inclusive policy(包含性策略)</strong>，这也是你需要在本次实验中实现的策略，当然还存在另外两种策略，分别是<strong>exclusive policy</strong>和<strong>non-inclusive-non-exclusive(NINE)</strong>策略，三种方式各有好坏，这些策略的集合通常叫做<strong>inclusion policy</strong>，即包含准则，这是设计实现多级cache时必须要确定的一个因素（你可以假设内存是一个最大的集合，包含所有数据）。</p>
 <p>我们将简要介绍inclusive policy，如果你对其他策略感兴趣，可以自行查阅<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>。</p>
 <p>考虑一个二级缓存结构，这里借用<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>上的一张图来表示：</p>
-<p><img alt="inclusive" src="../../assets/images/Inclusive.png" /></p>
+<p><img alt="inclusive" src="../../assets/images/cachelab/Inclusive.png" /></p>
 <p>对于上述结构，如果要满足L2始终包括L1的所有数据这样一条性质的话，则在cache之间的访问需要满足以下要求：</p>
 <ul>
 <li>如果L1 hit, 则直接返回</li>
@@ -1592,12 +1618,13 @@
 <summary>Todo</summary>
 <p>需要修改具体实验目录@blowinding</p>
 </details>
-<p>首先进入实验目录<code>cachelab-sp25</code>，然后运行<code>ls</code>查看文件：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cachelab-sp25
+<p>首先进入实验目录<code>cachelab-sp26</code>，然后运行<code>ls</code>查看文件：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cachelab-sp26
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span>ls
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cache-impl.c<span class="w">  </span>csim.c<span class="w">           </span>driver.py<span class="w">   </span>test-trans.c<span class="w">   </span>traces-data-intensive/
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cachelab.c<span class="w">    </span>csim-ref-partA*<span class="w">  </span>Makefile<span class="w">    </span>tracegen.c<span class="w">     </span>traces-hard/
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cachelab.h<span class="w">    </span>csim-ref-partB*<span class="w">  </span>test-csim*<span class="w">  </span>traces-basic/<span class="w">  </span>trans.c
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>cache-impl.c<span class="w">  </span>csim-ref-partA<span class="w">  </span>test-csim<span class="w">              </span>traces-hard/<span class="w">      </span>traces-mixed/
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>cachelab.c<span class="w">    </span>csim-ref-partB<span class="w">  </span>test-trans.c<span class="w">           </span>traces-l1-basic/<span class="w">  </span>trans.c
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>cachelab.h<span class="w">    </span>driver.py<span class="w">       </span>tracegen.c<span class="w">             </span>traces-l2-basic/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>csim.c<span class="w">        </span>Makefile<span class="w">        </span>traces-data-intensive/<span class="w">  </span>traces-l3-basic/
 </span></code></pre></div>
 <p>你可以尝试运行<code>make</code>进行编译：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>$<span class="w"> </span>make
@@ -1608,10 +1635,10 @@
 </span></code></pre></div>
 <p>此时再次运行<code>ls</code>，得到的输出如下：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>$<span class="w"> </span>ls
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cache-impl.c<span class="w">  </span>csim.c<span class="w">           </span>Makefile<span class="w">      </span>tracegen*<span class="w">               </span>traces-hard/
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cachelab.c<span class="w">    </span>csim-ref-partA*<span class="w">  </span>test-csim*<span class="w">    </span>tracegen.c<span class="w">              </span>trans.c
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cachelab.h<span class="w">    </span>csim-ref-partB*<span class="w">  </span>test-trans*<span class="w">   </span>traces-basic/<span class="w">           </span>trans.o
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>csim*<span class="w">         </span>driver.py<span class="w">        </span>test-trans.c<span class="w">  </span>traces-data-intensive/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cache-impl.c<span class="w">  </span>csim.c<span class="w">          </span>Makefile<span class="w">      </span>tracegen<span class="w">               </span>traces-l1-basic/<span class="w">  </span>trans.c
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>cachelab.c<span class="w">    </span>csim-ref-partA<span class="w">  </span>test-csim<span class="w">     </span>tracegen.c<span class="w">             </span>traces-l2-basic/<span class="w">  </span>trans.o
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>cachelab.h<span class="w">    </span>csim-ref-partB<span class="w">  </span>test-trans<span class="w">    </span>traces-data-intensive/<span class="w">  </span>traces-l3-basic/
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>csim<span class="w">          </span>driver.py<span class="w">       </span>test-trans.c<span class="w">  </span>traces-hard/<span class="w">            </span>traces-mixed/
 </span></code></pre></div>
 <p>下面是对于实验文件的详细解释：</p>
 <ul>
@@ -1620,7 +1647,7 @@
 <li><code>csim.c</code>：cache模拟器的入口文件，助教们在这个文件中帮大家实现好了主要的处理逻辑</li>
 <li><code>csim-ref-partA</code>：参考cache模拟器，可以与自己的实现进行比对，将在Part A中使用</li>
 <li><code>test-csim</code>：用于Part A测试的文件
-— <code>traces-*</code>：三个目录，用于存放在Part A中用于测试的文件</li>
+— <code>traces-*</code>：六个目录，用于存放在Part A中用于测试的文件</li>
 <li><code>csim-ref-partB</code>：在Part B中使用的cache模拟器</li>
 <li><code>trans.c</code>：Part B中你需要修改的文件</li>
 <li><code>tracegen.c</code>：生成<code>tracegen</code>的源文件</li>
@@ -1629,14 +1656,12 @@
 <li><code>driver.py</code>：用于测试Part A + Part B总得分的脚本</li>
 </ul>
 <h2 id="评分方法">评分方法<a class="headerlink" href="#评分方法" title="Permanent link">&para;</a></h2>
-<details class="todo">
-<summary>Todo</summary>
-<p>修改评分策略@blowinding</p>
-</details>
 <ul>
-<li>Part A 100分</li>
-<li>Part B 不计入总分</li>
+<li>Part A 500分</li>
+<li>Part B 100分</li>
 </ul>
+<p>最终得分的计算公式为：
+<span class="arithmatex">\(score_{total} = score_{Lab4A} \div 5 \times {0.8} + {score_{Lab4B}} \times {0.2}\)</span></p>
 <p>和往常一样，我们将最终用于评分的<code>driver.py</code>脚本也分发给了大家，大家可以用于快速自测分数，使用方法如下：</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>$<span class="w"> </span>make
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>$<span class="w"> </span>python3<span class="w"> </span>driver.py
@@ -1651,84 +1676,41 @@
 </div>
 <p>通常来说你会获得类似如下的输出：（这是一个满分输出）</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>$<span class="w"> </span>make<span class="w"> </span>grade
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Part<span class="w"> </span>A:<span class="w"> </span>Testing<span class="w"> </span>cache<span class="w"> </span>simulator
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Running<span class="w"> </span>./test-csim
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Start<span class="w"> </span>testing<span class="w"> </span>basic<span class="w"> </span>traces...
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>traces-basic/l3evict.trace<span class="w">                   </span><span class="m">15</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>traces-basic/mixed-2.trace<span class="w">                   </span><span class="m">90</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>traces-basic/l1Dhit.trace<span class="w">                    </span><span class="m">4</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>traces-basic/backinvalidation.trace<span class="w">          </span><span class="m">23</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>traces-basic/mixed-1.trace<span class="w">                   </span><span class="m">40</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>traces-basic/l1Devict.trace<span class="w">                  </span><span class="m">3</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>traces-basic/l2evict.trace<span class="w">                   </span><span class="m">7</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>traces-basic/l1missl2hit.trace<span class="w">               </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>traces-basic/l1Ihit.trace<span class="w">                    </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>traces-basic/l1Ievict.trace<span class="w">                  </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>traces-basic/mixed-3.trace<span class="w">                   </span><span class="m">128</span><span class="w">       </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>traces-basic/l1missl2missl3hit.trace<span class="w">         </span><span class="m">6</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">       </span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">60</span><span class="w"> </span>/<span class="w"> </span><span class="m">60</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">   </span><span class="m">12</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">0</span><span class="w"> </span>failed,<span class="w">    </span><span class="m">12</span><span class="w"> </span>total
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>Start<span class="w"> </span>testing<span class="w"> </span>data-intensive<span class="w"> </span>traces...
-</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
-</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>traces-data-intensive/multiply.trace<span class="w">         </span><span class="m">25347</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>traces-data-intensive/add.trace<span class="w">              </span><span class="m">16451</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>traces-data-intensive/convolve.trace<span class="w">         </span><span class="m">80397</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>traces-data-intensive/sort.trace<span class="w">             </span><span class="m">8369</span><span class="w">      </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>traces-data-intensive/grep.trace<span class="w">             </span><span class="m">38328</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>traces-data-intensive/inner_product.trace<span class="w">    </span><span class="m">16388</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>traces-data-intensive/long.trace<span class="w">             </span><span class="m">267988</span><span class="w">    </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>traces-data-intensive/link_list.trace<span class="w">        </span><span class="m">49878</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>traces-data-intensive/transpose.trace<span class="w">        </span><span class="m">6147</span><span class="w">      </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>traces-data-intensive/wc.trace<span class="w">               </span><span class="m">26311</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">3</span>/3<span class="w">       </span>
-</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">30</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
-</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">   </span><span class="m">10</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">0</span><span class="w"> </span>failed,<span class="w">    </span><span class="m">10</span><span class="w"> </span>total
-</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>
-</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>Start<span class="w"> </span>testing<span class="w"> </span>hard<span class="w"> </span>traces...
-</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
-</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>traces-hard/multiply.trace<span class="w">                   </span><span class="m">149382</span><span class="w">    </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>traces-hard/add.trace<span class="w">                        </span><span class="m">94710</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a>traces-hard/ls.trace<span class="w">                         </span><span class="m">56756</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a>traces-hard/convolve.trace<span class="w">                   </span><span class="m">1848393</span><span class="w">   </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a>traces-hard/sort.trace<span class="w">                       </span><span class="m">45978</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a>traces-hard/grep.trace<span class="w">                       </span><span class="m">406467</span><span class="w">    </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a>traces-hard/inner_product.trace<span class="w">              </span><span class="m">98329</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-50"><a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a>traces-hard/link_list.trace<span class="w">                  </span><span class="m">249719</span><span class="w">    </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-51"><a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a>traces-hard/transpose.trace<span class="w">                  </span><span class="m">31990</span><span class="w">     </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-52"><a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a>traces-hard/wc.trace<span class="w">                         </span><span class="m">404114</span><span class="w">    </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">1</span>/1<span class="w">       </span>
-</span><span id="__span-5-53"><a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a>---------------------------------------------------------------------------------
-</span><span id="__span-5-54"><a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">10</span>
-</span><span id="__span-5-55"><a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="w">   </span><span class="m">10</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">0</span><span class="w"> </span>failed,<span class="w">    </span><span class="m">10</span><span class="w"> </span>total
-</span><span id="__span-5-56"><a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a>
-</span><span id="__span-5-57"><a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">100</span><span class="w"> </span>/<span class="w"> </span><span class="m">100</span>
-</span><span id="__span-5-58"><a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a>Totally<span class="w"> </span><span class="m">2</span>.720263<span class="w"> </span>seconds<span class="w"> </span>passed.
-</span><span id="__span-5-59"><a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a>
-</span><span id="__span-5-60"><a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a>Part<span class="w"> </span>B:<span class="w"> </span>Testing<span class="w"> </span>transpose<span class="w"> </span><span class="k">function</span>
-</span><span id="__span-5-61"><a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">32</span><span class="w"> </span>-N<span class="w"> </span><span class="m">32</span>
-</span><span id="__span-5-62"><a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">64</span><span class="w"> </span>-N<span class="w"> </span><span class="m">64</span>
-</span><span id="__span-5-63"><a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">61</span><span class="w"> </span>-N<span class="w"> </span><span class="m">67</span>
-</span><span id="__span-5-64"><a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a>
-</span><span id="__span-5-65"><a id="__codelineno-5-65" name="__codelineno-5-65" href="#__codelineno-5-65"></a>Cache<span class="w"> </span>Lab<span class="w"> </span>summary:
-</span><span id="__span-5-66"><a id="__codelineno-5-66" name="__codelineno-5-66" href="#__codelineno-5-66"></a><span class="w">                        </span>Points<span class="w">   </span>Max<span class="w"> </span>pts<span class="w">      </span>Misses
-</span><span id="__span-5-67"><a id="__codelineno-5-67" name="__codelineno-5-67" href="#__codelineno-5-67"></a>Csim<span class="w"> </span>correctness<span class="w">         </span><span class="m">100</span>.0<span class="w">       </span><span class="m">100</span>
-</span><span id="__span-5-68"><a id="__codelineno-5-68" name="__codelineno-5-68" href="#__codelineno-5-68"></a>Trans<span class="w"> </span>perf<span class="w"> </span>32x32<span class="w">          </span><span class="m">30</span>.0<span class="w">        </span><span class="m">30</span><span class="w">         </span><span class="m">288</span>
-</span><span id="__span-5-69"><a id="__codelineno-5-69" name="__codelineno-5-69" href="#__codelineno-5-69"></a>Trans<span class="w"> </span>perf<span class="w"> </span>64x64<span class="w">          </span><span class="m">30</span>.0<span class="w">        </span><span class="m">30</span><span class="w">        </span><span class="m">1108</span>
-</span><span id="__span-5-70"><a id="__codelineno-5-70" name="__codelineno-5-70" href="#__codelineno-5-70"></a>Trans<span class="w"> </span>perf<span class="w"> </span>61x67<span class="w">          </span><span class="m">40</span>.0<span class="w">        </span><span class="m">40</span><span class="w">        </span><span class="m">1914</span>
-</span><span id="__span-5-71"><a id="__codelineno-5-71" name="__codelineno-5-71" href="#__codelineno-5-71"></a><span class="w">          </span>Total<span class="w"> </span>points<span class="w">   </span><span class="m">100</span>.0<span class="w">       </span><span class="m">100</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>python3<span class="w"> </span>./driver.py
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Part<span class="w"> </span>A:<span class="w"> </span>Testing<span class="w"> </span>cache<span class="w"> </span>simulator
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Running<span class="w"> </span>./test-csim
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="o">==========</span><span class="w"> </span>Testing<span class="w"> </span>cache<span class="w"> </span>level<span class="w"> </span><span class="nv">1</span><span class="w"> </span><span class="o">==========</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>...
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="o">==========</span><span class="w"> </span>Testing<span class="w"> </span>cache<span class="w"> </span>level<span class="w"> </span><span class="nv">2</span><span class="w"> </span><span class="o">==========</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>...
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="o">==========</span><span class="w"> </span>Testing<span class="w"> </span>cache<span class="w"> </span>level<span class="w"> </span><span class="nv">3</span><span class="w"> </span><span class="o">==========</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>...
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">500</span><span class="w"> </span>/<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>Totally<span class="w"> </span><span class="m">4</span>.447192<span class="w"> </span>seconds<span class="w"> </span>passed.
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>Part<span class="w"> </span>B:<span class="w"> </span>Testing<span class="w"> </span>transpose<span class="w"> </span><span class="k">function</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">32</span><span class="w"> </span>-N<span class="w"> </span><span class="m">32</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">64</span><span class="w"> </span>-N<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>Running<span class="w"> </span>./test-trans<span class="w"> </span>-M<span class="w"> </span><span class="m">61</span><span class="w"> </span>-N<span class="w"> </span><span class="m">67</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>Cache<span class="w"> </span>Lab<span class="w"> </span>summary:
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">                        </span>Points<span class="w">   </span>Max<span class="w"> </span>pts<span class="w">      </span>Misses
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>Csim<span class="w"> </span>correctness<span class="w">         </span><span class="m">500</span>.0<span class="w">       </span><span class="m">500</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>Trans<span class="w"> </span>perf<span class="w"> </span>32x32<span class="w">          </span><span class="m">30</span>.0<span class="w">        </span><span class="m">30</span><span class="w">         </span><span class="m">288</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>Trans<span class="w"> </span>perf<span class="w"> </span>64x64<span class="w">          </span><span class="m">30</span>.0<span class="w">        </span><span class="m">30</span><span class="w">        </span><span class="m">1108</span>
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>Trans<span class="w"> </span>perf<span class="w"> </span>61x67<span class="w">          </span><span class="m">40</span>.0<span class="w">        </span><span class="m">40</span><span class="w">        </span><span class="m">1914</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>Total<span class="w"> </span>points<span class="w"> </span><span class="o">(</span>weighted<span class="o">)</span><span class="w">   </span><span class="m">100</span>.0<span class="w">       </span><span class="m">100</span>
 </span></code></pre></div>
 <p>如上分别是各个部分的组成，最后几行会输出你的总成绩。你可以通过如上方法快速得知你最终会得到多少的分数。</p>
 <h2 id="代码提交">代码提交<a class="headerlink" href="#代码提交" title="Permanent link">&para;</a></h2>
-<details class="todo">
-<summary>Todo</summary>
-<p>需要修改代码提交策略@blowinding</p>
-</details>
-<p>在 <code>cachelab-sp25</code> 目录（也就是你的实验目录）下执行 <code>make submit</code> 命令，会生成一个名为 <code>&lt;userid&gt;-handin.zip</code> 的压缩文件，这会将你的<code>cache-impl.c</code>压缩上交。（其中 <code>&lt;userid&gt;</code> 为<code>你的学号-ics</code>，也就是ICS Server中你的用户名）。</p>
+<p>Lab4A和Lab4B有不同的提交入口，在 <code>cachelab-sp26</code> 目录（也就是你的实验目录）下执行 <code>make submit</code> 命令，会生成两个压缩文件，分别为 <code>&lt;userid&gt;-handin-4A.zip</code> 和<code>&lt;userid&gt;-handin-4B.zip</code>，分别将你的<code>cache-impl.c</code>文件和<code>trans.c</code>文件压缩。（其中 <code>&lt;userid&gt;</code> 为<code>你的学号-ics</code>，也就是ICS Server中你的用户名）。</p>
 <p>在<a href="http://class.xjtu.edu.cn/">在线学习平台</a>上的作业模块中，将该文件作为附件提交即可。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

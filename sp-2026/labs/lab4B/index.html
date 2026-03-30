@@ -1291,7 +1291,7 @@
 <h3 id="程序运行的cache访问过程分析">程序运行的Cache访问过程分析<a class="headerlink" href="#程序运行的cache访问过程分析" title="Permanent link">&para;</a></h3>
 <p>我们的测试场景是一个<strong>直接映射*8的、</strong>Block大小是32字节<strong>的、一共有</strong>32个Cache Set**的Cache模拟器(s=5, E=1, b=5)。</p>
 <p>因此测试场景的Cache具有如下的典型结构：</p>
-<p><img alt="cache structure partb" src="../../assets/images/cachelab_cache_structure_partb.png" /></p>
+<p><img alt="cache structure partb" src="../../assets/images/cachelab/cachelab_cache_structure_partb.png" /></p>
 <p>一个Cache Line可以保存8个<code>int</code>，我们以这个Cache结构为例，考虑我们刚才的暴力做法：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">transpose_submit</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="p">][</span><span class="n">M</span><span class="p">],</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">M</span><span class="p">][</span><span class="n">N</span><span class="p">])</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
@@ -1301,11 +1301,11 @@
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>这里我们会按行优先读取<code>A</code>矩阵，然后一列一列地写入<code>B</code>矩阵。</p>
-<p><img alt="cache_matrix_a_b" src="../../assets/images/cachelab_matrix_a_b_partb.png" /></p>
+<p><img alt="cache_matrix_a_b" src="../../assets/images/cachelab/cachelab_matrix_a_b_partb.png" /></p>
 <p>我们知道，Cache是以Cache Line形式读取内存的。以第1行为例，在从内存读 <code>A[0][0]</code> 的时候，除了 <code>A[0][0]</code> 被加载到Cache中，它之后的 <code>A[0][1]---A[0][7]</code> 也会被加载进Cache。</p>
 <p>但是内容写入 <code>B</code> 矩阵的时候是一列一列地写入，在列上相邻的元素不在一个内存块上，这样每次写入都不命中Cache。并且一列写完之后再返回，原来写入Cache的内容可能被覆盖了，这样就又会不命中。</p>
 <p>接下来我们来定量地分析Cache Miss的次数。Cache只够存储一个矩阵的四分之一，<code>A</code>中的元素对应的Cache Line每隔8行就会重复。<code>A</code>和<code>B</code>的地址由于取余关系，每个元素对应的地址是相同的，各个元素对应Cache Line如下：</p>
-<p><img alt="cachelines partb" src="../../assets/images/cachelab_cache_lines_partb.png" /></p>
+<p><img alt="cachelines partb" src="../../assets/images/cachelab/cachelab_cache_lines_partb.png" /></p>
 <p>对于<code>A</code>，每8个<code>int</code>就会占满Cache的一组，所以每一行会有32/8=4次不命中；而对于<code>B</code>，考虑最坏情况，每一列都有32次不命中，由此，算出总不命中次数为4×32+32×32=1152。</p>
 <p>但是为什么出现了1184次的Cache Miss，这是由于对角线上的元素通常存在一些特殊情况，对角线上的情况请大家自行分析哦~</p>
 <div class="admonition note">
