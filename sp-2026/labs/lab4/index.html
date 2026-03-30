@@ -1223,15 +1223,16 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#多级cache组织方式" class="md-nav__link">
+  <a href="#多级cache" class="md-nav__link">
     <span class="md-ellipsis">
       
-        多级cache组织方式
+        多级Cache
       
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="多级Cache">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#memory-hierarchy" class="md-nav__link">
@@ -1245,13 +1246,40 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#多级cache的包含准则inclusion-policy" class="md-nav__link">
+  <a href="#多级cache的典型结构" class="md-nav__link">
     <span class="md-ellipsis">
       
-        多级cache的包含准则（inclusion policy）
+        多级Cache的典型结构
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#多级cache之间的数据管理" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        多级Cache之间的数据管理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inclusive-policy的访问规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inclusive Policy的访问规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1583,36 +1611,82 @@
 <p>为了缓解这一问题，采用写直达策略的 Cache 通常会额外引入一块<strong>写缓冲区（Write Buffer）</strong>：CPU 的写请求先快速写入写缓冲区即可返回，由写缓冲区在后台异步地将数据刷新到下一级存储，从而将 CPU 与缓慢的内存写操作解耦。</p>
 <p>write back策略不会带来大量的总线流量，因此性能较好，但是会产生数据一致性问题，因此需要更复杂的机制来保证数据一致性。不过随着技术的发展，write back策略带来的收益已经超过write through策略带来的收益，因此write through已经逐渐被淘汰了。</p>
 </div>
-<h3 id="多级cache组织方式">多级cache组织方式<a class="headerlink" href="#多级cache组织方式" title="Permanent link">&para;</a></h3>
-<details class="todo">
-<summary>Todo</summary>
-<p>感觉这里的组织逻辑不是很通顺，可以单独起一节来讲多级cache,包括后面两小节，需要具体优化@rouge3877</p>
-</details>
-<p>现代CPU中，CPU和内存的速度差距越来越大。因此CPU内部往往不会仅采用一级cache，而是使用多级cache结构，以<strong>优化最坏情况（从内存访问）下的性能</strong>。多级cache结构的组织又会引入很多的问题，我们在这里简单讲述一些重要的问题，其他的一些细节问题感兴趣的同学可以自行google。</p>
-<h3 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h3>
-<p>根据我们课程中的学习，不同存储技术的访问时间差别很大，但速度较快的技术每字节的成本要比速度慢的技术高，而且容量小。现代计算机系统往往采用存储器层次结构的方法，下图展示了一个典型的存储器层次结构。</p>
+<h3 id="多级cache">多级Cache<a class="headerlink" href="#多级cache" title="Permanent link">&para;</a></h3>
+<!-- ???todo
+    感觉这里的组织逻辑不是很通顺，可以单独起一节来讲多级cache,包括后面两小节，需要具体优化@rouge3877 -->
+
+<p>现代计算机系统中，CPU内部往往不会仅采用一级cache，而是使用多级cache结构，以<strong>优化最坏情况（从内存访问）下的性能</strong>。但是多级cache结构的组织又会引入很多的问题，因此本节将讲解多级Cache的典型结构以及各级Cache之间的数据管理策略，希望这些知识能够帮助你更好的完成Part A实验（三级Cache模拟器）。</p>
+<h4 id="memory-hierarchy">Memory Hierarchy<a class="headerlink" href="#memory-hierarchy" title="Permanent link">&para;</a></h4>
+<p>在真实的计算机系统中，CPU与内存乃至于外围设备之间存在着巨大的速度鸿沟：现代CPU执行一条指令可能只需要不到1纳秒，而一次内存访问却需要约100纳秒，二者相差约<strong>两个数量级</strong>。这里有一个<a href="https://colin-scott.github.io/personal_website/research/interactive_latency.html">可交互式的网页</a>可以帮助大家更直观地感受不同年代CPU指令运行、访问Cache以及访问内存等操作之间的速度差距。</p>
+<p>由于不同存储技术的访问时间差别很大，但速度较快的技术每字节的成本要比速度慢的技术高，而且容量小。因而现代计算机系统往往采用存储器层次结构的方法，这是计算机系统设计中的一个重要思想——<strong>存储器层次结构（Memory Hierarchy）</strong>。下图展示了一个典型的存储器层次结构：</p>
 <p><img alt="Memory Hierarchy" src="../../assets/images/cachelab/cachelab_memory_hierarchy.png" /></p>
-<p>存储器层次结构的中心思想是：对于每个k，位于k层的更快更小的存储设备作为位于k+1层的更大更慢的存储设备的cache。即每一层的cache的内容均来自于较低一层的数据对象。例如图中，L2 cache(SRAM)作为L3 主存的cache。</p>
-<p>这样的体系结构，使得整体计算机的整体存储系统呈现出高速且大容量的整体特性。</p>
-<h3 id="多级cache的包含准则inclusion-policy">多级cache的包含准则（inclusion policy）<a class="headerlink" href="#多级cache的包含准则inclusion-policy" title="Permanent link">&para;</a></h3>
+<p>存储器层次结构的中心思想是：对于每个k，位于第k层的更快更小的存储设备，作为位于第k+1层的更大更慢的存储设备的cache。即每一层cache的内容均来自于较低一层的数据对象。例如图中，SRAM作为DRAM的cache；而DRAM本身又是磁盘的cache（这一点在后续虚拟内存章节会详细讲述）。</p>
+<p>多级Cache也正是基于这样的设计思想。由于CPU执行和内存访问之间的速度差距越来越大，因此需要将一系列<strong>由小到大、由快到慢</strong>的Cache逐级排列，让每一级Cache都充当下一级的"缓冲层"。</p>
+<ul>
+<li><strong>L1 Cache</strong>：最小（通常32-64KB）但最快（1-4个时钟周期），追求<strong>极致的访问延迟</strong></li>
+<li><strong>L2 Cache</strong>：中等大小（通常256KB-1MB），访问延迟约10个周期，目标是<strong>过滤掉L1的大部分Miss</strong></li>
+<li><strong>L3 Cache</strong>：最大（通常几MB-几十MB），访问延迟约30-40个周期，目标是<strong>尽可能避免访问主存</strong></li>
+<li><strong>主存（DRAM）</strong>：容量最大（几GB-几十GB），但访问延迟高达约100-200个周期</li>
+</ul>
+<p>我们可以通过<strong>平均内存访问时间（AMAT）</strong>来衡量多级Cache的效果：</p>
+<div class="arithmatex">\[
+AMAT = t_{L1} + MissRate_{L1} \times (t_{L2} + MissRate_{L2} \times (t_{L3} + MissRate_{L3} \times t_{Mem}))
+\]</div>
+<p>其中 <span class="arithmatex">\(t\)</span> 代表访问延迟，<span class="arithmatex">\(MissRate\)</span> 代表不命中率。可以看出，即使L1的Miss率不低（比如5%），只要L2和L3能够过滤掉绝大部分剩余的Miss，最终到达主存的访问比例就会非常小，AMAT就能接近 <span class="arithmatex">\(t_{L1}\)</span>。这正是多级Cache的意义所在。</p>
+<h4 id="多级cache的典型结构">多级Cache的典型结构<a class="headerlink" href="#多级cache的典型结构" title="Permanent link">&para;</a></h4>
+<p>在现代处理器中，多级Cache的组织方式有一些通用的设计模式。</p>
+<p><strong>L1 Cache的分离设计（Split Cache）</strong></p>
+<p>L1 Cache通常被分为两个独立的部分：</p>
+<ul>
+<li><strong>L1I（Instruction Cache）</strong>：专门缓存<strong>指令</strong>，只读或可读可写</li>
+<li><strong>L1D（Data Cache）</strong>：专门缓存<strong>数据</strong>，可读可写</li>
+</ul>
+<p>为什么要在L1这一级做分离？这与CPU的<strong>流水线设计</strong>密切相关。在一个流水线处理器中，<strong>取指令（Fetch）</strong>和<strong>访问数据（Memory Access）</strong>发生在不同的流水线阶段。如果指令和数据共用同一个Cache，这两个阶段就无法同时进行——它们会争夺同一个Cache端口，产生<strong>结构冲突（Structural Hazard）</strong>。将L1分为I-Cache和D-Cache，就允许CPU在<strong>同一个时钟周期内同时取指令和读写数据</strong>，从而提高流水线的吞吐率。</p>
+<p><strong>L2/L3 Cache的统一设计（Unified Cache）</strong></p>
+<p>从L2开始，Cache通常是<strong>统一（Unified）</strong>的，即同时存储指令和数据。因为在L2及以下层级，访问延迟本身已经较高，流水线结构冲突已不是主要瓶颈；而统一设计可以更<strong>灵活</strong>地利用Cache容量——如果某个程序是数据密集型的，Unified Cache自然会将更多空间分配给数据，反之亦然。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在实现三级Cache模拟器时，L2和L3是Unified Cache这一特性意味着：<strong>L1D的数据和L1I的指令可能共存于同一个L2 cache set中</strong>。在处理Back Invalidation（后面会讲到）时，你需要同时检查L1D和L1I，这是一个容易遗漏的细节。</p>
+</div>
+<p>一个容易被忽略但十分重要的细节是：<strong>不同层级可以有不同的Cache Line大小</strong>。例如在本次实验中，L1和L2的cache line大小是8字节，而L3的cache line大小是16字节。</p>
+<p>这意味着，同一个内存地址在不同层级的Cache中，其 <span class="arithmatex">\(tag\)</span>、<span class="arithmatex">\(set\ index\)</span>、<span class="arithmatex">\(block\ offset\)</span> 的划分方式是<strong>不同的</strong>——因为 <span class="arithmatex">\(b\)</span>（block offset位数）和 <span class="arithmatex">\(s\)</span>（set index位数）在各级Cache中可能不同，进而影响 <span class="arithmatex">\(t\)</span>（tag位数）。在实现多级Cache模拟器时，这一点需要格外注意。</p>
+<h4 id="多级cache之间的数据管理">多级Cache之间的数据管理<a class="headerlink" href="#多级cache之间的数据管理" title="Permanent link">&para;</a></h4>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>这一部分在课程中可能讲述较少，同时与实验内容<strong>强相关</strong>，因此强烈建议阅读本节。如果你有任何困惑，可以上piazza提问并讨论，或者自行google相关wiki和他人写的博客进行学习。</p>
+<p>这一部分在课程中可能讲述较少，同时与实验内容<strong>强相关</strong>，因此强烈建议仔细阅读本节。如果你有任何困惑，可以上piazza提问并讨论，或者自行google相关wiki和他人写的博客进行学习。</p>
 </div>
-<p>正如上述的内存层次结构所提到的，对于二级及以上的cache，一种常见的组织方式是较小且位于高层次的cache作为较大且位于低层次的cache的子集。即所有在高层次cache中存放的数据<strong>一定</strong>也存在于低层次中，但在低层次中拥有的数据则不一定在高层次中存在。</p>
-<p>上述这种组织方式叫做<strong>inclusive policy(包含性策略)</strong>，这也是你需要在本次实验中实现的策略，当然还存在另外两种策略，分别是<strong>exclusive policy</strong>和<strong>non-inclusive-non-exclusive(NINE)</strong>策略，三种方式各有好坏，这些策略的集合通常叫做<strong>inclusion policy</strong>，即包含准则，这是设计实现多级cache时必须要确定的一个因素（你可以假设内存是一个最大的集合，包含所有数据）。</p>
-<p>我们将简要介绍inclusive policy，如果你对其他策略感兴趣，可以自行查阅<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>。</p>
-<p>考虑一个二级缓存结构，这里借用<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>上的一张图来表示：</p>
+<p>当多级Cache层层嵌套时，一个关键的问题是：<strong>各级Cache中存储的数据之间，应该保持什么样的关系？</strong></p>
+<p>这个问题被称为<strong>包含准则（Inclusion Policy）</strong>，它是多级Cache设计中必须确定的一个基本因素。主要存在三种策略：</p>
+<p><strong>Inclusive Policy（包含性策略）</strong></p>
+<p>所有存在于高层Cache（靠近CPU）中的数据，<strong>一定</strong>也存在于低层Cache（靠近内存）中。换言之，L1的内容是L2的子集，L2的内容是L3的子集。你可以把内存看作一个最大的"全集"，包含所有数据。</p>
+<p>这就像一个层级图书馆系统：你桌上的书（L1）一定在你的书架上（L2）也有一份，而你书架上的书一定在图书馆（L3）也有一份。</p>
+<p><strong>Exclusive Policy（排他性策略）</strong></p>
+<p>任何一条数据<strong>只存在于某一级Cache中</strong>，不会在多级Cache中同时出现。当数据从L2加载到L1时，L2中的那份副本会被移除。这种策略的优点是整个Cache层次结构中没有数据冗余，等效总容量最大。</p>
+<p><strong>Non-Inclusive-Non-Exclusive（NINE）策略</strong></p>
+<p>对数据在各级Cache中的存在性不做任何严格约束，各级Cache独立管理自己的内容。这是实现上最简单的方式，但也放弃了上述两种策略所提供的结构性保证。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>三种策略各有优劣，体现了系统设计中永恒的<strong>trade-off</strong>。Inclusive策略便于维护一致性（要判断某个数据是否在Cache层次中，只需查看最低一级的Cache即可），但代价是高层Cache的数据在低层Cache中有冗余副本，浪费了一部分宝贵的Cache空间。Exclusive策略最大化了等效Cache容量，但数据的搬迁逻辑更复杂。NINE策略最灵活但缺乏可利用的结构性保证。想了解更多，可以查阅<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>。</p>
+</div>
+<p><strong>在本次实验中，你需要实现的是Inclusive Policy。</strong> 下面我们深入讲解这种策略下的访问规则。</p>
+<h4 id="inclusive-policy的访问规则">Inclusive Policy的访问规则<a class="headerlink" href="#inclusive-policy的访问规则" title="Permanent link">&para;</a></h4>
+<p>考虑一个二级缓存结构（L1 + L2），这里借用<a href="https://en.wikipedia.org/wiki/Cache_inclusion_policy">wiki: cache inclusion policy</a>上的一张图来表示：</p>
 <p><img alt="inclusive" src="../../assets/images/cachelab/Inclusive.png" /></p>
-<p>对于上述结构，如果要满足L2始终包括L1的所有数据这样一条性质的话，则在cache之间的访问需要满足以下要求：</p>
-<ul>
-<li>如果L1 hit, 则直接返回</li>
-<li>如果L1 miss, L2 hit, 则需要访问L2，并且将这个cache line复制到L1中</li>
-<li>如果L1 需要evict一个cache line用来放置从L2得到cache line, 则evict过程不会对L2产生影响（实际上，还需要考虑写策略的影响，这里聚焦于inclusion policy，因此不考虑具体的写入策略）</li>
-<li>如果L1和L2均miss，则需要访问内存，并且将cache line加载到<strong>L2和L1中</strong></li>
-<li>如果L2 需要而evict一个cache line，则L2 需要 <strong>back invalidation（回溯失效）</strong> L1，即在L1中寻找对应的cache line，并且将其evict。</li>
-</ul>
-<p>大家可以自行想一下为什么对于<strong>inclusive policy</strong>，步骤4和5是必要的。😊</p>
+<p>为了<strong>始终保证 "L1 ⊆ L2" 这一不变量</strong>——即L1中的每一条有效数据，在L2中也一定存在——各种Cache操作需要遵循以下规则：</p>
+<ol>
+<li>
+<p><strong>L1 Hit</strong>：直接返回数据，无需访问L2。由于L1中有这条数据，而inclusive保证L2也一定有，不变量自然满足。</p>
+</li>
+<li>
+<p><strong>L1 Miss, L2 Hit</strong>：从L2取出对应的cache line，并将其<strong>复制一份到L1</strong>中。如果L1需要evict一条cache line来腾出空间，这个evict过程<strong>不影响L2</strong>——被L1淘汰的数据仍然安全地保存在L2中（因为inclusive保证它一定在L2中），不变量依然成立。</p>
+</li>
+<li>
+<p><strong>L1 Miss, L2 Miss</strong>（需要从内存加载）：必须将数据<strong>同时加载到L2和L1中</strong>。如果只加载到L1而不加载到L2，就会出现"L1中有但L2中没有"的情况，直接违反inclusive性质。</p>
+</li>
+<li>
+<p><strong>L2 Eviction触发Back Invalidation</strong>：当L2需要evict一条cache line时，<strong>必须同时检查L1中是否也有这条数据</strong>。如果有，必须将L1中的对应cache line也一并evict（清除valid位）。这个过程叫做<strong>Back Invalidation（回溯失效）</strong>。如果L2中的数据被替换而L1中的副本却保留了下来，就会出现"L1中有但L2中没有"的情况——这直接违反了inclusive性质。</p>
+</li>
+</ol>
 <h2 id="开始实验">开始实验<a class="headerlink" href="#开始实验" title="Permanent link">&para;</a></h2>
 <details class="todo">
 <summary>Todo</summary>
