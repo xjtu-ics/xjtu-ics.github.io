@@ -57,18 +57,8 @@
     margin-bottom: 24px;
   }
 
-  .key-concepts h2 {
-    font-size: 1.1rem;
-    color: var(--accent);
-    margin-bottom: 12px;
-  }
-
-  .key-concepts p {
-    color: var(--text-dim);
-    font-size: 0.88rem;
-    margin-bottom: 8px;
-  }
-
+  .key-concepts h2 { font-size: 1.1rem; color: var(--accent); margin-bottom: 12px; }
+  .key-concepts p { color: var(--text-dim); font-size: 0.88rem; margin-bottom: 8px; }
   .key-concepts strong { color: var(--text); }
 
   .config {
@@ -136,6 +126,7 @@
     align-items: center;
     gap: 16px;
     margin-bottom: 16px;
+    flex-wrap: wrap;
   }
 
   .trace-op {
@@ -157,59 +148,178 @@
     color: var(--text-dim);
   }
 
-  .result-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+  /* Step controls */
+  .step-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
 
-  .badge {
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 20px;
+  .step-controls button {
     font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 36px;
   }
 
-  .badge.hit { background: rgba(0,230,118,0.15); color: var(--hit); border: 1px solid rgba(0,230,118,0.3); }
-  .badge.miss { background: rgba(255,82,82,0.15); color: var(--miss); border: 1px solid rgba(255,82,82,0.3); }
-  .badge.evict { background: rgba(255,171,64,0.15); color: var(--evict); border: 1px solid rgba(255,171,64,0.3); }
-  .badge.writeback { background: rgba(234,128,252,0.15); color: var(--writeback); border: 1px solid rgba(234,128,252,0.3); }
-  .badge.backinval { background: rgba(255,215,64,0.15); color: var(--backinval); border: 1px solid rgba(255,215,64,0.3); }
+  .step-controls button:hover { border-color: var(--accent); background: rgba(79,195,247,0.1); }
+  .step-controls button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .step-controls button.playing { border-color: var(--hit); color: var(--hit); }
 
-  .steps {
-    margin-bottom: 20px;
+  .step-counter {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    min-width: 80px;
+    text-align: center;
   }
 
-  .step {
+  .speed-control {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .speed-control label {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+
+  .speed-control input[type="range"] {
+    width: 80px;
+    accent-color: var(--accent);
+  }
+
+  /* Step progress bar */
+  .step-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--surface);
+    border-radius: 2px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+
+  .step-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  /* Current step display */
+  .current-step {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(42,53,88,0.5);
-    font-size: 0.88rem;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    background: rgba(79,195,247,0.05);
+    border: 1px solid rgba(79,195,247,0.2);
+    border-radius: 10px;
+    min-height: 52px;
+    transition: border-color 0.3s;
   }
 
-  .step:last-child { border-bottom: none; }
+  .current-step.action-hit { border-color: var(--hit); background: rgba(0,230,118,0.05); }
+  .current-step.action-miss { border-color: var(--miss); background: rgba(255,82,82,0.05); }
+  .current-step.action-evict { border-color: var(--evict); background: rgba(255,171,64,0.05); }
+  .current-step.action-writeback { border-color: var(--writeback); background: rgba(234,128,252,0.05); }
+  .current-step.action-backinval { border-color: var(--backinval); background: rgba(255,215,64,0.05); }
+  .current-step.action-setdirty { border-color: var(--dirty); background: rgba(255,110,64,0.05); }
+  .current-step.action-setvalid { border-color: var(--fetch); background: rgba(105,240,174,0.05); }
+  .current-step.action-fetch { border-color: var(--accent); background: rgba(79,195,247,0.05); }
+  .current-step.action-updatelru { border-color: #90a4ae; background: rgba(144,164,174,0.05); }
 
-  .step-num {
+  .step-action-badge {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    min-width: 24px;
-    height: 24px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .step-action-badge.hit { background: rgba(0,230,118,0.2); color: var(--hit); }
+  .step-action-badge.miss { background: rgba(255,82,82,0.2); color: var(--miss); }
+  .step-action-badge.evict { background: rgba(255,171,64,0.2); color: var(--evict); }
+  .step-action-badge.writeback { background: rgba(234,128,252,0.2); color: var(--writeback); }
+  .step-action-badge.backinval { background: rgba(255,215,64,0.2); color: var(--backinval); }
+  .step-action-badge.setdirty { background: rgba(255,110,64,0.2); color: var(--dirty); }
+  .step-action-badge.setvalid { background: rgba(105,240,174,0.2); color: var(--fetch); }
+  .step-action-badge.fetch { background: rgba(79,195,247,0.2); color: var(--accent); }
+  .step-action-badge.updatelru { background: rgba(144,164,174,0.25); color: #90a4ae; }
+  .step-action-badge.memread { background: rgba(105,240,174,0.2); color: var(--fetch); }
+  .step-action-badge.memwrite { background: rgba(234,128,252,0.2); color: var(--writeback); }
+  .step-action-badge.info { background: rgba(122,139,170,0.2); color: var(--text-dim); }
+  .step-action-badge.done { background: rgba(79,195,247,0.2); color: var(--accent); }
+  .step-action-badge.evict_compare { background: rgba(255,171,64,0.2); color: var(--evict); }
+  .step-action-badge.init { background: rgba(79,195,247,0.2); color: var(--accent); }
+
+  .step-text-display {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .step-text-display strong { color: #fff; font-weight: 700; }
+
+  /* Steps timeline (mini) */
+  .steps-timeline {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  .steps-timeline .st-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
     background: var(--surface2);
-    border-radius: 50%;
-    color: var(--accent);
-    font-weight: 700;
-    flex-shrink: 0;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
   }
 
-  .step-text { color: var(--text-dim); }
-  .step-text strong { color: var(--text); font-weight: 600; }
+  .steps-timeline .st-dot:hover { border-color: var(--accent); color: var(--text); }
+  .steps-timeline .st-dot.active { border-color: var(--accent); color: var(--accent); background: rgba(79,195,247,0.15); }
+  .steps-timeline .st-dot.completed { border-color: rgba(79,195,247,0.3); color: var(--accent); opacity: 0.7; }
+  .steps-timeline .st-dot.hit { border-color: var(--hit); }
+  .steps-timeline .st-dot.miss { border-color: var(--miss); }
+  .steps-timeline .st-dot.evict { border-color: var(--evict); }
+  .steps-timeline .st-dot.writeback { border-color: var(--writeback); }
+  .steps-timeline .st-dot.backinval { border-color: var(--backinval); }
+  .steps-timeline .st-dot.setdirty { border-color: var(--dirty); }
 
-  .cache-state {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 14px;
+  /* Cache visualization */
+  .cache-viz {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
   .cache-level {
@@ -217,6 +327,22 @@
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 14px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+  }
+
+  .cache-level.searching {
+    border-color: var(--accent);
+    box-shadow: 0 0 12px rgba(79,195,247,0.15);
+  }
+
+  .cache-level.level-miss {
+    border-color: var(--miss);
+    box-shadow: 0 0 12px rgba(255,82,82,0.15);
+  }
+
+  .cache-level.level-hit {
+    border-color: var(--hit);
+    box-shadow: 0 0 12px rgba(0,230,118,0.15);
   }
 
   .cache-level-header {
@@ -244,16 +370,124 @@
     font-size: 0.78rem;
     padding: 6px 12px;
     border-radius: 6px;
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     background: rgba(10,14,23,0.6);
     display: flex;
     gap: 10px;
     align-items: center;
+    transition: all 0.4s ease;
+    position: relative;
   }
 
   .cache-line.empty { opacity: 0.35; }
   .cache-line.highlight { border-color: var(--accent); box-shadow: 0 0 8px rgba(79,195,247,0.2); }
   .cache-line.dirty-line { border-color: var(--dirty); }
+
+  /* Action-specific cache line effects */
+  .cache-line.cl-hit {
+    border-color: var(--hit) !important;
+    box-shadow: 0 0 16px rgba(0,230,118,0.35);
+    animation: pulseHit 0.6s ease;
+  }
+
+  .cache-line.cl-miss-search {
+    border-color: rgba(79,195,247,0.5);
+    box-shadow: 0 0 8px rgba(79,195,247,0.15);
+  }
+
+  .cache-line.cl-evict {
+    border-color: var(--evict) !important;
+    box-shadow: 0 0 16px rgba(255,171,64,0.35);
+    animation: pulseEvict 0.6s ease;
+  }
+
+  .cache-line.cl-evict-compare {
+    border-color: var(--evict) !important;
+    box-shadow: 0 0 10px rgba(255,171,64,0.2);
+  }
+
+  .cache-line.cl-writeback {
+    border-color: var(--writeback) !important;
+    box-shadow: 0 0 16px rgba(234,128,252,0.35);
+    animation: pulseWriteback 0.6s ease;
+  }
+
+  .cache-line.cl-setvalid {
+    border-color: var(--fetch) !important;
+    box-shadow: 0 0 16px rgba(105,240,174,0.35);
+    animation: pulseValid 0.6s ease;
+  }
+
+  .cache-line.cl-setdirty {
+    border-color: var(--dirty) !important;
+    box-shadow: 0 0 16px rgba(255,110,64,0.35);
+    animation: pulseDirty 0.6s ease;
+  }
+
+  .cache-line.cl-backinval {
+    border-color: var(--backinval) !important;
+    box-shadow: 0 0 16px rgba(255,215,64,0.35);
+    animation: pulseBackinval 0.6s ease;
+  }
+
+  .cache-line.cl-fetch {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 16px rgba(79,195,247,0.35);
+    animation: pulseFetch 0.6s ease;
+  }
+
+  .cache-line.cl-updatelru {
+    border-color: #90a4ae !important;
+    box-shadow: 0 0 10px rgba(144,164,174,0.25);
+    animation: pulseLru 0.6s ease;
+  }
+
+  @keyframes pulseLru {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pulseHit {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pulseEvict {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.97); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes pulseWriteback {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pulseValid {
+    0% { transform: scale(0.95); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes pulseDirty {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pulseBackinval {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @keyframes pulseFetch {
+    0% { transform: scale(0.97); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+  }
 
   .cl-data { color: var(--text); font-weight: 600; }
   .cl-meta { color: var(--text-dim); font-size: 0.7rem; }
@@ -261,12 +495,51 @@
   .cl-valid { color: var(--hit); }
   .cl-invalid { color: var(--miss); }
 
+  /* Flow arrows between levels */
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: relative;
+  }
+
+  .flow-arrow.visible { opacity: 1; }
+
+  .flow-arrow .arrow-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 2px 12px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .flow-arrow .arrow-body.down {
+    color: var(--writeback);
+    background: rgba(234,128,252,0.1);
+  }
+
+  .flow-arrow .arrow-body.up {
+    color: var(--fetch);
+    background: rgba(105,240,174,0.1);
+  }
+
+  /* Memory row */
   .memory-row {
     background: var(--surface2);
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 14px;
-    margin-top: 14px;
+    transition: border-color 0.3s;
+  }
+
+  .memory-row.mem-active {
+    border-color: var(--fetch);
+    box-shadow: 0 0 10px rgba(105,240,174,0.15);
   }
 
   .memory-row .mem-header {
@@ -288,23 +561,28 @@
     font-size: 0.78rem;
     padding: 4px 10px;
     background: rgba(10,14,23,0.6);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 4px;
+    transition: all 0.3s;
   }
 
   .mem-cell.changed { border-color: var(--writeback); color: var(--writeback); }
+  .mem-cell.mem-reading { border-color: var(--fetch); color: var(--fetch); box-shadow: 0 0 8px rgba(105,240,174,0.3); }
+  .mem-cell.mem-writing { border-color: var(--writeback); color: var(--writeback); box-shadow: 0 0 8px rgba(234,128,252,0.3); }
 
   @media (max-width: 768px) {
     .nav { gap: 4px; }
     .nav button { font-size: 0.72rem; padding: 6px 10px; }
     h1 { font-size: 1.3rem; }
+    .step-controls { flex-direction: column; align-items: stretch; }
+    .speed-control { margin-left: 0; justify-content: center; }
   }
 </style>
 </head>
 <body>
 <div class="container">
   <h1>三级 Inclusive Cache 访问路径分析</h1>
-  
+
   <div class="key-concepts">
     <h2>Inclusive Cache 关键规则</h2>
     <p><strong>Inclusive 策略：</strong>所有存在于上级 cache（如 L1）中的数据，必须也存在于下级 cache（如 L2、L3）中。L3 ⊇ L2 ⊇ L1。</p>
@@ -323,500 +601,347 @@
   </div>
 
   <div class="nav" id="nav"></div>
-
   <div id="traces"></div>
 </div>
 
 <script>
+// Empty cache line template
+const E = { data: "—", lru: 0, valid: false, dirty: false };
+
+// Deep clone helper
+function cl(obj) { return JSON.parse(JSON.stringify(obj)); }
+
+// Initial state
+const initState = {
+  l1: [cl(E), cl(E)],
+  l2: [cl(E), cl(E), cl(E)],
+  l3: [cl(E), cl(E), cl(E), cl(E)],
+  mem: { a:10, b:20, c:30, d:40, e:50, f:60 }
+};
+
+// Trace definitions with substeps
+// Each substep: { text, action, target, way, delta, memKey, highlights }
+// delta: { l1: {wayIdx: {field:val}}, l2: {...}, l3: {...}, mem: {key:val} }
+// highlights: { l1: [wayIdx, ...], l2: [...], ... } - which lines get the action class
+
 const traces = [
   {
-    id: 0,
-    op: "Initialize",
-    type: "read",
-    tick: 0,
-    badges: [],
-    steps: [
-      "所有 cache line 的 Valid=0, Dirty=0, LRU=0, Data=空",
-      "内存初始值: a=10, b=20, c=30, d=40, e=50, f=60"
-    ],
-    l1: [
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l2: [
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 0, op: "Initialize", type: "read", tick: 0,
+    substeps: [
+      { text: "所有 cache line 的 <strong>Valid=0, Dirty=0, LRU=0, Data=空</strong>", action: "init", target: "all" },
+      { text: "内存初始值: <strong>a=10, b=20, c=30, d=40, e=50, f=60</strong>", action: "info", target: "mem" }
+    ]
   },
   {
-    id: 1,
-    op: "Read a",
-    type: "read",
-    tick: 3,
-    badges: ["miss", "miss", "miss"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss"],
-    steps: [
-      "在 L1 中查找 a → <strong>Miss</strong>",
-      "在 L2 中查找 a → <strong>Miss</strong>",
-      "在 L3 中查找 a → <strong>Miss</strong>",
-      "从 Memory 读取 a=10",
-      "将 a=10 写入 L3（LRU=1, V=1, D=0）",
-      "将 a=10 写入 L2（LRU=2, V=1, D=0）",
-      "将 a=10 写入 L1（LRU=3, V=1, D=0）",
-      "返回 a = 10"
-    ],
-    l1: [
-      { data: "a=10", lru: 3, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l2: [
-      { data: "a=10", lru: 2, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 1, op: "Read a", type: "read", tick: 3,
+    substeps: [
+      { text: "在 L1 中查找 a → <strong>Miss</strong>（L1 为空）", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 a → <strong>Miss</strong>（L2 为空）", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 a → <strong>Miss</strong>（L3 为空）", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 a=10", action: "memread", target: "mem", memKey: "a" },
+      { text: "将 a=10 写入 <strong>L3 way0</strong>（设置 Valid=1, LRU=1, D=0）", action: "setvalid", target: "l3", way: 0,
+        delta: { l3: { 0: { data: "a=10", lru: 1, valid: true, dirty: false } } } },
+      { text: "将 a=10 写入 <strong>L2 way0</strong>（设置 Valid=1, LRU=2, D=0）", action: "setvalid", target: "l2", way: 0,
+        delta: { l2: { 0: { data: "a=10", lru: 2, valid: true, dirty: false } } } },
+      { text: "将 a=10 写入 <strong>L1 way0</strong>（设置 Valid=1, LRU=3, D=0）", action: "setvalid", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "a=10", lru: 3, valid: true, dirty: false } } } },
+      { text: "返回 <strong>a = 10</strong>", action: "done" }
+    ]
   },
   {
-    id: 2,
-    op: "Read b",
-    type: "read",
-    tick: 6,
-    badges: ["miss", "miss", "miss"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss"],
-    steps: [
-      "在 L1 中查找 b → <strong>Miss</strong>",
-      "在 L2 中查找 b → <strong>Miss</strong>",
-      "在 L3 中查找 b → <strong>Miss</strong>",
-      "从 Memory 读取 b=20",
-      "将 b=20 写入 L3（LRU=4, V=1, D=0）",
-      "将 b=20 写入 L2（LRU=5, V=1, D=0）",
-      "将 b=20 写入 L1（LRU=6, V=1, D=0）",
-      "返回 b = 20"
-    ],
-    l1: [
-      { data: "a=10", lru: 3, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 6, valid: true, dirty: false, hl: true }
-    ],
-    l2: [
-      { data: "a=10", lru: 2, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 5, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 2, op: "Read b", type: "read", tick: 6,
+    substeps: [
+      { text: "在 L1 中查找 b → <strong>Miss</strong>（L1 中只有 a）", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 b → <strong>Miss</strong>（L2 中只有 a）", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 b → <strong>Miss</strong>（L3 中只有 a）", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 b=20", action: "memread", target: "mem", memKey: "b" },
+      { text: "将 b=20 写入 <strong>L3 way1</strong>（V=1, LRU=4, D=0）", action: "setvalid", target: "l3", way: 1,
+        delta: { l3: { 1: { data: "b=20", lru: 4, valid: true, dirty: false } } } },
+      { text: "将 b=20 写入 <strong>L2 way1</strong>（V=1, LRU=5, D=0）", action: "setvalid", target: "l2", way: 1,
+        delta: { l2: { 1: { data: "b=20", lru: 5, valid: true, dirty: false } } } },
+      { text: "将 b=20 写入 <strong>L1 way1</strong>（V=1, LRU=6, D=0）", action: "setvalid", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "b=20", lru: 6, valid: true, dirty: false } } } },
+      { text: "返回 <strong>b = 20</strong>", action: "done" }
+    ]
   },
   {
-    id: 3,
-    op: "Read a",
-    type: "read",
-    tick: 7,
-    badges: ["hit"],
-    badgeLabels: ["L1 hit"],
-    steps: [
-      "在 L1 中查找 a → <strong>Hit!</strong>（a=10 在 L1 way0）",
-      "更新 L1 way0 的 LRU=7",
-      "返回 a = 10（仅需 1 tick）"
-    ],
-    l1: [
-      { data: "a=10", lru: 7, valid: true, dirty: false, hl: true },
-      { data: "b=20", lru: 6, valid: true, dirty: false, hl: false }
-    ],
-    l2: [
-      { data: "a=10", lru: 2, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 5, valid: true, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 3, op: "Read a", type: "read", tick: 7,
+    substeps: [
+      { text: "在 L1 中查找 a → <strong>Hit!</strong>（a=10 在 L1 way0）", action: "hit", target: "l1", way: 0 },
+      { text: "更新 L1 way0 的 <strong>LRU=7</strong>", action: "updatelru", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "a=10", lru: 7, valid: true, dirty: false } } } },
+      { text: "返回 <strong>a = 10</strong>（仅需 1 tick，L1 命中最快）", action: "done" }
+    ]
   },
   {
-    id: 4,
-    op: "Write b=21",
-    type: "write",
-    tick: 8,
-    badges: ["hit"],
-    badgeLabels: ["L1 hit"],
-    steps: [
-      "在 L1 中查找 b → <strong>Hit!</strong>（b=20 在 L1 way1）",
-      "Write-back: 仅修改 L1 中的数据 b=20 → b=21",
-      "标记 L1 way1: Dirty=1, LRU=8",
-      "L2/L3/Memory 中的 b 仍为 20（write-back 不立即更新下级）",
-      "返回，写操作完成"
-    ],
-    l1: [
-      { data: "a=10", lru: 7, valid: true, dirty: false, hl: false },
-      { data: "b=21", lru: 8, valid: true, dirty: true, hl: true }
-    ],
-    l2: [
-      { data: "a=10", lru: 2, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 5, valid: true, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 4, op: "Write b=21", type: "write", tick: 8,
+    substeps: [
+      { text: "在 L1 中查找 b → <strong>Hit!</strong>（b=20 在 L1 way1）", action: "hit", target: "l1", way: 1 },
+      { text: "Write-back: 修改 L1 数据 b=20 → <strong>b=21</strong>，标记 <strong>Dirty=1</strong>", action: "setdirty", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "b=21", lru: 6, valid: true, dirty: true } } } },
+      { text: "更新 L1 way1 的 <strong>LRU=8</strong>", action: "updatelru", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "b=21", lru: 8, valid: true, dirty: true } } } },
+      { text: "L2/L3/Memory 中的 b 仍为 20（<strong>write-back 不立即更新下级</strong>）", action: "info" },
+      { text: "返回，写操作完成", action: "done" }
+    ]
   },
   {
-    id: 5,
-    op: "Read c",
-    type: "read",
-    tick: 11,
-    badges: ["miss", "miss", "miss", "evict"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss", "L1 evict(a, not dirty)"],
-    steps: [
-      "在 L1 中查找 c → <strong>Miss</strong>",
-      "在 L2 中查找 c → <strong>Miss</strong>",
-      "在 L3 中查找 c → <strong>Miss</strong>",
-      "从 Memory 读取 c=30",
-      "将 c=30 写入 L3（LRU=9, V=1, D=0）",
-      "将 c=30 写入 L2（LRU=10, V=1, D=0）",
-      "<strong>L1 已满（2 way 都被占用）</strong>→ 需驱逐 LRU 最小的 way",
-      "L1 way0(a, LRU=7) vs way1(b, LRU=8) → 驱逐 way0(a)",
-      "a 在 L1 中 Dirty=0 → 直接丢弃（不需要写回）",
-      "将 c=30 写入 L1 way0（LRU=11, V=1, D=0）",
-      "返回 c = 30"
-    ],
-    l1: [
-      { data: "c=30", lru: 11, valid: true, dirty: false, hl: true },
-      { data: "b=21", lru: 8, valid: true, dirty: true, hl: false }
-    ],
-    l2: [
-      { data: "a=10", lru: 2, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 5, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 10, valid: true, dirty: false, hl: true }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 9, valid: true, dirty: false, hl: true },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 5, op: "Read c", type: "read", tick: 11,
+    substeps: [
+      { text: "在 L1 中查找 c → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 c → <strong>Miss</strong>", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 c → <strong>Miss</strong>", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 c=30", action: "memread", target: "mem", memKey: "c" },
+      { text: "将 c=30 写入 <strong>L3 way2</strong>（V=1, LRU=9, D=0）", action: "setvalid", target: "l3", way: 2,
+        delta: { l3: { 2: { data: "c=30", lru: 9, valid: true, dirty: false } } } },
+      { text: "将 c=30 写入 <strong>L2 way2</strong>（V=1, LRU=10, D=0）", action: "setvalid", target: "l2", way: 2,
+        delta: { l2: { 2: { data: "c=30", lru: 10, valid: true, dirty: false } } } },
+      { text: "<strong>L1 已满（2 way 都被占用）</strong>→ 需驱逐，比较 LRU：way0(a, LRU=7) vs way1(b, LRU=8)", action: "evict_compare", target: "l1",
+        highlights: { l1: [0, 1] } },
+      { text: "驱逐 L1 way0(a)，Dirty=0 → <strong>直接丢弃</strong>（不需要写回）", action: "evict", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 c=30 写入 <strong>L1 way0</strong>（V=1, LRU=11, D=0）", action: "setvalid", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "c=30", lru: 11, valid: true, dirty: false } } } },
+      { text: "返回 <strong>c = 30</strong>", action: "done" }
+    ]
   },
   {
-    id: 6,
-    op: "Write a=11",
-    type: "write",
-    tick: 14,
-    badges: ["miss", "hit", "evict", "writeback"],
-    badgeLabels: ["L1 miss", "L2 hit", "L1 evict(b=21, dirty)", "Write-back b=21→L2"],
-    steps: [
-      "在 L1 中查找 a → <strong>Miss</strong>（a 在 tick 11 被从 L1 驱逐）",
-      "在 L2 中查找 a → <strong>Hit!</strong>（a=10 在 L2 way0）",
-      "<strong>L1 已满</strong> → 需驱逐 LRU 最小的 way",
-      "L1 way0(c, LRU=11) vs way1(b=21, LRU=8) → 驱逐 way1(b=21)",
-      "b=21 在 L1 中 Dirty=1 → <strong>必须写回 L2</strong>",
-      "将 b=21 写回 L2 way1（更新 data=b=21, Dirty=1, LRU=13）",
-      "将 a=10 从 L2 fetch 到 L1 way1（LRU=14）",
-      "在 L1 way1 写入 a=11，标记 Dirty=1",
-      "更新 L2 way0 的 LRU=12",
-      "返回，写操作完成"
-    ],
-    l1: [
-      { data: "c=30", lru: 11, valid: true, dirty: false, hl: false },
-      { data: "a=11", lru: 14, valid: true, dirty: true, hl: true }
-    ],
-    l2: [
-      { data: "a=10", lru: 12, valid: true, dirty: false, hl: false },
-      { data: "b=21", lru: 13, valid: true, dirty: true, hl: false },
-      { data: "c=30", lru: 10, valid: true, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 9, valid: true, dirty: false, hl: false },
-      { data: "—", lru: 0, valid: false, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 6, op: "Write a=11", type: "write", tick: 14,
+    substeps: [
+      { text: "在 L1 中查找 a → <strong>Miss</strong>（a 在 tick 11 被从 L1 驱逐）", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 a → <strong>Hit!</strong>（a=10 在 L2 way0）", action: "hit", target: "l2", way: 0 },
+      { text: "更新 L2 way0 的 <strong>LRU=12</strong>", action: "updatelru", target: "l2", way: 0,
+        delta: { l2: { 0: { data: "a=10", lru: 12, valid: true, dirty: false } } } },
+      { text: "<strong>L1 已满</strong> → 比较 LRU：way0(c, LRU=11) vs way1(b=21, LRU=8)", action: "evict_compare", target: "l1",
+        highlights: { l1: [0, 1] } },
+      { text: "驱逐 L1 way1(b=21)，<strong>Dirty=1 → 必须写回 L2</strong>", action: "evict", target: "l1", way: 1 },
+      { text: "将 b=21 写回 <strong>L2 way1</strong>（更新 data=b=21, Dirty=1, LRU=13）", action: "writeback", target: "l2", way: 1,
+        delta: { l2: { 1: { data: "b=21", lru: 13, valid: true, dirty: true } },
+                 l1: { 1: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 a=10 从 L2 <strong>fetch 到 L1 way1</strong>（LRU=14）", action: "fetch", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "a=10", lru: 14, valid: true, dirty: false } } } },
+      { text: "在 L1 way1 写入 <strong>a=11</strong>，标记 <strong>Dirty=1</strong>", action: "setdirty", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "a=11", lru: 14, valid: true, dirty: true } } } },
+      { text: "返回，写操作完成", action: "done" }
+    ]
   },
   {
-    id: 7,
-    op: "Read d",
-    type: "read",
-    tick: 17,
-    badges: ["miss", "miss", "miss", "evict", "evict", "backinval"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss", "L1 evict(c, not dirty)", "L2 evict(c, not dirty)", "L2 back-inval L1(c)"],
-    steps: [
-      "在 L1 中查找 d → <strong>Miss</strong>",
-      "在 L2 中查找 d → <strong>Miss</strong>",
-      "在 L3 中查找 d → <strong>Miss</strong>",
-      "从 Memory 读取 d=40",
-      "将 d=40 写入 L3（LRU=15, V=1, D=0）",
-      "<strong>L2 已满（3 way 全占）</strong>→ 需驱逐 LRU 最小的 way",
-      "L2: way0(a, LRU=12) vs way1(b=21, LRU=13) vs way2(c, LRU=10) → 驱逐 way2(c, LRU=10)",
-      "c 在 L2 中 Dirty=0 → 直接丢弃",
-      "<strong>Back Invalidation:</strong> L2 驱逐 c → 必须无效化 L1 中的 c",
-      "L1 way0(c) → 标记 Valid=0（c 在 L1 中 Dirty=0，直接丢弃）",
-      "将 d=40 写入 L2 way2（LRU=16, V=1, D=0）",
-      "将 d=40 写入 L1 way0（LRU=17, V=1, D=0）",
-      "返回 d = 40"
-    ],
-    l1: [
-      { data: "d=40", lru: 17, valid: true, dirty: false, hl: true },
-      { data: "a=11", lru: 14, valid: true, dirty: true, hl: false }
-    ],
-    l2: [
-      { data: "a=10", lru: 12, valid: true, dirty: false, hl: false },
-      { data: "b=21", lru: 13, valid: true, dirty: true, hl: false },
-      { data: "d=40", lru: 16, valid: true, dirty: false, hl: true }
-    ],
-    l3: [
-      { data: "a=10", lru: 1, valid: true, dirty: false, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 9, valid: true, dirty: false, hl: false },
-      { data: "d=40", lru: 15, valid: true, dirty: false, hl: true }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 7, op: "Read d", type: "read", tick: 17,
+    substeps: [
+      { text: "在 L1 中查找 d → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 d → <strong>Miss</strong>", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 d → <strong>Miss</strong>", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 d=40", action: "memread", target: "mem", memKey: "d" },
+      { text: "将 d=40 写入 <strong>L3 way3</strong>（V=1, LRU=15, D=0）", action: "setvalid", target: "l3", way: 3,
+        delta: { l3: { 3: { data: "d=40", lru: 15, valid: true, dirty: false } } } },
+      { text: "<strong>L2 已满（3 way 全占）</strong>→ 比较 LRU：way0(a, LRU=12) vs way1(b=21, LRU=13) vs way2(c, LRU=10)", action: "evict_compare", target: "l2",
+        highlights: { l2: [0, 1, 2] } },
+      { text: "驱逐 L2 way2(c, LRU=10)，Dirty=0 → <strong>直接丢弃</strong>", action: "evict", target: "l2", way: 2,
+        delta: { l2: { 2: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "<strong>Back Invalidation:</strong> L2 驱逐 c → 必须无效化 L1 中的 c", action: "backinval", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 d=40 写入 <strong>L2 way2</strong>（V=1, LRU=16, D=0）", action: "setvalid", target: "l2", way: 2,
+        delta: { l2: { 2: { data: "d=40", lru: 16, valid: true, dirty: false } } } },
+      { text: "将 d=40 写入 <strong>L1 way0</strong>（V=1, LRU=17, D=0）", action: "setvalid", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "d=40", lru: 17, valid: true, dirty: false } } } },
+      { text: "返回 <strong>d = 40</strong>", action: "done" }
+    ]
   },
   {
-    id: 8,
-    op: "Read c",
-    type: "read",
-    tick: 22,
-    badges: ["miss", "miss", "hit", "evict", "evict", "backinval", "writeback", "writeback"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 hit", "L1 evict(a=11, dirty)", "L2 evict(a→dirty)", "L2 back-inval L1", "a=11 L1→L2", "a=11 L2→L3"],
-    steps: [
-      "在 L1 中查找 c → <strong>Miss</strong>",
-      "在 L2 中查找 c → <strong>Miss</strong>（c 在 tick 17 从 L2 被驱逐）",
-      "在 L3 中查找 c → <strong>Hit!</strong>（c=30 在 L3 way2）",
-      "<strong>L2 已满</strong> → 需驱逐 LRU 最小的 way",
-      "L2: way0(a, LRU=12) vs way1(b=21, LRU=13) vs way2(d, LRU=16) → 驱逐 way0(a, LRU=12)",
-      "<strong>Back Invalidation:</strong> L2 驱逐 a → 必须无效化 L1 中的 a",
-      "L1 way1(a=11, Dirty=1) → <strong>Dirty! 必须先写回 L2</strong>",
-      "将 a=11 从 L1 写回到 L2 way0（LRU=19, Dirty=1）",
-      "L1 way1 标记 Valid=0",
-      "现在 L2 way0 又有数据了(a=11, dirty) → 但 L2 仍需驱逐以腾空间",
-      "L2 way0(a=11, LRU=19, dirty) 被选中驱逐 → <strong>需写回 L3</strong>",
-      "将 a=11 从 L2 写回 L3 way0（LRU=20, Dirty=1）",
-      "将 c=30 从 L3 fetch 到 L2 way0（LRU=21, V=1, D=0）",
-      "将 c=30 fetch 到 L1 way1...但 L1 也需驱逐",
-      "L1 way0(d, LRU=17) vs way1(invalid) → 使用 invalid way1",
-      "将 c=30 写入 L1 way1（LRU=22, V=1, D=0）",
-      "更新 L3 way2(c) 的 LRU=18",
-      "返回 c = 30"
-    ],
-    l1: [
-      { data: "d=40", lru: 17, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 22, valid: true, dirty: false, hl: true }
-    ],
-    l2: [
-      { data: "c=30", lru: 21, valid: true, dirty: false, hl: true },
-      { data: "b=21", lru: 13, valid: true, dirty: true, hl: false },
-      { data: "d=40", lru: 16, valid: true, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=11", lru: 20, valid: true, dirty: true, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 18, valid: true, dirty: false, hl: false },
-      { data: "d=40", lru: 15, valid: true, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 8, op: "Read c", type: "read", tick: 22,
+    substeps: [
+      { text: "在 L1 中查找 c → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 c → <strong>Miss</strong>（c 在 tick 17 从 L2 被驱逐）", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 c → <strong>Hit!</strong>（c=30 在 L3 way2）", action: "hit", target: "l3", way: 2 },
+      { text: "更新 L3 way2(c) 的 <strong>LRU=18</strong>", action: "updatelru", target: "l3", way: 2,
+        delta: { l3: { 2: { data: "c=30", lru: 18, valid: true, dirty: false } } } },
+      { text: "<strong>L2 已满</strong> → 比较 LRU：way0(a, LRU=12) vs way1(b=21, LRU=13) vs way2(d, LRU=16)", action: "evict_compare", target: "l2",
+        highlights: { l2: [0, 1, 2] } },
+      { text: "驱逐 L2 way0(a, LRU=12) <strong>Dirty=1 → 必须写回 L3</strong>", action: "evict", target: "l2", way: 0,},
+      { text: "<strong>Back Invalidation:</strong> L2 驱逐 a → L1 way1(a=11) 必须无效化", action: "backinval", target: "l1", way: 1 },
+      { text: "L1 way1(a=11, <strong>Dirty=1</strong>) → 必须先写回 L2 way0", action: "writeback", target: "l2", way: 0,
+        delta: { l2: { 0: { data: "a=11", lru: 19, valid: true, dirty: true } } } },
+      { text: "L1 way1 标记 <strong>Valid=0</strong>（a 从 L1 移除）", action: "backinval", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "L2 way0(a=11, dirty) 仍需被驱逐 → <strong>写回 L3 way0</strong>", action: "writeback", target: "l3", way: 0,
+        delta: { l3: { 0: { data: "a=11", lru: 20, valid: true, dirty: true } },
+                 l2: { 0: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 c=30 从 L3 fetch 到 <strong>L2 way0</strong>（LRU=21, V=1, D=0）", action: "setvalid", target: "l2", way: 0,
+        delta: { l2: { 0: { data: "c=30", lru: 21, valid: true, dirty: false } } } },
+      { text: "L1 way1 已 invalid → 直接使用，将 c=30 写入 <strong>L1 way1</strong>（LRU=22, V=1, D=0）", action: "setvalid", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "c=30", lru: 22, valid: true, dirty: false } } } },
+      { text: "返回 <strong>c = 30</strong>", action: "done" }
+    ]
   },
   {
-    id: 9,
-    op: "Write b=22",
-    type: "write",
-    tick: 24,
-    badges: ["miss", "hit", "evict"],
-    badgeLabels: ["L1 miss", "L2 hit", "L1 evict(d, not dirty)"],
-    steps: [
-      "在 L1 中查找 b → <strong>Miss</strong>",
-      "在 L2 中查找 b → <strong>Hit!</strong>（b=21 在 L2 way1）",
-      "<strong>L1 已满</strong> → 需驱逐 LRU 最小的 way",
-      "L1 way0(d, LRU=17) vs way1(c, LRU=22) → 驱逐 way0(d, LRU=17)",
-      "d 在 L1 中 Dirty=0 → 直接丢弃",
-      "将 b=21 从 L2 fetch 到 L1 way0（LRU=24）",
-      "在 L1 way0 写入 b=22，标记 Dirty=1",
-      "更新 L2 way1 的 LRU=23",
-      "返回，写操作完成"
-    ],
-    l1: [
-      { data: "b=22", lru: 24, valid: true, dirty: true, hl: true },
-      { data: "c=30", lru: 22, valid: true, dirty: false, hl: false }
-    ],
-    l2: [
-      { data: "c=30", lru: 21, valid: true, dirty: false, hl: false },
-      { data: "b=21", lru: 23, valid: true, dirty: true, hl: false },
-      { data: "d=40", lru: 16, valid: true, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=11", lru: 20, valid: true, dirty: true, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 18, valid: true, dirty: false, hl: false },
-      { data: "d=40", lru: 15, valid: true, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 9, op: "Write b=22", type: "write", tick: 24,
+    substeps: [
+      { text: "在 L1 中查找 b → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 b → <strong>Hit!</strong>（b=21 在 L2 way1）", action: "hit", target: "l2", way: 1 },
+      { text: "更新 L2 way1 的 <strong>LRU=23</strong>", action: "updatelru", target: "l2", way: 1,
+        delta: { l2: { 1: { data: "b=21", lru: 23, valid: true, dirty: true } } } },
+      { text: "<strong>L1 已满</strong> → 比较 LRU：way0(d, LRU=17) vs way1(c, LRU=22)", action: "evict_compare", target: "l1",
+        highlights: { l1: [0, 1] } },
+      { text: "驱逐 L1 way0(d, LRU 最小)，Dirty=0 → <strong>直接丢弃</strong>", action: "evict", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 b=21 从 L2 <strong>fetch 到 L1 way0</strong>（LRU=24）", action: "fetch", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "b=21", lru: 24, valid: true, dirty: false } } } },
+      { text: "在 L1 way0 写入 <strong>b=22</strong>，标记 <strong>Dirty=1</strong>", action: "setdirty", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "b=22", lru: 24, valid: true, dirty: true } } } },
+      { text: "返回，写操作完成", action: "done" }
+    ]
   },
   {
-    id: 10,
-    op: "Write c=31",
-    type: "write",
-    tick: 25,
-    badges: ["hit"],
-    badgeLabels: ["L1 hit"],
-    steps: [
-      "在 L1 中查找 c → <strong>Hit!</strong>（c=30 在 L1 way1）",
-      "Write-back: 仅修改 L1 中的数据 c=30 → c=31",
-      "标记 L1 way1: Dirty=1, LRU=25",
-      "L2/L3/Memory 中的 c 仍为 30",
-      "返回，写操作完成"
-    ],
-    l1: [
-      { data: "b=22", lru: 24, valid: true, dirty: true, hl: false },
-      { data: "c=31", lru: 25, valid: true, dirty: true, hl: true }
-    ],
-    l2: [
-      { data: "c=30", lru: 21, valid: true, dirty: false, hl: false },
-      { data: "b=21", lru: 23, valid: true, dirty: true, hl: false },
-      { data: "d=40", lru: 16, valid: true, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=11", lru: 20, valid: true, dirty: true, hl: false },
-      { data: "b=20", lru: 4, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 18, valid: true, dirty: false, hl: false },
-      { data: "d=40", lru: 15, valid: true, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:20, c:30, d:40, e:50, f:60 },
-    memChanged: []
+    id: 10, op: "Write c=31", type: "write", tick: 25,
+    substeps: [
+      { text: "在 L1 中查找 c → <strong>Hit!</strong>（c=30 在 L1 way1）", action: "hit", target: "l1", way: 1 },
+      { text: "Write-back: 修改 L1 数据 c=30 → <strong>c=31</strong>，标记 <strong>Dirty=1</strong>", action: "setdirty", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "c=31", lru: 22, valid: true, dirty: true } } } },
+      { text: "更新 L1 way1 的 <strong>LRU=25</strong>", action: "updatelru", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "c=31", lru: 25, valid: true, dirty: true } } } },
+      { text: "L2/L3/Memory 中的 c 仍为 30（<strong>write-back 不立即更新下级</strong>）", action: "info" },
+      { text: "返回，写操作完成", action: "done" }
+    ]
   },
   {
-    id: 11,
-    op: "Read e",
-    type: "read",
-    tick: 30,
-    badges: ["miss", "miss", "miss", "backinval", "backinval", "writeback", "writeback", "writeback"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss", "L3 back-inval L2(b)", "L2 back-inval L1(b=22)", "b=22 L1→L2", "b=22 L2→L3", "b=22 L3→Mem"],
-    steps: [
-      "在 L1 中查找 e → <strong>Miss</strong>",
-      "在 L2 中查找 e → <strong>Miss</strong>",
-      "在 L3 中查找 e → <strong>Miss</strong>",
-      "从 Memory 读取 e=50",
-      "<strong>L3 已满（4 way 全占）</strong>→ 需驱逐 LRU 最小的行",
-      "L3: way0(a=11, LRU=20) vs way1(b=20, LRU=4) vs way2(c, LRU=18) vs way3(d, LRU=15) → 驱逐 way1(b, LRU=4)",
-      "<strong>Back Invalidation 链：</strong>L3 驱逐 b → L2 中的 b 必须无效化",
-      "L2 way1(b=21, Dirty=1) → L2 需 back-invalidate L1 中的 b",
-      "L1 way0(b=22, Dirty=1) → <strong>Dirty! 写回 L2</strong>",
-      "将 b=22 写回 L2 way1（更新为 b=22, Dirty=1）",
-      "L1 way0 标记 Valid=0",
-      "L2 way1(b=22, Dirty=1) 需被驱逐 → <strong>写回 L3</strong>",
-      "将 b=22 写回 L3 way1（更新为 b=22, Dirty=1）",
-      "L2 way1 标记 Valid=0",
-      "L3 way1(b=22, Dirty=1) 需被驱逐 → <strong>写回 Memory</strong>",
-      "将 b=22 写回 Memory（Memory 中 b: 20→22）",
-      "将 e=50 写入 L3 way1（LRU=28, V=1, D=0）",
-      "将 e=50 写入 L2 way1（LRU=29, V=1, D=0）",
-      "将 e=50 写入 L1 way0（LRU=30, V=1, D=0）",
-      "返回 e = 50"
-    ],
-    l1: [
-      { data: "e=50", lru: 30, valid: true, dirty: false, hl: true },
-      { data: "c=31", lru: 25, valid: true, dirty: true, hl: false }
-    ],
-    l2: [
-      { data: "c=30", lru: 21, valid: true, dirty: false, hl: false },
-      { data: "e=50", lru: 29, valid: true, dirty: false, hl: true },
-      { data: "d=40", lru: 16, valid: true, dirty: false, hl: false }
-    ],
-    l3: [
-      { data: "a=11", lru: 20, valid: true, dirty: true, hl: false },
-      { data: "e=50", lru: 28, valid: true, dirty: false, hl: true },
-      { data: "c=30", lru: 18, valid: true, dirty: false, hl: false },
-      { data: "d=40", lru: 15, valid: true, dirty: false, hl: false }
-    ],
-    mem: { a:10, b:22, c:30, d:40, e:50, f:60 },
-    memChanged: ["b"]
+    id: 11, op: "Read e", type: "read", tick: 30,
+    substeps: [
+      { text: "在 L1 中查找 e → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 e → <strong>Miss</strong>", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 e → <strong>Miss</strong>", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 e=50", action: "memread", target: "mem", memKey: "e" },
+      { text: "<strong>L3 已满</strong> → 比较 LRU：way0(a=11, LRU=20) vs way1(b=20, LRU=4) vs way2(c, LRU=18) vs way3(d, LRU=15)", action: "evict_compare", target: "l3",
+        highlights: { l3: [0, 1, 2, 3] } },
+      { text: "驱逐 L3 way1(b, LRU 最小)，Dirty=0 → 但需触发 <strong>Back Invalidation 链</strong>", action: "evict", target: "l3", way: 1 },
+      { text: "<strong>Back Invalidation：</strong>L3 驱逐 b → L2 way1(b=21) 必须无效化", action: "backinval", target: "l2", way: 1 },
+      { text: "L2 way1(b=21, Dirty=1) → 需 <strong>back-invalidate L1</strong> 中的 b", action: "backinval", target: "l1", way: 0 },
+      { text: "L1 way0(b=22, <strong>Dirty=1</strong>) → 写回 L2 way1", action: "writeback", target: "l2", way: 1,
+        delta: { l2: { 1: { data: "b=22", lru: 13, valid: true, dirty: true } } } },
+      { text: "L1 way0 标记 <strong>Valid=0</strong>", action: "backinval", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "L2 way1(b=22, Dirty=1) 被驱逐 → <strong>写回 L3 way1</strong>", action: "writeback", target: "l3", way: 1,
+        delta: { l3: { 1: { data: "b=22", lru: 4, valid: true, dirty: true } },
+                 l2: { 1: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "L3 way1(b=22, Dirty=1) 被驱逐 → <strong>写回 Memory</strong>（b: 20→22）", action: "memwrite", target: "mem", memKey: "b",
+        delta: { mem: { b: 22 }, l3: { 1: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 e=50 写入 <strong>L3 way1</strong>（V=1, LRU=28, D=0）", action: "setvalid", target: "l3", way: 1,
+        delta: { l3: { 1: { data: "e=50", lru: 28, valid: true, dirty: false } } } },
+      { text: "将 e=50 写入 <strong>L2 way1</strong>（V=1, LRU=29, D=0）", action: "setvalid", target: "l2", way: 1,
+        delta: { l2: { 1: { data: "e=50", lru: 29, valid: true, dirty: false } } } },
+      { text: "将 e=50 写入 <strong>L1 way0</strong>（V=1, LRU=30, D=0）", action: "setvalid", target: "l1", way: 0,
+        delta: { l1: { 0: { data: "e=50", lru: 30, valid: true, dirty: false } } } },
+      { text: "返回 <strong>e = 50</strong>", action: "done" }
+    ]
   },
   {
-    id: 12,
-    op: "Read f",
-    type: "read",
-    tick: 34,
-    badges: ["miss", "miss", "miss", "backinval", "evict", "writeback"],
-    badgeLabels: ["L1 miss", "L2 miss", "L3 miss", "L3 back-inval L2(d)", "L2 back-inval L1(d)", "c=31 L1→L2"],
-    steps: [
-      "在 L1 中查找 f → <strong>Miss</strong>",
-      "在 L2 中查找 f → <strong>Miss</strong>",
-      "在 L3 中查找 f → <strong>Miss</strong>",
-      "从 Memory 读取 f=60",
-      "<strong>L3 已满</strong> → 驱逐 LRU 最小的行",
-      "L3: way0(a=11, LRU=20) vs way1(e, LRU=28) vs way2(c, LRU=18) vs way3(d, LRU=15) → 驱逐 way3(d, LRU=15)",
-      "d 在 L3 中 Dirty=0 → 直接丢弃",
-      "<strong>Back Invalidation：</strong>L3 驱逐 d → L2 中 d 必须无效化",
-      "L2 way2(d, Dirty=0) → 丢弃，并 back-invalidate L1",
-      "L1 中无 d（已在 tick 24 被驱逐）→ 无需操作",
-      "将 f=60 写入 L3 way3（LRU=31, V=1, D=0）",
-      "<strong>L2 已满</strong>→ 需驱逐（wait, L2 way2 刚被 invalidated）→ 使用空出的 way2",
-      "将 f=60 写入 L2 way2（LRU=32, V=1, D=0）",
-      "<strong>L1 已满</strong>→ 需驱逐 LRU 最小的 way",
-      "L1 way0(e, LRU=30) vs way1(c=31, LRU=25) → 驱逐 way1(c=31, LRU=25)",
-      "c=31 在 L1 中 Dirty=1 → <strong>写回 L2</strong>",
-      "将 c=31 写回 L2 way0（更新为 c=31, Dirty=1, LRU=33）",
-      "将 f=60 写入 L1 way1（LRU=34, V=1, D=0）",
-      "返回 f = 60"
-    ],
-    l1: [
-      { data: "e=50", lru: 30, valid: true, dirty: false, hl: false },
-      { data: "f=60", lru: 34, valid: true, dirty: false, hl: true }
-    ],
-    l2: [
-      { data: "c=31", lru: 33, valid: true, dirty: true, hl: false },
-      { data: "e=50", lru: 29, valid: true, dirty: false, hl: false },
-      { data: "f=60", lru: 32, valid: true, dirty: false, hl: true }
-    ],
-    l3: [
-      { data: "a=11", lru: 20, valid: true, dirty: true, hl: false },
-      { data: "e=50", lru: 28, valid: true, dirty: false, hl: false },
-      { data: "c=30", lru: 18, valid: true, dirty: false, hl: false },
-      { data: "f=60", lru: 31, valid: true, dirty: false, hl: true }
-    ],
-    mem: { a:10, b:22, c:30, d:40, e:50, f:60 },
-    memChanged: []
-  },
+    id: 12, op: "Read f", type: "read", tick: 34,
+    substeps: [
+      { text: "在 L1 中查找 f → <strong>Miss</strong>", action: "miss", target: "l1" },
+      { text: "在 L2 中查找 f → <strong>Miss</strong>", action: "miss", target: "l2" },
+      { text: "在 L3 中查找 f → <strong>Miss</strong>", action: "miss", target: "l3" },
+      { text: "从 <strong>Memory</strong> 读取 f=60", action: "memread", target: "mem", memKey: "f" },
+      { text: "<strong>L3 已满</strong> → 比较 LRU：way0(a=11, LRU=20) vs way1(e, LRU=28) vs way2(c, LRU=18) vs way3(d, LRU=15)", action: "evict_compare", target: "l3",
+        highlights: { l3: [0, 1, 2, 3] } },
+      { text: "驱逐 L3 way3(d, LRU 最小)", action: "evict", target: "l3", way: 3 },
+      { text: "<strong>Back Invalidation：</strong>L3 驱逐 d → L2 way2(d)", action: "backinval", target: "l2", way: 2},
+      { text: "L1 中无 d（已在 tick 24 被驱逐）→ <strong>无需操作</strong>", action: "info" },
+      { text: "L2 way2(d, Dirty=0) 被驱逐 → <strong>直接丢弃</strong>（不需要写回）", action: "evict", target: "l2", way: 2,
+        delta: { l2: { 2: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "驱逐 L3 way3(d, LRU 最小)，Dirty=0 → <strong>直接丢弃</strong>", action: "evict", target: "l3", way: 3,
+        delta: { l3: { 3: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 f=60 写入 <strong>L3 way3</strong>（V=1, LRU=31, D=0）", action: "setvalid", target: "l3", way: 3,
+        delta: { l3: { 3: { data: "f=60", lru: 31, valid: true, dirty: false } } } },
+      { text: "L2 way2 刚被 invalidated → 使用空位，将 f=60 写入 <strong>L2 way2</strong>（V=1, LRU=32, D=0）", action: "setvalid", target: "l2", way: 2,
+        delta: { l2: { 2: { data: "f=60", lru: 32, valid: true, dirty: false } } } },
+      { text: "<strong>L1 已满</strong> → 比较 LRU：way0(e, LRU=30) vs way1(c=31, LRU=25)", action: "evict_compare", target: "l1",
+        highlights: { l1: [0, 1] } },
+      { text: "驱逐 L1 way1(c=31, LRU 最小)，<strong>Dirty=1 → 必须写回</strong>", action: "evict", target: "l1", way: 1 },
+      { text: "将 c=31 写回 <strong>L2 way0</strong>（c=31, Dirty=1, LRU=33）", action: "writeback", target: "l2", way: 0,
+        delta: { l2: { 0: { data: "c=31", lru: 33, valid: true, dirty: true } },
+                 l1: { 1: { data: "—", lru: 0, valid: false, dirty: false } } } },
+      { text: "将 f=60 写入 <strong>L1 way1</strong>（V=1, LRU=34, D=0）", action: "setvalid", target: "l1", way: 1,
+        delta: { l1: { 1: { data: "f=60", lru: 34, valid: true, dirty: false } } } },
+      { text: "返回 <strong>f = 60</strong>", action: "done" }
+    ]
+  }
 ];
 
-// Build nav
+// Action display names
+const actionNames = {
+  miss: "MISS", hit: "HIT", evict: "EVICT", evict_compare: "LRU 比较",
+  writeback: "WRITE-BACK", setvalid: "SET VALID", setdirty: "SET DIRTY",
+  backinval: "BACK-INVAL", fetch: "FETCH", updatelru: "UPDATE LRU",
+  memread: "MEM READ", memwrite: "MEM WRITE", info: "INFO", done: "DONE", init: "INIT"
+};
+
+// Flow arrow directions per action
+const flowArrows = {
+  writeback: "down", fetch: "up", setvalid: "up", memread: "up", memwrite: "down"
+};
+
+// State management
+let currentTraceIdx = 0;
+let currentStepIdx = {};  // traceIdx -> stepIdx
+let playIntervals = {};   // traceIdx -> interval
+let speeds = {};          // traceIdx -> speed ms
+
+// Compute intermediate states for a trace
+function computeStates(traceIdx) {
+  // Get the state at the END of the previous trace
+  let baseState;
+  if (traceIdx === 0) {
+    baseState = cl(initState);
+  } else {
+    const prevStates = computeStates(traceIdx - 1);
+    baseState = cl(prevStates[prevStates.length - 1]);
+  }
+
+  const states = [cl(baseState)]; // State before first step
+  const trace = traces[traceIdx];
+
+  for (let i = 0; i < trace.substeps.length; i++) {
+    const step = trace.substeps[i];
+    const prevState = cl(states[states.length - 1]);
+
+    if (step.delta) {
+      for (const level of ['l1', 'l2', 'l3']) {
+        if (step.delta[level]) {
+          for (const wayStr in step.delta[level]) {
+            const way = parseInt(wayStr);
+            prevState[level][way] = cl(step.delta[level][way]);
+          }
+        }
+      }
+      if (step.delta.mem) {
+        for (const key in step.delta.mem) {
+          prevState.mem[key] = step.delta.mem[key];
+        }
+      }
+    }
+
+    states.push(prevState);
+  }
+
+  return states;
+}
+
+// Cache states per trace (memoized)
+const stateCache = {};
+function getStates(traceIdx) {
+  if (!stateCache[traceIdx]) {
+    stateCache[traceIdx] = computeStates(traceIdx);
+  }
+  return stateCache[traceIdx];
+}
+
+// Build UI
 const nav = document.getElementById('nav');
 const tracesDiv = document.getElementById('traces');
 
 traces.forEach((t, i) => {
+  currentStepIdx[i] = 0;
+  speeds[i] = 1200;
+
   // Nav button
   const btn = document.createElement('button');
   btn.textContent = `${i}. ${t.op}`;
@@ -825,86 +950,357 @@ traces.forEach((t, i) => {
   btn.onclick = () => showTrace(i);
   nav.appendChild(btn);
 
-  // Card
+  // Build card
   const card = document.createElement('div');
   card.className = 'trace-card' + (i === 0 ? ' visible' : '');
   card.id = 'trace-' + i;
 
-  const isWrite = t.type === 'write';
-  let html = `
+  card.innerHTML = buildTraceHTML(t, i);
+  tracesDiv.appendChild(card);
+
+  // Initial render
+  renderStep(i, 0);
+});
+
+function buildTraceHTML(t, idx) {
+  const totalSteps = t.substeps.length;
+  return `
     <div class="trace-header">
       <span class="trace-op ${t.type}">${t.op}</span>
       <span class="tick-badge">Tick ${t.tick}</span>
-      <div class="result-badges">
-        ${(t.badgeLabels || t.badges).map((b, bi) => {
-          const cls = (t.badges[bi] || b).toLowerCase().replace(/[^a-z]/g,'');
-          return `<span class="badge ${cls}">${typeof b === 'string' ? b : t.badges[bi]}</span>`;
-        }).join('')}
+    </div>
+    <div class="step-controls">
+      <button onclick="stepFirst(${idx})" title="第一步">⏮</button>
+      <button onclick="stepPrev(${idx})" title="上一步">◀</button>
+      <button id="play-btn-${idx}" onclick="togglePlay(${idx})" title="自动播放">▶</button>
+      <button onclick="stepNext(${idx})" title="下一步">▶</button>
+      <button onclick="stepLast(${idx})" title="最后一步">⏭</button>
+      <span class="step-counter" id="step-counter-${idx}">1 / ${totalSteps}</span>
+      <div class="speed-control">
+        <label>速度</label>
+        <input type="range" min="200" max="3000" value="1200" step="100"
+          oninput="speeds[${idx}]=this.value" title="自动播放速度">
+        <label>🐢</label>
       </div>
     </div>
-    <div class="steps">
-      ${t.steps.map((s, si) => `
-        <div class="step">
-          <span class="step-num">${si+1}</span>
-          <span class="step-text">${s}</span>
-        </div>
-      `).join('')}
+    <div class="step-progress"><div class="step-progress-bar" id="progress-${idx}" style="width:0%"></div></div>
+    <div class="steps-timeline" id="timeline-${idx}">
+      ${t.substeps.map((s, si) => `<div class="st-dot ${si === 0 ? 'active' : ''}" data-step="${si}" onclick="goToStep(${idx},${si})">${si+1}</div>`).join('')}
     </div>
-    <div class="cache-state">
-      ${renderCacheLevel('L1', '2-way', 'l1', t.l1)}
-      ${renderCacheLevel('L2', '3-way', 'l2', t.l2)}
-      ${renderCacheLevel('L3', '4-way', 'l3', t.l3)}
+    <div class="current-step" id="current-step-${idx}">
+      <span class="step-action-badge" id="step-badge-${idx}"></span>
+      <span class="step-text-display" id="step-text-${idx}"></span>
     </div>
-    <div class="memory-row">
-      <div class="mem-header">Memory</div>
-      <div class="mem-cells">
-        ${Object.entries(t.mem).map(([k,v]) => {
-          const changed = (t.memChanged || []).includes(k);
-          return `<span class="mem-cell${changed ? ' changed' : ''}">${k}=${v}</span>`;
-        }).join('')}
+    <div class="cache-viz" id="cache-viz-${idx}">
+      <div class="cache-level" id="cl-l1-${idx}">
+        <div class="cache-level-header"><span class="l1">L1</span><span style="color:var(--text-dim);font-weight:400;font-size:0.75rem">(2-way)</span></div>
+        <div class="cache-lines" id="lines-l1-${idx}"></div>
       </div>
-    </div>
-  `;
-  card.innerHTML = html;
-  tracesDiv.appendChild(card);
-});
-
-function renderCacheLevel(name, ways, cls, lines) {
-  const colorClass = name.toLowerCase();
-  return `
-    <div class="cache-level">
-      <div class="cache-level-header">
-        <span class="${colorClass}">${name}</span>
-        <span style="color:var(--text-dim);font-weight:400;font-size:0.75rem">(${ways})</span>
+      <div class="flow-arrow" id="arrow-l1l2-${idx}"><div class="arrow-body" id="arrow-body-l1l2-${idx}"></div></div>
+      <div class="cache-level" id="cl-l2-${idx}">
+        <div class="cache-level-header"><span class="l2">L2</span><span style="color:var(--text-dim);font-weight:400;font-size:0.75rem">(3-way)</span></div>
+        <div class="cache-lines" id="lines-l2-${idx}"></div>
       </div>
-      <div class="cache-lines">
-        ${lines.map((l, i) => {
-          const empty = !l.valid;
-          const classes = ['cache-line'];
-          if (empty) classes.push('empty');
-          if (l.hl) classes.push('highlight');
-          if (l.dirty) classes.push('dirty-line');
-          return `
-            <div class="${classes.join(' ')}">
-              <span style="color:var(--text-dim);font-size:0.7rem">way${i}</span>
-              <span class="cl-data">${l.data}</span>
-              <span class="cl-meta">LRU=${l.lru}</span>
-              <span class="${l.valid ? 'cl-valid' : 'cl-invalid'}">${l.valid ? 'V' : '—'}</span>
-              ${l.dirty ? '<span class="cl-dirty">D</span>' : ''}
-            </div>
-          `;
-        }).join('')}
+      <div class="flow-arrow" id="arrow-l2l3-${idx}"><div class="arrow-body" id="arrow-body-l2l3-${idx}"></div></div>
+      <div class="cache-level" id="cl-l3-${idx}">
+        <div class="cache-level-header"><span class="l3">L3</span><span style="color:var(--text-dim);font-weight:400;font-size:0.75rem">(4-way)</span></div>
+        <div class="cache-lines" id="lines-l3-${idx}"></div>
+      </div>
+      <div class="flow-arrow" id="arrow-l3mem-${idx}"><div class="arrow-body" id="arrow-body-l3mem-${idx}"></div></div>
+      <div class="memory-row" id="mem-row-${idx}">
+        <div class="mem-header">Memory</div>
+        <div class="mem-cells" id="mem-cells-${idx}"></div>
       </div>
     </div>
   `;
 }
 
+function renderStep(traceIdx, stepIdx) {
+  const trace = traces[traceIdx];
+  const states = getStates(traceIdx);
+  const step = trace.substeps[stepIdx];
+  const totalSteps = trace.substeps.length;
+
+  // The state AFTER this step is applied
+  const state = states[stepIdx + 1];
+  // The state BEFORE this step
+  const prevState = states[stepIdx];
+
+  // Update counter and progress
+  document.getElementById(`step-counter-${traceIdx}`).textContent = `${stepIdx + 1} / ${totalSteps}`;
+  document.getElementById(`progress-${traceIdx}`).style.width = `${((stepIdx + 1) / totalSteps) * 100}%`;
+
+  // Update timeline dots
+  const dots = document.querySelectorAll(`#timeline-${traceIdx} .st-dot`);
+  dots.forEach((dot, i) => {
+    dot.className = 'st-dot';
+    if (i < stepIdx) dot.classList.add('completed');
+    if (i === stepIdx) {
+      dot.classList.add('active');
+      const act = trace.substeps[i].action;
+      if (['hit','miss','evict','writeback','backinval','setdirty'].includes(act)) {
+        dot.classList.add(act);
+      }
+    }
+  });
+
+  // Update current step display
+  const stepDiv = document.getElementById(`current-step-${traceIdx}`);
+  stepDiv.className = 'current-step action-' + step.action;
+  document.getElementById(`step-badge-${traceIdx}`).className = 'step-action-badge ' + step.action;
+  document.getElementById(`step-badge-${traceIdx}`).textContent = actionNames[step.action] || step.action;
+  document.getElementById(`step-text-${traceIdx}`).innerHTML = step.text;
+
+  // Clear all level effects
+  ['l1', 'l2', 'l3'].forEach(level => {
+    const el = document.getElementById(`cl-${level}-${traceIdx}`);
+    el.className = 'cache-level';
+  });
+
+  // Clear arrows
+  ['l1l2', 'l2l3', 'l3mem'].forEach(key => {
+    document.getElementById(`arrow-${key}-${traceIdx}`).className = 'flow-arrow';
+    document.getElementById(`arrow-body-${key}-${traceIdx}`).innerHTML = '';
+  });
+
+  // Apply level-wide effects based on action
+  if (step.action === 'miss' && step.target) {
+    document.getElementById(`cl-${step.target}-${traceIdx}`).classList.add('level-miss');
+  }
+  if (step.action === 'hit' && step.target) {
+    document.getElementById(`cl-${step.target}-${traceIdx}`).classList.add('level-hit');
+  }
+
+  // Show flow arrows for writeback/fetch actions
+  if (step.action === 'writeback') {
+    if (step.target === 'l2') {
+      showArrow(traceIdx, 'l1l2', 'down', '↓ WRITE-BACK');
+    } else if (step.target === 'l3') {
+      showArrow(traceIdx, 'l2l3', 'down', '↓ WRITE-BACK');
+    }
+  }
+  if (step.action === 'memwrite') {
+    showArrow(traceIdx, 'l3mem', 'down', '↓ WRITE-BACK TO MEM');
+  }
+  if (step.action === 'fetch' || (step.action === 'setvalid' && step.target)) {
+    if (step.target === 'l1') {
+      showArrow(traceIdx, 'l1l2', 'up', '↑ FETCH');
+    } else if (step.target === 'l2') {
+      showArrow(traceIdx, 'l2l3', 'up', '↑ FETCH');
+    } else if (step.target === 'l3') {
+      showArrow(traceIdx, 'l3mem', 'up', '↑ FETCH');
+    }
+  }
+  if (step.action === 'memread') {
+    showArrow(traceIdx, 'l3mem', 'up', '↑ MEM READ');
+  }
+  if (step.action === 'backinval') {
+    if (step.target === 'l1') {
+      showArrow(traceIdx, 'l1l2', 'down', '↓ BACK-INVAL');
+    } else if (step.target === 'l2') {
+      showArrow(traceIdx, 'l2l3', 'down', '↓ BACK-INVAL');
+    }
+  }
+
+  // Render cache lines
+  ['l1', 'l2', 'l3'].forEach(level => {
+    const container = document.getElementById(`lines-${level}-${traceIdx}`);
+    const lines = state[level];
+    container.innerHTML = lines.map((line, wayIdx) => {
+      const classes = ['cache-line'];
+      const isEmpty = !line.valid;
+      if (isEmpty) classes.push('empty');
+      if (line.dirty) classes.push('dirty-line');
+
+      // Determine per-line visual effects
+      const actionClass = getLineActionClass(step, level, wayIdx, prevState, state);
+      if (actionClass) classes.push(actionClass);
+
+      return `
+        <div class="${classes.join(' ')}">
+          <span style="color:var(--text-dim);font-size:0.7rem">way${wayIdx}</span>
+          <span class="cl-data">${line.data}</span>
+          <span class="cl-meta">LRU=${line.lru}</span>
+          <span class="${line.valid ? 'cl-valid' : 'cl-invalid'}">${line.valid ? 'V' : '—'}</span>
+          ${line.dirty ? '<span class="cl-dirty">D</span>' : ''}
+        </div>
+      `;
+    }).join('');
+  });
+
+  // Render memory
+  const memContainer = document.getElementById(`mem-cells-${traceIdx}`);
+  const memRow = document.getElementById(`mem-row-${traceIdx}`);
+  memRow.className = 'memory-row';
+  if (step.action === 'memread' || step.action === 'memwrite') {
+    memRow.classList.add('mem-active');
+  }
+
+  memContainer.innerHTML = Object.entries(state.mem).map(([k, v]) => {
+    let cls = 'mem-cell';
+    if (step.action === 'memread' && step.memKey === k) cls += ' mem-reading';
+    if (step.action === 'memwrite' && step.memKey === k) cls += ' mem-writing';
+    // Check if value changed from initial
+    if (v !== initState.mem[k]) cls += ' changed';
+    return `<span class="${cls}">${k}=${v}</span>`;
+  }).join('');
+}
+
+function getLineActionClass(step, level, wayIdx, prevState, newState) {
+  // For hit: highlight the specific way
+  if (step.action === 'hit' && step.target === level && step.way === wayIdx) {
+    return 'cl-hit';
+  }
+
+  // For miss: subtle search indication on all valid lines
+  if (step.action === 'miss' && step.target === level) {
+    if (prevState[level][wayIdx].valid) return 'cl-miss-search';
+  }
+
+  // For evict_compare: highlight all ways being compared
+  if (step.action === 'evict_compare' && step.highlights && step.highlights[level]) {
+    if (step.highlights[level].includes(wayIdx) && prevState[level][wayIdx].valid) {
+      return 'cl-evict-compare';
+    }
+  }
+
+  // For evict: highlight the evicted way
+  if (step.action === 'evict' && step.target === level && step.way === wayIdx) {
+    return 'cl-evict';
+  }
+
+  // For writeback: highlight the target way
+  if (step.action === 'writeback' && step.target === level && step.way === wayIdx) {
+    return 'cl-writeback';
+  }
+
+  // For setvalid: highlight the new line
+  if (step.action === 'setvalid' && step.target === level && step.way === wayIdx) {
+    return 'cl-setvalid';
+  }
+
+  // For setdirty: highlight the dirty line
+  if (step.action === 'setdirty' && step.target === level && step.way === wayIdx) {
+    return 'cl-setdirty';
+  }
+
+  // For backinval: highlight the invalidated line
+  if (step.action === 'backinval' && step.target === level && step.way === wayIdx) {
+    return 'cl-backinval';
+  }
+
+  // For fetch: highlight the fetched line
+  if (step.action === 'fetch' && step.target === level && step.way === wayIdx) {
+    return 'cl-fetch';
+  }
+
+  // For LRU update: subtle highlight
+  if (step.action === 'updatelru' && step.target === level && step.way === wayIdx) {
+    return 'cl-updatelru';
+  }
+
+  return null;
+}
+
+function showArrow(traceIdx, key, direction, label) {
+  const arrow = document.getElementById(`arrow-${key}-${traceIdx}`);
+  arrow.className = 'flow-arrow visible';
+  const body = document.getElementById(`arrow-body-${key}-${traceIdx}`);
+  body.className = 'arrow-body ' + direction;
+  body.innerHTML = label;
+}
+
+// Navigation functions
 function showTrace(idx) {
+  currentTraceIdx = idx;
   document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.trace-card').forEach(c => c.classList.remove('visible'));
   document.querySelector(`.nav button[data-idx="${idx}"]`).classList.add('active');
   document.getElementById('trace-' + idx).classList.add('visible');
 }
+
+function goToStep(traceIdx, stepIdx) {
+  currentStepIdx[traceIdx] = stepIdx;
+  renderStep(traceIdx, stepIdx);
+}
+
+function stepNext(traceIdx) {
+  const max = traces[traceIdx].substeps.length - 1;
+  if (currentStepIdx[traceIdx] < max) {
+    currentStepIdx[traceIdx]++;
+    renderStep(traceIdx, currentStepIdx[traceIdx]);
+  }
+}
+
+function stepPrev(traceIdx) {
+  if (currentStepIdx[traceIdx] > 0) {
+    currentStepIdx[traceIdx]--;
+    renderStep(traceIdx, currentStepIdx[traceIdx]);
+  }
+}
+
+function stepFirst(traceIdx) {
+  currentStepIdx[traceIdx] = 0;
+  renderStep(traceIdx, 0);
+}
+
+function stepLast(traceIdx) {
+  const max = traces[traceIdx].substeps.length - 1;
+  currentStepIdx[traceIdx] = max;
+  renderStep(traceIdx, max);
+}
+
+function togglePlay(traceIdx) {
+  const btn = document.getElementById(`play-btn-${traceIdx}`);
+  if (playIntervals[traceIdx]) {
+    clearInterval(playIntervals[traceIdx]);
+    playIntervals[traceIdx] = null;
+    btn.textContent = '▶';
+    btn.classList.remove('playing');
+  } else {
+    btn.textContent = '⏸';
+    btn.classList.add('playing');
+    // Reset to start if at end
+    if (currentStepIdx[traceIdx] >= traces[traceIdx].substeps.length - 1) {
+      currentStepIdx[traceIdx] = 0;
+      renderStep(traceIdx, 0);
+    }
+    playIntervals[traceIdx] = setInterval(() => {
+      const max = traces[traceIdx].substeps.length - 1;
+      if (currentStepIdx[traceIdx] < max) {
+        currentStepIdx[traceIdx]++;
+        renderStep(traceIdx, currentStepIdx[traceIdx]);
+      } else {
+        clearInterval(playIntervals[traceIdx]);
+        playIntervals[traceIdx] = null;
+        btn.textContent = '▶';
+        btn.classList.remove('playing');
+      }
+    }, speeds[traceIdx]);
+  }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT') return;
+  const idx = currentTraceIdx;
+  if (e.key === 'ArrowRight' || e.key === 'l') {
+    e.preventDefault();
+    stepNext(idx);
+  } else if (e.key === 'ArrowLeft' || e.key === 'h') {
+    e.preventDefault();
+    stepPrev(idx);
+  } else if (e.key === ' ') {
+    e.preventDefault();
+    togglePlay(idx);
+  } else if (e.key === 'Home') {
+    e.preventDefault();
+    stepFirst(idx);
+  } else if (e.key === 'End') {
+    e.preventDefault();
+    stepLast(idx);
+  }
+});
 </script>
 </body>
 </html>
