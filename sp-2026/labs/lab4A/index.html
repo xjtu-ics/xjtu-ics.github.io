@@ -1123,6 +1123,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#逻辑抽象" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        逻辑抽象
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#可利用的简化假设" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1684,18 +1695,26 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <li>Write c</li>
 <li>Read e</li>
 <li>Read f</li>
-<li>Read b</li>
-<li>Read d</li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>在这个简单的例子中，你可以假设每个变量会占用整个cache line，并且三级cache的cache line大小是一样的。换句话说，读取变量a放入cache的时候，a的数据宽度和cache line的大小是一致的。</p>
 </div>
-<p>我们<strong>强烈建议</strong>大家在正式开始写代码之前，自己把上述的过程<strong>完整的画一遍</strong>，特别是注意cache访问中<strong>访问顺序（序号），LRU的设置，evict的过程，cache miss时的处理流程</strong>，以及back invalidation的过程，完整的答案在<a href="../../assets/files/cache.pdf">这里</a>，有任何疑惑，欢迎上piazza进行提问。</p>
+<p>我们<strong>强烈建议</strong>大家在正式开始写代码之前，自己把上述的过程<strong>完整的画一遍</strong>，特别是注意cache访问中<strong>访问顺序（序号），LRU的设置，evict的过程，cache miss时的处理流程</strong>，以及back invalidation的过程，完整的答案在<a href="../../assets/files/cache_trace.html">这里</a>，有任何疑惑，欢迎上piazza进行提问。</p>
 <!-- ???todo
     将这部分建议改为单独一章——代码设计策略@rouge3877 -->
 <h2 id="代码设计策略">代码设计策略<a class="headerlink" href="#代码设计策略" title="Permanent link">&para;</a></h2>
-<p>在开始编码实验之前，我们希望在这里给出一些<strong>可能有用</strong>的建议。希望能够帮助你理清思路，避免常见陷阱。同时，这个lab中的cache的访问是一个十分优雅的过程，你可以分析其中的性质，并高度的凝练你的代码，参考解法仅包括大约<strong>200-300</strong>行代码</p>
+<p>在开始编码实验之前，我们希望在这里给出一些<strong>可能有用</strong>的建议。希望能够帮助你理清思路，避免常见陷阱。</p>
+<h3 id="逻辑抽象">逻辑抽象<a class="headerlink" href="#逻辑抽象" title="Permanent link">&para;</a></h3>
+<p>事实上，每一个层级的cache对于内存读写指令的操作极为相似。具体而言，每一级cache对于内存读写指令的操作大致如下：</p>
+<ul>
+<li>获取某地址对应的tag,set,block信息</li>
+<li>根据以上信息寻找对应cache line</li>
+<li>根据寻找结果进行对应处理（hit, miss, evict）</li>
+<li>如果需要访问下一级cache，则传入需要处理的地址</li>
+</ul>
+<p>不难发现，上述过程可以抽象为一个<strong>递归</strong>算法，递归深度由设置的最大层级决定。</p>
+<p>当然实际的情况可能更复杂，需要使用递归的设计可能不止一处，上述说明旨在提示你可以利用<strong>递归</strong>算法大大简化你的代码。</p>
 <h3 id="可利用的简化假设">可利用的简化假设<a class="headerlink" href="#可利用的简化假设" title="Permanent link">&para;</a></h3>
 <p>以下假设可以帮助你大幅简化实现逻辑：</p>
 <ul>
@@ -1729,9 +1748,13 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <li>你需要在每次<strong>成功访问</strong>一条cache line之后设置LRU字段。成功访问包括：写入/读取<strong>命中</strong>，或者是<strong>从下级缓存加载了相应的cache line之后</strong>的读取/写入操作。</li>
 </ul>
 <h3 id="先fetch后evict">先Fetch后Evict<a class="headerlink" href="#先fetch后evict" title="Permanent link">&para;</a></h3>
-<ul>
-<li>在发生conflict miss时，你需要严格遵守<strong>先fetch，后evict</strong>的过程，即先访问下一级缓存或者内存得到数据所在的cache line，再选择需要evict的cache line，这<strong>可能会影响LRU设置的顺序</strong>。考虑一个例子，假如某个时刻全局时钟为10，L1发生conflict miss，L2 hit，你需要首先访问L2，由于L2 hit，设置L2中对应的cache line的LRU为10，然后将cache line返回给L1，假设L1需要evict的cache line是dirty的，你需要将其首先写回L2，这是100% hit的（为什么？），因此设置L2中对应的cache line的LRU为11，最后将需要的cache line放置在L1经evict空出的位置上，然后设置对应的LRU为12</li>
-</ul>
+<p>在发生conflict miss时，你需要严格遵守<strong>先fetch，后evict</strong>的过程，即先访问下一级缓存或者内存得到数据所在的cache line，再选择需要evict的cache line，这<strong>可能会影响LRU设置的顺序</strong>。</p>
+<p>考虑一个例子，假如某个时刻全局时钟为10，L1发生conflict miss，L2 hit，你需要：</p>
+<ol>
+<li>首先访问L2，由于L2 hit，设置L2中对应的cache line的LRU为10</li>
+<li>将cache line返回给L1，假设L1需要evict的cache line是dirty的，你需要将其首先写回L2；由于inclusive policy，这是100% hit的，因此设置L2中对应的cache line的LRU为11</li>
+<li>最后将需要的cache line放置在L1经evict空出的位置上，然后设置对应的LRU为12</li>
+</ol>
 <h3 id="eviction与脏数据写回">Eviction与脏数据写回<a class="headerlink" href="#eviction与脏数据写回" title="Permanent link">&para;</a></h3>
 <ul>
 <li>在evict一条cache line时，你需要考虑dirty字段的影响，换句话说，如果dirty为true，你需要在加载新的cache line之前，将旧的cache line写回到下一级cache（或内存）。如果dirty为false，你可以简单的将这条cache line丢弃。</li>
@@ -1743,7 +1766,7 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <ul>
 <li>如果你需要从L2 evict某个cache line，假设这个cache line也存在于L1，那么你需要首先将L1中对应的cache line进行evict，这个过程叫做back invalidation。如果L1中的数据是dirty的，你需要首先将其写回L2，并且需要仔细处理L2的evict过程。</li>
 <li>如果你需要从L3 evict一个cache line，你也需要分别将L1和L2中对应的cache line进行evict。在此过程中，你需要<strong>好好思考evict的顺序</strong>，以保证inclusive的性质。</li>
-<li>注意，不同级别的缓存cache line的大小可能不一样，你在设计代码的时候需要考虑这会产生哪些影响，并仔细的处理相关流程。</li>
+<li>注意，不同级别的缓存cache line的大小可能不一样。具体而言，当较低级 Cache 的 block 大小大于较高级 Cache 时，在对较低级 Cache 中某一 cache line 执行 back invalidation 时，需要对该 cache line 所覆盖地址范围内的所有较高级 Cache 的 cache line 一并进行失效处理。</li>
 </ul>
 <h3 id="统计量更新">统计量更新<a class="headerlink" href="#统计量更新" title="Permanent link">&para;</a></h3>
 <ul>
