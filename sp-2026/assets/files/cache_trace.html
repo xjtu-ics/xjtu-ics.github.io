@@ -36,7 +36,7 @@
     min-height: 100vh;
   }
 
-  .container { max-width: 1200px; margin: 0 auto; }
+  .container { max-width: 1400px; margin: 0 auto; }
 
   h1 {
     font-size: 1.8rem;
@@ -45,6 +45,82 @@
     background: linear-gradient(135deg, var(--accent), var(--accent2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: inline;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .help-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1.5px solid var(--text-dim);
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .help-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .help-tooltip {
+    display: none;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    width: 360px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    color: var(--text);
+    font-size: 0.82rem;
+    line-height: 1.6;
+    font-weight: 400;
+  }
+
+  .help-btn:hover .help-tooltip,
+  .help-btn:focus .help-tooltip { display: block; }
+
+  .help-tooltip h3 {
+    font-size: 0.9rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  .help-tooltip ul {
+    margin: 6px 0;
+    padding-left: 18px;
+  }
+
+  .help-tooltip li {
+    margin-bottom: 4px;
+    color: var(--text-dim);
+  }
+
+  .help-tooltip kbd {
+    display: inline-block;
+    padding: 1px 5px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text);
   }
 
   .subtitle { color: var(--text-dim); margin-bottom: 24px; font-size: 0.95rem; }
@@ -79,35 +155,85 @@
   .config-card .label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
   .config-card .value { font-size: 1.3rem; font-weight: 700; color: var(--accent); font-family: 'JetBrains Mono', monospace; }
 
+  .main-layout {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
   .nav {
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 4px;
     position: sticky;
-    top: 0;
+    top: 12px;
     z-index: 10;
-    background: var(--bg);
-    padding: 12px 0;
+    flex-shrink: 0;
+    width: 185px;
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    padding: 4px 0;
+    position: sticky;
+  }
+
+  .nav-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-dim);
+    padding: 4px 12px 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 4px;
+  }
+
+  .nav-items {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-bracket {
+    position: absolute;
+    left: 0;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+    opacity: 0.5;
+    transition: top 0.3s ease, height 0.3s ease, opacity 0.3s ease;
   }
 
   .nav button {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface);
+    font-size: 0.88rem;
+    padding: 7px 12px 7px 14px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: transparent;
     color: var(--text-dim);
     cursor: pointer;
     transition: all 0.2s;
+    text-align: left;
+    white-space: nowrap;
+    position: relative;
   }
 
-  .nav button:hover { border-color: var(--accent); color: var(--text); }
+  .nav button:hover { background: var(--surface); color: var(--text); }
   .nav button.active {
-    background: linear-gradient(135deg, rgba(79,195,247,0.15), rgba(124,77,255,0.15));
-    border-color: var(--accent);
+    background: linear-gradient(135deg, rgba(79,195,247,0.12), rgba(124,77,255,0.12));
     color: var(--accent);
+    font-weight: 700;
+  }
+  .nav button.completed {
+    color: var(--accent);
+    opacity: 0.55;
+  }
+
+  .traces-content {
+    flex: 1;
+    min-width: 0;
   }
 
   .trace-card {
@@ -201,20 +327,70 @@
   .speed-control input[type="range"] {
     width: 80px;
     accent-color: var(--accent);
+    -webkit-appearance: none;
+    appearance: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+  }
+
+  .speed-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 6px;
+    height: 14px;
+    border-radius: 3px;
+    background: var(--accent);
+    cursor: pointer;
+  }
+
+  .speed-control input[type="range"]::-moz-range-thumb {
+    width: 6px;
+    height: 14px;
+    border-radius: 3px;
+    background: var(--accent);
+    border: none;
+    cursor: pointer;
+  }
+
+  .speed-control input[type="range"]::-moz-range-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+  }
+
+  .speed-control input[type="range"]::-moz-range-progress {
+    background: var(--border);
   }
 
   /* Step progress bar */
-  .step-progress {
-    width: 100%;
-    height: 4px;
-    background: var(--surface);
-    border-radius: 2px;
+  .step-track {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 6px;
     margin-bottom: 16px;
-    overflow: hidden;
   }
 
-  .step-progress-bar {
-    height: 100%;
+  .step-track-rail {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    right: 6px;
+    height: 3px;
+    background: var(--surface2);
+    border-radius: 2px;
+    transform: translateY(-50%);
+  }
+
+  .step-track-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 0%;
     background: linear-gradient(90deg, var(--accent), var(--accent2));
     border-radius: 2px;
     transition: width 0.3s ease;
@@ -280,40 +456,44 @@
 
   .step-text-display strong { color: #fff; font-weight: 700; }
 
-  /* Steps timeline (mini) */
-  .steps-timeline {
-    display: flex;
-    gap: 4px;
-    flex-wrap: wrap;
-    margin-bottom: 16px;
-  }
-
-  .steps-timeline .st-dot {
-    width: 28px;
-    height: 28px;
+  /* Steps timeline (ticks on track) */
+  .step-track .st-dot {
+    position: relative;
+    z-index: 2;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.68rem;
-    font-weight: 600;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text-dim);
+    border: 2px solid var(--border);
+    background: var(--bg);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
   }
 
-  .steps-timeline .st-dot:hover { border-color: var(--accent); color: var(--text); }
-  .steps-timeline .st-dot.active { border-color: var(--accent); color: var(--accent); background: rgba(79,195,247,0.15); }
-  .steps-timeline .st-dot.completed { border-color: rgba(79,195,247,0.3); color: var(--accent); opacity: 0.7; }
-  .steps-timeline .st-dot.hit { border-color: var(--hit); }
-  .steps-timeline .st-dot.miss { border-color: var(--miss); }
-  .steps-timeline .st-dot.evict { border-color: var(--evict); }
-  .steps-timeline .st-dot.writeback { border-color: var(--writeback); }
-  .steps-timeline .st-dot.backinval { border-color: var(--backinval); }
-  .steps-timeline .st-dot.setdirty { border-color: var(--dirty); }
+  .step-track .st-dot:hover {
+    border-color: var(--accent);
+    transform: scale(1.3);
+  }
+
+  .step-track .st-dot.completed {
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  .step-track .st-dot.active {
+    width: 16px;
+    height: 16px;
+    border-color: var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 10px rgba(79,195,247,0.5);
+  }
+
+  .step-track .st-dot.active.hit  { border-color: var(--hit);  background: var(--hit);  box-shadow: 0 0 10px rgba(0,230,118,0.5); }
+  .step-track .st-dot.active.miss { border-color: var(--miss); background: var(--miss); box-shadow: 0 0 10px rgba(255,82,82,0.5); }
+  .step-track .st-dot.active.evict { border-color: var(--evict); background: var(--evict); box-shadow: 0 0 10px rgba(255,171,64,0.5); }
+  .step-track .st-dot.active.writeback { border-color: var(--writeback); background: var(--writeback); box-shadow: 0 0 10px rgba(234,128,252,0.5); }
+  .step-track .st-dot.active.backinval { border-color: var(--backinval); background: var(--backinval); box-shadow: 0 0 10px rgba(255,215,64,0.5); }
+  .step-track .st-dot.active.setdirty { border-color: var(--dirty); background: var(--dirty); box-shadow: 0 0 10px rgba(255,110,64,0.5); }
 
   /* Cache visualization */
   .cache-viz {
@@ -571,7 +751,11 @@
   .mem-cell.mem-writing { border-color: var(--writeback); color: var(--writeback); box-shadow: 0 0 8px rgba(234,128,252,0.3); }
 
   @media (max-width: 768px) {
-    .nav { gap: 4px; }
+    .main-layout { flex-direction: column; }
+    .nav { flex-direction: row; flex-wrap: wrap; width: 100%; max-height: none; position: static; }
+    .nav-header { display: none; }
+    .nav-items { flex-direction: row; flex-wrap: wrap; }
+    .nav-bracket { display: none; }
     .nav button { font-size: 0.72rem; padding: 6px 10px; }
     h1 { font-size: 1.3rem; }
     .step-controls { flex-direction: column; align-items: stretch; }
@@ -581,7 +765,27 @@
 </head>
 <body>
 <div class="container">
-  <h1>三级 Inclusive Cache 访问路径分析</h1>
+  <div class="title-row">
+    <h1>三级 Inclusive Cache 访问路径分析</h1>
+    <button class="help-btn" title="使用帮助">?
+      <div class="help-tooltip">
+        <h3>📖 如何使用</h3>
+        <p>本页面将一次完整的访存请求拆解为两个层次：</p>
+        <ul>
+          <li><strong>左侧 Trace 面板</strong> — 每个条目代表一次独立的访存操作（如 Read a、Write b）。这是<em>高层视角</em>，描述程序先后发出的一系列请求。</li>
+          <li><strong>右侧主区域</strong> — 展示当前操作在缓存层次内部的执行细节：每一步发生了什么（Miss / Hit / Evict …）、各级 cache 的状态如何变化。</li>
+        </ul>
+        <p style="color:var(--text-dim);font-size:0.8rem;margin-top:6px">👉 先在左侧选择想观察的操作，再用下方控件逐步推进，观察右侧缓存状态的变化。</p>
+        <h3>⌨️ 控制方式</h3>
+        <ul>
+          <li><kbd>◀</kbd> <kbd>▶</kbd> 或 <kbd>←</kbd> <kbd>→</kbd>：上一子步骤 / 下一子步骤</li>
+          <li><kbd>⏮</kbd> <kbd>⏭</kbd> 或 <kbd>Home</kbd> <kbd>End</kbd>：跳至首步 / 末步</li>
+          <li><kbd>▶</kbd> 播放键 或 <kbd>Space</kbd>：自动连续播放 / 暂停</li>
+          <li><kbd>⚡ ── 🐢</kbd> 滑块：调节自动播放速度</li>
+        </ul>
+      </div>
+    </button>
+  </div>
 
   <div class="key-concepts">
     <h2>Inclusive Cache 关键规则</h2>
@@ -600,8 +804,15 @@
     <div class="config-card"><div class="label">Replace</div><div class="value">LRU</div></div>
   </div>
 
-  <div class="nav" id="nav"></div>
-  <div id="traces"></div>
+  <div class="main-layout">
+    <div class="nav" id="nav">
+      <div class="nav-header">Trace</div>
+      <div class="nav-items" id="nav-items">
+        <div class="nav-bracket" id="nav-bracket"></div>
+      </div>
+    </div>
+    <div class="traces-content" id="traces"></div>
+  </div>
 </div>
 
 <script>
@@ -882,7 +1093,7 @@ const flowArrows = {
 // State management
 let currentTraceIdx = 0;
 let currentStepIdx = {};  // traceIdx -> stepIdx
-let playIntervals = {};   // traceIdx -> interval
+let playIntervals = {};   // traceIdx -> timeout id
 let speeds = {};          // traceIdx -> speed ms
 
 // Compute intermediate states for a trace
@@ -935,7 +1146,7 @@ function getStates(traceIdx) {
 }
 
 // Build UI
-const nav = document.getElementById('nav');
+const navItems = document.getElementById('nav-items');
 const tracesDiv = document.getElementById('traces');
 
 traces.forEach((t, i) => {
@@ -948,7 +1159,7 @@ traces.forEach((t, i) => {
   btn.dataset.idx = i;
   if (i === 0) btn.classList.add('active');
   btn.onclick = () => showTrace(i);
-  nav.appendChild(btn);
+  navItems.appendChild(btn);
 
   // Build card
   const card = document.createElement('div');
@@ -977,15 +1188,16 @@ function buildTraceHTML(t, idx) {
       <button onclick="stepLast(${idx})" title="最后一步">⏭</button>
       <span class="step-counter" id="step-counter-${idx}">1 / ${totalSteps}</span>
       <div class="speed-control">
-        <label>速度</label>
+        <label>⚡</label>
         <input type="range" min="200" max="3000" value="1200" step="100"
           oninput="speeds[${idx}]=this.value" title="自动播放速度">
         <label>🐢</label>
+        <label>Speed</label>
       </div>
     </div>
-    <div class="step-progress"><div class="step-progress-bar" id="progress-${idx}" style="width:0%"></div></div>
-    <div class="steps-timeline" id="timeline-${idx}">
-      ${t.substeps.map((s, si) => `<div class="st-dot ${si === 0 ? 'active' : ''}" data-step="${si}" onclick="goToStep(${idx},${si})">${si+1}</div>`).join('')}
+    <div class="step-track" id="timeline-${idx}">
+      <div class="step-track-rail"><div class="step-track-fill" id="progress-${idx}"></div></div>
+      ${t.substeps.map((s, si) => `<div class="st-dot ${si === 0 ? 'active' : ''}" data-step="${si}" onclick="goToStep(${idx},${si})" title="Step ${si+1}"></div>`).join('')}
     </div>
     <div class="current-step" id="current-step-${idx}">
       <span class="step-action-badge" id="step-badge-${idx}"></span>
@@ -1028,7 +1240,7 @@ function renderStep(traceIdx, stepIdx) {
 
   // Update counter and progress
   document.getElementById(`step-counter-${traceIdx}`).textContent = `${stepIdx + 1} / ${totalSteps}`;
-  document.getElementById(`progress-${traceIdx}`).style.width = `${((stepIdx + 1) / totalSteps) * 100}%`;
+  document.getElementById(`progress-${traceIdx}`).style.width = `${totalSteps > 1 ? (stepIdx / (totalSteps - 1)) * 100 : 100}%`;
 
   // Update timeline dots
   const dots = document.querySelectorAll(`#timeline-${traceIdx} .st-dot`);
@@ -1212,11 +1424,49 @@ function showArrow(traceIdx, key, direction, label) {
 
 // Navigation functions
 function showTrace(idx) {
+  // Carry speed from current trace to the target trace
+  const prevSpeed = speeds[currentTraceIdx];
+  speeds[idx] = prevSpeed;
+  const slider = document.querySelector(`#trace-${idx} .speed-control input[type="range"]`);
+  if (slider) slider.value = prevSpeed;
+
   currentTraceIdx = idx;
-  document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
+  const buttons = document.querySelectorAll('#nav-items button');
+  buttons.forEach(b => {
+    b.classList.remove('active', 'completed');
+    const bIdx = parseInt(b.dataset.idx);
+    if (bIdx < idx) b.classList.add('completed');
+  });
+  document.querySelector(`#nav-items button[data-idx="${idx}"]`).classList.add('active');
   document.querySelectorAll('.trace-card').forEach(c => c.classList.remove('visible'));
-  document.querySelector(`.nav button[data-idx="${idx}"]`).classList.add('active');
   document.getElementById('trace-' + idx).classList.add('visible');
+
+  // Update bracket
+  updateNavBracket(idx);
+}
+
+function updateNavBracket(activeIdx) {
+  const bracket = document.getElementById('nav-bracket');
+  if (activeIdx <= 0) {
+    bracket.style.opacity = '0';
+    return;
+  }
+  const container = document.getElementById('nav-items');
+  const buttons = container.querySelectorAll('button');
+  const firstBtn = buttons[0];
+  const activeBtn = buttons[activeIdx];
+  if (!firstBtn || !activeBtn) { bracket.style.opacity = '0'; return; }
+
+  const containerRect = container.getBoundingClientRect();
+  const firstRect = firstBtn.getBoundingClientRect();
+  const activeRect = activeBtn.getBoundingClientRect();
+
+  const top = firstRect.top - containerRect.top;
+  const height = activeRect.top - firstRect.top + activeRect.height;
+
+  bracket.style.top = top + 'px';
+  bracket.style.height = height + 'px';
+  bracket.style.opacity = '0.5';
 }
 
 function goToStep(traceIdx, stepIdx) {
@@ -1253,7 +1503,7 @@ function stepLast(traceIdx) {
 function togglePlay(traceIdx) {
   const btn = document.getElementById(`play-btn-${traceIdx}`);
   if (playIntervals[traceIdx]) {
-    clearInterval(playIntervals[traceIdx]);
+    clearTimeout(playIntervals[traceIdx]);
     playIntervals[traceIdx] = null;
     btn.textContent = '▶';
     btn.classList.remove('playing');
@@ -1265,18 +1515,19 @@ function togglePlay(traceIdx) {
       currentStepIdx[traceIdx] = 0;
       renderStep(traceIdx, 0);
     }
-    playIntervals[traceIdx] = setInterval(() => {
+    function playTick() {
       const max = traces[traceIdx].substeps.length - 1;
       if (currentStepIdx[traceIdx] < max) {
         currentStepIdx[traceIdx]++;
         renderStep(traceIdx, currentStepIdx[traceIdx]);
+        playIntervals[traceIdx] = setTimeout(playTick, speeds[traceIdx]);
       } else {
-        clearInterval(playIntervals[traceIdx]);
         playIntervals[traceIdx] = null;
         btn.textContent = '▶';
         btn.classList.remove('playing');
       }
-    }, speeds[traceIdx]);
+    }
+    playIntervals[traceIdx] = setTimeout(playTick, speeds[traceIdx]);
   }
 }
 
