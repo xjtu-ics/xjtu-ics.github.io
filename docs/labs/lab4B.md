@@ -156,7 +156,9 @@ TEST_TRANS_RESULTS=1:1184
 
 因此测试场景的Cache具有如下的典型结构：
 
-![cache structure partb](../assets/images/cachelab/cachelab_cache_structure_partb.png)
+<div style="text-align: center;" markdown>
+![cache structure partb](../assets/images/cachelab/cachelab_cache_structure_partb.png){ width=60% }
+</div>
 
 一个Cache Line可以保存8个`int`，我们以这个Cache结构为例，考虑我们刚才的暴力做法：
 
@@ -179,7 +181,9 @@ void transpose_submit(int M, int N, int A[N][M], int B[M][N])
 
 接下来我们来定量地分析Cache Miss的次数。Cache只够存储一个矩阵的四分之一，`A`中的元素对应的Cache Line每隔8行就会重复。`A`和`B`的地址由于取余关系，每个元素对应的地址是相同的，各个元素对应Cache Line如下：
 
-![cachelines partb](../assets/images/cachelab/cachelab_cache_lines_partb.png)
+<div style="text-align: center;" markdown>
+![cachelines partb](../assets/images/cachelab/cachelab_cache_lines_partb.png){ width=60% }
+</div>
 
 对于`A`，每8个`int`就会占满Cache的一组，所以每一行会有32/8=4次不命中；而对于`B`，考虑最坏情况，每一列都有32次不命中，由此，算出总不命中次数为4×32+32×32=1152。
 
