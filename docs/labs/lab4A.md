@@ -87,8 +87,6 @@ I 0400d7d4,8
 
 ## 实验内容及步骤
 
-???todo
-    修改实验步骤，添加新命令行参数`-c`@blowinding
 
 不知道大家在看到实验目录下那么多的文件之后，是否感受到头昏眼花了呢？不过，不用担心，为了减轻同学们的负担，助教们已经将大部分代码框架搭建好了，大家只需要在给定的框架中填充代码即可~
 
@@ -419,8 +417,6 @@ void cacheAccess(char op, uint64_t addr, uint32_t len) {
 }
 ```
 
-???todo
-    修改这里的cache access path示例，减少到5-10个trace@blowinding@rouge3877
 
 要注意的是，你需要实现的三级cache模拟器必须保证**严格的包含关系（见实验前置知识一节）**，并且需要和标准的cache模拟器输出相同。因此，你实现的cache访问流程必须遵循下面的要求：
 
@@ -552,9 +548,9 @@ cache的访问trace依次为：
 为合理控制难度梯度，Lab4A 将针对不同最大层级的 Cache 和不同类型的 Trace 分别进行测试，
 具体分值占比如下：
 
-- **1 级 Cache**：占总分的 **60%**，测试 Trace 包括 `traces-l1-basic`、`traces-mixed`、
+- **1 级 Cache**：占总分的 **80%**，测试 Trace 包括 `traces-l1-basic`、`traces-mixed`、
   `traces-data-intensive`、`traces-hard`
-- **2 级 Cache**：占总分的 **30%**，测试 Trace 包括 `traces-l2-basic`、`traces-mixed`、
+- **2 级 Cache**：占总分的 **10%**，测试 Trace 包括 `traces-l2-basic`、`traces-mixed`、
   `traces-data-intensive`、`traces-hard`
 - **3 级 Cache**：占总分的 **10%**，测试 Trace 包括 `traces-l3-basic`、`traces-mixed`、
   `traces-data-intensive`、`traces-hard`
@@ -581,14 +577,14 @@ cache的访问trace依次为：
 
 | 层级 | 测试类型 | Trace 目录 | 分值 | 层级总分 |
 |------|----------|------------|------|----------|
-| L1 | Basic | `traces-l1-basic/` | 20 | 300 |
-| L1 | Mixed | `traces-mixed/` | 20 | 300 |
-| L1 | Data Intensive | `traces-data-intensive/` | 8 | 300 |
-| L1 | Hard | `traces-hard/` | 8 | 300 |
-| L2 | Basic | `traces-l2-basic/` | 10 | 150 |
-| L2 | Mixed | `traces-mixed/` | 10 | 150 |
-| L2 | Data Intensive | `traces-data-intensive/` | 5 | 150 |
-| L2 | Hard | `traces-hard/` | 4 | 150 |
+| L1 | Basic | `traces-l1-basic/` | 20 | 400 |
+| L1 | Mixed | `traces-mixed/` | 20 | 400 |
+| L1 | Data Intensive | `traces-data-intensive/` | 12 | 400 |
+| L1 | Hard | `traces-hard/` | 14 | 400 |
+| L2 | Basic | `traces-l2-basic/` | 5 | 50 |
+| L2 | Mixed | `traces-mixed/` | 5 | 50 |
+| L2 | Data Intensive | `traces-data-intensive/` | 1 | 50 |
+| L2 | Hard | `traces-hard/` | 1 | 50 |
 | L3 | Basic | `traces-l3-basic/` | 5 | 50 |
 | L3 | Mixed | `traces-mixed/` | 5 | 50 |
 | L3 | Data Intensive | `traces-data-intensive/` | 1 | 50 |
@@ -644,9 +640,9 @@ Total Score: 80 / 80
 Start testing l2-basic traces...
 Testcase                                     Lines     Result    Random    Score     
 -----------------------------------------------------------------------------------
-traces-l2-basic/l2evict.trace                7         PASS      IGNORE    10/10     
-traces-l2-basic/l1missl2hit.trace            5         PASS      IGNORE    10/10     
-traces-l2-basic/backinvalidation.trace       23        FAIL      IGNORE    0/10      
+traces-l2-basic/l2evict.trace                7         PASS      IGNORE    5/5   
+traces-l2-basic/l1missl2hit.trace            5         PASS      IGNORE    5/5     
+traces-l2-basic/backinvalidation.trace       23        FAIL      IGNORE    0/5      
   Details for trace <traces-l2-basic/backinvalidation.trace>
                           Your simulator           Reference simulator
      Level      Hits    Misses    Evicts      Hits    Misses    Evicts
@@ -655,13 +651,13 @@ traces-l2-basic/backinvalidation.trace       23        FAIL      IGNORE    0/10
         L2         7        19        15        10        16        12
         L3         0         0         0         0         0         0
 -----------------------------------------------------------------------------------
-Total Score: 20 / 30
+Total Score: 10 / 15
     2 passed,     1 failed,     3 total
 
 Start testing mixed traces...
 Testcase                                     Lines     Result    Random    Score     
 -----------------------------------------------------------------------------------
-traces-mixed/mixed-3.trace                   128       FAIL      IGNORE    0/10      
+traces-mixed/mixed-3.trace                   128       FAIL      IGNORE    0/5      
   Details for trace <traces-mixed/mixed-3.trace>
                           Your simulator           Reference simulator
      Level      Hits    Misses    Evicts      Hits    Misses    Evicts
@@ -669,8 +665,8 @@ traces-mixed/mixed-3.trace                   128       FAIL      IGNORE    0/10
       L1 I        13        19        11        13        19        10
         L2        57       109        77        59       107        75
         L3         0         0         0         0         0         0
-traces-mixed/mixed-1.trace                   40        PASS      IGNORE    10/10     
-traces-mixed/mixed-2.trace                   90        FAIL      IGNORE    0/10      
+traces-mixed/mixed-1.trace                   40        PASS      IGNORE    5/5     
+traces-mixed/mixed-2.trace                   90        FAIL      IGNORE    0/5      
   Details for trace <traces-mixed/mixed-2.trace>
                           Your simulator           Reference simulator
      Level      Hits    Misses    Evicts      Hits    Misses    Evicts
@@ -679,16 +675,16 @@ traces-mixed/mixed-2.trace                   90        FAIL      IGNORE    0/10
         L2        71        43        15        71        44        16
         L3         0         0         0         0         0         0
 -----------------------------------------------------------------------------------
-Total Score: 10 / 30
+Total Score: 5 / 15
     1 passed,     2 failed,     3 total
 
 ...
 
-Testing cache simulator done. Total scores: 340 / 500
+Testing cache simulator done. Total scores: 420 / 500
 Totally 2.823617 seconds passed.
 ```
 
-上述输出拿到了340分，下面具体解释一下这个输出结果：
+上述输出拿到了420分，下面具体解释一下这个输出结果：
 
 - 本次测试指定 `-c 2`，因此将依次对最大层级为 **1 级**和 **2 级**的 Cache 进行测试。
 - **Result** 列显示每条 Trace 的测试结果（`PASS` / `FAIL`）。
@@ -734,9 +730,9 @@ Total Score: 80 / 80
 Start testing l2-basic traces...
 Testcase                                     Lines     Result    Random    Score     
 -----------------------------------------------------------------------------------
-traces-l2-basic/l2evict.trace                7         PASS      PASS      10/10     
-traces-l2-basic/l1missl2hit.trace            5         PASS      PASS      10/10     
-traces-l2-basic/backinvalidation.trace       23        FAIL      FAIL      0/10      
+traces-l2-basic/l2evict.trace                7         PASS      PASS      5/5     
+traces-l2-basic/l1missl2hit.trace            5         PASS      PASS      5/5     
+traces-l2-basic/backinvalidation.trace       23        FAIL      FAIL      0/5      
   Details for random_test of trace <traces-l2-basic/backinvalidation.trace> at line 21
                           Your simulator           Reference simulator
      Level      Hits    Misses    Evicts      Hits    Misses    Evicts
@@ -752,12 +748,12 @@ traces-l2-basic/backinvalidation.trace       23        FAIL      FAIL      0/10
         L2         7        19        15        10        16        12
         L3         0         0         0         0         0         0
 -----------------------------------------------------------------------------------
-Total Score: 20 / 30
+Total Score: 10 / 15
     2 passed,     1 failed,     3 total
 
 ...
 
-Testing cache simulator done. Total scores: 340 / 500
+Testing cache simulator done. Total scores: 420 / 500
 Totally 2.753828 seconds passed.
 ```
 
