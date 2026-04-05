@@ -1393,10 +1393,6 @@
 <p><strong>注意</strong>：在trace文件中，<code>I</code>前面<strong>没有空格</strong>，但是<code>M</code>，<code>L</code>，<code>S</code>前面<strong>一定有一个空格</strong>。</p>
 </div>
 <h2 id="实验内容及步骤">实验内容及步骤<a class="headerlink" href="#实验内容及步骤" title="Permanent link">&para;</a></h2>
-<details class="todo">
-<summary>Todo</summary>
-<p>修改实验步骤，添加新命令行参数<code>-c</code>@blowinding</p>
-</details>
 <p>不知道大家在看到实验目录下那么多的文件之后，是否感受到头昏眼花了呢？不过，不用担心，为了减轻同学们的负担，助教们已经将大部分代码框架搭建好了，大家只需要在给定的框架中填充代码即可~</p>
 <p>在Part A中，你<strong>唯一需要</strong>完成的文件是<code>cache-impl.c</code>文件，除此之外，你<strong>严禁修改其他任何文件，包括删除现有文件或者自行创建新文件</strong>。否则可能造成<strong>本地评测和提交之后的评测结果不一致，或者无法编译通过</strong>，产生的<strong>一切后果由自己承担</strong>。⚠️</p>
 <p>正如前面提到的，在Part A中你需要实现一个三级cache模拟器。作为参考标准，我们提供了一个已经正确实现的cache模拟器作为参考标准，以<strong>二进制可执行程序</strong>的形式发放，命名为<code>csim-ref-partA</code>。</p>
@@ -1686,10 +1682,6 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">  </span><span class="c1">// TODO</span>
 </span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="p">}</span>
 </span></code></pre></div>
-<details class="todo">
-<summary>Todo</summary>
-<p>修改这里的cache access path示例，减少到5-10个trace@blowinding@rouge3877</p>
-</details>
 <p>要注意的是，你需要实现的三级cache模拟器必须保证<strong>严格的包含关系（见实验前置知识一节）</strong>，并且需要和标准的cache模拟器输出相同。因此，你实现的cache访问流程必须遵循下面的要求：</p>
 <p>假设当前访问第 i 级cache</p>
 <ol>
@@ -1808,9 +1800,9 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <p>为合理控制难度梯度，Lab4A 将针对不同最大层级的 Cache 和不同类型的 Trace 分别进行测试，
 具体分值占比如下：</p>
 <ul>
-<li><strong>1 级 Cache</strong>：占总分的 <strong>60%</strong>，测试 Trace 包括 <code>traces-l1-basic</code>、<code>traces-mixed</code>、
+<li><strong>1 级 Cache</strong>：占总分的 <strong>80%</strong>，测试 Trace 包括 <code>traces-l1-basic</code>、<code>traces-mixed</code>、
   <code>traces-data-intensive</code>、<code>traces-hard</code></li>
-<li><strong>2 级 Cache</strong>：占总分的 <strong>30%</strong>，测试 Trace 包括 <code>traces-l2-basic</code>、<code>traces-mixed</code>、
+<li><strong>2 级 Cache</strong>：占总分的 <strong>10%</strong>，测试 Trace 包括 <code>traces-l2-basic</code>、<code>traces-mixed</code>、
   <code>traces-data-intensive</code>、<code>traces-hard</code></li>
 <li><strong>3 级 Cache</strong>：占总分的 <strong>10%</strong>，测试 Trace 包括 <code>traces-l3-basic</code>、<code>traces-mixed</code>、
   <code>traces-data-intensive</code>、<code>traces-hard</code></li>
@@ -1855,56 +1847,56 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <td>Basic</td>
 <td><code>traces-l1-basic/</code></td>
 <td>20</td>
-<td>300</td>
+<td>400</td>
 </tr>
 <tr>
 <td>L1</td>
 <td>Mixed</td>
 <td><code>traces-mixed/</code></td>
 <td>20</td>
-<td>300</td>
+<td>400</td>
 </tr>
 <tr>
 <td>L1</td>
 <td>Data Intensive</td>
 <td><code>traces-data-intensive/</code></td>
-<td>8</td>
-<td>300</td>
+<td>12</td>
+<td>400</td>
 </tr>
 <tr>
 <td>L1</td>
 <td>Hard</td>
 <td><code>traces-hard/</code></td>
-<td>8</td>
-<td>300</td>
+<td>14</td>
+<td>400</td>
 </tr>
 <tr>
 <td>L2</td>
 <td>Basic</td>
 <td><code>traces-l2-basic/</code></td>
-<td>10</td>
-<td>150</td>
+<td>5</td>
+<td>50</td>
 </tr>
 <tr>
 <td>L2</td>
 <td>Mixed</td>
 <td><code>traces-mixed/</code></td>
-<td>10</td>
-<td>150</td>
+<td>5</td>
+<td>50</td>
 </tr>
 <tr>
 <td>L2</td>
 <td>Data Intensive</td>
 <td><code>traces-data-intensive/</code></td>
-<td>5</td>
-<td>150</td>
+<td>1</td>
+<td>50</td>
 </tr>
 <tr>
 <td>L2</td>
 <td>Hard</td>
 <td><code>traces-hard/</code></td>
-<td>4</td>
-<td>150</td>
+<td>1</td>
+<td>50</td>
 </tr>
 <tr>
 <td>L3</td>
@@ -1980,9 +1972,9 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>Start<span class="w"> </span>testing<span class="w"> </span>l2-basic<span class="w"> </span>traces...
 </span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
 </span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>traces-l2-basic/l2evict.trace<span class="w">                </span><span class="m">7</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">10</span>/10<span class="w">     </span>
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>traces-l2-basic/l1missl2hit.trace<span class="w">            </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">10</span>/10<span class="w">     </span>
-</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>traces-l2-basic/backinvalidation.trace<span class="w">       </span><span class="m">23</span><span class="w">        </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/10<span class="w">      </span>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>traces-l2-basic/l2evict.trace<span class="w">                </span><span class="m">7</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">   </span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>traces-l2-basic/l1missl2hit.trace<span class="w">            </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">     </span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>traces-l2-basic/backinvalidation.trace<span class="w">       </span><span class="m">23</span><span class="w">        </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/5<span class="w">      </span>
 </span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">  </span>Details<span class="w"> </span><span class="k">for</span><span class="w"> </span>trace<span class="w"> </span>&lt;traces-l2-basic/backinvalidation.trace&gt;
 </span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">                          </span>Your<span class="w"> </span>simulator<span class="w">           </span>Reference<span class="w"> </span>simulator
 </span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">     </span>Level<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts
@@ -1991,13 +1983,13 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="w">        </span>L2<span class="w">         </span><span class="m">7</span><span class="w">        </span><span class="m">19</span><span class="w">        </span><span class="m">15</span><span class="w">        </span><span class="m">10</span><span class="w">        </span><span class="m">16</span><span class="w">        </span><span class="m">12</span>
 </span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="w">        </span>L3<span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span>
 </span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">20</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">15</span>
 </span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="w">    </span><span class="m">2</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">1</span><span class="w"> </span>failed,<span class="w">     </span><span class="m">3</span><span class="w"> </span>total
 </span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a>
 </span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>Start<span class="w"> </span>testing<span class="w"> </span>mixed<span class="w"> </span>traces...
 </span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
 </span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>traces-mixed/mixed-3.trace<span class="w">                   </span><span class="m">128</span><span class="w">       </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/10<span class="w">      </span>
+</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>traces-mixed/mixed-3.trace<span class="w">                   </span><span class="m">128</span><span class="w">       </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/5<span class="w">      </span>
 </span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a><span class="w">  </span>Details<span class="w"> </span><span class="k">for</span><span class="w"> </span>trace<span class="w"> </span>&lt;traces-mixed/mixed-3.trace&gt;
 </span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a><span class="w">                          </span>Your<span class="w"> </span>simulator<span class="w">           </span>Reference<span class="w"> </span>simulator
 </span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a><span class="w">     </span>Level<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts
@@ -2005,8 +1997,8 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="w">      </span>L1<span class="w"> </span>I<span class="w">        </span><span class="m">13</span><span class="w">        </span><span class="m">19</span><span class="w">        </span><span class="m">11</span><span class="w">        </span><span class="m">13</span><span class="w">        </span><span class="m">19</span><span class="w">        </span><span class="m">10</span>
 </span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="w">        </span>L2<span class="w">        </span><span class="m">57</span><span class="w">       </span><span class="m">109</span><span class="w">        </span><span class="m">77</span><span class="w">        </span><span class="m">59</span><span class="w">       </span><span class="m">107</span><span class="w">        </span><span class="m">75</span>
 </span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="w">        </span>L3<span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span>
-</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>traces-mixed/mixed-1.trace<span class="w">                   </span><span class="m">40</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">10</span>/10<span class="w">     </span>
-</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>traces-mixed/mixed-2.trace<span class="w">                   </span><span class="m">90</span><span class="w">        </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/10<span class="w">      </span>
+</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>traces-mixed/mixed-1.trace<span class="w">                   </span><span class="m">40</span><span class="w">        </span>PASS<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">5</span>/5<span class="w">     </span>
+</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a>traces-mixed/mixed-2.trace<span class="w">                   </span><span class="m">90</span><span class="w">        </span>FAIL<span class="w">      </span>IGNORE<span class="w">    </span><span class="m">0</span>/5<span class="w">      </span>
 </span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="w">  </span>Details<span class="w"> </span><span class="k">for</span><span class="w"> </span>trace<span class="w"> </span>&lt;traces-mixed/mixed-2.trace&gt;
 </span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="w">                          </span>Your<span class="w"> </span>simulator<span class="w">           </span>Reference<span class="w"> </span>simulator
 </span><span id="__span-13-52"><a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="w">     </span>Level<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts
@@ -2015,15 +2007,15 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-13-55"><a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a><span class="w">        </span>L2<span class="w">        </span><span class="m">71</span><span class="w">        </span><span class="m">43</span><span class="w">        </span><span class="m">15</span><span class="w">        </span><span class="m">71</span><span class="w">        </span><span class="m">44</span><span class="w">        </span><span class="m">16</span>
 </span><span id="__span-13-56"><a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a><span class="w">        </span>L3<span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span>
 </span><span id="__span-13-57"><a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">5</span><span class="w"> </span>/<span class="w"> </span><span class="m">15</span>
 </span><span id="__span-13-59"><a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a><span class="w">    </span><span class="m">1</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">2</span><span class="w"> </span>failed,<span class="w">     </span><span class="m">3</span><span class="w"> </span>total
 </span><span id="__span-13-60"><a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a>
 </span><span id="__span-13-61"><a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a>...
 </span><span id="__span-13-62"><a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a>
-</span><span id="__span-13-63"><a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">340</span><span class="w"> </span>/<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-13-63"><a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">420</span><span class="w"> </span>/<span class="w"> </span><span class="m">500</span>
 </span><span id="__span-13-64"><a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a>Totally<span class="w"> </span><span class="m">2</span>.823617<span class="w"> </span>seconds<span class="w"> </span>passed.
 </span></code></pre></div>
-<p>上述输出拿到了340分，下面具体解释一下这个输出结果：</p>
+<p>上述输出拿到了420分，下面具体解释一下这个输出结果：</p>
 <ul>
 <li>本次测试指定 <code>-c 2</code>，因此将依次对最大层级为 <strong>1 级</strong>和 <strong>2 级</strong>的 Cache 进行测试。</li>
 <li><strong>Result</strong> 列显示每条 Trace 的测试结果（<code>PASS</code> / <code>FAIL</code>）。</li>
@@ -2067,9 +2059,9 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>Start<span class="w"> </span>testing<span class="w"> </span>l2-basic<span class="w"> </span>traces...
 </span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>Testcase<span class="w">                                     </span>Lines<span class="w">     </span>Result<span class="w">    </span>Random<span class="w">    </span>Score<span class="w">     </span>
 </span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>traces-l2-basic/l2evict.trace<span class="w">                </span><span class="m">7</span><span class="w">         </span>PASS<span class="w">      </span>PASS<span class="w">      </span><span class="m">10</span>/10<span class="w">     </span>
-</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>traces-l2-basic/l1missl2hit.trace<span class="w">            </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>PASS<span class="w">      </span><span class="m">10</span>/10<span class="w">     </span>
-</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>traces-l2-basic/backinvalidation.trace<span class="w">       </span><span class="m">23</span><span class="w">        </span>FAIL<span class="w">      </span>FAIL<span class="w">      </span><span class="m">0</span>/10<span class="w">      </span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>traces-l2-basic/l2evict.trace<span class="w">                </span><span class="m">7</span><span class="w">         </span>PASS<span class="w">      </span>PASS<span class="w">      </span><span class="m">5</span>/5<span class="w">     </span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>traces-l2-basic/l1missl2hit.trace<span class="w">            </span><span class="m">5</span><span class="w">         </span>PASS<span class="w">      </span>PASS<span class="w">      </span><span class="m">5</span>/5<span class="w">     </span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>traces-l2-basic/backinvalidation.trace<span class="w">       </span><span class="m">23</span><span class="w">        </span>FAIL<span class="w">      </span>FAIL<span class="w">      </span><span class="m">0</span>/5<span class="w">      </span>
 </span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="w">  </span>Details<span class="w"> </span><span class="k">for</span><span class="w"> </span>random_test<span class="w"> </span>of<span class="w"> </span>trace<span class="w"> </span>&lt;traces-l2-basic/backinvalidation.trace&gt;<span class="w"> </span>at<span class="w"> </span>line<span class="w"> </span><span class="m">21</span>
 </span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="w">                          </span>Your<span class="w"> </span>simulator<span class="w">           </span>Reference<span class="w"> </span>simulator
 </span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="w">     </span>Level<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts<span class="w">      </span>Hits<span class="w">    </span>Misses<span class="w">    </span>Evicts
@@ -2085,12 +2077,12 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 </span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a><span class="w">        </span>L2<span class="w">         </span><span class="m">7</span><span class="w">        </span><span class="m">19</span><span class="w">        </span><span class="m">15</span><span class="w">        </span><span class="m">10</span><span class="w">        </span><span class="m">16</span><span class="w">        </span><span class="m">12</span>
 </span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a><span class="w">        </span>L3<span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span><span class="w">         </span><span class="m">0</span>
 </span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a>-----------------------------------------------------------------------------------
-</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">20</span><span class="w"> </span>/<span class="w"> </span><span class="m">30</span>
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a>Total<span class="w"> </span>Score:<span class="w"> </span><span class="m">10</span><span class="w"> </span>/<span class="w"> </span><span class="m">15</span>
 </span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a><span class="w">    </span><span class="m">2</span><span class="w"> </span>passed,<span class="w">     </span><span class="m">1</span><span class="w"> </span>failed,<span class="w">     </span><span class="m">3</span><span class="w"> </span>total
 </span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>
 </span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a>...
 </span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a>
-</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">340</span><span class="w"> </span>/<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>Testing<span class="w"> </span>cache<span class="w"> </span>simulator<span class="w"> </span><span class="k">done</span>.<span class="w"> </span>Total<span class="w"> </span>scores:<span class="w"> </span><span class="m">420</span><span class="w"> </span>/<span class="w"> </span><span class="m">500</span>
 </span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a>Totally<span class="w"> </span><span class="m">2</span>.753828<span class="w"> </span>seconds<span class="w"> </span>passed.
 </span></code></pre></div>
 <p>开启随机测试之后，在Random一栏会显示PASS或者FAIL（否则为IGNORE），同时在FAIL时会相应的输出打入断点的那一行的详细信息，供你进行比对。</p>

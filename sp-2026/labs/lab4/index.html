@@ -1416,10 +1416,10 @@
 <p>本次实验由两部分构成：</p>
 <ul>
 <li>
-<p><strong>Lab4A</strong>，总共500分。Part A要求大家使用C语言实现一个<strong>三级Cache模拟器</strong>。实现模拟器并逐渐做到Bugfree的过程会让你加深对Cache基本结构，多级cache的设计和访问方式以及系统设计中的trade-off的理解。</p>
+<p><strong>Lab4A</strong>，总共500分。Part A要求大家使用C语言实现一个<strong>三级Cache模拟器</strong>。实现模拟器并逐渐做到Bugfree的过程会让你加深对Cache基本结构，多级cache的设计和访问方式以及系统设计中的trade-off的理解。具体实验指导书在<a href="../lab4A/">Lab4A</a>。</p>
 </li>
 <li>
-<p><strong>Lab4B</strong>，总共100分。Part B要求大家<strong>优化矩阵转置的函数</strong>，这个部分的目标是使我们的代码跑的尽可能的快。不断减少Cache Miss次数的过程会帮助你理解Cache对程序运行性能的重要作用。</p>
+<p><strong>Lab4B</strong>，总共100分。Part B要求大家<strong>优化矩阵转置的函数</strong>，这个部分的目标是使我们的代码跑的尽可能的快。不断减少Cache Miss次数的过程会帮助你理解Cache对程序运行性能的重要作用。具体实验指导书在<a href="../lab4B/">Lab4B</a>。</p>
 </li>
 </ul>
 <div class="admonition warning">
@@ -1454,10 +1454,6 @@
 <p>前置要求：学习完<a href="../lab0/">lab0</a>，<strong>不要尝试在windows环境下完成实验</strong></p>
 <p>Linux is all you need</p>
 <h3 id="远程开发">远程开发<a class="headerlink" href="#远程开发" title="Permanent link">&para;</a></h3>
-<details class="todo">
-<summary>Todo</summary>
-<p>更新获取文件方式@blowinding</p>
-</details>
 <p>使用远程开发的同学，可以登陆任意一台ics服务器完成实验，成功登陆之后在自己的<strong>家目录</strong>
 底下可以看到名为<strong>cachelab-sp26</strong>的目录。进入目录，就可以开始实验啦~</p>
 <p>如果你缺少这个目录，有下面几种解决方式</p>
@@ -1718,9 +1714,6 @@ AMAT = t_{L1} + MissRate_{L1} \times (t_{L2} + MissRate_{L2} \times (t_{L3} + Mi
 </li>
 </ol>
 <h2 id="开始实验">开始实验<a class="headerlink" href="#开始实验" title="Permanent link">&para;</a></h2>
-<!-- ???todo
-    需要修改具体实验目录@blowinding -->
-
 <p>首先进入实验目录<code>cachelab-sp26</code>，然后运行<code>ls</code>查看文件：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>cachelab-sp26
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span>ls
@@ -1820,10 +1813,6 @@ AMAT = t_{L1} + MissRate_{L1} \times (t_{L2} + MissRate_{L2} \times (t_{L3} + Mi
 <p>提交网站可能会自动加上（2）等后缀以区分多次提交，这种情况无需担心，下载会自动以<strong>最后一次提交</strong>为准。如果你觉得不舒服，可以命名为例如<code>&lt;userid&gt;-cachelab-handin.zip</code>。文件命名不会影响到最后的成绩。</p>
 </div>
 <h3 id="迟交">迟交<a class="headerlink" href="#迟交" title="Permanent link">&para;</a></h3>
-<details class="todo">
-<summary>Todo</summary>
-<p>需要修改迟交策略@blowinding</p>
-</details>
 <p>在超过原定的截止时间后，我们仍然接受同学的提交。此时，在lab中能获得的最高分数将随着迟交天数的增加而减少，具体服从以下给分策略：</p>
 <ul>
 <li>4.14 - 4.20（含），每天扣除1%的分数，双休日不扣分，也就是最多扣除5%。</li>
