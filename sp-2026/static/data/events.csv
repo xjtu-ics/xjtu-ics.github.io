@@ -15,10 +15,10 @@ Lecture,6,2026-04-07T14:00:00,2025-03-27T21:00:00,No Lecture (XJTU 130th Anniver
 Lecture,6,2026-04-09T10:10:00,2025-03-25T21:00:00,Memory Hierarchy,Danfeng Shan,assets/slides/08-memory-hierarchy.pdf,主D-204,6.1,
 Lecture,6,2026-04-11T14:00:00,2025-03-27T21:00:00,Memory Hierarchy,Danfeng Shan,,主D-204,6.2-6.3,
 Lecture,7,2026-04-14T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,,主D-204,6.4-6.7,
-Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Processor Architecture: Basics,Danfeng Shan,4.1-4.2,主D-204,,CacheSimLab out
+Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Processor Architecture: Basics,Danfeng Shan,,主D-204,4.1-4.2,CacheSimLab out
 Lab,7,2026-04-19T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[AttackLab](labs/lab3.md) due
-Lecture,8,2026-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Sequential,Danfeng Shan,4.3,主D-204,,
-Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Processor Architecture: Pipeline,Danfeng Shan,4.4-4.5,主D-204,,
+Lecture,8,2026-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Sequential,Danfeng Shan,,主D-204,4.3,
+Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Processor Architecture: Pipeline,Danfeng Shan,,主D-204,4.4-4.5,
 Lecture,9,2026-04-28T10:10:00,2025-03-25T21:00:00,TBD,Hao Li,,主D-204,,
 Lecture,9,2026-04-30T14:30:00,2025-03-27T21:00:00,TBD,Hao Li,,主D-204,,CacheOptLab out
 Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,CacheSimLab due
