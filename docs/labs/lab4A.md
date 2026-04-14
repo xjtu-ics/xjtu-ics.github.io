@@ -159,7 +159,7 @@ L3 cache hits:0 misses:0 evictions:0
 使用`-n`开启快照，并且使用`-v`打印详细信息。
 
 ```bash
-$ ./csim-ref-partA -vnt traces-basic/l1Devict.trace
+$ ./csim-ref-partA -vnt traces-l1-basic/l1Devict.trace
 0: S 0 8
 L1-d cache hits:0 misses:1 evictions:0
 L1-i cache hits:0 misses:0 evictions:0
@@ -205,7 +205,7 @@ l3 cache[15][7]: valid=0, dirty=0, tag=0
 如果你只对L2感兴趣，可以指定打印L2的某一个set：
 
 ```bash
-$ ./csim-ref-partA -vnt traces-basic/l1Devict.trace -l 2 -s 4
+$ ./csim-ref-partA -vnt traces-l1-basic/l1Devict.trace -l 2 -s 4
 0: S 0 8
 L1-d cache hits:0 misses:1 evictions:0
 L1-i cache hits:0 misses:0 evictions:0
@@ -247,7 +247,7 @@ l2 cache[4][3]: valid=0, dirty=0, tag=0
 如果你需要全部的cache信息，而只对某一次访问结束之后的cache信息感兴趣，你可以使用`-b`参数指定breakpoint：
 
 ```bash
-$ ./csim-ref-partA -nt traces-basic/l1Devict.trace -l 2 -s 4 -b 2
+$ ./csim-ref-partA -nt traces-l1-basic/l1Devict.trace -l 2 -s 4 -b 2
 2: L 40 8
 L1-d cache hits:0 misses:3 evictions:1
 L1-i cache hits:0 misses:0 evictions:0
@@ -267,9 +267,15 @@ l2 cache[4][2]: valid=0, dirty=0, tag=0
 l2 cache[4][3]: valid=0, dirty=0, tag=0
 ```
 
-这将会打印行数为2（行数从0开始）的指令访问之后的cache信息。
+这将会打印行数为2（行数从0开始）的指令访问之后的cache信息以及全部访问结束之后的cache信息。
 
 当然，上述参数可以自由组合，不过注意要遵守其约定。
+
+!!!note
+    你实现的模拟器将被编译为可执行文件`csim`，可以对csim使用相同的操作进行测试，例如：
+    ```bash
+    ./csim -nt traces-l1-basic/l1Devict.trace -l 2 -s 4 
+    ```
 
 简单来说，你的任务就是实现这样一个模拟器，从命令行读取trace文件进行模拟，要求是输出需要和我们提供的标准cache模拟器**完全一致**
 
@@ -309,7 +315,7 @@ extern CacheLine l1dcache[L1_SET_NUM][L1_LINE_NUM];
 extern CacheLine l1icache[L1_SET_NUM][L1_LINE_NUM];
 // L2 Unified Cache
 extern CacheLine l2ucache[L2_SET_NUM][L2_LINE_NUM];
-// L2 Unified Cache
+// L3 Unified Cache
 extern CacheLine l3ucache[L3_SET_NUM][L3_LINE_NUM];
 
 ...
@@ -594,6 +600,7 @@ cache的访问trace依次为：
 | L3 | Hard | `traces-hard/` | 1 | 50 |
 
 测试使用 `./test-csim` 运行，可以添加`-h`参数查看该程序所能接受的命令行参数。
+在测试之前请先使用`make`将程序编译为可执行文件。
 
 ```bash
 $ ./test-csim -h
