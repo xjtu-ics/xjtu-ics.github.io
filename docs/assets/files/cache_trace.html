@@ -968,7 +968,7 @@ const traces = [
         delta: { l3: { 2: { data: "c=30", lru: 18, valid: true, dirty: false } } } },
       { text: "<strong>L2 已满</strong> → 比较 LRU：way0(a, LRU=12) vs way1(b=21, LRU=13) vs way2(d, LRU=16)", action: "evict_compare", target: "l2",
         highlights: { l2: [0, 1, 2] } },
-      { text: "驱逐 L2 way0(a, LRU=12) <strong>Dirty=1 → 必须写回 L3</strong>", action: "evict", target: "l2", way: 0,},
+      { text: "驱逐 L2 way0(a, LRU=12) <strong>Dirty=1 → 但需触发back invalidation链", action: "evict", target: "l2", way: 0,},
       { text: "<strong>Back Invalidation:</strong> L2 驱逐 a → L1 way1(a=11) 必须无效化", action: "backinval", target: "l1", way: 1 },
       { text: "L1 way1(a=11, <strong>Dirty=1</strong>) → 必须先写回 L2 way0", action: "writeback", target: "l2", way: 0,
         delta: { l2: { 0: { data: "a=11", lru: 19, valid: true, dirty: true } } } },

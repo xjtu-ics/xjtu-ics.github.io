@@ -51,13 +51,13 @@
 !!!note
     `Valgrind`是一款用于内存调试、内存泄漏检测以及性能分析的软件开发工具。
 
-例如：
+    例如：
 
-```shell
-$ valgrind --log-fd=1 --tool=lackey -v --trace-mem=yes ls -l
-```
+    ```shell
+    $ valgrind --log-fd=1 --tool=lackey -v --trace-mem=yes ls -l
+    ```
 
-以上命令可以输出执行`ls -l`命令时实际产生的所有内存访问日志。
+    以上命令可以输出执行`ls -l`命令时实际产生的所有内存访问日志。
 
 trace文件的格式如下：
 
@@ -427,8 +427,10 @@ void cacheAccess(char op, uint64_t addr, uint32_t len) {
 3. 如果命中，跳到**第8步**
 4. 否则，继续访问下一级cache（或内存）获取数据
 5. 在本级cache对应的set中找一个invalid的cache line，用于放置从下一级cache（或内存）加载的cache line，如果有多个invalid的cache line，**选择下标最小的一个**，然后跳到**第8步**
-6. 如果在第5步对应的set已满，你需要**首先evict一个cache line**，evict的过程**使用LRU算法**，如果evict的cache line是dirty的，你需要首先将其写入到下一级缓存（或内存）
-7. 由于**inclusive policy**，你可能需要back invalidation第 i - 1 级cache中的cache line
+6. 如果在第5步对应的set已满，你需要首先使用LRU算法选择一个被evict的cache line(称为victim)，如果victim是dirty的，你需要将其写入到下一级缓存(或内存)
+7. 在第6步中，由于**inclusive policy**，在检查victim是否dirty前，你必须保证**所有**比当前更高级别的cache不包含当前victim的数据，因此需要递归地对较高级cache进行**back invalidation**：
+    - 先在较高级cache中查找当前victim对应的cache line，如果找到，则也需要evict
+    - evict对应的cache line时，要将其状态置为invalid，同时如果该cache line被标为dirty，则必须将它的数据写回(Write-back)到victim中，这会导致victim的dirty字段被置为true(即使它原本是clean的)
 8. 设置这个cache line对应的tag字段，LRU字段和valid字段
 9. 如果访问模式是**写操作**，设置dirty字段
 10. 返回
@@ -485,6 +487,7 @@ cache的访问trace依次为：
 
 以下假设可以帮助你大幅简化实现逻辑：
 
+- CPU通过指令直接READ的cache层级只有L1DCache、L1ICache，直接WRITE的cache层级只有L1DCache，其余部分都应该由Cache控制器完成。也就是说，调用`cacheAccess`函数时，首先应当访问L1级Cache，其余部分自行实现。
 - 对于单次cache访问，数据不会跨越两个cache line，因此你可以**忽略`cacheAccess`函数中的第三个参数**。
 - 你可以假设指令和数据不会访问同一块内存，换句话说，你可以假设L2中的某个cache line**不会同时出现**在L1D cache和L1I cache中。
 - 本次实验仅要求模拟cache访问，因此你**无需关心具体的写入数据**。
