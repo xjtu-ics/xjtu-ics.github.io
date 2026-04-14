@@ -1365,11 +1365,11 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code>Valgrind</code>是一款用于内存调试、内存泄漏检测以及性能分析的软件开发工具。</p>
-</div>
 <p>例如：</p>
 <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span>valgrind<span class="w"> </span>--log-fd<span class="o">=</span><span class="m">1</span><span class="w"> </span>--tool<span class="o">=</span>lackey<span class="w"> </span>-v<span class="w"> </span>--trace-mem<span class="o">=</span>yes<span class="w"> </span>ls<span class="w"> </span>-l
 </span></code></pre></div>
 <p>以上命令可以输出执行<code>ls -l</code>命令时实际产生的所有内存访问日志。</p>
+</div>
 <p>trace文件的格式如下：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>I 0400d7d4,8
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> M 0421c7f0,4
@@ -1690,8 +1690,12 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <li>如果命中，跳到<strong>第8步</strong></li>
 <li>否则，继续访问下一级cache（或内存）获取数据</li>
 <li>在本级cache对应的set中找一个invalid的cache line，用于放置从下一级cache（或内存）加载的cache line，如果有多个invalid的cache line，<strong>选择下标最小的一个</strong>，然后跳到<strong>第8步</strong></li>
-<li>如果在第5步对应的set已满，你需要<strong>首先evict一个cache line</strong>，evict的过程<strong>使用LRU算法</strong>，如果evict的cache line是dirty的，你需要首先将其写入到下一级缓存（或内存）</li>
-<li>由于<strong>inclusive policy</strong>，你可能需要back invalidation第 i - 1 级cache中的cache line</li>
+<li>如果在第5步对应的set已满，你需要首先使用LRU算法选择一个被evict的cache line(称为victim)，如果victim是dirty的，你需要将其写入到下一级缓存(或内存)</li>
+<li>在第6步中，由于<strong>inclusive policy</strong>，在检查victim是否dirty前，你必须保证<strong>所有</strong>比当前更高级别的cache不包含当前victim的数据，因此需要递归地对较高级cache进行<strong>back invalidation</strong>：<ul>
+<li>先在较高级cache中查找当前victim对应的cache line，如果找到，则也需要evict</li>
+<li>evict对应的cache line时，要将其状态置为invalid，同时如果该cache line被标为dirty，则必须将它的数据写回(Write-back)到victim中，这会导致victim的dirty字段被置为true(即使它原本是clean的)</li>
+</ul>
+</li>
 <li>设置这个cache line对应的tag字段，LRU字段和valid字段</li>
 <li>如果访问模式是<strong>写操作</strong>，设置dirty字段</li>
 <li>返回</li>
@@ -1740,6 +1744,7 @@ Tag 字段与数据块内容也会被重置为初始状态。</p>
 <h3 id="可利用的简化假设">可利用的简化假设<a class="headerlink" href="#可利用的简化假设" title="Permanent link">&para;</a></h3>
 <p>以下假设可以帮助你大幅简化实现逻辑：</p>
 <ul>
+<li>CPU通过指令直接READ的cache层级只有L1DCache、L1ICache，直接WRITE的cache层级只有L1DCache，其余部分都应该由Cache控制器完成。也就是说，调用<code>cacheAccess</code>函数时，首先应当访问L1级Cache，其余部分自行实现。</li>
 <li>对于单次cache访问，数据不会跨越两个cache line，因此你可以<strong>忽略<code>cacheAccess</code>函数中的第三个参数</strong>。</li>
 <li>你可以假设指令和数据不会访问同一块内存，换句话说，你可以假设L2中的某个cache line<strong>不会同时出现</strong>在L1D cache和L1I cache中。</li>
 <li>本次实验仅要求模拟cache访问，因此你<strong>无需关心具体的写入数据</strong>。</li>
