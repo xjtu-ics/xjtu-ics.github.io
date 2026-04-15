@@ -1458,7 +1458,7 @@
 底下可以看到名为<strong>cachelab-sp26</strong>的目录。进入目录，就可以开始实验啦~</p>
 <p>如果你缺少这个目录，有下面几种解决方式</p>
 <ul>
-<li>下载实验压缩包<a href="../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
+<li>下载实验压缩包<a href="../../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
 <li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
@@ -1471,7 +1471,7 @@
 </ul>
 <p>实验材料的获取方式：</p>
 <ul>
-<li>下载实验压缩包<a href="../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
+<li>下载实验压缩包<a href="../../assets/files/cachelab-sp26.tar">cachelab-sp26.tar</a></li>
 <li>访问本次实验的<a href="https://github.com/xjtu-ics/cachelab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
@@ -1814,13 +1814,11 @@ AMAT = t_{L1} + MissRate_{L1} \times (t_{L2} + MissRate_{L2} \times (t_{L3} + Mi
 </div>
 <h3 id="迟交">迟交<a class="headerlink" href="#迟交" title="Permanent link">&para;</a></h3>
 <p>在超过原定的截止时间后，我们仍然接受同学的提交。此时，在lab中能获得的最高分数将随着迟交天数的增加而减少，具体服从以下给分策略：</p>
-<ul>
-<li>4.14 - 4.20（含），每天扣除1%的分数，双休日不扣分，也就是最多扣除5%。</li>
-<li>4.21 - 4.26（含），由于<strong>概率论考试</strong>，不扣分。</li>
-<li>4.27（调休） - 5.11（含），其中：4.27 - 4.30（含）以及5.6 - 5.8（含）每天扣除2%的分数，也就是最多扣除14%。五一放假不扣分，5.9 <strong>算法考试</strong>，不扣分，5.10 - 5.11，双休日不扣分。</li>
-<li>5.11及以后，每天扣除7%的分数，直至扣完</li>
-</ul>
-<p>以上策略中超时不足一天的，均按一天计，自ddl时间开始计算。届时在线学习平台将开放迟交通道。</p>
+<p>超时7天（含7天）以内时，每天扣除3%的分数
+超时7~14天（含14天）时，每天扣除4%的分数
+超时14天以上时，每天扣除7%的分数，直至扣完
+以上策略中超时不足一天的，均按一天计。由于本次lab有两个部分，因此迟交策略分别从各自的ddl时间开始计算。届时在线学习平台将开放迟交通道。</p>
+<p>评分样例：如某同学小H在lab中取得95分，但晚交3天，那么他的最终分数就为<code>95*(1-3*3%)=86.45</code>分。同样的分数在晚交8天时，最终分数则为<code>95*(1-7*3%-1*4%)=71.25</code>分。</p>
 <hr />
 <p>Copyright © 2026 XJTU ICS-TEAM</p>
                 
