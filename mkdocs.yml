@@ -104,10 +104,10 @@ nav:
     - "Lab 1: Data Lab": labs/lab1.md
     - "Lab 2: Bomb Lab": labs/lab2.md
     - "Lab 3: Attack Lab": labs/lab3.md
-    # - "Lab 4: Cache Lab":
-    #   - "Before You Begin": labs/lab4.md
-    #   - "Lab 4A: Cache-Sim": labs/lab4A.md
-    #   - "Lab 4B: Cache-Opt": labs/lab4B.md
+    - "Lab 4: Cache Lab":
+      - "Before You Begin": labs/lab4.md
+      - "Lab 4A: Cache-Sim": labs/lab4A.md
+      - "Lab 4B: Cache-Opt": labs/lab4B.md
     # - "Lab 5: Optimization Lab": labs/lab5.md
     # - "Lab 6: Linker Lab": labs/lab6.md
     # - "Lab 7: Malloc Lab": labs/lab7.md
