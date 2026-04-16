@@ -713,7 +713,7 @@ Disassembly of section .text:
 然后，这个字符串可以通过`hex2raw`生成目标程序的输入字符串。通过修改 `example.d`，可以省略无关值，同时可以添加注释以提高可读性，如下，这是加上注释的版本，这也是一种有效的输入，可以在发送给目标程序之前通过 `hex2raw`生成原始字符串作为输入。
 
 ```assembly
-68 EF CD AB 00  /* PUSQ $0XABCEF */
+68 EF CD AB 00  /* PUSHQ $0XABCEF */
 48 83 C0 11     /* Add  $0X11 ,%RAX */
 89 C2           /* MOV  %EAX ,%EDX */
 ```
