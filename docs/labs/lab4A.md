@@ -423,23 +423,29 @@ void cacheAccess(char op, uint64_t addr, uint32_t len) {
 }
 ```
 
+## 三级cache模拟器访问路径
 
-要注意的是，你需要实现的三级cache模拟器必须保证**严格的包含关系（见实验前置知识一节）**，并且需要和标准的cache模拟器输出相同。因此，你实现的cache访问流程必须遵循下面的要求：
+要注意的是，你需要实现的三级cache模拟器必须保证**严格的包含关系（见[实验前置知识一节](./lab4.md#实验前置知识)）**，并且需要和标准的cache模拟器输出相同。因此，你实现的cache访问流程必须遵循下面的要求：
 
-假设当前访问第 i 级cache
+假设当前需要在 Cache 中查询某一内存地址中的数据，完整的访问流程如下：
 
-1. 根据内存地址得到相应的tag，set, block等字段的值
-2. 检查第 i 级cache是否命中
-3. 如果命中，跳到**第8步**
-4. 否则，继续访问下一级cache（或内存）获取数据
-5. 在本级cache对应的set中找一个invalid的cache line，用于放置从下一级cache（或内存）加载的cache line，如果有多个invalid的cache line，**选择下标最小的一个**，然后跳到**第8步**
-6. 如果在第5步对应的set已满，你需要首先使用LRU算法选择一个被evict的cache line(称为victim)，如果victim是dirty的，你需要将其写入到下一级缓存(或内存)
-7. 在第6步中，由于**inclusive policy**，在检查victim是否dirty前，你必须保证**所有**比当前更高级别的cache不包含当前victim的数据，因此需要递归地对较高级cache进行**back invalidation**：
-    - 先在较高级cache中查找当前victim对应的cache line，如果找到，则也需要evict
-    - evict对应的cache line时，要将其状态置为invalid，同时如果该cache line被标为dirty，则必须将它的数据写回(Write-back)到victim中，这会导致victim的dirty字段被置为true(即使它原本是clean的)
-8. 设置这个cache line对应的tag字段，LRU字段和valid字段
-9. 如果访问模式是**写操作**，设置dirty字段
-10. 返回
+1. **地址解析与逐层查找。** 根据目标内存地址，按照每一层 Cache 的结构参数（line size、set 数量），将地址拆分为 **tag**、**set index**、**block offset** 三个字段，然后从最高层（L1）开始逐层向下查找。
+
+2. **判断是否命中。** 在当前层 Cache 中，用 set index 定位到对应的 Set，遍历该 Set 内所有 way：若存在某条 cache line 的 valid 位为 1 且 tag 字段与地址的 tag 匹配，则**命中（Hit）**，跳转到**第 7 步**；否则，继续访问下一级 Cache 或内存。
+
+3. **向上逐层加载数据。** 当在某级 Cache 或内存中找到目标数据后，需要将其**递归地加载**到该层以上的所有 Cache 中（由低层向高层依次填入）。
+
+4. **在目标 Set 中寻找空位。** 将数据加载到某一层时，先根据该层的 Cache 参数计算数据所属的 Set。检查该 Set 中是否存在 invalid 的 cache line：若存在**一个或多个** invalid line，**选择下标最小的一个**作为写入位置，跳转到**第 7 步**；若该 Set 已满（所有 line 均为 valid），进入第 5 步。
+
+5. **驱逐（Eviction）。** Set 已满时，使用 **LRU 算法**选出最近最少使用的一条 cache line 作为 **victim**。在覆写 victim 之前，需要先完成以下操作：首先执行**第 6 步（Back Invalidation）**，确保所有更高层级的 Cache 中不再持有 victim 的数据；然后检查 victim 自身的 dirty 位，若为 1，则将其数据**写回（Write-back）**到下一级 Cache（或内存），并将下一级对应位置的 dirty 位置 1。
+
+6. **Back Invalidation（反向无效化）。** 由于 **inclusive policy** 要求低层 Cache 的内容必须是高层 Cache 内容的超集，驱逐 victim 前必须保证所有更高层级的 Cache 中不再持有 victim 对应的数据。
+
+    具体过程为：从当前层向上逐层查找 victim 对应的 cache line；若在某一高层 Cache 中找到了匹配的 valid line，则从**该数据所在的最高层 Cache** 开始，向下依次执行 evict 操作——将该 cache line 的 valid 位**置为 invalid**，若该 line 的 dirty 位为 1，先将其数据**写回到下一级 Cache** 并将下一级对应位置的 dirty 位置 1——逐层向下重复，直到回到触发 back invalidation 的那一层为止。
+
+7. **更新元数据。** 将目标数据写入选定的 cache line 后，设置该 line 的 **tag** 字段为目标地址的 tag，更新 **LRU** 字段以标记为最近使用，并将 **valid** 位置为 1。
+
+8. **处理写操作。** 若本次访问是**写操作**（Store 或 Modify），还需将该 cache line 的 **dirty** 位置为 1，表示数据已被修改，与下级存储内容不一致。
 
 如果看完上述描述仍然感到困惑，不用担心——理解 Cache 最好的方式莫过于亲手跟着一个例子走一遍。
 为此，助教们特地准备了一份演示样例，其 Cache 与内存的组织结构如下图所示。
@@ -467,7 +473,7 @@ cache的访问trace依次为：
 !!!note
     在这个简单的例子中，你可以假设每个变量会占用整个cache line，并且三级cache的cache line大小是一样的。换句话说，读取变量a放入cache的时候，a的数据宽度和cache line的大小是一致的。
 
-我们**强烈建议**大家在正式开始写代码之前，自己把上述的过程**完整的画一遍**，特别是注意cache访问中**访问顺序（序号），LRU的设置，evict的过程，cache miss时的处理流程**，以及back invalidation的过程，完整的答案在[这里](../assets/files/cache_trace.html)，有任何疑惑，欢迎上piazza进行提问。
+我们**强烈建议**大家在正式开始写代码之前，自己把上述的过程**完整的画一遍**，特别是注意cache访问中**访问顺序（序号），LRU的设置，evict的过程，cache miss时的处理流程**，以及back invalidation的过程。助教组设计了一个[可交互式的网页](../assets/files/cache_trace.html)作为参考，有任何疑惑，欢迎上piazza进行提问。
 
 
 <!-- ???todo
@@ -502,6 +508,10 @@ cache的访问trace依次为：
 ### 初始化
 
 - 在访问cache之前，你需要正确的初始化所有的cache line，换句话说，你需要把所有的字段全部初始化为0。
+
+### inclusive性质保证
+
+- 为了保证多级Cache中inclusive的性质，你可以使用[assert](https://en.cppreference.com/w/c/error/assert.html)语句对应该满足的条件进行断言。
 
 ### 地址解析与位运算
 
@@ -770,8 +780,8 @@ Totally 2.753828 seconds passed.
 开启随机测试之后，在Random一栏会显示PASS或者FAIL（否则为IGNORE），同时在FAIL时会相应的输出打入断点的那一行的详细信息，供你进行比对。
 
 !!!tip
-    - 你应该首先保证最基础的60分，也就是通过最大层级为1的所有测试，一级Cache的实现较为简单，你应当首先完成此任务
-    - 你应该**灵活使用**前面介绍过的参数进行debug
+    - 你应该首先保证最基础的400分，也就是通过最大层级为1的所有测试，一级Cache的实现较为简单，你应当首先完成此任务
+    - 你应该**灵活使用**前面介绍过的参数进行debug；你也可以修改**你需要的文件**进行debug，如添加`printf`、修改结构体定义以存放你自己的调试信息等方式，但在本地测试时需要保证除`cache-impl.c`文件的其他文件不被修改，最终评分按照标准代码框架进行评测
     - 你可以将输出**重定向**到临时文件中以进行debug，注意，产生的输出文件可能会很大，尤其是开启了**快照**的情况下，请提前预留足够的磁盘空间（大约30-50G）
     - **禁止打表**，我们在最后测试的时候会**随机设置断点（会和你自己进行的随机测试设置的断点不同）**来检查你的程序是否正确，这也是测试输出的**Random**一栏，在开启Random测试后，你需要额外通过random的检查来拿到满分
     - 如果你想确保万无一失，可以使用`-vt`参数并和我们的参考模拟器进行比对，这会在每一次cache访问之后输出cache的状态（也就是12个统计量）。如果完全一致，那随机测试就一定可以通过
