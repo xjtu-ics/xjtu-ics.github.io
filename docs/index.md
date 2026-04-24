@@ -58,17 +58,28 @@ Enjoy!
 <!--     ~ XJTU-ICS Course Staff -->
 <!---->
 
-!!! info "Announcements for Week 7 :loudspeaker:"
+!!! info "Announcements for Week 9 :loudspeaker:"
 
-    Please note the deadline and release date of labs:
+    Please note the deadline of labs:
 
-    - [AttackLab](labs/lab3.md) is due this Sunday (2026-04-19 23:59). Don't forget to submit. :warning:
+    - [CacheLab (Part A)](labs/lab4A.md) is due this Sunday (2026-05-03 23:59). Don't forget to submit. :warning:
 
-    - [CacheLab](labs/lab4.md) is released this Thursday (2026-04-16). Enjoy! :smile:
 
     **DON'T CHEAT**. Big Brother is watching you!
 
     ~ XJTU-ICS Course Staff
+
+<!-- !!! info "Announcements for Week 7 :loudspeaker:" -->
+<!---->
+<!--     Please note the deadline and release date of labs: -->
+<!---->
+<!--     - [AttackLab](labs/lab3.md) is due this Sunday (2026-04-19 23:59). Don't forget to submit. :warning: -->
+<!---->
+<!--     - [CacheLab](labs/lab4.md) is released this Thursday (2026-04-16). Enjoy! :smile: -->
+<!---->
+<!--     **DON'T CHEAT**. Big Brother is watching you! -->
+<!---->
+<!--     ~ XJTU-ICS Course Staff -->
 
 <!-- !!! info "Announcements for Week 6 :loudspeaker:" -->
 <!---->
