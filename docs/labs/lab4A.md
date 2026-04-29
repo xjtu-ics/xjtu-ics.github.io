@@ -529,7 +529,7 @@ cache的访问trace依次为：
 - 在加载一条cache line时，你需要在当前cache set中找出一条可用的cache line。换句话说，你需要找到**一条valid字段为false**的cache line。如果有多条可用的cache line，你需要选择**下标最小的一个**。
 - 如果不存在invalid的cache line来容纳新的数据，这时候你需要**严格使用LRU算法**来找到需要evict的cache line。
 - 你可以简单使用循环的方式来暴力实现LRU，而不考虑复杂度的问题，为此，你可以维护一个全局时钟并且仔细的设置cache line结构中的latest_used字段。
-- 你可以自由的选择全局时钟的实现方式，比如使用**全局计数器作逻辑时钟**，或者**使用标准库的`time()`等函数精确化时钟**，测试**不会考察**你的全局时钟实现方式。
+- 你可以自由的选择全局时钟的实现方式，比如使用**全局计数器作逻辑时钟**，或者**使用[`clock_gettime()`](https://www.man7.org/linux/man-pages/man3/clock_gettime.3.html)等函数精确化时钟**，测试**不会考察**你的全局时钟实现方式。
 - 你在进行evict的时候，**无需对evict的cache line的LRU字段进行改动**（实际上大部分情况这个cache line会直接被新的数据覆盖，届时LRU将被设置）。
 - 你需要在每次**成功访问**一条cache line之后设置LRU字段。成功访问包括：写入/读取**命中**，或者是**从下级缓存加载了相应的cache line之后**的读取/写入操作。
 
