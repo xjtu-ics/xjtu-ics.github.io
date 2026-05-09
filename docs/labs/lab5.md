@@ -153,10 +153,10 @@ double product(double a[], long n)
 
 ## 开始实验
 
-打开家目录下的 `optim` 文件夹，应当有如下文件：
+打开家目录下的 `optLab` 文件夹，应当有如下文件：
 
 ```
-optim
+optLab
 ├── main.c
 ├── Makefile
 ├── measure_time_std.o
@@ -165,6 +165,15 @@ optim
 ```
 
 > 这些文件可以随时从 /opt/optim_handout 中恢复。另外，我们鼓励大家使用 Git 管理源码，可以方便地看到自己的改动或回退到特定版本。
+
+> 如果助教要求更新题目，请你在收到通知后在`~/optLab`目录中`git pull`。
+
+> 如果你弄丢了文件，可以删除`~/optLab`目录，重新获取：
+```bash
+cd ~
+rm -rf optLab
+git clone /opt/optLab.git
+```
 
 头文件 `poly.h` 中定义了：
 
@@ -331,9 +340,9 @@ Linux 系统下有若干函数用来测量运行时间：
 
 ## 代码提交
 
-在通过所有测试点后，在 `/home/<username>/optim/` 目录中执行 `make handin`，就会在同一目录中得到一个名为 `<username>-lab5-handin.zip` 的压缩包。
+在通过所有测试点后，在 `/home/<username>/optLab/` 目录中执行 `make handin`，就会在同一目录中得到一个名为 `<username>-lab5-handin.zip` 的压缩包。
 
-> 压缩包中 **只有** `poly.c` 文件。这意味着你对其他任何文件的修改都不会在测试中被用到，所以请务必确认你在其他文件未修改时 `make grade` 仍然能够通过。再一次地，所有文件都可以从 `/opt/optim-handout` 中恢复，并且我们鼓励你使用 Git 管理源码，可以方便地看到自己的改动或回退到特定版本。
+> 压缩包中 **只有** `poly.c` 文件。这意味着你对其他任何文件的修改都不会在测试中被用到，所以请务必确认你在其他文件未修改时 `make grade` 仍然能够通过。
 
 最终你只需要在在线学习平台上的作业模块中提交上述压缩包。
 
