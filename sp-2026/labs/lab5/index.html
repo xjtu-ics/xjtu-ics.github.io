@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://xjtu-ics.github.io/sp-2026/labs/lab5/">
       
       
+        <link rel="prev" href="../lab4B/">
+      
+      
+        <link rel="next" href="../../staff/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>XJTU-ICS Lab 5: Optimization Lab - Introduction to Computer Systems Spring 2026</title>
+        <title>Lab 5: Optimization Lab - Introduction to Computer Systems Spring 2026</title>
       
     
     
@@ -178,7 +182,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              XJTU-ICS Lab 5: Optimization Lab
+              Lab 5: Optimization Lab
             
           </span>
         </div>
@@ -287,10 +291,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../lab0/" class="md-tabs__link">
           
   
@@ -500,8 +506,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -515,21 +523,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -547,7 +560,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -814,6 +827,403 @@
             
           </ul>
         </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: Optimization Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 5: Optimization Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#实验环境准备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验环境准备
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#知识回顾" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识回顾
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cpe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CPE
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#latency-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latency bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throughput-bound" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Throughput bound
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#循环展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        循环展开
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="循环展开">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2x1-展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2x1 展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2x1a-展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2x1a 展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2x2-展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2x2 展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kxk-展开" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        kxk 展开
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开始实验" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开始实验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-a-性能测量" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A: 性能测量
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part A: 性能测量">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#注意事项_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意事项
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#如何测量运行时间" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        如何测量运行时间？
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#可能遇到的坑" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可能遇到的坑
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可能遇到的坑">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#os调度" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        OS调度
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-miss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cache miss
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#其他" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        其他
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-b-代码优化" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B: 代码优化
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part B: 代码优化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#注意事项_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意事项
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评分方法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评分方法
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#代码提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        代码提交
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码提交">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#迟交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        迟交
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#写在最后" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        写在最后
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1599,6 +2009,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../lab0/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Labs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1713,8 +2163,8 @@
 <p>每个循环体10次乘法，两个Functional Unit各负责5次。在下一个循环开始时，上一个循环的第一次乘法已经执行完成，于是新的乘法可以继续加入流水线。</p>
 <p>然而，展开层数过高也不行，可能会因为寄存器数量不够而将临时变量存在栈上，内存的读写就成为了 CPE 的新的下界。</p>
 <h2 id="开始实验">开始实验<a class="headerlink" href="#开始实验" title="Permanent link">&para;</a></h2>
-<p>打开家目录下的 <code>optim</code> 文件夹，应当有如下文件：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>optim
+<p>打开家目录下的 <code>optLab</code> 文件夹，应当有如下文件：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>optLab
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>├── main.c
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>├── Makefile
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>├── measure_time_std.o
@@ -1723,6 +2173,12 @@
 </span></code></pre></div>
 <blockquote>
 <p>这些文件可以随时从 /opt/optim_handout 中恢复。另外，我们鼓励大家使用 Git 管理源码，可以方便地看到自己的改动或回退到特定版本。</p>
+<p>如果助教要求更新题目，请你在收到通知后在<code>~/optLab</code>目录中<code>git pull</code>。</p>
+<p>如果你弄丢了文件，可以删除<code>~/optLab</code>目录，重新获取：
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">cd</span><span class="w"> </span>~
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>rm<span class="w"> </span>-rf<span class="w"> </span>optLab
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git<span class="w"> </span>clone<span class="w"> </span>/opt/optLab.git
+</span></code></pre></div></p>
 </blockquote>
 <p>头文件 <code>poly.h</code> 中定义了：</p>
 <ul>
@@ -1737,15 +2193,15 @@
 <p><code>main.c</code> 是测试框架，你<strong>不需要</strong>修改它，但你<strong>可以</strong>修改它来简化你的测试。</p>
 <p><code>measure_time_std.o</code> 中含有 <code>measure_time_std()</code> 的参考实现，测试脚本使用它来测量你的 <code>poly_optim()</code> 函数的性能。</p>
 <p><code>Makefile</code> 是构建测试程序的配置文件。输入如下指令：</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>linux$<span class="w"> </span>make<span class="w"> </span>grade
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>linux$<span class="w"> </span>make<span class="w"> </span>grade
 </span></code></pre></div>
 <p>会获得如下输出：</p>
-<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gcc<span class="w"> </span>main.c<span class="w"> </span>poly.c<span class="w"> </span>measure_time_std.o<span class="w"> </span>-o<span class="w"> </span>grader<span class="w"> </span>-O2
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>./grader
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>...
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Total<span class="w"> </span>score:<span class="w"> </span><span class="m">0</span>/100
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gcc<span class="w"> </span>main.c<span class="w"> </span>poly.c<span class="w"> </span>measure_time_std.o<span class="w"> </span>-o<span class="w"> </span>grader<span class="w"> </span>-O2
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>./grader
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>...
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>Total<span class="w"> </span>score:<span class="w"> </span><span class="m">0</span>/100
 </span></code></pre></div>
 <p>现在你可以准备开始实验了。</p>
 <h2 id="part-a-性能测量">Part A: 性能测量<a class="headerlink" href="#part-a-性能测量" title="Permanent link">&para;</a></h2>
@@ -1756,14 +2212,14 @@ poly(x) &amp;= a_0+a_1x+a_2x^2+...+a_nx^n \\
 &amp;= (((a_nx+a_{n-1})x+a_{n-2})x+...+a_1)x + a_0
 \end{align*}
 \]</div>
-<div class="language-C highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">poly</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">degree</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">degree</span><span class="p">];</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">degree</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">    </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="p">}</span>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">poly</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">degree</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">degree</span><span class="p">];</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">degree</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="o">*</span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>参数的意义为：</p>
 <ul>
@@ -1774,7 +2230,7 @@ poly(x) &amp;= a_0+a_1x+a_2x^2+...+a_nx^n \\
 <p>知识回顾部分中介绍了 CPE 的测量方法。本次实验中只需要同学们进行时间测量，曲线拟合操作由测试脚本进行。</p>
 <p><strong>Task:请你用C语言编写一个函数，测量这个函数的运行时间。</strong></p>
 <p>这个函数的原型如下：</p>
-<div class="language-C highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">measure_time</span><span class="p">(</span><span class="n">poly_func_t</span><span class="w"> </span><span class="n">poly</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">degree</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">time</span><span class="p">);</span>
+<div class="language-C highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">measure_time</span><span class="p">(</span><span class="n">poly_func_t</span><span class="w"> </span><span class="n">poly</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">a</span><span class="p">[],</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">degree</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">*</span><span class="n">time</span><span class="p">);</span>
 </span></code></pre></div>
 <p>各个参数的意义为：</p>
 <ul>
@@ -1851,9 +2307,9 @@ poly(x) &amp;= a_0+a_1x+a_2x^2+...+a_nx^n \\
 <p>第三个测试点是 <code>poly_optim()</code> 函数的 CPE。使用 <code>measure_time_std()</code> 函数测量 <code>poly_optim()</code> 的 CPE，如果通过了第二个测试点，并且测得的 CPE 不超过 1.05 （即不超过参考 CPE 的 5%），即可通过该测试点。如果 CPE &lt; 1，当然也会通过这个测试点。</p>
 <p>第四个测试点是使用你的 <code>measure_time()</code> 函数测量 <code>poly_optim()</code> 函数的 CPE。如果你的测量结果与参考测量函数的测量结果相对误差不超过 5%（记参考测量函数测得 <span class="arithmatex">\(cpe_1\)</span>，你的测量函数测得 <span class="arithmatex">\(cpe_2\)</span>，那么 <span class="arithmatex">\(\frac{|cpe_1-cpe_2|}{cpe_1}\leq0.05\)</span>），即可通过该测试点。</p>
 <h2 id="代码提交">代码提交<a class="headerlink" href="#代码提交" title="Permanent link">&para;</a></h2>
-<p>在通过所有测试点后，在 <code>/home/&lt;username&gt;/optim/</code> 目录中执行 <code>make handin</code>，就会在同一目录中得到一个名为 <code>&lt;username&gt;-lab5-handin.zip</code> 的压缩包。</p>
+<p>在通过所有测试点后，在 <code>/home/&lt;username&gt;/optLab/</code> 目录中执行 <code>make handin</code>，就会在同一目录中得到一个名为 <code>&lt;username&gt;-lab5-handin.zip</code> 的压缩包。</p>
 <blockquote>
-<p>压缩包中 <strong>只有</strong> <code>poly.c</code> 文件。这意味着你对其他任何文件的修改都不会在测试中被用到，所以请务必确认你在其他文件未修改时 <code>make grade</code> 仍然能够通过。再一次地，所有文件都可以从 <code>/opt/optim-handout</code> 中恢复，并且我们鼓励你使用 Git 管理源码，可以方便地看到自己的改动或回退到特定版本。</p>
+<p>压缩包中 <strong>只有</strong> <code>poly.c</code> 文件。这意味着你对其他任何文件的修改都不会在测试中被用到，所以请务必确认你在其他文件未修改时 <code>make grade</code> 仍然能够通过。</p>
 </blockquote>
 <p>最终你只需要在在线学习平台上的作业模块中提交上述压缩包。</p>
 <h3 id="迟交">迟交<a class="headerlink" href="#迟交" title="Permanent link">&para;</a></h3>
@@ -1891,6 +2347,44 @@ poly(x) &amp;= a_0+a_1x+a_2x^2+...+a_nx^n \\
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab4B/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 4B: Cache-Opt">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 4B: Cache-Opt
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../staff/" class="md-footer__link md-footer__link--next" aria-label="Next: Staff">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Staff
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
