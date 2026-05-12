@@ -23,5 +23,8 @@ Lecture,9,2026-04-28T10:10:00,2025-03-25T21:00:00,Machine-Independent Optimizati
 Lecture,9,2026-04-30T14:30:00,2025-03-27T21:00:00,Machine-Dependent Optimizations,Hao Li,assets/slides/12-optimization-machine-dep.pdf,主D-204,5.7-5.11,
 Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[CacheLab (Part A)](labs/lab4A.md) due
 Lecture,10,2026-05-05T10:10:00,2025-03-25T21:00:00,No Lecture (Labour Day),,,,,
-Lecture,10,2026-05-07T14:30:00,2025-03-25T21:00:00,,Hao Li,,主D-204,,
+Lecture,10,2026-05-07T14:30:00,2025-03-25T21:00:00,Linking I: Basic Concepts and Procedures,Hao Li,assets/slides/13-linking-basic.pdf,主D-204,7.1-7.7,
 Lab,10,2026-05-10T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[CacheLab (Part B)](labs/lab4B.md) due
+Lecture,11,2026-05-12T14:30:00,2026-05-12T21:00:00,Linking II: Static and Dynamic Linking,Hao Li,assets/slides/14-linking-library.pdf,主D-204,7.7-7.13,
+Lab,12,2026-05-24T23:58:59,2026-05-24T23:59:59,No Lecture,,,,,[Optimization Lab](labs/lab45.md) due
+
