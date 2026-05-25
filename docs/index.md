@@ -148,9 +148,6 @@ Enjoy!
 - Office Hours
     - Danfeng Shan: 16:00-18:00, Every Thursday
     - Hao Li: TBD
-    - TAs:
-
-{{read_office_hour_csv("docs/static/data/office_hour.csv")}}
 
 ## Schedule
 
