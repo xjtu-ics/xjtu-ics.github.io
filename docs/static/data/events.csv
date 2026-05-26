@@ -18,7 +18,7 @@ Lecture,7,2026-04-14T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,as
 Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Cache Memories,Danfeng Shan,assets/slides/09-cache-memories.pdf,主D-204,6.5-6.7,[CacheLab](labs/lab4.md) out
 Lab,7,2026-04-19T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[AttackLab](labs/lab3.md) due
 Lecture,8,2026-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Basics,Danfeng Shan,assets/slides/10-processor-basics.pdf,主D-204,4.1,
-Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Processor Architecture: Basics,Danfeng Shan,assets/slides/10-processor-basics.pdf,主D-204,4.2,
+Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Processor Architecture: Basics,Danfeng Shan,assets/slides/10-processor-basics.pdf,主D-204,4.1,
 Lecture,9,2026-04-28T10:10:00,2025-03-25T21:00:00,Machine-Independent Optimizations,Hao Li,assets/slides/11-optimization-machine-indep.pdf,主D-204,5.1-5.6,
 Lecture,9,2026-04-30T14:30:00,2025-03-27T21:00:00,Machine-Dependent Optimizations,Hao Li,assets/slides/12-optimization-machine-dep.pdf,主D-204,5.7-5.11,
 Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[CacheLab (Part A)](labs/lab4A.md) due
@@ -30,4 +30,12 @@ Lecture,11,2026-05-14T14:30:00,2026-05-14T14:30:01,Operating System: History and
 Lecture,12,2026-05-19T14:30:00,2026-05-19T14:30:01,Processes and Multitasking,Hao Li,assets/slides/16-os-process.pdf,主D-204,8.2-8.4,
 Lecture,12,2026-05-21T14:30:00,2026-05-21T14:30:01,Exceptional Control Flow,Hao Li,assets/slides/17-os-ecf.pdf,主D-204,8.5-8.7,
 Lab,12,2026-05-24T23:58:59,2026-05-24T23:59:59,No Lecture,,,,,[Optimization Lab](labs/lab45.md) due
+Lecture,13,2026-05-26T10:00:00,2026-05-19T14:30:01,Processor Architecture: Logical Design,Danfeng Shan,assets/slides/11-processor-logical.pdf,主D-204,4.2,
+Lecture,13,2026-05-28T14:30:00,2026-05-21T14:30:01,Processor Architecture: Sequential,Danfeng Shan,assets/slides/12-processor-sequential.pdf,主D-204,4.3,
+Lecture,14,2026-06-02T10:00:00,2026-05-19T14:30:01,Processor Architecture: Pipeline (Principle),Danfeng Shan,assets/slides/11-processor-logical.pdf,主D-204,4.4,
+Lecture,14,2026-06-04T14:30:00,2026-05-21T14:30:01,Processor Architecture: Pipeline (Implementation),Danfeng Shan,assets/slides/12-processor-sequential.pdf,主D-204,4.5,
+Lecture,15,2026-06-09T10:00:00,2026-05-19T14:30:01,Processor Architecture: GPU & Kunpeng,Danfeng Shan,,主D-204,,
+Lecture,15,2026-06-11T14:30:00,2026-05-21T14:30:01,Virtual Memory: Concepts,TBD,,主D-204,9.1-9.3,
+Lecture,16,2026-06-16T10:00:00,2026-05-19T14:30:01,Virtual Memory: Concepts,TBD,,主D-204,9.4-9.6,
+Lecture,16,2026-06-18T14:30:00,2026-05-21T14:30:01,Virtual Memory: Details,TBD,,主D-204,9.7-9.8,
 
