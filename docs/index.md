@@ -58,16 +58,16 @@ Enjoy!
 <!--     ~ XJTU-ICS Course Staff -->
 <!---->
 
-!!! info "Announcements for Week 9 :loudspeaker:"
-
-    Please note the deadline of labs:
-
-    - [CacheLab (Part A)](labs/lab4A.md) is due this Sunday (2026-05-03 23:59). Don't forget to submit. :warning:
-
-
-    **DON'T CHEAT**. Big Brother is watching you!
-
-    ~ XJTU-ICS Course Staff
+<!-- !!! info "Announcements for Week 9 :loudspeaker:" -->
+<!---->
+<!--     Please note the deadline of labs: -->
+<!---->
+<!--     - [CacheLab (Part A)](labs/lab4A.md) is due this Sunday (2026-05-03 23:59). Don't forget to submit. :warning: -->
+<!---->
+<!---->
+<!--     **DON'T CHEAT**. Big Brother is watching you! -->
+<!---->
+<!--     ~ XJTU-ICS Course Staff -->
 
 <!-- !!! info "Announcements for Week 7 :loudspeaker:" -->
 <!---->
