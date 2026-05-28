@@ -326,13 +326,12 @@ Disassembly of section .text:
 
 ### 运行
 
-本实验回到`x86.ics.xjtu-ants.net`上运行。
-
-首先，将仓库从GitHub clone下来：
-
-```bash
-$ git clone https://github.com/Qcloud1223/ics-ld-public
-```
+本实验回到`icsserver.netperf.cc`上运行。
+实验文件已放置在服务器的用户目录下。
+如果找不到这个文件夹，可以通过以下途径获取：
+- 下载压缩包[LinkerLab.zip](../assets/files/linkerLab.zip)（推荐）
+- 从[Github仓库](https://github.com/Qcloud1223/ics-ld-public)上获取
+- 联系助教（不推荐）
 
 按如下方法编译运行：
 
