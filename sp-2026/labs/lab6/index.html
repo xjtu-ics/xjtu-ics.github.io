@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://xjtu-ics.github.io/sp-2026/labs/lab6/">
       
       
+        <link rel="prev" href="../lab5/">
+      
+      
+        <link rel="next" href="../../staff/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>XJTU-ICS Lab 6: Linker Lab - Introduction to Computer Systems Spring 2026</title>
+        <title>Lab 6: Linker Lab - Introduction to Computer Systems Spring 2026</title>
       
     
     
@@ -178,7 +182,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              XJTU-ICS Lab 6: Linker Lab
+              Lab 6: Linker Lab
             
           </span>
         </div>
@@ -287,10 +291,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../lab0/" class="md-tabs__link">
           
   
@@ -500,8 +506,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -517,21 +525,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -549,7 +562,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -845,6 +858,424 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6: Linker Lab
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 6: Linker Lab
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#注意事项" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        注意事项
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#知识回顾" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        知识回顾
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="知识回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#链接的位置" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链接的位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#链接的目的" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        链接的目的
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#静态链接的主要流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        静态链接的主要流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#符号解析的流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        符号解析的流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#重定位的流程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        重定位的流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#elf文件与节section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ELF文件与节（Section）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#开始实验" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        开始实验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="开始实验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#实验框架" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#关键数据结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        关键数据结构
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="关键数据结构">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#objectfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ObjectFile
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#symbol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symbol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relocentry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RelocEntry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        allObject
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mergedobject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        mergedObject
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#任务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任务
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#运行" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        运行
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#测试点介绍" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        测试点介绍
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="测试点介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 0
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        test 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评分方法与代码提交" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评分方法与代码提交
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#写在最后" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        写在最后
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1650,6 +2081,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../lab0/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Labs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1921,31 +2392,35 @@
 <p class="is-info">这一步的本质是向文件的特定位置写入，即将修改合并后的目标文件中代码中留空的部分指向正确的地址。</p>
 </blockquote>
 <h3 id="运行">运行<a class="headerlink" href="#运行" title="Permanent link">&para;</a></h3>
-<p>本实验回到<code>x86.ics.xjtu-ants.net</code>上运行。</p>
-<p>首先，将仓库从GitHub clone下来：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>$<span class="w"> </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Qcloud1223/ics-ld-public
-</span></code></pre></div>
+<p>本实验回到<code>icsserver.netperf.cc</code>上运行。
+实验文件已放置在服务器的用户目录下。
+如果找不到这个文件夹，可以通过以下途径获取：</p>
+<ul>
+<li>下载压缩包<a href="../../assets/files/linkerLab.zip">LinkerLab.zip</a>（推荐）</li>
+<li>从<a href="https://github.com/Qcloud1223/ics-ld-public">Github仓库</a>上获取</li>
+<li>联系助教（不推荐）</li>
+</ul>
 <p>按如下方法编译运行：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>mkdir<span class="w"> </span>build
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">cd</span><span class="w"> </span>build
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>..
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">cd</span><span class="w"> </span>..
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>make
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mkdir<span class="w"> </span>build
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">cd</span><span class="w"> </span>build
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>cmake<span class="w"> </span>-DCMAKE_BUILD_TYPE<span class="o">=</span>Debug<span class="w"> </span>..
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>make
 </span></code></pre></div>
 <p>可以使用<code>make test*</code>的方法单独对某个测试点进行测试，如<code>make test0</code>。</p>
 <p>如果需要debug，可以在autograder输出的命令之前加上<code>gdb --args</code>，如：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>$<span class="w"> </span>gdb<span class="w"> </span>--args<span class="w"> </span>./build/ics-linker<span class="w"> </span>testcases/test0/glbvar.o<span class="w"> </span>-o<span class="w"> </span>testcases/test0/test0.o
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>$<span class="w"> </span>gdb<span class="w"> </span>--args<span class="w"> </span>./build/ics-linker<span class="w"> </span>testcases/test0/glbvar.o<span class="w"> </span>-o<span class="w"> </span>testcases/test0/test0.o
 </span></code></pre></div>
 <h2 id="测试点介绍">测试点介绍<a class="headerlink" href="#测试点介绍" title="Permanent link">&para;</a></h2>
 <h3 id="test-0">test 0<a class="headerlink" href="#test-0" title="Permanent link">&para;</a></h3>
 <p>在此测试点中只需完成重定位。且因为只有一个源文件（即<code>allObject</code>的长度为1），因此无需在其它文件的符号表中查询。</p>
 <p>完成重定位需要对<code>relocTable</code>进行遍历，对每个<code>RelocEntry</code>，首先需要找到其对应的<code>symbol</code>的地址，这个值存放在<code>re.sym-&gt;value</code>里。</p>
 <p>由于<code>relocTable</code>的类型为<code>std::vector</code>，可以使用以下方法遍历它：</p>
-<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">// obj指每一个需要重定位的目标文件</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">re</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">relocTable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">re</span><span class="p">.</span><span class="n">sym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="n">re</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="p">}</span>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// obj指每一个需要重定位的目标文件</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">re</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">obj</span><span class="p">.</span><span class="n">relocTable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="n">re</span><span class="p">.</span><span class="n">sym</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">  </span><span class="n">re</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>随后，我们需要知道<code>RelocEntry</code>指示的需要修改的源代码的位置，这个值由<code>re.offset</code>指示。而由于当前object在链接成可执行文件时，还包含若干其它.o，所以需要加上<code>textOff</code>，才能得到真正需要修改的地址。</p>
 <blockquote>
@@ -1958,34 +2433,34 @@
 一般来说，很小的数（如<code>0x1133</code>）不是一个合法的地址，而合法地址应当长得像<code>0x400000</code>，<code>0x555555000000</code>或<code>0x7ffffffffde8</code>这样。</p>
 </blockquote>
 <p>在C++中，向一个地址填入内容需要进行显式类型转换，方法如下：</p>
-<div class="language-c++ highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kt">uint64_t</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x555555555000</span><span class="p">;</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">valueToFill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valueToFill</span><span class="p">;</span>
+<div class="language-c++ highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">uint64_t</span><span class="w"> </span><span class="n">addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x555555555000</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">valueToFill</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="o">*</span><span class="k">reinterpret_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">addr</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">valueToFill</span><span class="p">;</span>
 </span></code></pre></div>
 <p>你可能会在两个地方碰见segmentation fault：1）尝试向文件写入时；2）尝试执行经自己重定位后的可执行文件时。autograder在面对这两种情况时，会提示碰到问题的到底是linker还是经过链接之后的程序在出错。</p>
 <p>对于前者，建议使用gdb观察出问题的代码位置，以及检查是否在向一个合法的地址写入。</p>
 <p>对于后者，此时你的linker正确退出了，但linker输出的结果不对。此时建议使用<code>objdump</code>检查经过重写之后的程序是否能够对上预期输出（注意星号部分）。</p>
 <p>test0的预期输出为：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test0/test0<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">11</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>**d5<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span>**<span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ed5<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="w">    </span>113b:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>**cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span>**<span class="w">       </span>mov<span class="w">    </span>0x2ecf<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="w">    </span><span class="m">1141</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a><span class="w">    </span><span class="m">1142</span>:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span><span class="m">66</span><span class="w"> </span>2e<span class="w"> </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>nopw<span class="w">   </span>%cs:0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a><span class="w">    </span>114a:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="w">    </span>114d:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">00</span><span class="w">                </span>nopl<span class="w">   </span><span class="o">(</span>%rax<span class="o">)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test0/test0<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">11</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>**d5<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span>**<span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ed5<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span>113b:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>**cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span>**<span class="w">       </span>mov<span class="w">    </span>0x2ecf<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">    </span><span class="m">1141</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">    </span><span class="m">1142</span>:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span><span class="m">66</span><span class="w"> </span>2e<span class="w"> </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>nopw<span class="w">   </span>%cs:0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">    </span>114a:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">    </span>114d:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">00</span><span class="w">                </span>nopl<span class="w">   </span><span class="o">(</span>%rax<span class="o">)</span>
 </span></code></pre></div>
 <h3 id="test-1">test 1<a class="headerlink" href="#test-1" title="Permanent link">&para;</a></h3>
 <p>在此测试点中你仍然只需完成重定位，且仍只有一个源文件。不同的地方在于，此时重定位类型从<code>R_X86_64_PC32</code>变成了<code>R_X86_64_32</code>：</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Relocation section &#39;.rela.text&#39; at offset 0x260 contains 2 entries:
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  Offset          Info           Type           Sym. Value    Sym. Name + Addend
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>000000000029  00090000000a R_X86_64_32       0000000000000000 array + 0
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>00000000002e  000a00000004 R_X86_64_PLT32    0000000000000000 sum - 4
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Relocation section &#39;.rela.text&#39; at offset 0x260 contains 2 entries:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>  Offset          Info           Type           Sym. Value    Sym. Name + Addend
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>000000000029  00090000000a R_X86_64_32       0000000000000000 array + 0
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>00000000002e  000a00000004 R_X86_64_PLT32    0000000000000000 sum - 4
 </span></code></pre></div>
 <p>这代表着此时可执行文件以非PIE（position independent executable）形式编译，通过一个绝对地址而非PC相对访问。在这种情况下，你需要填入地址的位置不变，而需要填入的内容变成了<code>re.sym</code>的<code>value</code>再加上addend。在代码框架中，<code>handleRela</code>接受的参数<code>isPIE</code>用来指示当前链接的目标文件是否启用了PIE。</p>
 <blockquote>
@@ -1993,16 +2468,16 @@
 </blockquote>
 <p>此外，由于我们使用一个函数访问了另一个函数，引入了另一种重定位类型<code>R_X86_64_PLT32</code>。它也使用PC相对寻址，所以在处理时与<code>R_X86_64_PC32</code>完全一样。</p>
 <p>预期输出：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test1/test1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">00401126</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="m">0000000000401126</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="m">401126</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span>40112a:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">  </span>40112b:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">  </span>40112e:<span class="w">       </span>bf<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x404028,%edi
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">  </span><span class="m">401133</span>:<span class="w">       </span>e8<span class="w"> </span>ce<span class="w"> </span>ff<span class="w"> </span>ff<span class="w"> </span>ff<span class="w">          </span>callq<span class="w">  </span><span class="m">401106</span><span class="w"> </span>&lt;sum&gt;
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="m">401138</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="m">401139</span>:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
-</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">  </span>40113a:<span class="w">       </span><span class="m">66</span><span class="w"> </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>nopw<span class="w">   </span>0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test1/test1<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="m">00401126</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="m">0000000000401126</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">  </span><span class="m">401126</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span>40112a:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">  </span>40112b:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">  </span>40112e:<span class="w">       </span>bf<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x404028,%edi
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">  </span><span class="m">401133</span>:<span class="w">       </span>e8<span class="w"> </span>ce<span class="w"> </span>ff<span class="w"> </span>ff<span class="w"> </span>ff<span class="w">          </span>callq<span class="w">  </span><span class="m">401106</span><span class="w"> </span>&lt;sum&gt;
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">  </span><span class="m">401138</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">  </span><span class="m">401139</span>:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">  </span>40113a:<span class="w">       </span><span class="m">66</span><span class="w"> </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>nopw<span class="w">   </span>0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
 </span></code></pre></div>
 <h3 id="test-2">test 2<a class="headerlink" href="#test-2" title="Permanent link">&para;</a></h3>
 <p>在这个测试点中需要进行符号解析。显然，<code>extcall.c</code>访问了一个外部符号，但没有任何一个源文件提供了它的定义，因此需要在<code>callResolveSymbols</code>中将<code>errSymName</code>设为未找到引用的符号名字，并返回<code>NO_DEF</code>。</p>
@@ -2015,16 +2490,16 @@
 <hr />
 <p>如果你的代码没能发现存在一个未解析的引用，<code>ld</code>会报错从而终止程序。</p>
 <p>预期输出：（你的报错应当先出现从而退出程序，不应看到<code>ld</code>的输出）</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ ./build/ics-linker testcases/test2/extcall.o -o testcases/test2/test2.o
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>undefined reference for symbol foo
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Aborted (core dumped)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>$ ./build/ics-linker testcases/test2/extcall.o -o testcases/test2/test2.o
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>undefined reference for symbol foo
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>Aborted (core dumped)
 </span></code></pre></div>
 <h3 id="test-3">test 3<a class="headerlink" href="#test-3" title="Permanent link">&para;</a></h3>
 <p>在这个测试点中需要发现存在多个定义的符号。如果一个符号存在多个强定义，则设置<code>errSymName</code>为被多次定义的符号名，并返回<code>MULTI_DEF</code>。</p>
 <p>预期输出：（你的报错应当先出现从而退出程序，不应看到<code>ld</code>的输出）</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$ ./build/ics-linker testcases/test3/multidef1.o testcases/test3/multidef2.o -o testcases/test3/test3.o
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>multiple definition for symbol a
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Aborted (core dumped)
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ ./build/ics-linker testcases/test3/multidef1.o testcases/test3/multidef2.o -o testcases/test3/test3.o
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>multiple definition for symbol a
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Aborted (core dumped)
 </span></code></pre></div>
 <h3 id="test-4">test 4<a class="headerlink" href="#test-4" title="Permanent link">&para;</a></h3>
 <p>在这个测试点中，存在同名的一个强与一个弱符号。根据上文中的定义，对弱符号的引用将被绑定到强符号上，因此这一测试点应当能够链接成功，表现为来自两个文件中的函数对同名变量的操作映射到了同一个内存地址，即<code>weakdef.c中</code>的<code>foo</code>函数对<code>a</code>的修改在<code>strongdef.c</code>中也可见，因此<code>strongdef.c</code>中的<code>main</code>函数应返回2。</p>
@@ -2036,106 +2511,106 @@
 <li>不存在初值。即<code>Symbol</code>的<code>index</code>为<code>SHN_COMMON</code>或<code>SHN_UNDEF</code>。</li>
 </ol>
 <p>预期输出：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test4/test4<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;foo&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="m">0000000000001143</span><span class="w"> </span>&lt;foo&gt;:
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="m">1147</span>:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="m">1148</span>:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span>114b:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>bb<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ebb<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="m">1152</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="m">1155</span>:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="m">1156</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">    </span><span class="m">1157</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test4/test4<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">    </span><span class="m">1136</span>:<span class="w">       </span>e8<span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>callq<span class="w">  </span><span class="m">1143</span><span class="w"> </span>&lt;foo&gt;
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">    </span>113b:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>mov<span class="w">    </span>0x2ecf<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">    </span><span class="m">1141</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">    </span><span class="m">1142</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>$<span class="w"> </span>testcases/test4/test4
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="m">2</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test4/test4<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;foo&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="m">0000000000001143</span><span class="w"> </span>&lt;foo&gt;:
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="m">1147</span>:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">    </span><span class="m">1148</span>:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">    </span>114b:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>bb<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ebb<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="m">1152</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">    </span><span class="m">1155</span>:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">    </span><span class="m">1156</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">    </span><span class="m">1157</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test4/test4<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">    </span><span class="m">1136</span>:<span class="w">       </span>e8<span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>callq<span class="w">  </span><span class="m">1143</span><span class="w"> </span>&lt;foo&gt;
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">    </span>113b:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>mov<span class="w">    </span>0x2ecf<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">    </span><span class="m">1141</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">    </span><span class="m">1142</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a>$<span class="w"> </span>testcases/test4/test4
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="m">2</span>
 </span></code></pre></div>
 <p>注意两处注释中a符号的地址相同。</p>
 <p>值得注意的是，从这个测试点开始涉及多个目标文件合并后的重定位，所以在进行重定位之前（即<code>handleRela</code>的最开始）必须调整每个<code>ObjectFile</code>中每个<code>RelocEntry</code>的<code>offset</code>（详见<code>任务</code>节中图）。如果你看到如下的输出，说明你没有完成这个步骤：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span>d5<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x2ed500,%eax
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="m">1136</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">08</span><span class="w">                   </span>add<span class="w">    </span>%cl,<span class="o">(</span>%rax<span class="o">)</span>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">                   </span>add<span class="w">    </span>%al,<span class="o">(</span>%rax<span class="o">)</span>
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span>113a:<span class="w">       </span><span class="m">00</span><span class="w"> </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w">       </span>add<span class="w">    </span>%cl,0x2ecf05<span class="o">(</span>%rbx<span class="o">)</span>
-</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span>5d<span class="w"> </span>c3<span class="w">                </span>add<span class="w">    </span>%bl,-0x3d<span class="o">(</span>%rbp<span class="o">)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span>d5<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x2ed500,%eax
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="m">1136</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">08</span><span class="w">                   </span>add<span class="w">    </span>%cl,<span class="o">(</span>%rax<span class="o">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">                   </span>add<span class="w">    </span>%al,<span class="o">(</span>%rax<span class="o">)</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span>113a:<span class="w">       </span><span class="m">00</span><span class="w"> </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>cf<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w">       </span>add<span class="w">    </span>%cl,0x2ecf05<span class="o">(</span>%rbx<span class="o">)</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span>5d<span class="w"> </span>c3<span class="w">                </span>add<span class="w">    </span>%bl,-0x3d<span class="o">(</span>%rbp<span class="o">)</span>
 </span></code></pre></div>
 <p>使用<code>sections[".text"]</code>来访问每个目标文件的代码段，从中可以获得其大小。</p>
 <h3 id="test-5">test 5<a class="headerlink" href="#test-5" title="Permanent link">&para;</a></h3>
 <p>这一测试点中，所有对符号a的定义都是弱定义。此时编译也应当能通过，并且两个弱符号仍指向同一个地址。main.c中main函数应当返回3。</p>
 <p>预期输出：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>d9<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">01</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x1,0x2ed9<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">    </span>113b:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span>e8<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>callq<span class="w">  </span><span class="m">1157</span><span class="w"> </span>&lt;set_a1&gt;
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="w">    </span><span class="m">1145</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;set_a1&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="m">0000000000001157</span><span class="w"> </span>&lt;set_a1&gt;:
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">    </span><span class="m">1157</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">    </span>115b:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="w">    </span>115c:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">    </span>115f:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>ab<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2eab<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
-</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="w">    </span><span class="m">1166</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="w">    </span><span class="m">1169</span>:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
-</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span>116a:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="w">    </span>116b:<span class="w">       </span>c3<span class="w">                      </span>retq
-</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;set_a2&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>000000000000116c<span class="w"> </span>&lt;set_a2&gt;:
-</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="w">    </span>116c:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="w">    </span><span class="m">1170</span>:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="w">    </span><span class="m">1171</span>:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a><span class="w">    </span><span class="m">1174</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">96</span><span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">03</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x3,0x2e96<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
-</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a><span class="w">    </span>117b:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a><span class="w">    </span>117e:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
-</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a><span class="w">    </span>117f:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a><span class="w">    </span><span class="m">1180</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
-</span><span id="__span-21-31"><a id="__codelineno-21-31" name="__codelineno-21-31" href="#__codelineno-21-31"></a>$<span class="w"> </span>testcases/test5/test5
-</span><span id="__span-21-32"><a id="__codelineno-21-32" name="__codelineno-21-32" href="#__codelineno-21-32"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
-</span><span id="__span-21-33"><a id="__codelineno-21-33" name="__codelineno-21-33" href="#__codelineno-21-33"></a><span class="m">3</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;main&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>d9<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">01</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x1,0x2ed9<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">    </span>113b:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span>e8<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>callq<span class="w">  </span><span class="m">1157</span><span class="w"> </span>&lt;set_a1&gt;
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">    </span><span class="m">1145</span>:<span class="w">       </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;set_a1&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="m">0000000000001157</span><span class="w"> </span>&lt;set_a1&gt;:
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="w">    </span><span class="m">1157</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">    </span>115b:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a><span class="w">    </span>115c:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a><span class="w">    </span>115f:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span>ab<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2eab<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a><span class="w">    </span><span class="m">1166</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a><span class="w">    </span><span class="m">1169</span>:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19" href="#__codelineno-20-19"></a><span class="w">    </span>116a:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-20-20"><a id="__codelineno-20-20" name="__codelineno-20-20" href="#__codelineno-20-20"></a><span class="w">    </span>116b:<span class="w">       </span>c3<span class="w">                      </span>retq
+</span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>$<span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>testcases/test5/test5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;&lt;set_a2&gt;:&#39;</span><span class="w"> </span>-A<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>000000000000116c<span class="w"> </span>&lt;set_a2&gt;:
+</span><span id="__span-20-23"><a id="__codelineno-20-23" name="__codelineno-20-23" href="#__codelineno-20-23"></a><span class="w">    </span>116c:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-20-24"><a id="__codelineno-20-24" name="__codelineno-20-24" href="#__codelineno-20-24"></a><span class="w">    </span><span class="m">1170</span>:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-20-25"><a id="__codelineno-20-25" name="__codelineno-20-25" href="#__codelineno-20-25"></a><span class="w">    </span><span class="m">1171</span>:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-20-26"><a id="__codelineno-20-26" name="__codelineno-20-26" href="#__codelineno-20-26"></a><span class="w">    </span><span class="m">1174</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">96</span><span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">03</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x3,0x2e96<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4014 &lt;a&gt;</span>
+</span><span id="__span-20-27"><a id="__codelineno-20-27" name="__codelineno-20-27" href="#__codelineno-20-27"></a><span class="w">    </span>117b:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-20-28"><a id="__codelineno-20-28" name="__codelineno-20-28" href="#__codelineno-20-28"></a><span class="w">    </span>117e:<span class="w">       </span><span class="m">90</span><span class="w">                      </span>nop
+</span><span id="__span-20-29"><a id="__codelineno-20-29" name="__codelineno-20-29" href="#__codelineno-20-29"></a><span class="w">    </span>117f:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-20-30"><a id="__codelineno-20-30" name="__codelineno-20-30" href="#__codelineno-20-30"></a><span class="w">    </span><span class="m">1180</span>:<span class="w">       </span>c3<span class="w">                      </span>retq
+</span><span id="__span-20-31"><a id="__codelineno-20-31" name="__codelineno-20-31" href="#__codelineno-20-31"></a>$<span class="w"> </span>testcases/test5/test5
+</span><span id="__span-20-32"><a id="__codelineno-20-32" name="__codelineno-20-32" href="#__codelineno-20-32"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$?</span>
+</span><span id="__span-20-33"><a id="__codelineno-20-33" name="__codelineno-20-33" href="#__codelineno-20-33"></a><span class="m">3</span>
 </span></code></pre></div>
 <p>注意三处注释中a符号的地址相同。</p>
 <h2 id="评分方法与代码提交">评分方法与代码提交<a class="headerlink" href="#评分方法与代码提交" title="Permanent link">&para;</a></h2>
 <p>使用autograder评估你的代码得分。为防止大家针对测试点做hard code，后续计分会使用类似如下的策略实现：</p>
 <p>以test 0为例：</p>
-<div class="language-c highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="p">{</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="k">asm</span><span class="w"> </span><span class="k">volatile</span><span class="p">(</span><span class="s">&quot;nop 16&quot;</span><span class="p">);</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="p">}</span>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="p">{</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="k">asm</span><span class="w"> </span><span class="k">volatile</span><span class="p">(</span><span class="s">&quot;nop 16&quot;</span><span class="p">);</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>其重定位结束之后的结果应为：</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">04</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>nopl<span class="w">   </span>0x10
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="m">1139</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ecd<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
-</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>c7<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>mov<span class="w">    </span>0x2ec7<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
-</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="m">1149</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
-</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">    </span>114a:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
-</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span>114b:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>nopl<span class="w">   </span>0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="m">0000000000001129</span><span class="w"> </span>&lt;main&gt;:
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="m">1129</span>:<span class="w">       </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span>112d:<span class="w">       </span><span class="m">55</span><span class="w">                      </span>push<span class="w">   </span>%rbp
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span>112e:<span class="w">       </span><span class="m">48</span><span class="w"> </span><span class="m">89</span><span class="w"> </span>e5<span class="w">                </span>mov<span class="w">    </span>%rsp,%rbp
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="m">1131</span>:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">04</span><span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>nopl<span class="w">   </span>0x10
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="m">1138</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="m">1139</span>:<span class="w">       </span>c7<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">02</span><span class="w">    </span>movl<span class="w">   </span><span class="nv">$0</span>x2,0x2ecd<span class="o">(</span>%rip<span class="o">)</span><span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="m">1140</span>:<span class="w">       </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">    </span><span class="m">1143</span>:<span class="w">       </span>8b<span class="w"> </span><span class="m">05</span><span class="w"> </span>c7<span class="w"> </span>2e<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>mov<span class="w">    </span>0x2ec7<span class="o">(</span>%rip<span class="o">)</span>,%eax<span class="w">        </span><span class="c1"># 4010 &lt;a&gt;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">    </span><span class="m">1149</span>:<span class="w">       </span>5d<span class="w">                      </span>pop<span class="w">    </span>%rbp
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span>114a:<span class="w">       </span>c3<span class="w">                      </span>retq<span class="w">   </span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span>114b:<span class="w">       </span>0f<span class="w"> </span>1f<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>nopl<span class="w">   </span>0x0<span class="o">(</span>%rax,%rax,1<span class="o">)</span>
 </span></code></pre></div>
 <p>不难发现，因为<code>main</code>中被插入了长度为16字节的<code>nop</code>，对<code>a</code>的引用的位置变了，因此重定位过程中需要填入的地址也就发生了变化。在最终给分时我们会动态调整<code>nop</code>的长度，从而使大家很难通过硬编码地址的方法通过各个测试点。同时，因为重定位类型和方法没有发生变化，所以只要你填入的地址是自己算出来的，而不是根据预期输出硬编码进去的，就不会受此影响。</p>
 <p>为了让大家能够参考预期输出，我们不再修改框架中原有的testcase。请大家手动构造这样的测试点（使用<code>gcc -c</code>或<code>gcc -c -fno-pie</code>编译，详见<code>Makefile</code>），确保提交的代码能够通过最终给分的autograder。</p>
@@ -2176,6 +2651,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab5/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 5: Optimization Lab">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 5: Optimization Lab
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../staff/" class="md-footer__link md-footer__link--next" aria-label="Next: Staff">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Staff
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
