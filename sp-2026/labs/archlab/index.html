@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://xjtu-ics.github.io/sp-2026/labs/archlab/">
       
       
+        <link rel="prev" href="../lab6/">
+      
+      
+        <link rel="next" href="../../staff/">
       
       
         
@@ -25,7 +29,7 @@
     
     
       
-        <title>XJTU-ICS Lab: Arch Lab (Optional) - Introduction to Computer Systems Spring 2026</title>
+        <title>Lab: Arch Lab(optional) - Introduction to Computer Systems Spring 2026</title>
       
     
     
@@ -178,7 +182,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              XJTU-ICS Lab: Arch Lab (Optional)
+              Lab: Arch Lab(optional)
             
           </span>
         </div>
@@ -287,10 +291,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../lab0/" class="md-tabs__link">
           
   
@@ -500,8 +506,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -519,21 +527,26 @@
       
         
       
-    
-    
-    
-      
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -551,7 +564,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -875,6 +888,537 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: Arch Lab(optional)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab: Arch Lab(optional)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验简介" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验简介
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#实验环境准备" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验环境准备
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验环境准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#远程开发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        远程开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#本地开发" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        本地开发
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#实验前置知识" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实验前置知识
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实验前置知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#y86-64处理器设计" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Y86-64处理器设计
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#y86-64处理器模拟器使用指南" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Y86-64处理器模拟器使用指南
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Y86-64处理器模拟器使用指南">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#安装" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        安装
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#实用工具程序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实用工具程序
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#处理器模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        处理器模拟器
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理器模拟器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#seq-模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SEQ 模拟器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipe-模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PIPE 模拟器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用建议" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用建议
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#常用命令速查" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常用命令速查
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part A">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sumys迭代求链表元素之和" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sum.ys：迭代求链表元素之和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsumys递归求链表元素之和" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        rsum.ys：递归求链表元素之和
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copyys将源块复制到目标块" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        copy.ys：将源块复制到目标块
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-b" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part B">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#构建并测试你的解答" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构建并测试你的解答
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="构建并测试你的解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#构建新的模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构建新的模拟器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用简单-y86-64-程序测试你的解答" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用简单 Y86-64 程序测试你的解答
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用基准程序重新测试你的解答" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用基准程序重新测试你的解答
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#执行回归测试" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        执行回归测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part C">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#编码规则" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        编码规则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#构建并运行你的解答" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        构建并运行你的解答
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="构建并运行你的解答">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#在-isa-模拟器上测试你的驱动文件" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在 ISA 模拟器上测试你的驱动文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用-isa-模拟器在一系列块长度上测试你的代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用 ISA 模拟器在一系列块长度上测试你的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#在基准程序上测试你的流水线模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        在基准程序上测试你的流水线模拟器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用完整回归测试测试你的流水线模拟器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用完整回归测试测试你的流水线模拟器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#使用流水线模拟器在一系列块长度上测试你的代码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用流水线模拟器在一系列块长度上测试你的代码
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#评分" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        评分
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="评分">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#part-a_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part A
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-b_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part B
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#part-c_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part C
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1793,6 +2337,46 @@
   
 
 
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Overview
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../lab0/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Labs
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
               
               <article class="md-content__inner md-typeset">
                 
@@ -1808,7 +2392,7 @@
 底下可以看到名为<strong>archlab-sp26</strong>的目录。进入目录，就可以开始实验。</p>
 <p>如果你缺少这个目录，有下面几种解决方式</p>
 <ul>
-<li>下载实验压缩包<a href="../assets/files/archlab-sp26.tar">archlab-sp26.tar</a></li>
+<li>下载实验压缩包<a href="../../assets/files/archlab-sp26.tar">archlab-sp26.tar</a></li>
 <li>访问本次实验的<a href="https://github.com/xjtu-ics/archlab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
@@ -1821,7 +2405,7 @@
 </ul>
 <p>实验材料的获取方式：</p>
 <ul>
-<li>下载实验压缩包<a href="../assets/files/archlab-sp26.tar">archlab-sp26.tar</a></li>
+<li>下载实验压缩包<a href="../../assets/files/archlab-sp26.tar">archlab-sp26.tar</a></li>
 <li>访问本次实验的<a href="https://github.com/xjtu-ics/archlab-sp26">公有仓库</a>并clone到本地（推荐）</li>
 <li>询问助教或者同学发给你（不推荐）</li>
 </ul>
@@ -3106,6 +3690,44 @@
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../lab6/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Lab 6: Linker Lab">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Lab 6: Linker Lab
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../staff/" class="md-footer__link md-footer__link--next" aria-label="Next: Staff">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Staff
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
