@@ -111,7 +111,7 @@ nav:
     - "Lab 5: Optimization Lab": labs/lab5.md
     - "Lab 6: Linker Lab": labs/lab6.md
     # - "Lab 7: Malloc Lab": labs/lab7.md
-    # - "Lab: Arch Lab(optional)": labs/archlab.md
+    - "Lab: Arch Lab(optional)": labs/archlab.md
   - Staff: staff/index.md
   - Policies: policies/index.md
   - Resources:
