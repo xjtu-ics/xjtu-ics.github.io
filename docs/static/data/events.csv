@@ -3,39 +3,39 @@ Lecture,1,2026-03-03T10:10:00,2026-03-03T12:00:00,Overview,Hao Li && Danfeng Sha
 Lecture,1,2026-03-05T14:00:00,2026-03-05T15:50:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.1,[DataLab](labs/lab1.md) out
 Lecture,2,2026-03-10T10:10:00,2026-03-10T12:00:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主D-204,2.2-2.3,
 Lecture,2,2026-03-12T14:00:00,2026-03-12T15:50:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主D-204,3.1,[BombLab](labs/lab2.md) out
-Lab,2,2026-03-15T23:59:59,2026-03-15T23:59:59,No Lecture,,,,,[DataLab](labs/lab1.md) due
+Lab,2,2026-03-15T23:59:59,2026-03-15T23:59:59,<p style="font-family: monospace;">NOP</p>,,,,,[DataLab](labs/lab1.md) due
 Lecture,3,2026-03-17T10:10:00,2025-03-04T21:00:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主D-204,3.2-3.5,
 Lecture,3,2026-03-19T14:00:00,2025-03-06T21:00:00,Machine Prog: Control,Danfeng Shan,assets/slides/04-machine-control.pdf,主D-204,3.6,
 Lecture,4,2026-03-24T10:10:00,2025-03-11T21:00:00,Machine Prog: Procedures,Danfeng Shan,assets/slides/05-machine-procedures.pdf,主D-204,3.7,
 Lecture,4,2026-03-26T14:00:00,2025-03-13T21:00:00,Machine Prog: Data,Danfeng Shan,assets/slides/06-machine-data.pdf,主D-204,3.8,
 Lecture,5,2026-03-31T10:10:00,2025-03-18T21:00:00,Machine Prog: Data,Danfeng Shan,assets/slides/06-machine-data.pdf,主D-204,3.9,
 Lecture,5,2026-04-02T14:00:00,2025-03-20T21:00:00,Machine Prog: Advanced,Danfeng Shan,assets/slides/07-machine-advanced.pdf,主D-204,3.10,[AttackLab](labs/lab3.md) out
-Lab,5,2026-04-05T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[BombLab](labs/lab2.md) due
+Lab,5,2026-04-05T23:59:59,2025-02-27T20:00:00,<p style="font-family: monospace;">NOP</p>,,,,,[BombLab](labs/lab2.md) due
 Lecture,6,2026-04-07T14:00:00,2025-03-27T21:00:00,No Lecture (XJTU 130th Anniversary),,,主D-204,,
 Lecture,6,2026-04-09T10:10:00,2025-03-25T21:00:00,Memory Hierarchy,Danfeng Shan,assets/slides/08-memory-hierarchy.pdf,主D-204,6.1,
 Lecture,6,2026-04-11T14:00:00,2025-03-27T21:00:00,Memory Hierarchy,Danfeng Shan,assets/slides/08-memory-hierarchy.pdf,主D-204,6.2-6.3,
 Lecture,7,2026-04-14T10:10:00,2025-03-25T21:00:00,Cache Memories,Danfeng Shan,assets/slides/09-cache-memories.pdf,主D-204,6.4,
 Lecture,7,2026-04-16T14:00:00,2025-03-27T21:00:00,Cache Memories,Danfeng Shan,assets/slides/09-cache-memories.pdf,主D-204,6.5-6.7,[CacheLab](labs/lab4.md) out
-Lab,7,2026-04-19T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[AttackLab](labs/lab3.md) due
+Lab,7,2026-04-19T23:59:59,2025-02-27T20:00:00,<p style="font-family: monospace;">NOP</p>,,,,,[AttackLab](labs/lab3.md) due
 Lecture,8,2026-04-21T10:10:00,2025-03-25T21:00:00,Processor Architecture: Basics,Danfeng Shan,assets/slides/10-processor-isa.pdf,主D-204,4.1,
 Lecture,8,2026-04-23T14:00:00,2025-03-27T21:00:00,Processor Architecture: Basics,Danfeng Shan,assets/slides/10-processor-isa.pdf,主D-204,4.1,
 Lecture,9,2026-04-28T10:10:00,2025-03-25T21:00:00,Machine-Independent Optimizations,Hao Li,assets/slides/11-optimization-machine-indep.pdf,主D-204,5.1-5.6,
 Lecture,9,2026-04-30T14:30:00,2025-03-27T21:00:00,Machine-Dependent Optimizations,Hao Li,assets/slides/12-optimization-machine-dep.pdf,主D-204,5.7-5.11,
-Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[CacheLab (Part A)](labs/lab4A.md) due
+Lab,9,2026-05-03T23:59:59,2025-02-27T20:00:00,<p style="font-family: monospace;">NOP</p>,,,,,[CacheLab (Part A)](labs/lab4A.md) due
 Lecture,10,2026-05-05T10:10:00,2025-03-25T21:00:00,No Lecture (Labour Day),,,,,
 Lecture,10,2026-05-07T14:30:00,2025-03-25T21:00:00,Linking I: Basic Concepts and Procedures,Hao Li,assets/slides/13-linking-basic.pdf,主D-204,7.1-7.7,
-Lab,10,2026-05-10T23:59:59,2025-02-27T20:00:00,No Lecture,,,,,[CacheLab (Part B)](labs/lab4B.md) due
+Lab,10,2026-05-10T23:59:59,2025-02-27T20:00:00,<p style="font-family: monospace;">NOP</p>,,,,,[CacheLab (Part B)](labs/lab4B.md) due
 Lecture,11,2026-05-12T14:30:00,2026-05-12T21:00:00,Linking II: Static and Dynamic Linking,Hao Li,assets/slides/14-linking-library.pdf,主D-204,7.7-7.13,
 Lecture,11,2026-05-14T14:30:00,2026-05-14T14:30:01,Operating System: History and Three Easy Pieces,Hao Li,assets/slides/15-os-ostep.pdf,主D-204,,
 Lecture,12,2026-05-19T14:30:00,2026-05-19T14:30:01,Processes and Multitasking,Hao Li,assets/slides/16-os-process.pdf,主D-204,8.2-8.4,
 Lecture,12,2026-05-21T14:30:00,2026-05-21T14:30:01,Exceptional Control Flow,Hao Li,assets/slides/17-os-ecf.pdf,主D-204,8.5-8.7,
-Lab,12,2026-05-24T23:58:59,2026-05-24T23:59:59,No Lecture,,,,,[Optimization Lab](labs/lab45.md) due
+Lab,12,2026-05-24T23:58:59,2026-05-24T23:59:59,<p style="font-family: monospace;">NOP</p>,,,,,[Optimization Lab](labs/lab45.md) due
 Lecture,13,2026-05-26T10:00:00,2026-05-19T14:30:01,Processor Architecture: Logical Design,Danfeng Shan,assets/slides/11-processor-logical.pdf,主D-204,4.2,
 Lecture,13,2026-05-28T14:30:00,2026-05-21T14:30:01,Processor Architecture: Sequential,Danfeng Shan,assets/slides/12-processor-sequential.pdf,主D-204,4.3,
-Lecture,14,2026-06-02T10:00:00,2026-05-19T14:30:01,Processor Architecture: Pipeline (Principle),Danfeng Shan,,主D-204,4.4,
-Lecture,14,2026-06-04T14:30:00,2026-05-21T14:30:01,Processor Architecture: Pipeline (Implementation),Danfeng Shan,,主D-204,4.5,
-Lecture,15,2026-06-09T10:00:00,2026-05-19T14:30:01,Processor Architecture: GPU & Kunpeng,Danfeng Shan,,主D-204,,
-Lecture,15,2026-06-11T14:30:00,2026-05-21T14:30:01,Virtual Memory: Concepts,TBD,,主D-204,9.1-9.3,
-Lecture,16,2026-06-16T10:00:00,2026-05-19T14:30:01,Virtual Memory: Concepts,TBD,,主D-204,9.4-9.6,
-Lecture,16,2026-06-18T14:30:00,2026-05-21T14:30:01,Virtual Memory: Details,TBD,,主D-204,9.7-9.8,
+Lecture,14,2026-06-02T10:00:00,2026-05-19T14:30:01,Processor Architecture: Pipeline (Principle),Danfeng Shan,assets/slides/13-processor-pipeline-principle.pdf,主D-204,4.4,
+Lecture,14,2026-06-04T14:30:00,2026-05-21T14:30:01,Processor Architecture: Pipeline (Implementation),Danfeng Shan,assets/slides/14-processor-pipeline-implementation.pdf,主D-204,4.5,
+Lecture,15,2026-06-09T10:00:00,2026-05-19T14:30:01,Processor Architecture: Kunpeng & GPU,Danfeng Shan,,主D-204,,
+Lecture,15,2026-06-11T14:30:00,2026-05-21T14:30:01,Virtual Memory: Concepts,Danfeng Shan,,主D-204,9.1-9.3,
+Lecture,16,2026-06-16T10:00:00,2026-05-19T14:30:01,Virtual Memory: Concepts,Danfeng Shan,,主D-204,9.4-9.6,
+Lecture,16,2026-06-18T14:30:00,2026-05-21T14:30:01,Virtual Memory: Details,Danfeng Shan,,主D-204,9.7-9.8,
 
