@@ -8,8 +8,8 @@ def define_env(env):
         df.fillna('', inplace=True)
         # only select Lecture
         df = df[(df['title'] == 'Lecture') | (df['title'] == 'Lab')]
-        df = df.drop(columns=['title', 'end', 'location'])
-        df.rename(columns={'start': 'Date','theme': 'Lecture', 'extra': "Labs", "pptLink" : "Materials"}, inplace=True)
+        df = df.drop(columns=['title', 'location'])
+        df.rename(columns={'theme': 'Lecture', 'extra': "Labs", "pptLink" : "Materials"}, inplace=True)
         df['Materials'] = df['Materials'].apply(lambda str: f"[:material-presentation-play: Slides]({str}){{.md-button}}" if str != "" else "")
         df['Date'] = pd.to_datetime(df['Date']).dt.date
         markdown_table = df.to_markdown(index=False, tablefmt="github")

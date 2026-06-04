@@ -58,14 +58,14 @@ your name
 在`events.csv`文件中，可以看到如下内容：
 
 ```
-title,Week,start,end,theme,Instructors,pptLink,location,Reading,extra
-Lecture,1,2025-02-18T19:10:00,2025-02-18T21:00:00,Overview,Hao Li && Danfeng Shan,assets/slides/01-overview-class-rules.pdf,主B-204,1,
-Lecture,1,2025-02-20T19:10:00,2025-02-20T21:00:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主B-204,2.1-2.3,[datalab](labs/lab1.md) out
-Lecture,2,2025-02-25T19:10:00,2025-02-25T21:00:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主B-204,3.1-3.3,
+title,Week,start,theme,Instructors,pptLink,location,Reading,extra
+Lecture,1,2025-02-18T19:10:00,Overview,Hao Li && Danfeng Shan,assets/slides/01-overview-class-rules.pdf,主B-204,1,
+Lecture,1,2025-02-20T19:10:00,"Bits, Bytes, & Integers",Danfeng Shan,assets/slides/02-bits-ints.pdf,主B-204,2.1-2.3,[datalab](labs/lab1.md) out
+Lecture,2,2025-02-25T19:10:00,Machine Prog: Basics,Danfeng Shan,assets/slides/03-machine-basics.pdf,主B-204,3.1-3.3,
 ```
-对这个csv文件的指定行与列进行修改即可同时对`homepage`和`calendar`的内容进行修改。
+对这个csv文件的指定行与列进行修改即可同时对`homepage`的内容进行修改。
 
-> 目前，`title`列仅有值为`Lecture`和`Lab`的对应内容可以在`homepage`中加载，而所有行均可在`calendar`中加载。具体筛选逻辑在`scripts/macros.py`。
+> 目前，`title`列仅有值为`Lecture`和`Lab`的对应内容可以在`homepage`中加载。具体筛选逻辑在`scripts/macros.py`。
 
 其中，slide文件在`assets/slides`文件夹中上传，文档中出现的图片文件在`assets/images`中上传，其他文件在`assets/files`文件夹中上传。
 
