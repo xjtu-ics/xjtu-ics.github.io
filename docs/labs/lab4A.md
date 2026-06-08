@@ -1,6 +1,33 @@
-# Part A：三级Cache模拟器
+# Part A：基于鲲鹏架构的三级Cache模拟器
 
-在Part A中，你需要实现一个三级Cache模拟器，这个模拟器将会读取`traces-*`目录下的trace文件，然后开始运行，从而达到模拟cache访问的效果。
+在Part A中，你需要实现一个三级Cache模拟器。
+以华为鲲鹏（Kunpeng）为代表的现代处理器在数据中心和高性能计算领域展现了强大的实力。
+真实的鲲鹏处理器采用了经典的多级缓存架构，包括核心私有的独立L1指令与数据缓存、核心私有（或簇内共享）的L2缓存，以及多核共享的L3缓存，以此来缓解“内存墙”问题带来的性能瓶颈。
+为了帮助大家深入理解这一不断变化的计算架构，本次实验正是基于鲲鹏处理器的缓存层级进行的高度抽象。
+你的模拟器将会读取 `traces-*` 目录下的trace文件，然后开始运行，从而达到模拟鲲鹏CPU多级cache访问的效果。
+
+
+## 鲲鹏处理器Cache架构简介
+根据架构特性，鲲鹏物理芯片上集成了强大的敏捷缓存系统与互联结构，主要具备以下硬件规格与Cache组织模式：
+
+### 基础硬件规格
+
+![Kunpeng-cache](../assets/images/cachelab/kunpeng-cache1.png)
+
+- 核心集成：单芯片集成最多64个自研核心（指令集兼容ARMv8.2，最高主频达3.0GHz）。
+- L1 Cache：每核集成64KB的L1指令缓存（I-cache）和64KB的L1数据缓存（D-cache）。
+- L2 Cache：每核独享512KB的L2缓存。
+- L3 Cache：单芯片内的所有核心共享48MB到64MB的大容量L3缓存。
+
+### L3 Cache的工作模式
+![Kunpeng-cache](../assets/images/cachelab/kunpeng-cache2.png)
+
+为了适应不同的业务需求和多核性能优化，架构支持对L3 Cache进行多种敏捷的模式配置：
+- Share Cache（共享模式）：对所有的L2来说L3 cache是共享的，一个进程可以使用整个L3的容量。
+- Private Cache（私有模式）：有N个Private的L3，每个Private L3只缓存对应的L2的数据。即一个进程只能使用对应的部分L3的容量，无法使用全部L3的容量，L3和L3之间不通信。
+- Partitioned Cache（分区模式）：与Private相同的是，一个进程只能使用对应的部分L3容量；与Private不同的是，L3细分为一个Home的L3和N个Remote的L3，Home的L3类似L4，所以L3和L3之间会通信，由Home的L3来维护多个Partitioned L3之间的一致性。
+- Non-inclusive L3（非包含模式）：支持Non-inclusive模式，Memory和L2间可以直接数据访问。
+
 
 ## 三级缓存结构的基本配置
 
@@ -16,7 +43,8 @@
 - L3为unfied cache，且**所有核心共享**
 
 !!!note
-    上述结构实际上就是真实CPU内部的多级cache结构，但是本次实验中，**你可以假设所有指令都是one by one执行**，且**只有一个核心**。换句话说，你**无需考虑多线程并发访问和核心之间缓存一致性**的问题。
+    上述结构是真实鲲鹏CPU内部多级cache结构的简化版。在本次实验中，**你可以假设所有指令都是 one by one 执行**，且**只有一个核心**。换句话说，你**无需考虑多线程并发访问和核心之间缓存一致性**的问题。
+
 
 每个cache的具体配置如下：
 
