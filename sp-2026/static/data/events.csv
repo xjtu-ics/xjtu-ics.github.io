@@ -34,8 +34,8 @@ Lecture,13,2026-05-26,Processor Architecture: Logical Design,Danfeng Shan,assets
 Lecture,13,2026-05-28,Processor Architecture: Sequential,Danfeng Shan,assets/slides/12-processor-sequential.pdf,主D-204,4.3,
 Lecture,14,2026-06-02,Processor Architecture: Pipeline (Principle),Danfeng Shan,assets/slides/13-processor-pipeline-principle.pdf,主D-204,4.4,
 Lecture,14,2026-06-04,Processor Architecture: Pipeline (Implementation),Danfeng Shan,assets/slides/14-processor-pipeline-implementation.pdf,主D-204,4.5,
-Lecture,15,2026-06-09,Processor Architecture: Kunpeng & GPU,Danfeng Shan,,主D-204,,
-Lecture,15,2026-06-11,Virtual Memory: Concepts,Danfeng Shan,,主D-204,9.1-9.3,
+Lecture,15,2026-06-09,Processor Architecture: Kunpeng,Huawei,,主D-204,,
+Lecture,15,2026-06-11,Virtual Memory: Concepts,Danfeng Shan,assets/slides/15-vm-concepts.pdf,主D-204,9.1-9.3,
 Lecture,16,2026-06-16,Virtual Memory: Concepts,Danfeng Shan,,主D-204,9.4-9.6,
 Lecture,16,2026-06-18,Virtual Memory: Details,Danfeng Shan,,主D-204,9.7-9.8,
 
